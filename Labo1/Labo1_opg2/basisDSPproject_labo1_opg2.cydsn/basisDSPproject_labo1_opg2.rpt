@@ -1,0 +1,59 @@
+Loading plugins phase: Elapsed time ==> 0s.529ms
+<CYPRESSTAG name="CyDsfit arguments...">
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\basisDSPproject_labo1_opg2.cyprj -d CY8C5888LTI-LP097 -s C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+</CYPRESSTAG>
+<CYPRESSTAG name="Design elaboration results...">
+ADD: sdb.M0033: error: The instance 'I2S_Codec_audio', of component I2S_v2_60, contains an error. Unable to locate and customize component 'I2S_v2_60' used in schematic 'C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch'.
+ *  (Component Update Tool)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Instance:I2S_Codec_audio)
+
+ADD: sdb.M0033: error: The instance 'LCD', of component CharLCD_v2_10, contains an error. Unable to locate and customize component 'CharLCD_v2_10' used in schematic 'C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch'.
+ *  (Component Update Tool)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Instance:LCD)
+
+ADD: sdb.M0050: error: Terminal "drq" requires connection when it is visible.
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_285)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_1094)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_1097)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_1098)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_40.4)
+
+ADD: sdb.M0050: error: Terminal "drq" requires connection when it is visible.
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_283)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_1091)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_1099)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_1100)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_4.4)
+
+ADD: sdb.M0025: error: No input on Instance "WS", terminal "y_0".
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_167)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_108.2)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_480)
+
+ADD: sdb.M0050: error: Terminal "y_0" requires connection when it is visible.
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_167)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_108.2)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_480)
+
+ADD: sdb.M0025: error: No input on Instance "SCK", terminal "y_0".
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_168)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_107.2)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_479)
+
+ADD: sdb.M0050: error: Terminal "y_0" requires connection when it is visible.
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_168)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_107.2)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_479)
+
+ADD: sdb.M0025: error: No input on Instance "SDO", terminal "y_0".
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_15)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_263.2)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_478)
+
+ADD: sdb.M0050: error: Terminal "y_0" requires connection when it is visible.
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Signal: Net_15)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_263.2)
+ * C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\TopDesign\TopDesign.cysch (Shape_478)
+
+</CYPRESSTAG>
+Elaboration phase: Elapsed time ==> 6s.784ms

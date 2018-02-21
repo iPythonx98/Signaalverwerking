@@ -1,0 +1,2333 @@
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"SampleUitKlaar.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.SampleUitKlaar_Interrupt,"ax",%progbits
+  19              		.align	1
+  20              		.global	SampleUitKlaar_Interrupt
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	SampleUitKlaar_Interrupt, %function
+  24              	SampleUitKlaar_Interrupt:
+  25              	.LFB66:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\SampleUitKlaar.c"
+   1:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * File Name: SampleUitKlaar.c  
+   3:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Version 1.70
+   4:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+   5:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  Description:
+   6:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   API for controlling the state of an interrupt.
+   7:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+   8:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+   9:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  Note:
+  10:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+  11:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  18:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  19:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #include <cydevice_trm.h>
+  20:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #include <CyLib.h>
+  21:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #include <SampleUitKlaar.h>
+  22:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #include "cyapicallbacks.h"
+  23:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  24:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #if !defined(SampleUitKlaar__REMOVED) /* Check for removal by optimization */
+  25:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  26:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+  27:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  Place your includes, defines and code here 
+  28:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************/
+  29:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /* `#START SampleUitKlaar_intc` */
+  30:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  31:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /* `#END` */
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  33:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #ifndef CYINT_IRQ_BASE
+  34:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #define CYINT_IRQ_BASE      16
+  35:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #endif /* CYINT_IRQ_BASE */
+  36:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #ifndef CYINT_VECT_TABLE
+  37:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #define CYINT_VECT_TABLE    ((cyisraddress **) CYREG_NVIC_VECT_OFFSET)
+  38:.\Generated_Source\PSoC5/SampleUitKlaar.c **** #endif /* CYINT_VECT_TABLE */
+  39:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  40:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /* Declared in startup, used to set unused interrupts to. */
+  41:.\Generated_Source\PSoC5/SampleUitKlaar.c **** CY_ISR_PROTO(IntDefaultHandler);
+  42:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  43:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  44:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+  45:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_Start
+  46:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+  47:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+  48:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+  49:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  50:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  51:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  52:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  interrupt controller.
+  53:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+  54:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:  
+  55:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+  56:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+  57:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+  58:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+  59:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+  60:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+  61:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_Start(void)
+  62:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+  63:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* For all we know the interrupt is active. */
+  64:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_Disable();
+  65:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  66:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Set the ISR to point to the SampleUitKlaar Interrupt. */
+  67:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_SetVector(&SampleUitKlaar_Interrupt);
+  68:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  69:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Set the priority. */
+  70:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_SetPriority((uint8)SampleUitKlaar_INTC_PRIOR_NUMBER);
+  71:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  72:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Enable it. */
+  73:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_Enable();
+  74:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+  75:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  76:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  77:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+  78:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_StartEx
+  79:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+  80:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+  81:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+  82:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  83:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  84:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  85:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  the interrupt to the interrupt controller.
+  86:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  
+  87:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  88:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  used to provide consistent definition across compilers:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 3
+
+
+  89:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  
+  90:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *  Function definition example:
+  91:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   CY_ISR(MyISR)
+  92:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   {
+  93:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   }
+  94:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Function prototype example:
+  95:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   CY_ISR_PROTO(MyISR);
+  96:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+  97:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:  
+  98:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  99:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 100:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 101:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 102:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 103:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 104:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_StartEx(cyisraddress address)
+ 105:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 106:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* For all we know the interrupt is active. */
+ 107:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_Disable();
+ 108:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 109:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Set the ISR to point to the SampleUitKlaar Interrupt. */
+ 110:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_SetVector(address);
+ 111:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 112:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Set the priority. */
+ 113:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_SetPriority((uint8)SampleUitKlaar_INTC_PRIOR_NUMBER);
+ 114:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 115:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Enable it. */
+ 116:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_Enable();
+ 117:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 118:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 119:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 120:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 121:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_Stop
+ 122:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 123:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 124:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 125:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Disables and removes the interrupt.
+ 126:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 127:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:  
+ 128:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 129:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 130:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 131:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 132:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 133:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 134:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_Stop(void)
+ 135:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 136:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Disable this interrupt. */
+ 137:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_Disable();
+ 138:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 139:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Set the ISR to point to the passive one. */
+ 140:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     SampleUitKlaar_SetVector(&IntDefaultHandler);
+ 141:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 142:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 143:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 144:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 145:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_Interrupt
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 4
+
+
+ 146:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 147:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 148:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 149:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   The default Interrupt Service Routine for SampleUitKlaar.
+ 150:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 151:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Add custom code between the coments to keep the next version of this file
+ 152:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   from over writting your code.
+ 153:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 154:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:  
+ 155:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 156:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 157:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 158:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 159:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 160:.\Generated_Source\PSoC5/SampleUitKlaar.c **** CY_ISR(SampleUitKlaar_Interrupt)
+ 161:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+  27              		.loc 1 161 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 7047     		bx	lr
+  33              		.cfi_endproc
+  34              	.LFE66:
+  35              		.size	SampleUitKlaar_Interrupt, .-SampleUitKlaar_Interrupt
+  36              		.section	.text.SampleUitKlaar_Start,"ax",%progbits
+  37              		.align	1
+  38              		.global	SampleUitKlaar_Start
+  39              		.thumb
+  40              		.thumb_func
+  41              		.type	SampleUitKlaar_Start, %function
+  42              	SampleUitKlaar_Start:
+  43              	.LFB63:
+  62:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* For all we know the interrupt is active. */
+  44              		.loc 1 62 0
+  45              		.cfi_startproc
+  46              		@ args = 0, pretend = 0, frame = 0
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48              		@ link register save eliminated.
+  49              	.LBB22:
+  50              	.LBB23:
+ 162:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     #ifdef SampleUitKlaar_INTERRUPT_INTERRUPT_CALLBACK
+ 163:.\Generated_Source\PSoC5/SampleUitKlaar.c ****         SampleUitKlaar_Interrupt_InterruptCallback();
+ 164:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     #endif /* SampleUitKlaar_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 165:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 166:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /*  Place your Interrupt code here. */
+ 167:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* `#START SampleUitKlaar_Interrupt` */
+ 168:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 169:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* `#END` */
+ 170:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 171:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 172:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 173:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 174:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_SetVector
+ 175:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 176:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 177:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 5
+
+
+ 178:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Change the ISR vector for the Interrupt. Note calling SampleUitKlaar_Start
+ 179:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   will override any effect this method would have had. To set the vector 
+ 180:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   before the component has been started use SampleUitKlaar_StartEx instead.
+ 181:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * 
+ 182:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 183:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   used to provide consistent definition across compilers:
+ 184:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 185:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Function definition example:
+ 186:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   CY_ISR(MyISR)
+ 187:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   {
+ 188:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   }
+ 189:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 190:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Function prototype example:
+ 191:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *     CY_ISR_PROTO(MyISR);
+ 192:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 193:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 194:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 195:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 196:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 197:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 198:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 199:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 200:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_SetVector(cyisraddress address)
+ 201:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 202:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     cyisraddress * ramVectorTable;
+ 203:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 204:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
+ 205:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 206:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     ramVectorTable[CYINT_IRQ_BASE + (uint32)SampleUitKlaar__INTC_NUMBER] = address;
+ 207:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 208:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 209:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 210:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 211:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_GetVector
+ 212:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 213:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 214:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 215:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 216:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 217:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 218:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 219:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 220:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 221:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Address of the ISR in the interrupt vector table.
+ 222:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 223:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 224:.\Generated_Source\PSoC5/SampleUitKlaar.c **** cyisraddress SampleUitKlaar_GetVector(void)
+ 225:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 226:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     cyisraddress * ramVectorTable;
+ 227:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 228:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
+ 229:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 230:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     return ramVectorTable[CYINT_IRQ_BASE + (uint32)SampleUitKlaar__INTC_NUMBER];
+ 231:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 232:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 233:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 234:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 6
+
+
+ 235:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_SetPriority
+ 236:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 237:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 238:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 239:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Sets the Priority of the Interrupt. 
+ 240:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 241:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Note calling SampleUitKlaar_Start or SampleUitKlaar_StartEx will 
+ 242:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   override any effect this API would have had. This API should only be called
+ 243:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   after SampleUitKlaar_Start or SampleUitKlaar_StartEx has been called. 
+ 244:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 245:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Interrupt Editor.
+ 246:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 247:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 248:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 249:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 250:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 251:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 252:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *             PSoC 4: Priority is from 0 to 3.
+ 253:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 254:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 255:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 256:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 257:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 258:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_SetPriority(uint8 priority)
+ 259:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 260:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     *SampleUitKlaar_INTC_PRIOR = priority << 5;
+ 261:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 262:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 263:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 264:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 265:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_GetPriority
+ 266:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 267:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 268:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 269:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Gets the Priority of the Interrupt.
+ 270:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 271:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 272:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 273:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 274:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 275:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Priority of the interrupt, 0 being the highest priority
+ 276:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 277:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *    PSoC 4: Priority is from 0 to 3.
+ 278:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 279:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 280:.\Generated_Source\PSoC5/SampleUitKlaar.c **** uint8 SampleUitKlaar_GetPriority(void)
+ 281:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 282:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     uint8 priority;
+ 283:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 284:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 285:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     priority = *SampleUitKlaar_INTC_PRIOR >> 5;
+ 286:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 287:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     return priority;
+ 288:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 289:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 290:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 291:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 7
+
+
+ 292:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_Enable
+ 293:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 294:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 295:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 296:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 297:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 298:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   function, which sets the vector and the priority, has been called.
+ 299:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 300:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 301:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 302:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 303:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 304:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 305:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 306:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 307:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_Enable(void)
+ 308:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 309:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Enable the general interrupt. */
+ 310:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     *SampleUitKlaar_INTC_SET_EN = SampleUitKlaar__INTC_MASK;
+ 311:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 312:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 313:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 314:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 315:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_GetState
+ 316:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 317:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 318:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 319:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 320:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 321:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 322:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 323:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 324:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 325:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   1 if enabled, 0 if disabled.
+ 326:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 327:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 328:.\Generated_Source\PSoC5/SampleUitKlaar.c **** uint8 SampleUitKlaar_GetState(void)
+ 329:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 330:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Get the state of the general interrupt. */
+ 331:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     return ((*SampleUitKlaar_INTC_SET_EN & (uint32)SampleUitKlaar__INTC_MASK) != 0u) ? 1u:0u;
+ 332:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 333:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 334:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 335:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 336:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_Disable
+ 337:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 338:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 339:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 340:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Disables the Interrupt in the interrupt controller.
+ 341:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 342:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 343:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 344:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 345:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 346:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 347:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 348:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 8
+
+
+ 349:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_Disable(void)
+ 350:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 351:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Disable the general interrupt. */
+ 352:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     *SampleUitKlaar_INTC_CLR_EN = SampleUitKlaar__INTC_MASK;
+  51              		.loc 1 352 0
+  52 0000 074A     		ldr	r2, .L3
+  53 0002 0223     		movs	r3, #2
+  54 0004 1360     		str	r3, [r2]
+  55              	.LVL0:
+  56              	.LBE23:
+  57              	.LBE22:
+  58              	.LBB24:
+  59              	.LBB25:
+ 204:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+  60              		.loc 1 204 0
+  61 0006 02F68832 		addw	r2, r2, #2952
+  62 000a 1268     		ldr	r2, [r2]
+  63              	.LVL1:
+ 206:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+  64              		.loc 1 206 0
+  65 000c 0549     		ldr	r1, .L3+4
+  66 000e 5164     		str	r1, [r2, #68]
+  67              	.LVL2:
+  68              	.LBE25:
+  69              	.LBE24:
+  70              	.LBB26:
+  71              	.LBB27:
+ 260:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+  72              		.loc 1 260 0
+  73 0010 054A     		ldr	r2, .L3+8
+  74              	.LVL3:
+  75 0012 E021     		movs	r1, #224
+  76 0014 1170     		strb	r1, [r2]
+  77              	.LBE27:
+  78              	.LBE26:
+  79              	.LBB28:
+  80              	.LBB29:
+ 310:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+  81              		.loc 1 310 0
+  82 0016 6FF44071 		mvn	r1, #768
+  83 001a 0A44     		add	r2, r2, r1
+  84 001c 1360     		str	r3, [r2]
+  85 001e 7047     		bx	lr
+  86              	.L4:
+  87              		.align	2
+  88              	.L3:
+  89 0020 80E100E0 		.word	-536813184
+  90 0024 00000000 		.word	SampleUitKlaar_Interrupt
+  91 0028 01E400E0 		.word	-536812543
+  92              	.LBE29:
+  93              	.LBE28:
+  94              		.cfi_endproc
+  95              	.LFE63:
+  96              		.size	SampleUitKlaar_Start, .-SampleUitKlaar_Start
+  97              		.section	.text.SampleUitKlaar_StartEx,"ax",%progbits
+  98              		.align	1
+  99              		.global	SampleUitKlaar_StartEx
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 9
+
+
+ 100              		.thumb
+ 101              		.thumb_func
+ 102              		.type	SampleUitKlaar_StartEx, %function
+ 103              	SampleUitKlaar_StartEx:
+ 104              	.LFB64:
+ 105:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* For all we know the interrupt is active. */
+ 105              		.loc 1 105 0
+ 106              		.cfi_startproc
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109              		@ link register save eliminated.
+ 110              	.LVL4:
+ 111              	.LBB30:
+ 112              	.LBB31:
+ 113              		.loc 1 352 0
+ 114 0000 074A     		ldr	r2, .L6
+ 115 0002 0223     		movs	r3, #2
+ 116 0004 1360     		str	r3, [r2]
+ 117              	.LVL5:
+ 118              	.LBE31:
+ 119              	.LBE30:
+ 120              	.LBB32:
+ 121              	.LBB33:
+ 204:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 122              		.loc 1 204 0
+ 123 0006 02F68832 		addw	r2, r2, #2952
+ 124 000a 1268     		ldr	r2, [r2]
+ 125              	.LVL6:
+ 126              	.LBE33:
+ 127              	.LBE32:
+ 128              	.LBB35:
+ 129              	.LBB36:
+ 260:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 130              		.loc 1 260 0
+ 131 000c E021     		movs	r1, #224
+ 132              	.LBE36:
+ 133              	.LBE35:
+ 134              	.LBB38:
+ 135              	.LBB34:
+ 206:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 136              		.loc 1 206 0
+ 137 000e 5064     		str	r0, [r2, #68]
+ 138              	.LVL7:
+ 139              	.LBE34:
+ 140              	.LBE38:
+ 141              	.LBB39:
+ 142              	.LBB37:
+ 260:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 143              		.loc 1 260 0
+ 144 0010 044A     		ldr	r2, .L6+4
+ 145              	.LVL8:
+ 146 0012 1170     		strb	r1, [r2]
+ 147              	.LBE37:
+ 148              	.LBE39:
+ 149              	.LBB40:
+ 150              	.LBB41:
+ 310:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 10
+
+
+ 151              		.loc 1 310 0
+ 152 0014 6FF44071 		mvn	r1, #768
+ 153 0018 0A44     		add	r2, r2, r1
+ 154 001a 1360     		str	r3, [r2]
+ 155 001c 7047     		bx	lr
+ 156              	.L7:
+ 157 001e 00BF     		.align	2
+ 158              	.L6:
+ 159 0020 80E100E0 		.word	-536813184
+ 160 0024 01E400E0 		.word	-536812543
+ 161              	.LBE41:
+ 162              	.LBE40:
+ 163              		.cfi_endproc
+ 164              	.LFE64:
+ 165              		.size	SampleUitKlaar_StartEx, .-SampleUitKlaar_StartEx
+ 166              		.section	.text.SampleUitKlaar_Stop,"ax",%progbits
+ 167              		.align	1
+ 168              		.global	SampleUitKlaar_Stop
+ 169              		.thumb
+ 170              		.thumb_func
+ 171              		.type	SampleUitKlaar_Stop, %function
+ 172              	SampleUitKlaar_Stop:
+ 173              	.LFB65:
+ 135:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Disable this interrupt. */
+ 174              		.loc 1 135 0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178              		@ link register save eliminated.
+ 179              	.LBB42:
+ 180              	.LBB43:
+ 181              		.loc 1 352 0
+ 182 0000 044B     		ldr	r3, .L9
+ 183 0002 0222     		movs	r2, #2
+ 184 0004 1A60     		str	r2, [r3]
+ 185              	.LVL9:
+ 186              	.LBE43:
+ 187              	.LBE42:
+ 188              	.LBB44:
+ 189              	.LBB45:
+ 204:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 190              		.loc 1 204 0
+ 191 0006 03F68833 		addw	r3, r3, #2952
+ 192 000a 1B68     		ldr	r3, [r3]
+ 193              	.LVL10:
+ 206:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 194              		.loc 1 206 0
+ 195 000c 024A     		ldr	r2, .L9+4
+ 196 000e 5A64     		str	r2, [r3, #68]
+ 197 0010 7047     		bx	lr
+ 198              	.L10:
+ 199 0012 00BF     		.align	2
+ 200              	.L9:
+ 201 0014 80E100E0 		.word	-536813184
+ 202 0018 00000000 		.word	IntDefaultHandler
+ 203              	.LBE45:
+ 204              	.LBE44:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 11
+
+
+ 205              		.cfi_endproc
+ 206              	.LFE65:
+ 207              		.size	SampleUitKlaar_Stop, .-SampleUitKlaar_Stop
+ 208              		.section	.text.SampleUitKlaar_SetVector,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	SampleUitKlaar_SetVector
+ 211              		.thumb
+ 212              		.thumb_func
+ 213              		.type	SampleUitKlaar_SetVector, %function
+ 214              	SampleUitKlaar_SetVector:
+ 215              	.LFB67:
+ 201:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     cyisraddress * ramVectorTable;
+ 216              		.loc 1 201 0
+ 217              		.cfi_startproc
+ 218              		@ args = 0, pretend = 0, frame = 0
+ 219              		@ frame_needed = 0, uses_anonymous_args = 0
+ 220              		@ link register save eliminated.
+ 221              	.LVL11:
+ 204:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 222              		.loc 1 204 0
+ 223 0000 014B     		ldr	r3, .L12
+ 224 0002 1B68     		ldr	r3, [r3]
+ 225              	.LVL12:
+ 206:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 226              		.loc 1 206 0
+ 227 0004 5864     		str	r0, [r3, #68]
+ 228 0006 7047     		bx	lr
+ 229              	.L13:
+ 230              		.align	2
+ 231              	.L12:
+ 232 0008 08ED00E0 		.word	-536810232
+ 233              		.cfi_endproc
+ 234              	.LFE67:
+ 235              		.size	SampleUitKlaar_SetVector, .-SampleUitKlaar_SetVector
+ 236              		.section	.text.SampleUitKlaar_GetVector,"ax",%progbits
+ 237              		.align	1
+ 238              		.global	SampleUitKlaar_GetVector
+ 239              		.thumb
+ 240              		.thumb_func
+ 241              		.type	SampleUitKlaar_GetVector, %function
+ 242              	SampleUitKlaar_GetVector:
+ 243              	.LFB68:
+ 225:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     cyisraddress * ramVectorTable;
+ 244              		.loc 1 225 0
+ 245              		.cfi_startproc
+ 246              		@ args = 0, pretend = 0, frame = 0
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 248              		@ link register save eliminated.
+ 249              	.LVL13:
+ 228:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 250              		.loc 1 228 0
+ 251 0000 014B     		ldr	r3, .L15
+ 252              	.LVL14:
+ 230:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 253              		.loc 1 230 0
+ 254 0002 1B68     		ldr	r3, [r3]
+ 255              	.LVL15:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 12
+
+
+ 231:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 256              		.loc 1 231 0
+ 257 0004 586C     		ldr	r0, [r3, #68]
+ 258 0006 7047     		bx	lr
+ 259              	.L16:
+ 260              		.align	2
+ 261              	.L15:
+ 262 0008 08ED00E0 		.word	-536810232
+ 263              		.cfi_endproc
+ 264              	.LFE68:
+ 265              		.size	SampleUitKlaar_GetVector, .-SampleUitKlaar_GetVector
+ 266              		.section	.text.SampleUitKlaar_SetPriority,"ax",%progbits
+ 267              		.align	1
+ 268              		.global	SampleUitKlaar_SetPriority
+ 269              		.thumb
+ 270              		.thumb_func
+ 271              		.type	SampleUitKlaar_SetPriority, %function
+ 272              	SampleUitKlaar_SetPriority:
+ 273              	.LFB69:
+ 259:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     *SampleUitKlaar_INTC_PRIOR = priority << 5;
+ 274              		.loc 1 259 0
+ 275              		.cfi_startproc
+ 276              		@ args = 0, pretend = 0, frame = 0
+ 277              		@ frame_needed = 0, uses_anonymous_args = 0
+ 278              		@ link register save eliminated.
+ 279              	.LVL16:
+ 260:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 280              		.loc 1 260 0
+ 281 0000 4001     		lsls	r0, r0, #5
+ 282              	.LVL17:
+ 283 0002 024B     		ldr	r3, .L18
+ 284 0004 C0B2     		uxtb	r0, r0
+ 285 0006 1870     		strb	r0, [r3]
+ 286 0008 7047     		bx	lr
+ 287              	.L19:
+ 288 000a 00BF     		.align	2
+ 289              	.L18:
+ 290 000c 01E400E0 		.word	-536812543
+ 291              		.cfi_endproc
+ 292              	.LFE69:
+ 293              		.size	SampleUitKlaar_SetPriority, .-SampleUitKlaar_SetPriority
+ 294              		.section	.text.SampleUitKlaar_GetPriority,"ax",%progbits
+ 295              		.align	1
+ 296              		.global	SampleUitKlaar_GetPriority
+ 297              		.thumb
+ 298              		.thumb_func
+ 299              		.type	SampleUitKlaar_GetPriority, %function
+ 300              	SampleUitKlaar_GetPriority:
+ 301              	.LFB70:
+ 281:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     uint8 priority;
+ 302              		.loc 1 281 0
+ 303              		.cfi_startproc
+ 304              		@ args = 0, pretend = 0, frame = 0
+ 305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 306              		@ link register save eliminated.
+ 285:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 307              		.loc 1 285 0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 13
+
+
+ 308 0000 014B     		ldr	r3, .L21
+ 309 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 310              	.LVL18:
+ 288:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 311              		.loc 1 288 0
+ 312 0004 4009     		lsrs	r0, r0, #5
+ 313              	.LVL19:
+ 314 0006 7047     		bx	lr
+ 315              	.L22:
+ 316              		.align	2
+ 317              	.L21:
+ 318 0008 01E400E0 		.word	-536812543
+ 319              		.cfi_endproc
+ 320              	.LFE70:
+ 321              		.size	SampleUitKlaar_GetPriority, .-SampleUitKlaar_GetPriority
+ 322              		.section	.text.SampleUitKlaar_Enable,"ax",%progbits
+ 323              		.align	1
+ 324              		.global	SampleUitKlaar_Enable
+ 325              		.thumb
+ 326              		.thumb_func
+ 327              		.type	SampleUitKlaar_Enable, %function
+ 328              	SampleUitKlaar_Enable:
+ 329              	.LFB71:
+ 308:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Enable the general interrupt. */
+ 330              		.loc 1 308 0
+ 331              		.cfi_startproc
+ 332              		@ args = 0, pretend = 0, frame = 0
+ 333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334              		@ link register save eliminated.
+ 310:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 335              		.loc 1 310 0
+ 336 0000 014B     		ldr	r3, .L24
+ 337 0002 0222     		movs	r2, #2
+ 338 0004 1A60     		str	r2, [r3]
+ 339 0006 7047     		bx	lr
+ 340              	.L25:
+ 341              		.align	2
+ 342              	.L24:
+ 343 0008 00E100E0 		.word	-536813312
+ 344              		.cfi_endproc
+ 345              	.LFE71:
+ 346              		.size	SampleUitKlaar_Enable, .-SampleUitKlaar_Enable
+ 347              		.section	.text.SampleUitKlaar_GetState,"ax",%progbits
+ 348              		.align	1
+ 349              		.global	SampleUitKlaar_GetState
+ 350              		.thumb
+ 351              		.thumb_func
+ 352              		.type	SampleUitKlaar_GetState, %function
+ 353              	SampleUitKlaar_GetState:
+ 354              	.LFB72:
+ 329:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Get the state of the general interrupt. */
+ 355              		.loc 1 329 0
+ 356              		.cfi_startproc
+ 357              		@ args = 0, pretend = 0, frame = 0
+ 358              		@ frame_needed = 0, uses_anonymous_args = 0
+ 359              		@ link register save eliminated.
+ 331:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 14
+
+
+ 360              		.loc 1 331 0
+ 361 0000 024B     		ldr	r3, .L27
+ 362 0002 1868     		ldr	r0, [r3]
+ 332:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 363              		.loc 1 332 0
+ 364 0004 C0F34000 		ubfx	r0, r0, #1, #1
+ 365 0008 7047     		bx	lr
+ 366              	.L28:
+ 367 000a 00BF     		.align	2
+ 368              	.L27:
+ 369 000c 00E100E0 		.word	-536813312
+ 370              		.cfi_endproc
+ 371              	.LFE72:
+ 372              		.size	SampleUitKlaar_GetState, .-SampleUitKlaar_GetState
+ 373              		.section	.text.SampleUitKlaar_Disable,"ax",%progbits
+ 374              		.align	1
+ 375              		.global	SampleUitKlaar_Disable
+ 376              		.thumb
+ 377              		.thumb_func
+ 378              		.type	SampleUitKlaar_Disable, %function
+ 379              	SampleUitKlaar_Disable:
+ 380              	.LFB73:
+ 350:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     /* Disable the general interrupt. */
+ 381              		.loc 1 350 0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 0
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385              		@ link register save eliminated.
+ 386              		.loc 1 352 0
+ 387 0000 014B     		ldr	r3, .L30
+ 388 0002 0222     		movs	r2, #2
+ 389 0004 1A60     		str	r2, [r3]
+ 390 0006 7047     		bx	lr
+ 391              	.L31:
+ 392              		.align	2
+ 393              	.L30:
+ 394 0008 80E100E0 		.word	-536813184
+ 395              		.cfi_endproc
+ 396              	.LFE73:
+ 397              		.size	SampleUitKlaar_Disable, .-SampleUitKlaar_Disable
+ 398              		.section	.text.SampleUitKlaar_SetPending,"ax",%progbits
+ 399              		.align	1
+ 400              		.global	SampleUitKlaar_SetPending
+ 401              		.thumb
+ 402              		.thumb_func
+ 403              		.type	SampleUitKlaar_SetPending, %function
+ 404              	SampleUitKlaar_SetPending:
+ 405              	.LFB74:
+ 353:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 354:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 355:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 356:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 357:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_SetPending
+ 358:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 359:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 360:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 361:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 15
+
+
+ 362:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   generating the interrupt.
+ 363:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 364:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 365:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 366:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 367:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 368:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 369:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 370:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Side Effects:
+ 371:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 372:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 373:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   interrupts).
+ 374:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 375:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 376:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_SetPending(void)
+ 377:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 406              		.loc 1 377 0
+ 407              		.cfi_startproc
+ 408              		@ args = 0, pretend = 0, frame = 0
+ 409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 410              		@ link register save eliminated.
+ 378:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     *SampleUitKlaar_INTC_SET_PD = SampleUitKlaar__INTC_MASK;
+ 411              		.loc 1 378 0
+ 412 0000 014B     		ldr	r3, .L33
+ 413 0002 0222     		movs	r2, #2
+ 414 0004 1A60     		str	r2, [r3]
+ 415 0006 7047     		bx	lr
+ 416              	.L34:
+ 417              		.align	2
+ 418              	.L33:
+ 419 0008 00E200E0 		.word	-536813056
+ 420              		.cfi_endproc
+ 421              	.LFE74:
+ 422              		.size	SampleUitKlaar_SetPending, .-SampleUitKlaar_SetPending
+ 423              		.section	.text.SampleUitKlaar_ClearPending,"ax",%progbits
+ 424              		.align	1
+ 425              		.global	SampleUitKlaar_ClearPending
+ 426              		.thumb
+ 427              		.thumb_func
+ 428              		.type	SampleUitKlaar_ClearPending, %function
+ 429              	SampleUitKlaar_ClearPending:
+ 430              	.LFB75:
+ 379:.\Generated_Source\PSoC5/SampleUitKlaar.c **** }
+ 380:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 381:.\Generated_Source\PSoC5/SampleUitKlaar.c **** 
+ 382:.\Generated_Source\PSoC5/SampleUitKlaar.c **** /*******************************************************************************
+ 383:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Function Name: SampleUitKlaar_ClearPending
+ 384:.\Generated_Source\PSoC5/SampleUitKlaar.c **** ********************************************************************************
+ 385:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 386:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Summary:
+ 387:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Clears a pending interrupt in the interrupt controller.
+ 388:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 389:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 390:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 391:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 392:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 393:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 16
+
+
+ 394:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Parameters:
+ 395:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 396:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 397:.\Generated_Source\PSoC5/SampleUitKlaar.c **** * Return:
+ 398:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *   None
+ 399:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *
+ 400:.\Generated_Source\PSoC5/SampleUitKlaar.c **** *******************************************************************************/
+ 401:.\Generated_Source\PSoC5/SampleUitKlaar.c **** void SampleUitKlaar_ClearPending(void)
+ 402:.\Generated_Source\PSoC5/SampleUitKlaar.c **** {
+ 431              		.loc 1 402 0
+ 432              		.cfi_startproc
+ 433              		@ args = 0, pretend = 0, frame = 0
+ 434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 435              		@ link register save eliminated.
+ 403:.\Generated_Source\PSoC5/SampleUitKlaar.c ****     *SampleUitKlaar_INTC_CLR_PD = SampleUitKlaar__INTC_MASK;
+ 436              		.loc 1 403 0
+ 437 0000 014B     		ldr	r3, .L36
+ 438 0002 0222     		movs	r2, #2
+ 439 0004 1A60     		str	r2, [r3]
+ 440 0006 7047     		bx	lr
+ 441              	.L37:
+ 442              		.align	2
+ 443              	.L36:
+ 444 0008 80E200E0 		.word	-536812928
+ 445              		.cfi_endproc
+ 446              	.LFE75:
+ 447              		.size	SampleUitKlaar_ClearPending, .-SampleUitKlaar_ClearPending
+ 448              		.text
+ 449              	.Letext0:
+ 450              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 451              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 452              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 453              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 454              		.section	.debug_info,"",%progbits
+ 455              	.Ldebug_info0:
+ 456 0000 98030000 		.4byte	0x398
+ 457 0004 0400     		.2byte	0x4
+ 458 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 459 000a 04       		.byte	0x4
+ 460 000b 01       		.uleb128 0x1
+ 461 000c 39020000 		.4byte	.LASF35
+ 462 0010 01       		.byte	0x1
+ 463 0011 19000000 		.4byte	.LASF36
+ 464 0015 77010000 		.4byte	.LASF37
+ 465 0019 30000000 		.4byte	.Ldebug_ranges0+0x30
+ 466 001d 00000000 		.4byte	0
+ 467 0021 00000000 		.4byte	.Ldebug_line0
+ 468 0025 02       		.uleb128 0x2
+ 469 0026 04       		.byte	0x4
+ 470 0027 05       		.byte	0x5
+ 471 0028 696E7400 		.ascii	"int\000"
+ 472 002c 03       		.uleb128 0x3
+ 473 002d 04       		.byte	0x4
+ 474 002e 07       		.byte	0x7
+ 475 002f AF010000 		.4byte	.LASF0
+ 476 0033 03       		.uleb128 0x3
+ 477 0034 01       		.byte	0x1
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 17
+
+
+ 478 0035 06       		.byte	0x6
+ 479 0036 EB020000 		.4byte	.LASF1
+ 480 003a 03       		.uleb128 0x3
+ 481 003b 01       		.byte	0x1
+ 482 003c 08       		.byte	0x8
+ 483 003d D5000000 		.4byte	.LASF2
+ 484 0041 03       		.uleb128 0x3
+ 485 0042 02       		.byte	0x2
+ 486 0043 05       		.byte	0x5
+ 487 0044 2F020000 		.4byte	.LASF3
+ 488 0048 03       		.uleb128 0x3
+ 489 0049 02       		.byte	0x2
+ 490 004a 07       		.byte	0x7
+ 491 004b 9B000000 		.4byte	.LASF4
+ 492 004f 04       		.uleb128 0x4
+ 493 0050 5E000000 		.4byte	.LASF11
+ 494 0054 02       		.byte	0x2
+ 495 0055 3F       		.byte	0x3f
+ 496 0056 5A000000 		.4byte	0x5a
+ 497 005a 03       		.uleb128 0x3
+ 498 005b 04       		.byte	0x4
+ 499 005c 05       		.byte	0x5
+ 500 005d C7020000 		.4byte	.LASF5
+ 501 0061 03       		.uleb128 0x3
+ 502 0062 04       		.byte	0x4
+ 503 0063 07       		.byte	0x7
+ 504 0064 FE000000 		.4byte	.LASF6
+ 505 0068 03       		.uleb128 0x3
+ 506 0069 08       		.byte	0x8
+ 507 006a 05       		.byte	0x5
+ 508 006b 0D020000 		.4byte	.LASF7
+ 509 006f 03       		.uleb128 0x3
+ 510 0070 08       		.byte	0x8
+ 511 0071 07       		.byte	0x7
+ 512 0072 D8010000 		.4byte	.LASF8
+ 513 0076 03       		.uleb128 0x3
+ 514 0077 04       		.byte	0x4
+ 515 0078 07       		.byte	0x7
+ 516 0079 04020000 		.4byte	.LASF9
+ 517 007d 05       		.uleb128 0x5
+ 518 007e 04       		.byte	0x4
+ 519 007f 83000000 		.4byte	0x83
+ 520 0083 06       		.uleb128 0x6
+ 521 0084 03       		.uleb128 0x3
+ 522 0085 01       		.byte	0x1
+ 523 0086 08       		.byte	0x8
+ 524 0087 1B020000 		.4byte	.LASF10
+ 525 008b 04       		.uleb128 0x4
+ 526 008c FC010000 		.4byte	.LASF12
+ 527 0090 03       		.byte	0x3
+ 528 0091 2C       		.byte	0x2c
+ 529 0092 4F000000 		.4byte	0x4f
+ 530 0096 04       		.uleb128 0x4
+ 531 0097 CF000000 		.4byte	.LASF13
+ 532 009b 04       		.byte	0x4
+ 533 009c C2       		.byte	0xc2
+ 534 009d 3A000000 		.4byte	0x3a
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 18
+
+
+ 535 00a1 04       		.uleb128 0x4
+ 536 00a2 A8010000 		.4byte	.LASF14
+ 537 00a6 04       		.byte	0x4
+ 538 00a7 C4       		.byte	0xc4
+ 539 00a8 61000000 		.4byte	0x61
+ 540 00ac 03       		.uleb128 0x3
+ 541 00ad 04       		.byte	0x4
+ 542 00ae 04       		.byte	0x4
+ 543 00af C9000000 		.4byte	.LASF15
+ 544 00b3 03       		.uleb128 0x3
+ 545 00b4 08       		.byte	0x8
+ 546 00b5 04       		.byte	0x4
+ 547 00b6 4F010000 		.4byte	.LASF16
+ 548 00ba 07       		.uleb128 0x7
+ 549 00bb F9000000 		.4byte	.LASF17
+ 550 00bf 04       		.byte	0x4
+ 551 00c0 6C01     		.2byte	0x16c
+ 552 00c2 C6000000 		.4byte	0xc6
+ 553 00c6 08       		.uleb128 0x8
+ 554 00c7 96000000 		.4byte	0x96
+ 555 00cb 07       		.uleb128 0x7
+ 556 00cc 43000000 		.4byte	.LASF18
+ 557 00d0 04       		.byte	0x4
+ 558 00d1 6E01     		.2byte	0x16e
+ 559 00d3 D7000000 		.4byte	0xd7
+ 560 00d7 08       		.uleb128 0x8
+ 561 00d8 A1000000 		.4byte	0xa1
+ 562 00dc 07       		.uleb128 0x7
+ 563 00dd EF010000 		.4byte	.LASF19
+ 564 00e1 04       		.byte	0x4
+ 565 00e2 7E01     		.2byte	0x17e
+ 566 00e4 7D000000 		.4byte	0x7d
+ 567 00e8 09       		.uleb128 0x9
+ 568 00e9 84000000 		.4byte	.LASF24
+ 569 00ed 01       		.byte	0x1
+ 570 00ee 5D01     		.2byte	0x15d
+ 571 00f0 01       		.byte	0x1
+ 572 00f1 0A       		.uleb128 0xa
+ 573 00f2 00000000 		.4byte	.LASF20
+ 574 00f6 01       		.byte	0x1
+ 575 00f7 C8       		.byte	0xc8
+ 576 00f8 01       		.byte	0x1
+ 577 00f9 14010000 		.4byte	0x114
+ 578 00fd 0B       		.uleb128 0xb
+ 579 00fe D0010000 		.4byte	.LASF22
+ 580 0102 01       		.byte	0x1
+ 581 0103 C8       		.byte	0xc8
+ 582 0104 DC000000 		.4byte	0xdc
+ 583 0108 0C       		.uleb128 0xc
+ 584 0109 20020000 		.4byte	.LASF31
+ 585 010d 01       		.byte	0x1
+ 586 010e CA       		.byte	0xca
+ 587 010f 14010000 		.4byte	0x114
+ 588 0113 00       		.byte	0
+ 589 0114 05       		.uleb128 0x5
+ 590 0115 04       		.byte	0x4
+ 591 0116 DC000000 		.4byte	0xdc
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 19
+
+
+ 592 011a 0D       		.uleb128 0xd
+ 593 011b AE000000 		.4byte	.LASF21
+ 594 011f 01       		.byte	0x1
+ 595 0120 0201     		.2byte	0x102
+ 596 0122 01       		.byte	0x1
+ 597 0123 34010000 		.4byte	0x134
+ 598 0127 0E       		.uleb128 0xe
+ 599 0128 6E010000 		.4byte	.LASF23
+ 600 012c 01       		.byte	0x1
+ 601 012d 0201     		.2byte	0x102
+ 602 012f 96000000 		.4byte	0x96
+ 603 0133 00       		.byte	0
+ 604 0134 09       		.uleb128 0x9
+ 605 0135 E3000000 		.4byte	.LASF25
+ 606 0139 01       		.byte	0x1
+ 607 013a 3301     		.2byte	0x133
+ 608 013c 01       		.byte	0x1
+ 609 013d 0F       		.uleb128 0xf
+ 610 013e 29010000 		.4byte	.LASF32
+ 611 0142 01       		.byte	0x1
+ 612 0143 A0       		.byte	0xa0
+ 613 0144 00000000 		.4byte	.LFB66
+ 614 0148 02000000 		.4byte	.LFE66-.LFB66
+ 615 014c 01       		.uleb128 0x1
+ 616 014d 9C       		.byte	0x9c
+ 617 014e 10       		.uleb128 0x10
+ 618 014f 49000000 		.4byte	.LASF26
+ 619 0153 01       		.byte	0x1
+ 620 0154 3D       		.byte	0x3d
+ 621 0155 00000000 		.4byte	.LFB63
+ 622 0159 2C000000 		.4byte	.LFE63-.LFB63
+ 623 015d 01       		.uleb128 0x1
+ 624 015e 9C       		.byte	0x9c
+ 625 015f CF010000 		.4byte	0x1cf
+ 626 0163 11       		.uleb128 0x11
+ 627 0164 E8000000 		.4byte	0xe8
+ 628 0168 00000000 		.4byte	.LBB22
+ 629 016c 06000000 		.4byte	.LBE22-.LBB22
+ 630 0170 01       		.byte	0x1
+ 631 0171 40       		.byte	0x40
+ 632 0172 12       		.uleb128 0x12
+ 633 0173 F1000000 		.4byte	0xf1
+ 634 0177 06000000 		.4byte	.LBB24
+ 635 017b 0A000000 		.4byte	.LBE24-.LBB24
+ 636 017f 01       		.byte	0x1
+ 637 0180 43       		.byte	0x43
+ 638 0181 A5010000 		.4byte	0x1a5
+ 639 0185 13       		.uleb128 0x13
+ 640 0186 FD000000 		.4byte	0xfd
+ 641 018a 06       		.uleb128 0x6
+ 642 018b 03       		.byte	0x3
+ 643 018c 00000000 		.4byte	SampleUitKlaar_Interrupt
+ 644 0190 9F       		.byte	0x9f
+ 645 0191 14       		.uleb128 0x14
+ 646 0192 06000000 		.4byte	.LBB25
+ 647 0196 0A000000 		.4byte	.LBE25-.LBB25
+ 648 019a 15       		.uleb128 0x15
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 20
+
+
+ 649 019b 08010000 		.4byte	0x108
+ 650 019f 00000000 		.4byte	.LLST0
+ 651 01a3 00       		.byte	0
+ 652 01a4 00       		.byte	0
+ 653 01a5 12       		.uleb128 0x12
+ 654 01a6 1A010000 		.4byte	0x11a
+ 655 01aa 10000000 		.4byte	.LBB26
+ 656 01ae 06000000 		.4byte	.LBE26-.LBB26
+ 657 01b2 01       		.byte	0x1
+ 658 01b3 46       		.byte	0x46
+ 659 01b4 BF010000 		.4byte	0x1bf
+ 660 01b8 16       		.uleb128 0x16
+ 661 01b9 27010000 		.4byte	0x127
+ 662 01bd 07       		.byte	0x7
+ 663 01be 00       		.byte	0
+ 664 01bf 11       		.uleb128 0x11
+ 665 01c0 34010000 		.4byte	0x134
+ 666 01c4 16000000 		.4byte	.LBB28
+ 667 01c8 16000000 		.4byte	.LBE28-.LBB28
+ 668 01cc 01       		.byte	0x1
+ 669 01cd 49       		.byte	0x49
+ 670 01ce 00       		.byte	0
+ 671 01cf 10       		.uleb128 0x10
+ 672 01d0 11030000 		.4byte	.LASF27
+ 673 01d4 01       		.byte	0x1
+ 674 01d5 68       		.byte	0x68
+ 675 01d6 00000000 		.4byte	.LFB64
+ 676 01da 28000000 		.4byte	.LFE64-.LFB64
+ 677 01de 01       		.uleb128 0x1
+ 678 01df 9C       		.byte	0x9c
+ 679 01e0 54020000 		.4byte	0x254
+ 680 01e4 17       		.uleb128 0x17
+ 681 01e5 D0010000 		.4byte	.LASF22
+ 682 01e9 01       		.byte	0x1
+ 683 01ea 68       		.byte	0x68
+ 684 01eb DC000000 		.4byte	0xdc
+ 685 01ef 01       		.uleb128 0x1
+ 686 01f0 50       		.byte	0x50
+ 687 01f1 11       		.uleb128 0x11
+ 688 01f2 E8000000 		.4byte	0xe8
+ 689 01f6 00000000 		.4byte	.LBB30
+ 690 01fa 06000000 		.4byte	.LBE30-.LBB30
+ 691 01fe 01       		.byte	0x1
+ 692 01ff 6B       		.byte	0x6b
+ 693 0200 18       		.uleb128 0x18
+ 694 0201 F1000000 		.4byte	0xf1
+ 695 0205 06000000 		.4byte	.LBB32
+ 696 0209 00000000 		.4byte	.Ldebug_ranges0+0
+ 697 020d 01       		.byte	0x1
+ 698 020e 6E       		.byte	0x6e
+ 699 020f 2A020000 		.4byte	0x22a
+ 700 0213 13       		.uleb128 0x13
+ 701 0214 FD000000 		.4byte	0xfd
+ 702 0218 01       		.uleb128 0x1
+ 703 0219 50       		.byte	0x50
+ 704 021a 19       		.uleb128 0x19
+ 705 021b 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 21
+
+
+ 706 021f 15       		.uleb128 0x15
+ 707 0220 08010000 		.4byte	0x108
+ 708 0224 13000000 		.4byte	.LLST1
+ 709 0228 00       		.byte	0
+ 710 0229 00       		.byte	0
+ 711 022a 18       		.uleb128 0x18
+ 712 022b 1A010000 		.4byte	0x11a
+ 713 022f 0C000000 		.4byte	.LBB35
+ 714 0233 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 715 0237 01       		.byte	0x1
+ 716 0238 71       		.byte	0x71
+ 717 0239 44020000 		.4byte	0x244
+ 718 023d 16       		.uleb128 0x16
+ 719 023e 27010000 		.4byte	0x127
+ 720 0242 07       		.byte	0x7
+ 721 0243 00       		.byte	0
+ 722 0244 11       		.uleb128 0x11
+ 723 0245 34010000 		.4byte	0x134
+ 724 0249 14000000 		.4byte	.LBB40
+ 725 024d 14000000 		.4byte	.LBE40-.LBB40
+ 726 0251 01       		.byte	0x1
+ 727 0252 74       		.byte	0x74
+ 728 0253 00       		.byte	0
+ 729 0254 10       		.uleb128 0x10
+ 730 0255 BC010000 		.4byte	.LASF28
+ 731 0259 01       		.byte	0x1
+ 732 025a 86       		.byte	0x86
+ 733 025b 00000000 		.4byte	.LFB65
+ 734 025f 1C000000 		.4byte	.LFE65-.LFB65
+ 735 0263 01       		.uleb128 0x1
+ 736 0264 9C       		.byte	0x9c
+ 737 0265 9F020000 		.4byte	0x29f
+ 738 0269 11       		.uleb128 0x11
+ 739 026a E8000000 		.4byte	0xe8
+ 740 026e 00000000 		.4byte	.LBB42
+ 741 0272 06000000 		.4byte	.LBE42-.LBB42
+ 742 0276 01       		.byte	0x1
+ 743 0277 89       		.byte	0x89
+ 744 0278 1A       		.uleb128 0x1a
+ 745 0279 F1000000 		.4byte	0xf1
+ 746 027d 06000000 		.4byte	.LBB44
+ 747 0281 16000000 		.4byte	.LBE44-.LBB44
+ 748 0285 01       		.byte	0x1
+ 749 0286 8C       		.byte	0x8c
+ 750 0287 1B       		.uleb128 0x1b
+ 751 0288 FD000000 		.4byte	0xfd
+ 752 028c 14       		.uleb128 0x14
+ 753 028d 06000000 		.4byte	.LBB45
+ 754 0291 16000000 		.4byte	.LBE45-.LBB45
+ 755 0295 1C       		.uleb128 0x1c
+ 756 0296 08010000 		.4byte	0x108
+ 757 029a 01       		.uleb128 0x1
+ 758 029b 53       		.byte	0x53
+ 759 029c 00       		.byte	0
+ 760 029d 00       		.byte	0
+ 761 029e 00       		.byte	0
+ 762 029f 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 22
+
+
+ 763 02a0 F1000000 		.4byte	0xf1
+ 764 02a4 00000000 		.4byte	.LFB67
+ 765 02a8 0C000000 		.4byte	.LFE67-.LFB67
+ 766 02ac 01       		.uleb128 0x1
+ 767 02ad 9C       		.byte	0x9c
+ 768 02ae C1020000 		.4byte	0x2c1
+ 769 02b2 13       		.uleb128 0x13
+ 770 02b3 FD000000 		.4byte	0xfd
+ 771 02b7 01       		.uleb128 0x1
+ 772 02b8 50       		.byte	0x50
+ 773 02b9 1C       		.uleb128 0x1c
+ 774 02ba 08010000 		.4byte	0x108
+ 775 02be 01       		.uleb128 0x1
+ 776 02bf 53       		.byte	0x53
+ 777 02c0 00       		.byte	0
+ 778 02c1 1E       		.uleb128 0x1e
+ 779 02c2 10010000 		.4byte	.LASF29
+ 780 02c6 01       		.byte	0x1
+ 781 02c7 E0       		.byte	0xe0
+ 782 02c8 DC000000 		.4byte	0xdc
+ 783 02cc 00000000 		.4byte	.LFB68
+ 784 02d0 0C000000 		.4byte	.LFE68-.LFB68
+ 785 02d4 01       		.uleb128 0x1
+ 786 02d5 9C       		.byte	0x9c
+ 787 02d6 EA020000 		.4byte	0x2ea
+ 788 02da 1F       		.uleb128 0x1f
+ 789 02db 20020000 		.4byte	.LASF31
+ 790 02df 01       		.byte	0x1
+ 791 02e0 E2       		.byte	0xe2
+ 792 02e1 14010000 		.4byte	0x114
+ 793 02e5 26000000 		.4byte	.LLST2
+ 794 02e9 00       		.byte	0
+ 795 02ea 1D       		.uleb128 0x1d
+ 796 02eb 1A010000 		.4byte	0x11a
+ 797 02ef 00000000 		.4byte	.LFB69
+ 798 02f3 10000000 		.4byte	.LFE69-.LFB69
+ 799 02f7 01       		.uleb128 0x1
+ 800 02f8 9C       		.byte	0x9c
+ 801 02f9 07030000 		.4byte	0x307
+ 802 02fd 20       		.uleb128 0x20
+ 803 02fe 27010000 		.4byte	0x127
+ 804 0302 55000000 		.4byte	.LLST3
+ 805 0306 00       		.byte	0
+ 806 0307 21       		.uleb128 0x21
+ 807 0308 D0020000 		.4byte	.LASF30
+ 808 030c 01       		.byte	0x1
+ 809 030d 1801     		.2byte	0x118
+ 810 030f 96000000 		.4byte	0x96
+ 811 0313 00000000 		.4byte	.LFB70
+ 812 0317 0C000000 		.4byte	.LFE70-.LFB70
+ 813 031b 01       		.uleb128 0x1
+ 814 031c 9C       		.byte	0x9c
+ 815 031d 32030000 		.4byte	0x332
+ 816 0321 22       		.uleb128 0x22
+ 817 0322 6E010000 		.4byte	.LASF23
+ 818 0326 01       		.byte	0x1
+ 819 0327 1A01     		.2byte	0x11a
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 23
+
+
+ 820 0329 96000000 		.4byte	0x96
+ 821 032d 76000000 		.4byte	.LLST4
+ 822 0331 00       		.byte	0
+ 823 0332 23       		.uleb128 0x23
+ 824 0333 34010000 		.4byte	0x134
+ 825 0337 00000000 		.4byte	.LFB71
+ 826 033b 0C000000 		.4byte	.LFE71-.LFB71
+ 827 033f 01       		.uleb128 0x1
+ 828 0340 9C       		.byte	0x9c
+ 829 0341 24       		.uleb128 0x24
+ 830 0342 56010000 		.4byte	.LASF38
+ 831 0346 01       		.byte	0x1
+ 832 0347 4801     		.2byte	0x148
+ 833 0349 96000000 		.4byte	0x96
+ 834 034d 00000000 		.4byte	.LFB72
+ 835 0351 10000000 		.4byte	.LFE72-.LFB72
+ 836 0355 01       		.uleb128 0x1
+ 837 0356 9C       		.byte	0x9c
+ 838 0357 23       		.uleb128 0x23
+ 839 0358 E8000000 		.4byte	0xe8
+ 840 035c 00000000 		.4byte	.LFB73
+ 841 0360 0C000000 		.4byte	.LFE73-.LFB73
+ 842 0364 01       		.uleb128 0x1
+ 843 0365 9C       		.byte	0x9c
+ 844 0366 25       		.uleb128 0x25
+ 845 0367 F7020000 		.4byte	.LASF33
+ 846 036b 01       		.byte	0x1
+ 847 036c 7801     		.2byte	0x178
+ 848 036e 00000000 		.4byte	.LFB74
+ 849 0372 0C000000 		.4byte	.LFE74-.LFB74
+ 850 0376 01       		.uleb128 0x1
+ 851 0377 9C       		.byte	0x9c
+ 852 0378 25       		.uleb128 0x25
+ 853 0379 68000000 		.4byte	.LASF34
+ 854 037d 01       		.byte	0x1
+ 855 037e 9101     		.2byte	0x191
+ 856 0380 00000000 		.4byte	.LFB75
+ 857 0384 0C000000 		.4byte	.LFE75-.LFB75
+ 858 0388 01       		.uleb128 0x1
+ 859 0389 9C       		.byte	0x9c
+ 860 038a 26       		.uleb128 0x26
+ 861 038b 42010000 		.4byte	.LASF39
+ 862 038f 05       		.byte	0x5
+ 863 0390 2A06     		.2byte	0x62a
+ 864 0392 96030000 		.4byte	0x396
+ 865 0396 08       		.uleb128 0x8
+ 866 0397 8B000000 		.4byte	0x8b
+ 867 039b 00       		.byte	0
+ 868              		.section	.debug_abbrev,"",%progbits
+ 869              	.Ldebug_abbrev0:
+ 870 0000 01       		.uleb128 0x1
+ 871 0001 11       		.uleb128 0x11
+ 872 0002 01       		.byte	0x1
+ 873 0003 25       		.uleb128 0x25
+ 874 0004 0E       		.uleb128 0xe
+ 875 0005 13       		.uleb128 0x13
+ 876 0006 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 24
+
+
+ 877 0007 03       		.uleb128 0x3
+ 878 0008 0E       		.uleb128 0xe
+ 879 0009 1B       		.uleb128 0x1b
+ 880 000a 0E       		.uleb128 0xe
+ 881 000b 55       		.uleb128 0x55
+ 882 000c 17       		.uleb128 0x17
+ 883 000d 11       		.uleb128 0x11
+ 884 000e 01       		.uleb128 0x1
+ 885 000f 10       		.uleb128 0x10
+ 886 0010 17       		.uleb128 0x17
+ 887 0011 00       		.byte	0
+ 888 0012 00       		.byte	0
+ 889 0013 02       		.uleb128 0x2
+ 890 0014 24       		.uleb128 0x24
+ 891 0015 00       		.byte	0
+ 892 0016 0B       		.uleb128 0xb
+ 893 0017 0B       		.uleb128 0xb
+ 894 0018 3E       		.uleb128 0x3e
+ 895 0019 0B       		.uleb128 0xb
+ 896 001a 03       		.uleb128 0x3
+ 897 001b 08       		.uleb128 0x8
+ 898 001c 00       		.byte	0
+ 899 001d 00       		.byte	0
+ 900 001e 03       		.uleb128 0x3
+ 901 001f 24       		.uleb128 0x24
+ 902 0020 00       		.byte	0
+ 903 0021 0B       		.uleb128 0xb
+ 904 0022 0B       		.uleb128 0xb
+ 905 0023 3E       		.uleb128 0x3e
+ 906 0024 0B       		.uleb128 0xb
+ 907 0025 03       		.uleb128 0x3
+ 908 0026 0E       		.uleb128 0xe
+ 909 0027 00       		.byte	0
+ 910 0028 00       		.byte	0
+ 911 0029 04       		.uleb128 0x4
+ 912 002a 16       		.uleb128 0x16
+ 913 002b 00       		.byte	0
+ 914 002c 03       		.uleb128 0x3
+ 915 002d 0E       		.uleb128 0xe
+ 916 002e 3A       		.uleb128 0x3a
+ 917 002f 0B       		.uleb128 0xb
+ 918 0030 3B       		.uleb128 0x3b
+ 919 0031 0B       		.uleb128 0xb
+ 920 0032 49       		.uleb128 0x49
+ 921 0033 13       		.uleb128 0x13
+ 922 0034 00       		.byte	0
+ 923 0035 00       		.byte	0
+ 924 0036 05       		.uleb128 0x5
+ 925 0037 0F       		.uleb128 0xf
+ 926 0038 00       		.byte	0
+ 927 0039 0B       		.uleb128 0xb
+ 928 003a 0B       		.uleb128 0xb
+ 929 003b 49       		.uleb128 0x49
+ 930 003c 13       		.uleb128 0x13
+ 931 003d 00       		.byte	0
+ 932 003e 00       		.byte	0
+ 933 003f 06       		.uleb128 0x6
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 25
+
+
+ 934 0040 15       		.uleb128 0x15
+ 935 0041 00       		.byte	0
+ 936 0042 27       		.uleb128 0x27
+ 937 0043 19       		.uleb128 0x19
+ 938 0044 00       		.byte	0
+ 939 0045 00       		.byte	0
+ 940 0046 07       		.uleb128 0x7
+ 941 0047 16       		.uleb128 0x16
+ 942 0048 00       		.byte	0
+ 943 0049 03       		.uleb128 0x3
+ 944 004a 0E       		.uleb128 0xe
+ 945 004b 3A       		.uleb128 0x3a
+ 946 004c 0B       		.uleb128 0xb
+ 947 004d 3B       		.uleb128 0x3b
+ 948 004e 05       		.uleb128 0x5
+ 949 004f 49       		.uleb128 0x49
+ 950 0050 13       		.uleb128 0x13
+ 951 0051 00       		.byte	0
+ 952 0052 00       		.byte	0
+ 953 0053 08       		.uleb128 0x8
+ 954 0054 35       		.uleb128 0x35
+ 955 0055 00       		.byte	0
+ 956 0056 49       		.uleb128 0x49
+ 957 0057 13       		.uleb128 0x13
+ 958 0058 00       		.byte	0
+ 959 0059 00       		.byte	0
+ 960 005a 09       		.uleb128 0x9
+ 961 005b 2E       		.uleb128 0x2e
+ 962 005c 00       		.byte	0
+ 963 005d 3F       		.uleb128 0x3f
+ 964 005e 19       		.uleb128 0x19
+ 965 005f 03       		.uleb128 0x3
+ 966 0060 0E       		.uleb128 0xe
+ 967 0061 3A       		.uleb128 0x3a
+ 968 0062 0B       		.uleb128 0xb
+ 969 0063 3B       		.uleb128 0x3b
+ 970 0064 05       		.uleb128 0x5
+ 971 0065 27       		.uleb128 0x27
+ 972 0066 19       		.uleb128 0x19
+ 973 0067 20       		.uleb128 0x20
+ 974 0068 0B       		.uleb128 0xb
+ 975 0069 00       		.byte	0
+ 976 006a 00       		.byte	0
+ 977 006b 0A       		.uleb128 0xa
+ 978 006c 2E       		.uleb128 0x2e
+ 979 006d 01       		.byte	0x1
+ 980 006e 3F       		.uleb128 0x3f
+ 981 006f 19       		.uleb128 0x19
+ 982 0070 03       		.uleb128 0x3
+ 983 0071 0E       		.uleb128 0xe
+ 984 0072 3A       		.uleb128 0x3a
+ 985 0073 0B       		.uleb128 0xb
+ 986 0074 3B       		.uleb128 0x3b
+ 987 0075 0B       		.uleb128 0xb
+ 988 0076 27       		.uleb128 0x27
+ 989 0077 19       		.uleb128 0x19
+ 990 0078 20       		.uleb128 0x20
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 26
+
+
+ 991 0079 0B       		.uleb128 0xb
+ 992 007a 01       		.uleb128 0x1
+ 993 007b 13       		.uleb128 0x13
+ 994 007c 00       		.byte	0
+ 995 007d 00       		.byte	0
+ 996 007e 0B       		.uleb128 0xb
+ 997 007f 05       		.uleb128 0x5
+ 998 0080 00       		.byte	0
+ 999 0081 03       		.uleb128 0x3
+ 1000 0082 0E       		.uleb128 0xe
+ 1001 0083 3A       		.uleb128 0x3a
+ 1002 0084 0B       		.uleb128 0xb
+ 1003 0085 3B       		.uleb128 0x3b
+ 1004 0086 0B       		.uleb128 0xb
+ 1005 0087 49       		.uleb128 0x49
+ 1006 0088 13       		.uleb128 0x13
+ 1007 0089 00       		.byte	0
+ 1008 008a 00       		.byte	0
+ 1009 008b 0C       		.uleb128 0xc
+ 1010 008c 34       		.uleb128 0x34
+ 1011 008d 00       		.byte	0
+ 1012 008e 03       		.uleb128 0x3
+ 1013 008f 0E       		.uleb128 0xe
+ 1014 0090 3A       		.uleb128 0x3a
+ 1015 0091 0B       		.uleb128 0xb
+ 1016 0092 3B       		.uleb128 0x3b
+ 1017 0093 0B       		.uleb128 0xb
+ 1018 0094 49       		.uleb128 0x49
+ 1019 0095 13       		.uleb128 0x13
+ 1020 0096 00       		.byte	0
+ 1021 0097 00       		.byte	0
+ 1022 0098 0D       		.uleb128 0xd
+ 1023 0099 2E       		.uleb128 0x2e
+ 1024 009a 01       		.byte	0x1
+ 1025 009b 3F       		.uleb128 0x3f
+ 1026 009c 19       		.uleb128 0x19
+ 1027 009d 03       		.uleb128 0x3
+ 1028 009e 0E       		.uleb128 0xe
+ 1029 009f 3A       		.uleb128 0x3a
+ 1030 00a0 0B       		.uleb128 0xb
+ 1031 00a1 3B       		.uleb128 0x3b
+ 1032 00a2 05       		.uleb128 0x5
+ 1033 00a3 27       		.uleb128 0x27
+ 1034 00a4 19       		.uleb128 0x19
+ 1035 00a5 20       		.uleb128 0x20
+ 1036 00a6 0B       		.uleb128 0xb
+ 1037 00a7 01       		.uleb128 0x1
+ 1038 00a8 13       		.uleb128 0x13
+ 1039 00a9 00       		.byte	0
+ 1040 00aa 00       		.byte	0
+ 1041 00ab 0E       		.uleb128 0xe
+ 1042 00ac 05       		.uleb128 0x5
+ 1043 00ad 00       		.byte	0
+ 1044 00ae 03       		.uleb128 0x3
+ 1045 00af 0E       		.uleb128 0xe
+ 1046 00b0 3A       		.uleb128 0x3a
+ 1047 00b1 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 27
+
+
+ 1048 00b2 3B       		.uleb128 0x3b
+ 1049 00b3 05       		.uleb128 0x5
+ 1050 00b4 49       		.uleb128 0x49
+ 1051 00b5 13       		.uleb128 0x13
+ 1052 00b6 00       		.byte	0
+ 1053 00b7 00       		.byte	0
+ 1054 00b8 0F       		.uleb128 0xf
+ 1055 00b9 2E       		.uleb128 0x2e
+ 1056 00ba 00       		.byte	0
+ 1057 00bb 3F       		.uleb128 0x3f
+ 1058 00bc 19       		.uleb128 0x19
+ 1059 00bd 03       		.uleb128 0x3
+ 1060 00be 0E       		.uleb128 0xe
+ 1061 00bf 3A       		.uleb128 0x3a
+ 1062 00c0 0B       		.uleb128 0xb
+ 1063 00c1 3B       		.uleb128 0x3b
+ 1064 00c2 0B       		.uleb128 0xb
+ 1065 00c3 27       		.uleb128 0x27
+ 1066 00c4 19       		.uleb128 0x19
+ 1067 00c5 11       		.uleb128 0x11
+ 1068 00c6 01       		.uleb128 0x1
+ 1069 00c7 12       		.uleb128 0x12
+ 1070 00c8 06       		.uleb128 0x6
+ 1071 00c9 40       		.uleb128 0x40
+ 1072 00ca 18       		.uleb128 0x18
+ 1073 00cb 9742     		.uleb128 0x2117
+ 1074 00cd 19       		.uleb128 0x19
+ 1075 00ce 00       		.byte	0
+ 1076 00cf 00       		.byte	0
+ 1077 00d0 10       		.uleb128 0x10
+ 1078 00d1 2E       		.uleb128 0x2e
+ 1079 00d2 01       		.byte	0x1
+ 1080 00d3 3F       		.uleb128 0x3f
+ 1081 00d4 19       		.uleb128 0x19
+ 1082 00d5 03       		.uleb128 0x3
+ 1083 00d6 0E       		.uleb128 0xe
+ 1084 00d7 3A       		.uleb128 0x3a
+ 1085 00d8 0B       		.uleb128 0xb
+ 1086 00d9 3B       		.uleb128 0x3b
+ 1087 00da 0B       		.uleb128 0xb
+ 1088 00db 27       		.uleb128 0x27
+ 1089 00dc 19       		.uleb128 0x19
+ 1090 00dd 11       		.uleb128 0x11
+ 1091 00de 01       		.uleb128 0x1
+ 1092 00df 12       		.uleb128 0x12
+ 1093 00e0 06       		.uleb128 0x6
+ 1094 00e1 40       		.uleb128 0x40
+ 1095 00e2 18       		.uleb128 0x18
+ 1096 00e3 9742     		.uleb128 0x2117
+ 1097 00e5 19       		.uleb128 0x19
+ 1098 00e6 01       		.uleb128 0x1
+ 1099 00e7 13       		.uleb128 0x13
+ 1100 00e8 00       		.byte	0
+ 1101 00e9 00       		.byte	0
+ 1102 00ea 11       		.uleb128 0x11
+ 1103 00eb 1D       		.uleb128 0x1d
+ 1104 00ec 00       		.byte	0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 28
+
+
+ 1105 00ed 31       		.uleb128 0x31
+ 1106 00ee 13       		.uleb128 0x13
+ 1107 00ef 11       		.uleb128 0x11
+ 1108 00f0 01       		.uleb128 0x1
+ 1109 00f1 12       		.uleb128 0x12
+ 1110 00f2 06       		.uleb128 0x6
+ 1111 00f3 58       		.uleb128 0x58
+ 1112 00f4 0B       		.uleb128 0xb
+ 1113 00f5 59       		.uleb128 0x59
+ 1114 00f6 0B       		.uleb128 0xb
+ 1115 00f7 00       		.byte	0
+ 1116 00f8 00       		.byte	0
+ 1117 00f9 12       		.uleb128 0x12
+ 1118 00fa 1D       		.uleb128 0x1d
+ 1119 00fb 01       		.byte	0x1
+ 1120 00fc 31       		.uleb128 0x31
+ 1121 00fd 13       		.uleb128 0x13
+ 1122 00fe 11       		.uleb128 0x11
+ 1123 00ff 01       		.uleb128 0x1
+ 1124 0100 12       		.uleb128 0x12
+ 1125 0101 06       		.uleb128 0x6
+ 1126 0102 58       		.uleb128 0x58
+ 1127 0103 0B       		.uleb128 0xb
+ 1128 0104 59       		.uleb128 0x59
+ 1129 0105 0B       		.uleb128 0xb
+ 1130 0106 01       		.uleb128 0x1
+ 1131 0107 13       		.uleb128 0x13
+ 1132 0108 00       		.byte	0
+ 1133 0109 00       		.byte	0
+ 1134 010a 13       		.uleb128 0x13
+ 1135 010b 05       		.uleb128 0x5
+ 1136 010c 00       		.byte	0
+ 1137 010d 31       		.uleb128 0x31
+ 1138 010e 13       		.uleb128 0x13
+ 1139 010f 02       		.uleb128 0x2
+ 1140 0110 18       		.uleb128 0x18
+ 1141 0111 00       		.byte	0
+ 1142 0112 00       		.byte	0
+ 1143 0113 14       		.uleb128 0x14
+ 1144 0114 0B       		.uleb128 0xb
+ 1145 0115 01       		.byte	0x1
+ 1146 0116 11       		.uleb128 0x11
+ 1147 0117 01       		.uleb128 0x1
+ 1148 0118 12       		.uleb128 0x12
+ 1149 0119 06       		.uleb128 0x6
+ 1150 011a 00       		.byte	0
+ 1151 011b 00       		.byte	0
+ 1152 011c 15       		.uleb128 0x15
+ 1153 011d 34       		.uleb128 0x34
+ 1154 011e 00       		.byte	0
+ 1155 011f 31       		.uleb128 0x31
+ 1156 0120 13       		.uleb128 0x13
+ 1157 0121 02       		.uleb128 0x2
+ 1158 0122 17       		.uleb128 0x17
+ 1159 0123 00       		.byte	0
+ 1160 0124 00       		.byte	0
+ 1161 0125 16       		.uleb128 0x16
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 29
+
+
+ 1162 0126 05       		.uleb128 0x5
+ 1163 0127 00       		.byte	0
+ 1164 0128 31       		.uleb128 0x31
+ 1165 0129 13       		.uleb128 0x13
+ 1166 012a 1C       		.uleb128 0x1c
+ 1167 012b 0B       		.uleb128 0xb
+ 1168 012c 00       		.byte	0
+ 1169 012d 00       		.byte	0
+ 1170 012e 17       		.uleb128 0x17
+ 1171 012f 05       		.uleb128 0x5
+ 1172 0130 00       		.byte	0
+ 1173 0131 03       		.uleb128 0x3
+ 1174 0132 0E       		.uleb128 0xe
+ 1175 0133 3A       		.uleb128 0x3a
+ 1176 0134 0B       		.uleb128 0xb
+ 1177 0135 3B       		.uleb128 0x3b
+ 1178 0136 0B       		.uleb128 0xb
+ 1179 0137 49       		.uleb128 0x49
+ 1180 0138 13       		.uleb128 0x13
+ 1181 0139 02       		.uleb128 0x2
+ 1182 013a 18       		.uleb128 0x18
+ 1183 013b 00       		.byte	0
+ 1184 013c 00       		.byte	0
+ 1185 013d 18       		.uleb128 0x18
+ 1186 013e 1D       		.uleb128 0x1d
+ 1187 013f 01       		.byte	0x1
+ 1188 0140 31       		.uleb128 0x31
+ 1189 0141 13       		.uleb128 0x13
+ 1190 0142 52       		.uleb128 0x52
+ 1191 0143 01       		.uleb128 0x1
+ 1192 0144 55       		.uleb128 0x55
+ 1193 0145 17       		.uleb128 0x17
+ 1194 0146 58       		.uleb128 0x58
+ 1195 0147 0B       		.uleb128 0xb
+ 1196 0148 59       		.uleb128 0x59
+ 1197 0149 0B       		.uleb128 0xb
+ 1198 014a 01       		.uleb128 0x1
+ 1199 014b 13       		.uleb128 0x13
+ 1200 014c 00       		.byte	0
+ 1201 014d 00       		.byte	0
+ 1202 014e 19       		.uleb128 0x19
+ 1203 014f 0B       		.uleb128 0xb
+ 1204 0150 01       		.byte	0x1
+ 1205 0151 55       		.uleb128 0x55
+ 1206 0152 17       		.uleb128 0x17
+ 1207 0153 00       		.byte	0
+ 1208 0154 00       		.byte	0
+ 1209 0155 1A       		.uleb128 0x1a
+ 1210 0156 1D       		.uleb128 0x1d
+ 1211 0157 01       		.byte	0x1
+ 1212 0158 31       		.uleb128 0x31
+ 1213 0159 13       		.uleb128 0x13
+ 1214 015a 11       		.uleb128 0x11
+ 1215 015b 01       		.uleb128 0x1
+ 1216 015c 12       		.uleb128 0x12
+ 1217 015d 06       		.uleb128 0x6
+ 1218 015e 58       		.uleb128 0x58
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 30
+
+
+ 1219 015f 0B       		.uleb128 0xb
+ 1220 0160 59       		.uleb128 0x59
+ 1221 0161 0B       		.uleb128 0xb
+ 1222 0162 00       		.byte	0
+ 1223 0163 00       		.byte	0
+ 1224 0164 1B       		.uleb128 0x1b
+ 1225 0165 05       		.uleb128 0x5
+ 1226 0166 00       		.byte	0
+ 1227 0167 31       		.uleb128 0x31
+ 1228 0168 13       		.uleb128 0x13
+ 1229 0169 00       		.byte	0
+ 1230 016a 00       		.byte	0
+ 1231 016b 1C       		.uleb128 0x1c
+ 1232 016c 34       		.uleb128 0x34
+ 1233 016d 00       		.byte	0
+ 1234 016e 31       		.uleb128 0x31
+ 1235 016f 13       		.uleb128 0x13
+ 1236 0170 02       		.uleb128 0x2
+ 1237 0171 18       		.uleb128 0x18
+ 1238 0172 00       		.byte	0
+ 1239 0173 00       		.byte	0
+ 1240 0174 1D       		.uleb128 0x1d
+ 1241 0175 2E       		.uleb128 0x2e
+ 1242 0176 01       		.byte	0x1
+ 1243 0177 31       		.uleb128 0x31
+ 1244 0178 13       		.uleb128 0x13
+ 1245 0179 11       		.uleb128 0x11
+ 1246 017a 01       		.uleb128 0x1
+ 1247 017b 12       		.uleb128 0x12
+ 1248 017c 06       		.uleb128 0x6
+ 1249 017d 40       		.uleb128 0x40
+ 1250 017e 18       		.uleb128 0x18
+ 1251 017f 9742     		.uleb128 0x2117
+ 1252 0181 19       		.uleb128 0x19
+ 1253 0182 01       		.uleb128 0x1
+ 1254 0183 13       		.uleb128 0x13
+ 1255 0184 00       		.byte	0
+ 1256 0185 00       		.byte	0
+ 1257 0186 1E       		.uleb128 0x1e
+ 1258 0187 2E       		.uleb128 0x2e
+ 1259 0188 01       		.byte	0x1
+ 1260 0189 3F       		.uleb128 0x3f
+ 1261 018a 19       		.uleb128 0x19
+ 1262 018b 03       		.uleb128 0x3
+ 1263 018c 0E       		.uleb128 0xe
+ 1264 018d 3A       		.uleb128 0x3a
+ 1265 018e 0B       		.uleb128 0xb
+ 1266 018f 3B       		.uleb128 0x3b
+ 1267 0190 0B       		.uleb128 0xb
+ 1268 0191 27       		.uleb128 0x27
+ 1269 0192 19       		.uleb128 0x19
+ 1270 0193 49       		.uleb128 0x49
+ 1271 0194 13       		.uleb128 0x13
+ 1272 0195 11       		.uleb128 0x11
+ 1273 0196 01       		.uleb128 0x1
+ 1274 0197 12       		.uleb128 0x12
+ 1275 0198 06       		.uleb128 0x6
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 31
+
+
+ 1276 0199 40       		.uleb128 0x40
+ 1277 019a 18       		.uleb128 0x18
+ 1278 019b 9742     		.uleb128 0x2117
+ 1279 019d 19       		.uleb128 0x19
+ 1280 019e 01       		.uleb128 0x1
+ 1281 019f 13       		.uleb128 0x13
+ 1282 01a0 00       		.byte	0
+ 1283 01a1 00       		.byte	0
+ 1284 01a2 1F       		.uleb128 0x1f
+ 1285 01a3 34       		.uleb128 0x34
+ 1286 01a4 00       		.byte	0
+ 1287 01a5 03       		.uleb128 0x3
+ 1288 01a6 0E       		.uleb128 0xe
+ 1289 01a7 3A       		.uleb128 0x3a
+ 1290 01a8 0B       		.uleb128 0xb
+ 1291 01a9 3B       		.uleb128 0x3b
+ 1292 01aa 0B       		.uleb128 0xb
+ 1293 01ab 49       		.uleb128 0x49
+ 1294 01ac 13       		.uleb128 0x13
+ 1295 01ad 02       		.uleb128 0x2
+ 1296 01ae 17       		.uleb128 0x17
+ 1297 01af 00       		.byte	0
+ 1298 01b0 00       		.byte	0
+ 1299 01b1 20       		.uleb128 0x20
+ 1300 01b2 05       		.uleb128 0x5
+ 1301 01b3 00       		.byte	0
+ 1302 01b4 31       		.uleb128 0x31
+ 1303 01b5 13       		.uleb128 0x13
+ 1304 01b6 02       		.uleb128 0x2
+ 1305 01b7 17       		.uleb128 0x17
+ 1306 01b8 00       		.byte	0
+ 1307 01b9 00       		.byte	0
+ 1308 01ba 21       		.uleb128 0x21
+ 1309 01bb 2E       		.uleb128 0x2e
+ 1310 01bc 01       		.byte	0x1
+ 1311 01bd 3F       		.uleb128 0x3f
+ 1312 01be 19       		.uleb128 0x19
+ 1313 01bf 03       		.uleb128 0x3
+ 1314 01c0 0E       		.uleb128 0xe
+ 1315 01c1 3A       		.uleb128 0x3a
+ 1316 01c2 0B       		.uleb128 0xb
+ 1317 01c3 3B       		.uleb128 0x3b
+ 1318 01c4 05       		.uleb128 0x5
+ 1319 01c5 27       		.uleb128 0x27
+ 1320 01c6 19       		.uleb128 0x19
+ 1321 01c7 49       		.uleb128 0x49
+ 1322 01c8 13       		.uleb128 0x13
+ 1323 01c9 11       		.uleb128 0x11
+ 1324 01ca 01       		.uleb128 0x1
+ 1325 01cb 12       		.uleb128 0x12
+ 1326 01cc 06       		.uleb128 0x6
+ 1327 01cd 40       		.uleb128 0x40
+ 1328 01ce 18       		.uleb128 0x18
+ 1329 01cf 9742     		.uleb128 0x2117
+ 1330 01d1 19       		.uleb128 0x19
+ 1331 01d2 01       		.uleb128 0x1
+ 1332 01d3 13       		.uleb128 0x13
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 32
+
+
+ 1333 01d4 00       		.byte	0
+ 1334 01d5 00       		.byte	0
+ 1335 01d6 22       		.uleb128 0x22
+ 1336 01d7 34       		.uleb128 0x34
+ 1337 01d8 00       		.byte	0
+ 1338 01d9 03       		.uleb128 0x3
+ 1339 01da 0E       		.uleb128 0xe
+ 1340 01db 3A       		.uleb128 0x3a
+ 1341 01dc 0B       		.uleb128 0xb
+ 1342 01dd 3B       		.uleb128 0x3b
+ 1343 01de 05       		.uleb128 0x5
+ 1344 01df 49       		.uleb128 0x49
+ 1345 01e0 13       		.uleb128 0x13
+ 1346 01e1 02       		.uleb128 0x2
+ 1347 01e2 17       		.uleb128 0x17
+ 1348 01e3 00       		.byte	0
+ 1349 01e4 00       		.byte	0
+ 1350 01e5 23       		.uleb128 0x23
+ 1351 01e6 2E       		.uleb128 0x2e
+ 1352 01e7 00       		.byte	0
+ 1353 01e8 31       		.uleb128 0x31
+ 1354 01e9 13       		.uleb128 0x13
+ 1355 01ea 11       		.uleb128 0x11
+ 1356 01eb 01       		.uleb128 0x1
+ 1357 01ec 12       		.uleb128 0x12
+ 1358 01ed 06       		.uleb128 0x6
+ 1359 01ee 40       		.uleb128 0x40
+ 1360 01ef 18       		.uleb128 0x18
+ 1361 01f0 9742     		.uleb128 0x2117
+ 1362 01f2 19       		.uleb128 0x19
+ 1363 01f3 00       		.byte	0
+ 1364 01f4 00       		.byte	0
+ 1365 01f5 24       		.uleb128 0x24
+ 1366 01f6 2E       		.uleb128 0x2e
+ 1367 01f7 00       		.byte	0
+ 1368 01f8 3F       		.uleb128 0x3f
+ 1369 01f9 19       		.uleb128 0x19
+ 1370 01fa 03       		.uleb128 0x3
+ 1371 01fb 0E       		.uleb128 0xe
+ 1372 01fc 3A       		.uleb128 0x3a
+ 1373 01fd 0B       		.uleb128 0xb
+ 1374 01fe 3B       		.uleb128 0x3b
+ 1375 01ff 05       		.uleb128 0x5
+ 1376 0200 27       		.uleb128 0x27
+ 1377 0201 19       		.uleb128 0x19
+ 1378 0202 49       		.uleb128 0x49
+ 1379 0203 13       		.uleb128 0x13
+ 1380 0204 11       		.uleb128 0x11
+ 1381 0205 01       		.uleb128 0x1
+ 1382 0206 12       		.uleb128 0x12
+ 1383 0207 06       		.uleb128 0x6
+ 1384 0208 40       		.uleb128 0x40
+ 1385 0209 18       		.uleb128 0x18
+ 1386 020a 9742     		.uleb128 0x2117
+ 1387 020c 19       		.uleb128 0x19
+ 1388 020d 00       		.byte	0
+ 1389 020e 00       		.byte	0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 33
+
+
+ 1390 020f 25       		.uleb128 0x25
+ 1391 0210 2E       		.uleb128 0x2e
+ 1392 0211 00       		.byte	0
+ 1393 0212 3F       		.uleb128 0x3f
+ 1394 0213 19       		.uleb128 0x19
+ 1395 0214 03       		.uleb128 0x3
+ 1396 0215 0E       		.uleb128 0xe
+ 1397 0216 3A       		.uleb128 0x3a
+ 1398 0217 0B       		.uleb128 0xb
+ 1399 0218 3B       		.uleb128 0x3b
+ 1400 0219 05       		.uleb128 0x5
+ 1401 021a 27       		.uleb128 0x27
+ 1402 021b 19       		.uleb128 0x19
+ 1403 021c 11       		.uleb128 0x11
+ 1404 021d 01       		.uleb128 0x1
+ 1405 021e 12       		.uleb128 0x12
+ 1406 021f 06       		.uleb128 0x6
+ 1407 0220 40       		.uleb128 0x40
+ 1408 0221 18       		.uleb128 0x18
+ 1409 0222 9742     		.uleb128 0x2117
+ 1410 0224 19       		.uleb128 0x19
+ 1411 0225 00       		.byte	0
+ 1412 0226 00       		.byte	0
+ 1413 0227 26       		.uleb128 0x26
+ 1414 0228 34       		.uleb128 0x34
+ 1415 0229 00       		.byte	0
+ 1416 022a 03       		.uleb128 0x3
+ 1417 022b 0E       		.uleb128 0xe
+ 1418 022c 3A       		.uleb128 0x3a
+ 1419 022d 0B       		.uleb128 0xb
+ 1420 022e 3B       		.uleb128 0x3b
+ 1421 022f 05       		.uleb128 0x5
+ 1422 0230 49       		.uleb128 0x49
+ 1423 0231 13       		.uleb128 0x13
+ 1424 0232 3F       		.uleb128 0x3f
+ 1425 0233 19       		.uleb128 0x19
+ 1426 0234 3C       		.uleb128 0x3c
+ 1427 0235 19       		.uleb128 0x19
+ 1428 0236 00       		.byte	0
+ 1429 0237 00       		.byte	0
+ 1430 0238 00       		.byte	0
+ 1431              		.section	.debug_loc,"",%progbits
+ 1432              	.Ldebug_loc0:
+ 1433              	.LLST0:
+ 1434 0000 0C000000 		.4byte	.LVL1
+ 1435 0004 12000000 		.4byte	.LVL3
+ 1436 0008 0100     		.2byte	0x1
+ 1437 000a 52       		.byte	0x52
+ 1438 000b 00000000 		.4byte	0
+ 1439 000f 00000000 		.4byte	0
+ 1440              	.LLST1:
+ 1441 0013 0C000000 		.4byte	.LVL6
+ 1442 0017 12000000 		.4byte	.LVL8
+ 1443 001b 0100     		.2byte	0x1
+ 1444 001d 52       		.byte	0x52
+ 1445 001e 00000000 		.4byte	0
+ 1446 0022 00000000 		.4byte	0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 34
+
+
+ 1447              	.LLST2:
+ 1448 0026 00000000 		.4byte	.LVL13
+ 1449 002a 02000000 		.4byte	.LVL14
+ 1450 002e 0600     		.2byte	0x6
+ 1451 0030 11       		.byte	0x11
+ 1452 0031 88DA8380 		.sleb128 -536810232
+ 1452      7E
+ 1453 0036 02000000 		.4byte	.LVL14
+ 1454 003a 04000000 		.4byte	.LVL15
+ 1455 003e 0200     		.2byte	0x2
+ 1456 0040 73       		.byte	0x73
+ 1457 0041 00       		.sleb128 0
+ 1458 0042 04000000 		.4byte	.LVL15
+ 1459 0046 0C000000 		.4byte	.LFE68
+ 1460 004a 0100     		.2byte	0x1
+ 1461 004c 53       		.byte	0x53
+ 1462 004d 00000000 		.4byte	0
+ 1463 0051 00000000 		.4byte	0
+ 1464              	.LLST3:
+ 1465 0055 00000000 		.4byte	.LVL16
+ 1466 0059 02000000 		.4byte	.LVL17
+ 1467 005d 0100     		.2byte	0x1
+ 1468 005f 50       		.byte	0x50
+ 1469 0060 02000000 		.4byte	.LVL17
+ 1470 0064 10000000 		.4byte	.LFE69
+ 1471 0068 0400     		.2byte	0x4
+ 1472 006a F3       		.byte	0xf3
+ 1473 006b 01       		.uleb128 0x1
+ 1474 006c 50       		.byte	0x50
+ 1475 006d 9F       		.byte	0x9f
+ 1476 006e 00000000 		.4byte	0
+ 1477 0072 00000000 		.4byte	0
+ 1478              	.LLST4:
+ 1479 0076 04000000 		.4byte	.LVL18
+ 1480 007a 06000000 		.4byte	.LVL19
+ 1481 007e 0500     		.2byte	0x5
+ 1482 0080 70       		.byte	0x70
+ 1483 0081 00       		.sleb128 0
+ 1484 0082 35       		.byte	0x35
+ 1485 0083 25       		.byte	0x25
+ 1486 0084 9F       		.byte	0x9f
+ 1487 0085 00000000 		.4byte	0
+ 1488 0089 00000000 		.4byte	0
+ 1489              		.section	.debug_aranges,"",%progbits
+ 1490 0000 7C000000 		.4byte	0x7c
+ 1491 0004 0200     		.2byte	0x2
+ 1492 0006 00000000 		.4byte	.Ldebug_info0
+ 1493 000a 04       		.byte	0x4
+ 1494 000b 00       		.byte	0
+ 1495 000c 0000     		.2byte	0
+ 1496 000e 0000     		.2byte	0
+ 1497 0010 00000000 		.4byte	.LFB66
+ 1498 0014 02000000 		.4byte	.LFE66-.LFB66
+ 1499 0018 00000000 		.4byte	.LFB63
+ 1500 001c 2C000000 		.4byte	.LFE63-.LFB63
+ 1501 0020 00000000 		.4byte	.LFB64
+ 1502 0024 28000000 		.4byte	.LFE64-.LFB64
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 35
+
+
+ 1503 0028 00000000 		.4byte	.LFB65
+ 1504 002c 1C000000 		.4byte	.LFE65-.LFB65
+ 1505 0030 00000000 		.4byte	.LFB67
+ 1506 0034 0C000000 		.4byte	.LFE67-.LFB67
+ 1507 0038 00000000 		.4byte	.LFB68
+ 1508 003c 0C000000 		.4byte	.LFE68-.LFB68
+ 1509 0040 00000000 		.4byte	.LFB69
+ 1510 0044 10000000 		.4byte	.LFE69-.LFB69
+ 1511 0048 00000000 		.4byte	.LFB70
+ 1512 004c 0C000000 		.4byte	.LFE70-.LFB70
+ 1513 0050 00000000 		.4byte	.LFB71
+ 1514 0054 0C000000 		.4byte	.LFE71-.LFB71
+ 1515 0058 00000000 		.4byte	.LFB72
+ 1516 005c 10000000 		.4byte	.LFE72-.LFB72
+ 1517 0060 00000000 		.4byte	.LFB73
+ 1518 0064 0C000000 		.4byte	.LFE73-.LFB73
+ 1519 0068 00000000 		.4byte	.LFB74
+ 1520 006c 0C000000 		.4byte	.LFE74-.LFB74
+ 1521 0070 00000000 		.4byte	.LFB75
+ 1522 0074 0C000000 		.4byte	.LFE75-.LFB75
+ 1523 0078 00000000 		.4byte	0
+ 1524 007c 00000000 		.4byte	0
+ 1525              		.section	.debug_ranges,"",%progbits
+ 1526              	.Ldebug_ranges0:
+ 1527 0000 06000000 		.4byte	.LBB32
+ 1528 0004 0C000000 		.4byte	.LBE32
+ 1529 0008 0E000000 		.4byte	.LBB38
+ 1530 000c 10000000 		.4byte	.LBE38
+ 1531 0010 00000000 		.4byte	0
+ 1532 0014 00000000 		.4byte	0
+ 1533 0018 0C000000 		.4byte	.LBB35
+ 1534 001c 0E000000 		.4byte	.LBE35
+ 1535 0020 10000000 		.4byte	.LBB39
+ 1536 0024 14000000 		.4byte	.LBE39
+ 1537 0028 00000000 		.4byte	0
+ 1538 002c 00000000 		.4byte	0
+ 1539 0030 00000000 		.4byte	.LFB66
+ 1540 0034 02000000 		.4byte	.LFE66
+ 1541 0038 00000000 		.4byte	.LFB63
+ 1542 003c 2C000000 		.4byte	.LFE63
+ 1543 0040 00000000 		.4byte	.LFB64
+ 1544 0044 28000000 		.4byte	.LFE64
+ 1545 0048 00000000 		.4byte	.LFB65
+ 1546 004c 1C000000 		.4byte	.LFE65
+ 1547 0050 00000000 		.4byte	.LFB67
+ 1548 0054 0C000000 		.4byte	.LFE67
+ 1549 0058 00000000 		.4byte	.LFB68
+ 1550 005c 0C000000 		.4byte	.LFE68
+ 1551 0060 00000000 		.4byte	.LFB69
+ 1552 0064 10000000 		.4byte	.LFE69
+ 1553 0068 00000000 		.4byte	.LFB70
+ 1554 006c 0C000000 		.4byte	.LFE70
+ 1555 0070 00000000 		.4byte	.LFB71
+ 1556 0074 0C000000 		.4byte	.LFE71
+ 1557 0078 00000000 		.4byte	.LFB72
+ 1558 007c 10000000 		.4byte	.LFE72
+ 1559 0080 00000000 		.4byte	.LFB73
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 36
+
+
+ 1560 0084 0C000000 		.4byte	.LFE73
+ 1561 0088 00000000 		.4byte	.LFB74
+ 1562 008c 0C000000 		.4byte	.LFE74
+ 1563 0090 00000000 		.4byte	.LFB75
+ 1564 0094 0C000000 		.4byte	.LFE75
+ 1565 0098 00000000 		.4byte	0
+ 1566 009c 00000000 		.4byte	0
+ 1567              		.section	.debug_line,"",%progbits
+ 1568              	.Ldebug_line0:
+ 1569 0000 79020000 		.section	.debug_str,"MS",%progbits,1
+ 1569      02006A01 
+ 1569      00000201 
+ 1569      FB0E0D00 
+ 1569      01010101 
+ 1570              	.LASF20:
+ 1571 0000 53616D70 		.ascii	"SampleUitKlaar_SetVector\000"
+ 1571      6C655569 
+ 1571      744B6C61 
+ 1571      61725F53 
+ 1571      65745665 
+ 1572              	.LASF36:
+ 1573 0019 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SampleUitKlaar.c\000"
+ 1573      6E657261 
+ 1573      7465645F 
+ 1573      536F7572 
+ 1573      63655C50 
+ 1574              	.LASF18:
+ 1575 0043 72656733 		.ascii	"reg32\000"
+ 1575      3200
+ 1576              	.LASF26:
+ 1577 0049 53616D70 		.ascii	"SampleUitKlaar_Start\000"
+ 1577      6C655569 
+ 1577      744B6C61 
+ 1577      61725F53 
+ 1577      74617274 
+ 1578              	.LASF11:
+ 1579 005e 5F5F696E 		.ascii	"__int32_t\000"
+ 1579      7433325F 
+ 1579      7400
+ 1580              	.LASF34:
+ 1581 0068 53616D70 		.ascii	"SampleUitKlaar_ClearPending\000"
+ 1581      6C655569 
+ 1581      744B6C61 
+ 1581      61725F43 
+ 1581      6C656172 
+ 1582              	.LASF24:
+ 1583 0084 53616D70 		.ascii	"SampleUitKlaar_Disable\000"
+ 1583      6C655569 
+ 1583      744B6C61 
+ 1583      61725F44 
+ 1583      69736162 
+ 1584              	.LASF4:
+ 1585 009b 73686F72 		.ascii	"short unsigned int\000"
+ 1585      7420756E 
+ 1585      7369676E 
+ 1585      65642069 
+ 1585      6E7400
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 37
+
+
+ 1586              	.LASF21:
+ 1587 00ae 53616D70 		.ascii	"SampleUitKlaar_SetPriority\000"
+ 1587      6C655569 
+ 1587      744B6C61 
+ 1587      61725F53 
+ 1587      65745072 
+ 1588              	.LASF15:
+ 1589 00c9 666C6F61 		.ascii	"float\000"
+ 1589      7400
+ 1590              	.LASF13:
+ 1591 00cf 75696E74 		.ascii	"uint8\000"
+ 1591      3800
+ 1592              	.LASF2:
+ 1593 00d5 756E7369 		.ascii	"unsigned char\000"
+ 1593      676E6564 
+ 1593      20636861 
+ 1593      7200
+ 1594              	.LASF25:
+ 1595 00e3 53616D70 		.ascii	"SampleUitKlaar_Enable\000"
+ 1595      6C655569 
+ 1595      744B6C61 
+ 1595      61725F45 
+ 1595      6E61626C 
+ 1596              	.LASF17:
+ 1597 00f9 72656738 		.ascii	"reg8\000"
+ 1597      00
+ 1598              	.LASF6:
+ 1599 00fe 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1599      20756E73 
+ 1599      69676E65 
+ 1599      6420696E 
+ 1599      7400
+ 1600              	.LASF29:
+ 1601 0110 53616D70 		.ascii	"SampleUitKlaar_GetVector\000"
+ 1601      6C655569 
+ 1601      744B6C61 
+ 1601      61725F47 
+ 1601      65745665 
+ 1602              	.LASF32:
+ 1603 0129 53616D70 		.ascii	"SampleUitKlaar_Interrupt\000"
+ 1603      6C655569 
+ 1603      744B6C61 
+ 1603      61725F49 
+ 1603      6E746572 
+ 1604              	.LASF39:
+ 1605 0142 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1605      52784275 
+ 1605      66666572 
+ 1605      00
+ 1606              	.LASF16:
+ 1607 014f 646F7562 		.ascii	"double\000"
+ 1607      6C6500
+ 1608              	.LASF38:
+ 1609 0156 53616D70 		.ascii	"SampleUitKlaar_GetState\000"
+ 1609      6C655569 
+ 1609      744B6C61 
+ 1609      61725F47 
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 38
+
+
+ 1609      65745374 
+ 1610              	.LASF23:
+ 1611 016e 7072696F 		.ascii	"priority\000"
+ 1611      72697479 
+ 1611      00
+ 1612              	.LASF37:
+ 1613 0177 473A5C50 		.ascii	"G:\\PSoC_5LP\\I2S_DMA_example\\InterIcSound01.cydsn"
+ 1613      536F435F 
+ 1613      354C505C 
+ 1613      4932535F 
+ 1613      444D415F 
+ 1614 01a7 00       		.ascii	"\000"
+ 1615              	.LASF14:
+ 1616 01a8 75696E74 		.ascii	"uint32\000"
+ 1616      333200
+ 1617              	.LASF0:
+ 1618 01af 756E7369 		.ascii	"unsigned int\000"
+ 1618      676E6564 
+ 1618      20696E74 
+ 1618      00
+ 1619              	.LASF28:
+ 1620 01bc 53616D70 		.ascii	"SampleUitKlaar_Stop\000"
+ 1620      6C655569 
+ 1620      744B6C61 
+ 1620      61725F53 
+ 1620      746F7000 
+ 1621              	.LASF22:
+ 1622 01d0 61646472 		.ascii	"address\000"
+ 1622      65737300 
+ 1623              	.LASF8:
+ 1624 01d8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1624      206C6F6E 
+ 1624      6720756E 
+ 1624      7369676E 
+ 1624      65642069 
+ 1625              	.LASF19:
+ 1626 01ef 63796973 		.ascii	"cyisraddress\000"
+ 1626      72616464 
+ 1626      72657373 
+ 1626      00
+ 1627              	.LASF12:
+ 1628 01fc 696E7433 		.ascii	"int32_t\000"
+ 1628      325F7400 
+ 1629              	.LASF9:
+ 1630 0204 73697A65 		.ascii	"sizetype\000"
+ 1630      74797065 
+ 1630      00
+ 1631              	.LASF7:
+ 1632 020d 6C6F6E67 		.ascii	"long long int\000"
+ 1632      206C6F6E 
+ 1632      6720696E 
+ 1632      7400
+ 1633              	.LASF10:
+ 1634 021b 63686172 		.ascii	"char\000"
+ 1634      00
+ 1635              	.LASF31:
+ 1636 0220 72616D56 		.ascii	"ramVectorTable\000"
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\cc5xFCei.s 			page 39
+
+
+ 1636      6563746F 
+ 1636      72546162 
+ 1636      6C6500
+ 1637              	.LASF3:
+ 1638 022f 73686F72 		.ascii	"short int\000"
+ 1638      7420696E 
+ 1638      7400
+ 1639              	.LASF35:
+ 1640 0239 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1640      4320342E 
+ 1640      392E3320 
+ 1640      32303135 
+ 1640      30333033 
+ 1641 026c 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1641      20726576 
+ 1641      6973696F 
+ 1641      6E203232 
+ 1641      31323230 
+ 1642 029f 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1642      66756E63 
+ 1642      74696F6E 
+ 1642      2D736563 
+ 1642      74696F6E 
+ 1643              	.LASF5:
+ 1644 02c7 6C6F6E67 		.ascii	"long int\000"
+ 1644      20696E74 
+ 1644      00
+ 1645              	.LASF30:
+ 1646 02d0 53616D70 		.ascii	"SampleUitKlaar_GetPriority\000"
+ 1646      6C655569 
+ 1646      744B6C61 
+ 1646      61725F47 
+ 1646      65745072 
+ 1647              	.LASF1:
+ 1648 02eb 7369676E 		.ascii	"signed char\000"
+ 1648      65642063 
+ 1648      68617200 
+ 1649              	.LASF33:
+ 1650 02f7 53616D70 		.ascii	"SampleUitKlaar_SetPending\000"
+ 1650      6C655569 
+ 1650      744B6C61 
+ 1650      61725F53 
+ 1650      65745065 
+ 1651              	.LASF27:
+ 1652 0311 53616D70 		.ascii	"SampleUitKlaar_StartEx\000"
+ 1652      6C655569 
+ 1652      744B6C61 
+ 1652      61725F53 
+ 1652      74617274 
+ 1653              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
