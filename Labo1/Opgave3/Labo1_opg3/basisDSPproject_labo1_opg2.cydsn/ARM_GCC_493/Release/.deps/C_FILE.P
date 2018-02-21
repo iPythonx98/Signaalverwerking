@@ -1,0 +1,94 @@
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/ARM_GCC_493/Release/main.o : G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/AudioCodecClk.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/AudioCodecClk_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CYDMAC.H G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CYFITTER.H G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/Clip.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/Codec_en.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/Codec_en_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CyDmac.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CyFlash.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CyLib.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CySpc.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/I2S_1.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/I2S_1_PVT.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LCD.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LCD_LCDPort.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LCD_LCDPort_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED0.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED0_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED1.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED1_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED2.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED2_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED3.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED3_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LEDs.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/RxDMA_dma.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDI.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDI_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDO.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDO_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SW1.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SW1_aliases.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SampleKlaar.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/TxDMA_dma.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cm3.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cmFunc.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cmInstr.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cyPm.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cydevice.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cydevice_trm.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cydisabledsheets.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cyfitter.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cypins.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cytypes.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/project.h G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/main.c 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/AudioCodecClk.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/AudioCodecClk_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CYDMAC.H : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CYFITTER.H : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/Clip.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/Codec_en.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/Codec_en_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/I2S_1.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/I2S_1_PVT.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LCD.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LCD_LCDPort.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LCD_LCDPort_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED0.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED0_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED1.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED1_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED2.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED2_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED3.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LED3_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/LEDs.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/RxDMA_dma.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDI.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDI_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDO.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SDO_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SW1.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SW1_aliases.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/SampleKlaar.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/TxDMA_dma.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cm3.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cmFunc.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/core_cmInstr.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cydisabledsheets.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cypins.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/Generated_Source/PSoC5/project.h : 
+
+G:/PSoC_5LP/I2S_DMA_example/InterIcSound01.cydsn/main.c : 
+

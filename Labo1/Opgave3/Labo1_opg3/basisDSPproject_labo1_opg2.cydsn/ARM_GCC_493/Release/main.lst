@@ -1,0 +1,2303 @@
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.sampleInt,"ax",%progbits
+  19              		.align	1
+  20              		.global	sampleInt
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	sampleInt, %function
+  24              	sampleInt:
+  25              	.LFB63:
+  26              		.file 1 ".\\main.c"
+   1:.\main.c      **** /*******************************************************************************
+   2:.\main.c      **** * File Name: main.c
+   3:.\main.c      **** *
+   4:.\main.c      **** * Version: 2.0
+   5:.\main.c      **** *
+   6:.\main.c      **** * Description:
+   7:.\main.c      **** *  This is the source code for the example project of the Inter-IC Sound Bus
+   8:.\main.c      **** * (I2S) component.
+   9:.\main.c      **** *
+  10:.\main.c      **** *  Parameters used:
+  11:.\main.c      **** *   Direction:          Tx and Rx
+  12:.\main.c      **** *   WordSelect:         64 bits
+  13:.\main.c      **** *   DataBits:           16 bits
+  14:.\main.c      **** *   DataInterleaving:   Interleaved
+  15:.\main.c      **** *   DMA Request:        Tx and Rx
+  16:.\main.c      **** *   Rx clip detection:  Enabled
+  17:.\main.c      **** *
+  18:.\main.c      **** *  I2S data transfers with a loopback. Tx data is sent from the memory to
+  19:.\main.c      **** *  the Tx FIFO using TxDMA. The data is transmitted on the Tx direction and
+  20:.\main.c      **** *  is received on the Rx direction.
+  21:.\main.c      **** *  RxDMA transfers the data from Rx FIFO to the SRAM buffer.
+  22:.\main.c      **** *  Received data is  displayed on the LCD. 
+  23:.\main.c      **** *  Pressing SW1 on the DVK increments the value of the first element in the
+  24:.\main.c      **** *  transmit buffer. If the value crosses the negative and positive clipping
+  25:.\main.c      **** *  thresholds, the LED1 is turned on.
+  26:.\main.c      **** *
+  27:.\main.c      **** ********************************************************************************
+  28:.\main.c      **** * Copyright 2012-2014, Cypress Semiconductor Corporation. All rights reserved.
+  29:.\main.c      **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  30:.\main.c      **** * by and subject to worldwide patent and copyright laws and treaties.
+  31:.\main.c      **** * Therefore, you may use this software only as provided in the license agreement
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 2
+
+
+  32:.\main.c      **** * accompanying the software package from which you obtained this software.
+  33:.\main.c      **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  34:.\main.c      **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  35:.\main.c      **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  36:.\main.c      **** *******************************************************************************/
+  37:.\main.c      **** 
+  38:.\main.c      **** #include <project.h>
+  39:.\main.c      **** 
+  40:.\main.c      **** #define BUFFER_SIZE                 (4u)
+  41:.\main.c      **** #define LINKS                       0
+  42:.\main.c      **** #define RECHTS                      1
+  43:.\main.c      **** 
+  44:.\main.c      **** /* DMA Configuration for RxDMA */
+  45:.\main.c      **** #define RxDMA_BYTES_PER_BURST       (1u)
+  46:.\main.c      **** #define RxDMA_REQUEST_PER_BURST     (1u)
+  47:.\main.c      **** #define RxDMA_SRC_BASE              (CYDEV_PERIPH_BASE)
+  48:.\main.c      **** #define RxDMA_DST_BASE              (CYDEV_SRAM_BASE)
+  49:.\main.c      **** 
+  50:.\main.c      **** /* DMA Configuration for TxDMA */
+  51:.\main.c      **** #define TxDMA_BYTES_PER_BURST       (1u)
+  52:.\main.c      **** #define TxDMA_REQUEST_PER_BURST     (1u)
+  53:.\main.c      **** #define TxDMA_SRC_BASE              (CYDEV_SRAM_BASE)
+  54:.\main.c      **** #define TxDMA_DST_BASE              (CYDEV_PERIPH_BASE)
+  55:.\main.c      **** 
+  56:.\main.c      **** /* Function prototypes */
+  57:.\main.c      **** static void DmaRxConfiguration(void);
+  58:.\main.c      **** static void DmaTxConfiguration(void);
+  59:.\main.c      **** static void DisplayUpdate(void);
+  60:.\main.c      **** 
+  61:.\main.c      **** /* Variable declarations for RxDMA and TxDMA */
+  62:.\main.c      **** static uint8 rxDmaChan;
+  63:.\main.c      **** static uint8 rxDmaTd[1u];
+  64:.\main.c      **** static uint8 txDmaChan;
+  65:.\main.c      **** static uint8 txDmaTd[1u];
+  66:.\main.c      **** 
+  67:.\main.c      **** /* Receive buffer */
+  68:.\main.c      **** //static uint8 rxBuff[BUFFER_SIZE];
+  69:.\main.c      **** static int16 rxBuff[BUFFER_SIZE/2];
+  70:.\main.c      **** static int sampleIn[2];
+  71:.\main.c      **** 
+  72:.\main.c      **** /* Data to be transmitted by Tx */
+  73:.\main.c      **** static int16 txBuff[BUFFER_SIZE];
+  74:.\main.c      **** static int sampleUit[2];
+  75:.\main.c      **** 
+  76:.\main.c      **** CY_ISR(sampleInt) {
+  27              		.loc 1 76 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  77:.\main.c      ****     LEDs_Write (LEDs_Read() | 0x1);
+  35              		.loc 1 77 0
+  36 0002 FFF7FEFF 		bl	LEDs_Read
+  37              	.LVL0:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 3
+
+
+  38 0006 40F00100 		orr	r0, r0, #1
+  39 000a C0B2     		uxtb	r0, r0
+  40 000c FFF7FEFF 		bl	LEDs_Write
+  41              	.LVL1:
+  78:.\main.c      ****     txBuff[LINKS] = sampleUit[LINKS];
+  42              		.loc 1 78 0
+  43 0010 0A4B     		ldr	r3, .L2
+  44 0012 9A68     		ldr	r2, [r3, #8]
+  79:.\main.c      ****     txBuff[RECHTS] = sampleUit[RECHTS];
+  80:.\main.c      **** 
+  81:.\main.c      ****     sampleIn[LINKS] = (int)rxBuff[LINKS];
+  45              		.loc 1 81 0
+  46 0014 B3F91010 		ldrsh	r1, [r3, #16]
+  78:.\main.c      ****     txBuff[LINKS] = sampleUit[LINKS];
+  47              		.loc 1 78 0
+  48 0018 1A80     		strh	r2, [r3]	@ movhi
+  79:.\main.c      ****     txBuff[RECHTS] = sampleUit[RECHTS];
+  49              		.loc 1 79 0
+  50 001a DA68     		ldr	r2, [r3, #12]
+  51              		.loc 1 81 0
+  52 001c 5961     		str	r1, [r3, #20]
+  79:.\main.c      ****     txBuff[RECHTS] = sampleUit[RECHTS];
+  53              		.loc 1 79 0
+  54 001e 5A80     		strh	r2, [r3, #2]	@ movhi
+  82:.\main.c      ****     sampleIn[RECHTS] = (int)rxBuff[RECHTS];
+  55              		.loc 1 82 0
+  56 0020 B3F91220 		ldrsh	r2, [r3, #18]
+  83:.\main.c      ****     sampleUit[LINKS] = sampleIn[LINKS];
+  57              		.loc 1 83 0
+  58 0024 9960     		str	r1, [r3, #8]
+  82:.\main.c      ****     sampleIn[RECHTS] = (int)rxBuff[RECHTS];
+  59              		.loc 1 82 0
+  60 0026 9A61     		str	r2, [r3, #24]
+  84:.\main.c      ****     sampleUit[RECHTS] = sampleIn[RECHTS];
+  61              		.loc 1 84 0
+  62 0028 DA60     		str	r2, [r3, #12]
+  85:.\main.c      ****     LEDs_Write (LEDs_Read() & 0x2);
+  63              		.loc 1 85 0
+  64 002a FFF7FEFF 		bl	LEDs_Read
+  65              	.LVL2:
+  86:.\main.c      ****     }
+  66              		.loc 1 86 0
+  67 002e BDE80840 		pop	{r3, lr}
+  68              		.cfi_restore 14
+  69              		.cfi_restore 3
+  70              		.cfi_def_cfa_offset 0
+  85:.\main.c      ****     LEDs_Write (LEDs_Read() & 0x2);
+  71              		.loc 1 85 0
+  72 0032 00F00200 		and	r0, r0, #2
+  73 0036 FFF7FEBF 		b	LEDs_Write
+  74              	.LVL3:
+  75              	.L3:
+  76 003a 00BF     		.align	2
+  77              	.L2:
+  78 003c 00000000 		.word	.LANCHOR0
+  79              		.cfi_endproc
+  80              	.LFE63:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 4
+
+
+  81              		.size	sampleInt, .-sampleInt
+  82              		.section	.text.startup.main,"ax",%progbits
+  83              		.align	1
+  84              		.global	main
+  85              		.thumb
+  86              		.thumb_func
+  87              		.type	main, %function
+  88              	main:
+  89              	.LFB64:
+  87:.\main.c      **** 
+  88:.\main.c      **** /*******************************************************************************
+  89:.\main.c      **** * Function Name: main
+  90:.\main.c      **** ********************************************************************************
+  91:.\main.c      **** *
+  92:.\main.c      **** * Summary:
+  93:.\main.c      **** *  The main function performs the following tasks:
+  94:.\main.c      **** *   1. Starts all components
+  95:.\main.c      **** *   2. Configures the DMA transfer for the Rx and Tx directions
+  96:.\main.c      **** *   3. Enables Rx and Tx directions
+  97:.\main.c      **** *   4. Scans for a button event and increment the first element of txBuff[] if
+  98:.\main.c      **** *      the button was pressed
+  99:.\main.c      **** *   5. Prints out the received data onto the LCD with a user defined refresh
+ 100:.\main.c      **** *      rate
+ 101:.\main.c      **** *   
+ 102:.\main.c      **** * Parameters:
+ 103:.\main.c      **** *  None.
+ 104:.\main.c      **** *
+ 105:.\main.c      **** * Return:
+ 106:.\main.c      **** *  None.
+ 107:.\main.c      **** *
+ 108:.\main.c      **** *******************************************************************************/
+ 109:.\main.c      **** int main()
+ 110:.\main.c      **** {   
+  90              		.loc 1 110 0
+  91              		.cfi_startproc
+  92              		@ Volatile: function does not return.
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95 0000 08B5     		push	{r3, lr}
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 3, -8
+  98              		.cfi_offset 14, -4
+ 111:.\main.c      ****     CyGlobalIntEnable;          /* Enable global interrupts. */
+  99              		.loc 1 111 0
+ 100              	@ 111 ".\main.c" 1
+ 101 0002 62B6     		CPSIE   i
+ 102              	@ 0 "" 2
+ 112:.\main.c      ****     LCD_Start();
+ 103              		.loc 1 112 0
+ 104              		.thumb
+ 105 0004 FFF7FEFF 		bl	LCD_Start
+ 106              	.LVL4:
+ 113:.\main.c      ****     LCD_PrintString("Uit:");
+ 107              		.loc 1 113 0
+ 108 0008 4148     		ldr	r0, .L12
+ 109 000a FFF7FEFF 		bl	LCD_PrintString
+ 110              	.LVL5:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 5
+
+
+ 114:.\main.c      ****     LCD_Position(1u, 0u);
+ 111              		.loc 1 114 0
+ 112 000e 0021     		movs	r1, #0
+ 113 0010 0120     		movs	r0, #1
+ 114 0012 FFF7FEFF 		bl	LCD_Position
+ 115              	.LVL6:
+ 115:.\main.c      ****     LCD_PrintString("In :");
+ 116              		.loc 1 115 0
+ 117 0016 3F48     		ldr	r0, .L12+4
+ 118 0018 FFF7FEFF 		bl	LCD_PrintString
+ 119              	.LVL7:
+ 116:.\main.c      **** 
+ 117:.\main.c      ****     I2S_1_Start();
+ 120              		.loc 1 117 0
+ 121 001c FFF7FEFF 		bl	I2S_1_Start
+ 122              	.LVL8:
+ 118:.\main.c      ****     LEDs_Write (0x0);
+ 123              		.loc 1 118 0
+ 124 0020 0020     		movs	r0, #0
+ 125 0022 FFF7FEFF 		bl	LEDs_Write
+ 126              	.LVL9:
+ 127              	.LBB8:
+ 128              	.LBB9:
+ 119:.\main.c      ****     
+ 120:.\main.c      ****     /* Configure DMAs for each direction */ 
+ 121:.\main.c      ****     DmaRxConfiguration();
+ 122:.\main.c      ****     DmaTxConfiguration();
+ 123:.\main.c      ****     SampleKlaar_StartEx(sampleInt);
+ 124:.\main.c      **** 
+ 125:.\main.c      ****     LCD_Position(1u,0u);
+ 126:.\main.c      **** 
+ 127:.\main.c      ****     
+ 128:.\main.c      ****     I2S_1_EnableRx();
+ 129:.\main.c      **** 
+ 130:.\main.c      ****     while(0u != (I2S_1_ReadTxStatus() & I2S_1_TX_FIFO_0_NOT_FULL))
+ 131:.\main.c      ****     {
+ 132:.\main.c      ****         /* Wait for TxDMA to fill Tx FIFO */
+ 133:.\main.c      ****     }
+ 134:.\main.c      ****     CyDelayUs(1);
+ 135:.\main.c      ****     I2S_1_EnableTx();   /* Enable Tx direction */
+ 136:.\main.c      ****    
+ 137:.\main.c      ****     for(;;) {
+ 138:.\main.c      ****         /* Execute following tasks once every millisecond */
+ 139:.\main.c      **** //        CyDelay(100);
+ 140:.\main.c      **** 
+ 141:.\main.c      ****         /* Print out Tx and Rx data onto LCD */
+ 142:.\main.c      ****         if (Clip_Read())
+ 143:.\main.c      ****             DisplayUpdate();
+ 144:.\main.c      ****     }
+ 145:.\main.c      **** }
+ 146:.\main.c      **** 
+ 147:.\main.c      **** 
+ 148:.\main.c      **** /*******************************************************************************
+ 149:.\main.c      **** * Function Name: DmaRxConfiguration
+ 150:.\main.c      **** ********************************************************************************
+ 151:.\main.c      **** *
+ 152:.\main.c      **** * Summary:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 6
+
+
+ 153:.\main.c      **** *  Configures the DMA transfer for the Rx direction.
+ 154:.\main.c      **** *   
+ 155:.\main.c      **** * Parameters:
+ 156:.\main.c      **** *  None.
+ 157:.\main.c      **** *
+ 158:.\main.c      **** * Return:
+ 159:.\main.c      **** *  None.
+ 160:.\main.c      **** *
+ 161:.\main.c      **** *******************************************************************************/
+ 162:.\main.c      **** void DmaRxConfiguration(void)
+ 163:.\main.c      **** {
+ 164:.\main.c      ****     /* Rx DMA Config
+ 165:.\main.c      ****     * Init DMA, 1 byte bursts, each burst requires a request */
+ 166:.\main.c      ****     rxDmaChan = RxDMA_DmaInitialize(RxDMA_BYTES_PER_BURST, RxDMA_REQUEST_PER_BURST,
+ 129              		.loc 1 166 0
+ 130 0026 0120     		movs	r0, #1
+ 131 0028 0146     		mov	r1, r0
+ 132 002a 4FF48042 		mov	r2, #16384
+ 133 002e 41F6FF73 		movw	r3, #8191
+ 134 0032 FFF7FEFF 		bl	RxDMA_DmaInitialize
+ 135              	.LVL10:
+ 136 0036 384C     		ldr	r4, .L12+8
+ 137 0038 2077     		strb	r0, [r4, #28]
+ 167:.\main.c      ****                                      HI16(RxDMA_SRC_BASE), HI16(RxDMA_DST_BASE));
+ 168:.\main.c      **** 
+ 169:.\main.c      ****     rxDmaTd[0u] = CyDmaTdAllocate();
+ 138              		.loc 1 169 0
+ 139 003a FFF7FEFF 		bl	CyDmaTdAllocate
+ 140              	.LVL11:
+ 170:.\main.c      ****     /* Configure this Td as follows:
+ 171:.\main.c      ****     *  - The TD is looping on itself
+ 172:.\main.c      ****     *  - Increment the destination address, but not the source address
+ 173:.\main.c      ****     */
+ 174:.\main.c      ****     CyDmaTdSetConfiguration(rxDmaTd[0], BUFFER_SIZE, rxDmaTd[0u], TD_INC_DST_ADR | RxDMA__TD_TERMOU
+ 141              		.loc 1 174 0
+ 142 003e 0623     		movs	r3, #6
+ 169:.\main.c      ****     /* Configure this Td as follows:
+ 143              		.loc 1 169 0
+ 144 0040 0246     		mov	r2, r0
+ 145              		.loc 1 174 0
+ 146 0042 0421     		movs	r1, #4
+ 169:.\main.c      ****     /* Configure this Td as follows:
+ 147              		.loc 1 169 0
+ 148 0044 6077     		strb	r0, [r4, #29]
+ 149              		.loc 1 174 0
+ 150 0046 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 151              	.LVL12:
+ 175:.\main.c      **** 
+ 176:.\main.c      ****     /* From the I2S to the memory */
+ 177:.\main.c      ****     CyDmaTdSetAddress(rxDmaTd[0u], LO16((uint32)I2S_1_RX_CH0_F0_PTR), LO16((uint32)rxBuff));
+ 152              		.loc 1 177 0
+ 153 004a 04F11002 		add	r2, r4, #16
+ 154 004e 92B2     		uxth	r2, r2
+ 155 0050 46F24551 		movw	r1, #25925
+ 156 0054 607F     		ldrb	r0, [r4, #29]	@ zero_extendqisi2
+ 157 0056 FFF7FEFF 		bl	CyDmaTdSetAddress
+ 158              	.LVL13:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 7
+
+
+ 178:.\main.c      **** 
+ 179:.\main.c      ****     /* Associate the TD with the channel */
+ 180:.\main.c      ****     CyDmaChSetInitialTd(rxDmaChan, rxDmaTd[0u]);
+ 159              		.loc 1 180 0
+ 160 005a 617F     		ldrb	r1, [r4, #29]	@ zero_extendqisi2
+ 161 005c 207F     		ldrb	r0, [r4, #28]	@ zero_extendqisi2
+ 162 005e FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 163              	.LVL14:
+ 181:.\main.c      **** 
+ 182:.\main.c      ****     /* Enable the channel */
+ 183:.\main.c      ****     CyDmaChEnable(rxDmaChan, 1u);
+ 164              		.loc 1 183 0
+ 165 0062 0121     		movs	r1, #1
+ 166 0064 207F     		ldrb	r0, [r4, #28]	@ zero_extendqisi2
+ 167 0066 FFF7FEFF 		bl	CyDmaChEnable
+ 168              	.LVL15:
+ 169              	.LBE9:
+ 170              	.LBE8:
+ 171              	.LBB10:
+ 172              	.LBB11:
+ 184:.\main.c      **** }
+ 185:.\main.c      **** 
+ 186:.\main.c      **** 
+ 187:.\main.c      **** /*******************************************************************************
+ 188:.\main.c      **** * Function Name: DmaTxConfiguration
+ 189:.\main.c      **** ********************************************************************************
+ 190:.\main.c      **** *
+ 191:.\main.c      **** * Summary:
+ 192:.\main.c      **** *  Configures the DMA transfer for the Tx direction.
+ 193:.\main.c      **** *   
+ 194:.\main.c      **** * Parameters:
+ 195:.\main.c      **** *  None.
+ 196:.\main.c      **** *
+ 197:.\main.c      **** * Return:
+ 198:.\main.c      **** *  None.
+ 199:.\main.c      **** *
+ 200:.\main.c      **** *******************************************************************************/
+ 201:.\main.c      **** void DmaTxConfiguration(void)
+ 202:.\main.c      **** {
+ 203:.\main.c      ****      /* Tx DMA Config
+ 204:.\main.c      ****     * Init DMA, 1 byte bursts, each burst requires a request
+ 205:.\main.c      ****     */ 
+ 206:.\main.c      ****     txDmaChan = TxDMA_DmaInitialize(TxDMA_BYTES_PER_BURST, TxDMA_REQUEST_PER_BURST, 
+ 173              		.loc 1 206 0
+ 174 006a 0120     		movs	r0, #1
+ 175 006c 0146     		mov	r1, r0
+ 176 006e 41F6FF72 		movw	r2, #8191
+ 177 0072 4FF48043 		mov	r3, #16384
+ 178 0076 FFF7FEFF 		bl	TxDMA_DmaInitialize
+ 179              	.LVL16:
+ 180 007a A077     		strb	r0, [r4, #30]
+ 207:.\main.c      ****                                     HI16(TxDMA_SRC_BASE), HI16(TxDMA_DST_BASE));
+ 208:.\main.c      **** 
+ 209:.\main.c      ****     txDmaTd[0u] = CyDmaTdAllocate();
+ 181              		.loc 1 209 0
+ 182 007c FFF7FEFF 		bl	CyDmaTdAllocate
+ 183              	.LVL17:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 8
+
+
+ 210:.\main.c      **** 
+ 211:.\main.c      ****     /* Configure this Td chain as follows:
+ 212:.\main.c      ****     *  - The TD is looping on itself
+ 213:.\main.c      ****     *  - Increment the source address, but not the destination address   
+ 214:.\main.c      ****     */
+ 215:.\main.c      ****     CyDmaTdSetConfiguration(txDmaTd[0u], BUFFER_SIZE, txDmaTd[0u], TD_INC_SRC_ADR);
+ 184              		.loc 1 215 0
+ 185 0080 0123     		movs	r3, #1
+ 209:.\main.c      **** 
+ 186              		.loc 1 209 0
+ 187 0082 0246     		mov	r2, r0
+ 188              		.loc 1 215 0
+ 189 0084 0421     		movs	r1, #4
+ 209:.\main.c      **** 
+ 190              		.loc 1 209 0
+ 191 0086 E077     		strb	r0, [r4, #31]
+ 192              		.loc 1 215 0
+ 193 0088 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 194              	.LVL18:
+ 216:.\main.c      ****     
+ 217:.\main.c      ****     /* From the memory to the I2S */
+ 218:.\main.c      ****     CyDmaTdSetAddress(txDmaTd[0u], LO16((uint32)txBuff), LO16((uint32)I2S_1_TX_CH0_F0_PTR));
+ 195              		.loc 1 218 0
+ 196 008c 46F24542 		movw	r2, #25669
+ 197 0090 A1B2     		uxth	r1, r4
+ 198 0092 E07F     		ldrb	r0, [r4, #31]	@ zero_extendqisi2
+ 199 0094 FFF7FEFF 		bl	CyDmaTdSetAddress
+ 200              	.LVL19:
+ 219:.\main.c      **** 
+ 220:.\main.c      ****     /* Associate the TD with the channel */
+ 221:.\main.c      ****     CyDmaChSetInitialTd(txDmaChan, txDmaTd[0u]);
+ 201              		.loc 1 221 0
+ 202 0098 E17F     		ldrb	r1, [r4, #31]	@ zero_extendqisi2
+ 203 009a A07F     		ldrb	r0, [r4, #30]	@ zero_extendqisi2
+ 204 009c FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 205              	.LVL20:
+ 222:.\main.c      **** 
+ 223:.\main.c      ****     /* Enable the channel */
+ 224:.\main.c      ****     CyDmaChEnable(txDmaChan, 1u);
+ 206              		.loc 1 224 0
+ 207 00a0 0121     		movs	r1, #1
+ 208 00a2 A07F     		ldrb	r0, [r4, #30]	@ zero_extendqisi2
+ 209 00a4 FFF7FEFF 		bl	CyDmaChEnable
+ 210              	.LVL21:
+ 211              	.LBE11:
+ 212              	.LBE10:
+ 123:.\main.c      **** 
+ 213              		.loc 1 123 0
+ 214 00a8 1C48     		ldr	r0, .L12+12
+ 215 00aa FFF7FEFF 		bl	SampleKlaar_StartEx
+ 216              	.LVL22:
+ 125:.\main.c      **** 
+ 217              		.loc 1 125 0
+ 218 00ae 0120     		movs	r0, #1
+ 219 00b0 0021     		movs	r1, #0
+ 220 00b2 FFF7FEFF 		bl	LCD_Position
+ 221              	.LVL23:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 9
+
+
+ 128:.\main.c      **** 
+ 222              		.loc 1 128 0
+ 223 00b6 FFF7FEFF 		bl	I2S_1_EnableRx
+ 224              	.LVL24:
+ 225              	.L5:
+ 130:.\main.c      ****     {
+ 226              		.loc 1 130 0 discriminator 1
+ 227 00ba 194B     		ldr	r3, .L12+16
+ 228 00bc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 229 00be 9B07     		lsls	r3, r3, #30
+ 230 00c0 FBD4     		bmi	.L5
+ 134:.\main.c      ****     I2S_1_EnableTx();   /* Enable Tx direction */
+ 231              		.loc 1 134 0
+ 232 00c2 0120     		movs	r0, #1
+ 233 00c4 FFF7FEFF 		bl	CyDelayUs
+ 234              	.LVL25:
+ 135:.\main.c      ****    
+ 235              		.loc 1 135 0
+ 236 00c8 FFF7FEFF 		bl	I2S_1_EnableTx
+ 237              	.LVL26:
+ 238              	.L6:
+ 142:.\main.c      ****             DisplayUpdate();
+ 239              		.loc 1 142 0
+ 240 00cc FFF7FEFF 		bl	Clip_Read
+ 241              	.LVL27:
+ 242 00d0 0028     		cmp	r0, #0
+ 243 00d2 FBD0     		beq	.L6
+ 244              	.LVL28:
+ 245              	.LBB12:
+ 246              	.LBB13:
+ 225:.\main.c      **** }
+ 226:.\main.c      **** 
+ 227:.\main.c      **** /*******************************************************************************
+ 228:.\main.c      **** *  Function Name: DisplayUpdate
+ 229:.\main.c      **** ********************************************************************************
+ 230:.\main.c      **** *
+ 231:.\main.c      **** * Summary:
+ 232:.\main.c      **** *  This function prints out the Tx and Rx data onto the LCD.  
+ 233:.\main.c      **** *
+ 234:.\main.c      **** * Parameters:
+ 235:.\main.c      **** *  None.
+ 236:.\main.c      **** *
+ 237:.\main.c      **** * Return:
+ 238:.\main.c      **** *  None.
+ 239:.\main.c      **** *
+ 240:.\main.c      **** *******************************************************************************/
+ 241:.\main.c      **** static void DisplayUpdate(void)
+ 242:.\main.c      **** {
+ 243:.\main.c      ****     uint8 idx;
+ 244:.\main.c      ****     uint8 col;
+ 245:.\main.c      **** 
+ 246:.\main.c      ****     /* Set start position for data output */
+ 247:.\main.c      ****     col = 4u; 
+ 248:.\main.c      **** //	for(idx = 0u; idx < BUFFER_SIZE; idx+=2)
+ 249:.\main.c      **** 	for(idx = 0u; idx < BUFFER_SIZE/2; idx++)
+ 250:.\main.c      ****     {
+ 251:.\main.c      ****         LCD_Position(0u, col);
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 10
+
+
+ 247              		.loc 1 251 0
+ 248 00d4 0421     		movs	r1, #4
+ 249 00d6 0020     		movs	r0, #0
+ 250 00d8 FFF7FEFF 		bl	LCD_Position
+ 251              	.LVL29:
+ 252:.\main.c      **** //        LCD_PrintInt16(((int16)txBuff[idx]<<8)+(int16)txBuff[idx+1]);
+ 253:.\main.c      ****         LCD_PrintInt16(sampleUit[idx]);
+ 252              		.loc 1 253 0
+ 253 00dc 2089     		ldrh	r0, [r4, #8]
+ 254 00de FFF7FEFF 		bl	LCD_PrintInt16
+ 255              	.LVL30:
+ 254:.\main.c      ****         LCD_Position(1u, col);
+ 256              		.loc 1 254 0
+ 257 00e2 0421     		movs	r1, #4
+ 258 00e4 0120     		movs	r0, #1
+ 259 00e6 FFF7FEFF 		bl	LCD_Position
+ 260              	.LVL31:
+ 255:.\main.c      **** //        LCD_PrintInt16(((int16)rxBuff[idx]<<8)+(int16)rxBuff[idx+1]);
+ 256:.\main.c      ****         LCD_PrintInt16(sampleIn[idx]);
+ 261              		.loc 1 256 0
+ 262 00ea A08A     		ldrh	r0, [r4, #20]
+ 263 00ec FFF7FEFF 		bl	LCD_PrintInt16
+ 264              	.LVL32:
+ 251:.\main.c      **** //        LCD_PrintInt16(((int16)txBuff[idx]<<8)+(int16)txBuff[idx+1]);
+ 265              		.loc 1 251 0
+ 266 00f0 0A21     		movs	r1, #10
+ 267 00f2 0020     		movs	r0, #0
+ 268 00f4 FFF7FEFF 		bl	LCD_Position
+ 269              	.LVL33:
+ 253:.\main.c      ****         LCD_Position(1u, col);
+ 270              		.loc 1 253 0
+ 271 00f8 A089     		ldrh	r0, [r4, #12]
+ 272 00fa FFF7FEFF 		bl	LCD_PrintInt16
+ 273              	.LVL34:
+ 254:.\main.c      **** //        LCD_PrintInt16(((int16)rxBuff[idx]<<8)+(int16)rxBuff[idx+1]);
+ 274              		.loc 1 254 0
+ 275 00fe 0120     		movs	r0, #1
+ 276 0100 0A21     		movs	r1, #10
+ 277 0102 FFF7FEFF 		bl	LCD_Position
+ 278              	.LVL35:
+ 279              		.loc 1 256 0
+ 280 0106 208B     		ldrh	r0, [r4, #24]
+ 281 0108 FFF7FEFF 		bl	LCD_PrintInt16
+ 282              	.LVL36:
+ 283 010c DEE7     		b	.L6
+ 284              	.L13:
+ 285 010e 00BF     		.align	2
+ 286              	.L12:
+ 287 0110 00000000 		.word	.LC0
+ 288 0114 05000000 		.word	.LC1
+ 289 0118 00000000 		.word	.LANCHOR0
+ 290 011c 00000000 		.word	sampleInt
+ 291 0120 65640040 		.word	1073767525
+ 292              	.LBE13:
+ 293              	.LBE12:
+ 294              		.cfi_endproc
+ 295              	.LFE64:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 11
+
+
+ 296              		.size	main, .-main
+ 297              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 298              	.LC0:
+ 299 0000 5569743A 		.ascii	"Uit:\000"
+ 299      00
+ 300              	.LC1:
+ 301 0005 496E203A 		.ascii	"In :\000"
+ 301      00
+ 302              		.bss
+ 303              		.align	2
+ 304              		.set	.LANCHOR0,. + 0
+ 305              		.type	txBuff, %object
+ 306              		.size	txBuff, 8
+ 307              	txBuff:
+ 308 0000 00000000 		.space	8
+ 308      00000000 
+ 309              		.type	sampleUit, %object
+ 310              		.size	sampleUit, 8
+ 311              	sampleUit:
+ 312 0008 00000000 		.space	8
+ 312      00000000 
+ 313              		.type	rxBuff, %object
+ 314              		.size	rxBuff, 4
+ 315              	rxBuff:
+ 316 0010 00000000 		.space	4
+ 317              		.type	sampleIn, %object
+ 318              		.size	sampleIn, 8
+ 319              	sampleIn:
+ 320 0014 00000000 		.space	8
+ 320      00000000 
+ 321              		.type	rxDmaChan, %object
+ 322              		.size	rxDmaChan, 1
+ 323              	rxDmaChan:
+ 324 001c 00       		.space	1
+ 325              		.type	rxDmaTd, %object
+ 326              		.size	rxDmaTd, 1
+ 327              	rxDmaTd:
+ 328 001d 00       		.space	1
+ 329              		.type	txDmaChan, %object
+ 330              		.size	txDmaChan, 1
+ 331              	txDmaChan:
+ 332 001e 00       		.space	1
+ 333              		.type	txDmaTd, %object
+ 334              		.size	txDmaTd, 1
+ 335              	txDmaTd:
+ 336 001f 00       		.space	1
+ 337              		.text
+ 338              	.Letext0:
+ 339              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 340              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 341              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 342              		.file 5 "Generated_Source\\PSoC5/LEDs.h"
+ 343              		.file 6 "Generated_Source\\PSoC5/CYDMAC.H"
+ 344              		.file 7 "Generated_Source\\PSoC5/RxDMA_dma.h"
+ 345              		.file 8 "Generated_Source\\PSoC5/TxDMA_dma.h"
+ 346              		.file 9 "Generated_Source\\PSoC5/LCD.h"
+ 347              		.file 10 "Generated_Source\\PSoC5/I2S_1.h"
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 12
+
+
+ 348              		.file 11 "Generated_Source\\PSoC5/SampleKlaar.h"
+ 349              		.file 12 "Generated_Source\\PSoC5/CyLib.h"
+ 350              		.file 13 "Generated_Source\\PSoC5/Clip.h"
+ 351              		.file 14 "Generated_Source\\PSoC5/core_cm3.h"
+ 352              		.section	.debug_info,"",%progbits
+ 353              	.Ldebug_info0:
+ 354 0000 6B060000 		.4byte	0x66b
+ 355 0004 0400     		.2byte	0x4
+ 356 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 357 000a 04       		.byte	0x4
+ 358 000b 01       		.uleb128 0x1
+ 359 000c 67020000 		.4byte	.LASF54
+ 360 0010 01       		.byte	0x1
+ 361 0011 97000000 		.4byte	.LASF55
+ 362 0015 E0010000 		.4byte	.LASF56
+ 363 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 364 001d 00000000 		.4byte	0
+ 365 0021 00000000 		.4byte	.Ldebug_line0
+ 366 0025 02       		.uleb128 0x2
+ 367 0026 01       		.byte	0x1
+ 368 0027 06       		.byte	0x6
+ 369 0028 2E030000 		.4byte	.LASF0
+ 370 002c 02       		.uleb128 0x2
+ 371 002d 01       		.byte	0x1
+ 372 002e 08       		.byte	0x8
+ 373 002f B3000000 		.4byte	.LASF1
+ 374 0033 02       		.uleb128 0x2
+ 375 0034 02       		.byte	0x2
+ 376 0035 05       		.byte	0x5
+ 377 0036 5D020000 		.4byte	.LASF2
+ 378 003a 02       		.uleb128 0x2
+ 379 003b 02       		.byte	0x2
+ 380 003c 07       		.byte	0x7
+ 381 003d FE000000 		.4byte	.LASF3
+ 382 0041 03       		.uleb128 0x3
+ 383 0042 45000000 		.4byte	.LASF9
+ 384 0046 02       		.byte	0x2
+ 385 0047 3F       		.byte	0x3f
+ 386 0048 4C000000 		.4byte	0x4c
+ 387 004c 02       		.uleb128 0x2
+ 388 004d 04       		.byte	0x4
+ 389 004e 05       		.byte	0x5
+ 390 004f 25030000 		.4byte	.LASF4
+ 391 0053 02       		.uleb128 0x2
+ 392 0054 04       		.byte	0x4
+ 393 0055 07       		.byte	0x7
+ 394 0056 EC000000 		.4byte	.LASF5
+ 395 005a 02       		.uleb128 0x2
+ 396 005b 08       		.byte	0x8
+ 397 005c 05       		.byte	0x5
+ 398 005d 29020000 		.4byte	.LASF6
+ 399 0061 02       		.uleb128 0x2
+ 400 0062 08       		.byte	0x8
+ 401 0063 07       		.byte	0x7
+ 402 0064 8D010000 		.4byte	.LASF7
+ 403 0068 04       		.uleb128 0x4
+ 404 0069 04       		.byte	0x4
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 13
+
+
+ 405 006a 05       		.byte	0x5
+ 406 006b 696E7400 		.ascii	"int\000"
+ 407 006f 02       		.uleb128 0x2
+ 408 0070 04       		.byte	0x4
+ 409 0071 07       		.byte	0x7
+ 410 0072 76010000 		.4byte	.LASF8
+ 411 0076 03       		.uleb128 0x3
+ 412 0077 D8010000 		.4byte	.LASF10
+ 413 007b 03       		.byte	0x3
+ 414 007c 2C       		.byte	0x2c
+ 415 007d 41000000 		.4byte	0x41
+ 416 0081 03       		.uleb128 0x3
+ 417 0082 AD000000 		.4byte	.LASF11
+ 418 0086 04       		.byte	0x4
+ 419 0087 C2       		.byte	0xc2
+ 420 0088 2C000000 		.4byte	0x2c
+ 421 008c 03       		.uleb128 0x3
+ 422 008d 35010000 		.4byte	.LASF12
+ 423 0091 04       		.byte	0x4
+ 424 0092 C3       		.byte	0xc3
+ 425 0093 3A000000 		.4byte	0x3a
+ 426 0097 03       		.uleb128 0x3
+ 427 0098 65010000 		.4byte	.LASF13
+ 428 009c 04       		.byte	0x4
+ 429 009d C4       		.byte	0xc4
+ 430 009e 53000000 		.4byte	0x53
+ 431 00a2 03       		.uleb128 0x3
+ 432 00a3 B1010000 		.4byte	.LASF14
+ 433 00a7 04       		.byte	0x4
+ 434 00a8 C6       		.byte	0xc6
+ 435 00a9 33000000 		.4byte	0x33
+ 436 00ad 02       		.uleb128 0x2
+ 437 00ae 04       		.byte	0x4
+ 438 00af 04       		.byte	0x4
+ 439 00b0 A0000000 		.4byte	.LASF15
+ 440 00b4 02       		.uleb128 0x2
+ 441 00b5 08       		.byte	0x8
+ 442 00b6 04       		.byte	0x4
+ 443 00b7 2E010000 		.4byte	.LASF16
+ 444 00bb 03       		.uleb128 0x3
+ 445 00bc 1E010000 		.4byte	.LASF17
+ 446 00c0 04       		.byte	0x4
+ 447 00c1 D3       		.byte	0xd3
+ 448 00c2 C6000000 		.4byte	0xc6
+ 449 00c6 02       		.uleb128 0x2
+ 450 00c7 01       		.byte	0x1
+ 451 00c8 08       		.byte	0x8
+ 452 00c9 3F020000 		.4byte	.LASF18
+ 453 00cd 05       		.uleb128 0x5
+ 454 00ce 0A000000 		.4byte	.LASF19
+ 455 00d2 04       		.byte	0x4
+ 456 00d3 6401     		.2byte	0x164
+ 457 00d5 53000000 		.4byte	0x53
+ 458 00d9 05       		.uleb128 0x5
+ 459 00da CF000000 		.4byte	.LASF20
+ 460 00de 04       		.byte	0x4
+ 461 00df 6C01     		.2byte	0x16c
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 14
+
+
+ 462 00e1 E5000000 		.4byte	0xe5
+ 463 00e5 06       		.uleb128 0x6
+ 464 00e6 81000000 		.4byte	0x81
+ 465 00ea 05       		.uleb128 0x5
+ 466 00eb B7010000 		.4byte	.LASF21
+ 467 00ef 04       		.byte	0x4
+ 468 00f0 7E01     		.2byte	0x17e
+ 469 00f2 F6000000 		.4byte	0xf6
+ 470 00f6 07       		.uleb128 0x7
+ 471 00f7 04       		.byte	0x4
+ 472 00f8 FC000000 		.4byte	0xfc
+ 473 00fc 08       		.uleb128 0x8
+ 474 00fd 02       		.uleb128 0x2
+ 475 00fe 04       		.byte	0x4
+ 476 00ff 07       		.byte	0x7
+ 477 0100 20020000 		.4byte	.LASF22
+ 478 0104 09       		.uleb128 0x9
+ 479 0105 00000000 		.4byte	.LASF25
+ 480 0109 01       		.byte	0x1
+ 481 010a 4C       		.byte	0x4c
+ 482 010b 00000000 		.4byte	.LFB63
+ 483 010f 40000000 		.4byte	.LFE63-.LFB63
+ 484 0113 01       		.uleb128 0x1
+ 485 0114 9C       		.byte	0x9c
+ 486 0115 3E010000 		.4byte	0x13e
+ 487 0119 0A       		.uleb128 0xa
+ 488 011a 06000000 		.4byte	.LVL0
+ 489 011e FC040000 		.4byte	0x4fc
+ 490 0122 0A       		.uleb128 0xa
+ 491 0123 10000000 		.4byte	.LVL1
+ 492 0127 07050000 		.4byte	0x507
+ 493 012b 0A       		.uleb128 0xa
+ 494 012c 2E000000 		.4byte	.LVL2
+ 495 0130 FC040000 		.4byte	0x4fc
+ 496 0134 0B       		.uleb128 0xb
+ 497 0135 3A000000 		.4byte	.LVL3
+ 498 0139 07050000 		.4byte	0x507
+ 499 013d 00       		.byte	0
+ 500 013e 0C       		.uleb128 0xc
+ 501 013f 08030000 		.4byte	.LASF23
+ 502 0143 01       		.byte	0x1
+ 503 0144 A2       		.byte	0xa2
+ 504 0145 01       		.byte	0x1
+ 505 0146 0C       		.uleb128 0xc
+ 506 0147 F5020000 		.4byte	.LASF24
+ 507 014b 01       		.byte	0x1
+ 508 014c C9       		.byte	0xc9
+ 509 014d 01       		.byte	0x1
+ 510 014e 0D       		.uleb128 0xd
+ 511 014f C1000000 		.4byte	.LASF57
+ 512 0153 01       		.byte	0x1
+ 513 0154 F1       		.byte	0xf1
+ 514 0155 01       		.byte	0x1
+ 515 0156 71010000 		.4byte	0x171
+ 516 015a 0E       		.uleb128 0xe
+ 517 015b 69647800 		.ascii	"idx\000"
+ 518 015f 01       		.byte	0x1
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 15
+
+
+ 519 0160 F3       		.byte	0xf3
+ 520 0161 81000000 		.4byte	0x81
+ 521 0165 0E       		.uleb128 0xe
+ 522 0166 636F6C00 		.ascii	"col\000"
+ 523 016a 01       		.byte	0x1
+ 524 016b F4       		.byte	0xf4
+ 525 016c 81000000 		.4byte	0x81
+ 526 0170 00       		.byte	0
+ 527 0171 0F       		.uleb128 0xf
+ 528 0172 3C010000 		.4byte	.LASF26
+ 529 0176 01       		.byte	0x1
+ 530 0177 6D       		.byte	0x6d
+ 531 0178 68000000 		.4byte	0x68
+ 532 017c 00000000 		.4byte	.LFB64
+ 533 0180 24010000 		.4byte	.LFE64-.LFB64
+ 534 0184 01       		.uleb128 0x1
+ 535 0185 9C       		.byte	0x9c
+ 536 0186 23040000 		.4byte	0x423
+ 537 018a 10       		.uleb128 0x10
+ 538 018b 3E010000 		.4byte	0x13e
+ 539 018f 26000000 		.4byte	.LBB8
+ 540 0193 44000000 		.4byte	.LBE8-.LBB8
+ 541 0197 01       		.byte	0x1
+ 542 0198 79       		.byte	0x79
+ 543 0199 18020000 		.4byte	0x218
+ 544 019d 11       		.uleb128 0x11
+ 545 019e 36000000 		.4byte	.LVL10
+ 546 01a2 18050000 		.4byte	0x518
+ 547 01a6 C3010000 		.4byte	0x1c3
+ 548 01aa 12       		.uleb128 0x12
+ 549 01ab 01       		.uleb128 0x1
+ 550 01ac 53       		.byte	0x53
+ 551 01ad 03       		.uleb128 0x3
+ 552 01ae 0A       		.byte	0xa
+ 553 01af FF1F     		.2byte	0x1fff
+ 554 01b1 12       		.uleb128 0x12
+ 555 01b2 01       		.uleb128 0x1
+ 556 01b3 52       		.byte	0x52
+ 557 01b4 03       		.uleb128 0x3
+ 558 01b5 0A       		.byte	0xa
+ 559 01b6 0040     		.2byte	0x4000
+ 560 01b8 12       		.uleb128 0x12
+ 561 01b9 01       		.uleb128 0x1
+ 562 01ba 51       		.byte	0x51
+ 563 01bb 01       		.uleb128 0x1
+ 564 01bc 31       		.byte	0x31
+ 565 01bd 12       		.uleb128 0x12
+ 566 01be 01       		.uleb128 0x1
+ 567 01bf 50       		.byte	0x50
+ 568 01c0 01       		.uleb128 0x1
+ 569 01c1 31       		.byte	0x31
+ 570 01c2 00       		.byte	0
+ 571 01c3 0A       		.uleb128 0xa
+ 572 01c4 3E000000 		.4byte	.LVL11
+ 573 01c8 3C050000 		.4byte	0x53c
+ 574 01cc 11       		.uleb128 0x11
+ 575 01cd 4A000000 		.4byte	.LVL12
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 16
+
+
+ 576 01d1 47050000 		.4byte	0x547
+ 577 01d5 E4010000 		.4byte	0x1e4
+ 578 01d9 12       		.uleb128 0x12
+ 579 01da 01       		.uleb128 0x1
+ 580 01db 53       		.byte	0x53
+ 581 01dc 01       		.uleb128 0x1
+ 582 01dd 36       		.byte	0x36
+ 583 01de 12       		.uleb128 0x12
+ 584 01df 01       		.uleb128 0x1
+ 585 01e0 51       		.byte	0x51
+ 586 01e1 01       		.uleb128 0x1
+ 587 01e2 34       		.byte	0x34
+ 588 01e3 00       		.byte	0
+ 589 01e4 11       		.uleb128 0x11
+ 590 01e5 5A000000 		.4byte	.LVL13
+ 591 01e9 6B050000 		.4byte	0x56b
+ 592 01ed FF010000 		.4byte	0x1ff
+ 593 01f1 12       		.uleb128 0x12
+ 594 01f2 01       		.uleb128 0x1
+ 595 01f3 52       		.byte	0x52
+ 596 01f4 02       		.uleb128 0x2
+ 597 01f5 74       		.byte	0x74
+ 598 01f6 10       		.sleb128 16
+ 599 01f7 12       		.uleb128 0x12
+ 600 01f8 01       		.uleb128 0x1
+ 601 01f9 51       		.byte	0x51
+ 602 01fa 03       		.uleb128 0x3
+ 603 01fb 0A       		.byte	0xa
+ 604 01fc 4565     		.2byte	0x6545
+ 605 01fe 00       		.byte	0
+ 606 01ff 0A       		.uleb128 0xa
+ 607 0200 62000000 		.4byte	.LVL14
+ 608 0204 8A050000 		.4byte	0x58a
+ 609 0208 13       		.uleb128 0x13
+ 610 0209 6A000000 		.4byte	.LVL15
+ 611 020d A4050000 		.4byte	0x5a4
+ 612 0211 12       		.uleb128 0x12
+ 613 0212 01       		.uleb128 0x1
+ 614 0213 51       		.byte	0x51
+ 615 0214 01       		.uleb128 0x1
+ 616 0215 31       		.byte	0x31
+ 617 0216 00       		.byte	0
+ 618 0217 00       		.byte	0
+ 619 0218 10       		.uleb128 0x10
+ 620 0219 46010000 		.4byte	0x146
+ 621 021d 6A000000 		.4byte	.LBB10
+ 622 0221 3E000000 		.4byte	.LBE10-.LBB10
+ 623 0225 01       		.byte	0x1
+ 624 0226 7A       		.byte	0x7a
+ 625 0227 A6020000 		.4byte	0x2a6
+ 626 022b 11       		.uleb128 0x11
+ 627 022c 7A000000 		.4byte	.LVL16
+ 628 0230 BE050000 		.4byte	0x5be
+ 629 0234 51020000 		.4byte	0x251
+ 630 0238 12       		.uleb128 0x12
+ 631 0239 01       		.uleb128 0x1
+ 632 023a 53       		.byte	0x53
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 17
+
+
+ 633 023b 03       		.uleb128 0x3
+ 634 023c 0A       		.byte	0xa
+ 635 023d 0040     		.2byte	0x4000
+ 636 023f 12       		.uleb128 0x12
+ 637 0240 01       		.uleb128 0x1
+ 638 0241 52       		.byte	0x52
+ 639 0242 03       		.uleb128 0x3
+ 640 0243 0A       		.byte	0xa
+ 641 0244 FF1F     		.2byte	0x1fff
+ 642 0246 12       		.uleb128 0x12
+ 643 0247 01       		.uleb128 0x1
+ 644 0248 51       		.byte	0x51
+ 645 0249 01       		.uleb128 0x1
+ 646 024a 31       		.byte	0x31
+ 647 024b 12       		.uleb128 0x12
+ 648 024c 01       		.uleb128 0x1
+ 649 024d 50       		.byte	0x50
+ 650 024e 01       		.uleb128 0x1
+ 651 024f 31       		.byte	0x31
+ 652 0250 00       		.byte	0
+ 653 0251 0A       		.uleb128 0xa
+ 654 0252 80000000 		.4byte	.LVL17
+ 655 0256 3C050000 		.4byte	0x53c
+ 656 025a 11       		.uleb128 0x11
+ 657 025b 8C000000 		.4byte	.LVL18
+ 658 025f 47050000 		.4byte	0x547
+ 659 0263 72020000 		.4byte	0x272
+ 660 0267 12       		.uleb128 0x12
+ 661 0268 01       		.uleb128 0x1
+ 662 0269 53       		.byte	0x53
+ 663 026a 01       		.uleb128 0x1
+ 664 026b 31       		.byte	0x31
+ 665 026c 12       		.uleb128 0x12
+ 666 026d 01       		.uleb128 0x1
+ 667 026e 51       		.byte	0x51
+ 668 026f 01       		.uleb128 0x1
+ 669 0270 34       		.byte	0x34
+ 670 0271 00       		.byte	0
+ 671 0272 11       		.uleb128 0x11
+ 672 0273 98000000 		.4byte	.LVL19
+ 673 0277 6B050000 		.4byte	0x56b
+ 674 027b 8D020000 		.4byte	0x28d
+ 675 027f 12       		.uleb128 0x12
+ 676 0280 01       		.uleb128 0x1
+ 677 0281 52       		.byte	0x52
+ 678 0282 03       		.uleb128 0x3
+ 679 0283 0A       		.byte	0xa
+ 680 0284 4564     		.2byte	0x6445
+ 681 0286 12       		.uleb128 0x12
+ 682 0287 01       		.uleb128 0x1
+ 683 0288 51       		.byte	0x51
+ 684 0289 02       		.uleb128 0x2
+ 685 028a 74       		.byte	0x74
+ 686 028b 00       		.sleb128 0
+ 687 028c 00       		.byte	0
+ 688 028d 0A       		.uleb128 0xa
+ 689 028e A0000000 		.4byte	.LVL20
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 18
+
+
+ 690 0292 8A050000 		.4byte	0x58a
+ 691 0296 13       		.uleb128 0x13
+ 692 0297 A8000000 		.4byte	.LVL21
+ 693 029b A4050000 		.4byte	0x5a4
+ 694 029f 12       		.uleb128 0x12
+ 695 02a0 01       		.uleb128 0x1
+ 696 02a1 51       		.byte	0x51
+ 697 02a2 01       		.uleb128 0x1
+ 698 02a3 31       		.byte	0x31
+ 699 02a4 00       		.byte	0
+ 700 02a5 00       		.byte	0
+ 701 02a6 10       		.uleb128 0x10
+ 702 02a7 4E010000 		.4byte	0x14e
+ 703 02ab D4000000 		.4byte	.LBB12
+ 704 02af 50000000 		.4byte	.LBE12-.LBB12
+ 705 02b3 01       		.byte	0x1
+ 706 02b4 8F       		.byte	0x8f
+ 707 02b5 5A030000 		.4byte	0x35a
+ 708 02b9 14       		.uleb128 0x14
+ 709 02ba D4000000 		.4byte	.LBB13
+ 710 02be 50000000 		.4byte	.LBE13-.LBB13
+ 711 02c2 15       		.uleb128 0x15
+ 712 02c3 5A010000 		.4byte	0x15a
+ 713 02c7 00000000 		.4byte	.LLST0
+ 714 02cb 15       		.uleb128 0x15
+ 715 02cc 65010000 		.4byte	0x165
+ 716 02d0 2C000000 		.4byte	.LLST1
+ 717 02d4 11       		.uleb128 0x11
+ 718 02d5 DC000000 		.4byte	.LVL29
+ 719 02d9 E2050000 		.4byte	0x5e2
+ 720 02dd EC020000 		.4byte	0x2ec
+ 721 02e1 12       		.uleb128 0x12
+ 722 02e2 01       		.uleb128 0x1
+ 723 02e3 51       		.byte	0x51
+ 724 02e4 01       		.uleb128 0x1
+ 725 02e5 34       		.byte	0x34
+ 726 02e6 12       		.uleb128 0x12
+ 727 02e7 01       		.uleb128 0x1
+ 728 02e8 50       		.byte	0x50
+ 729 02e9 01       		.uleb128 0x1
+ 730 02ea 30       		.byte	0x30
+ 731 02eb 00       		.byte	0
+ 732 02ec 0A       		.uleb128 0xa
+ 733 02ed E2000000 		.4byte	.LVL30
+ 734 02f1 F8050000 		.4byte	0x5f8
+ 735 02f5 11       		.uleb128 0x11
+ 736 02f6 EA000000 		.4byte	.LVL31
+ 737 02fa E2050000 		.4byte	0x5e2
+ 738 02fe 0D030000 		.4byte	0x30d
+ 739 0302 12       		.uleb128 0x12
+ 740 0303 01       		.uleb128 0x1
+ 741 0304 51       		.byte	0x51
+ 742 0305 01       		.uleb128 0x1
+ 743 0306 34       		.byte	0x34
+ 744 0307 12       		.uleb128 0x12
+ 745 0308 01       		.uleb128 0x1
+ 746 0309 50       		.byte	0x50
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 19
+
+
+ 747 030a 01       		.uleb128 0x1
+ 748 030b 31       		.byte	0x31
+ 749 030c 00       		.byte	0
+ 750 030d 0A       		.uleb128 0xa
+ 751 030e F0000000 		.4byte	.LVL32
+ 752 0312 F8050000 		.4byte	0x5f8
+ 753 0316 11       		.uleb128 0x11
+ 754 0317 F8000000 		.4byte	.LVL33
+ 755 031b E2050000 		.4byte	0x5e2
+ 756 031f 2E030000 		.4byte	0x32e
+ 757 0323 12       		.uleb128 0x12
+ 758 0324 01       		.uleb128 0x1
+ 759 0325 51       		.byte	0x51
+ 760 0326 01       		.uleb128 0x1
+ 761 0327 3A       		.byte	0x3a
+ 762 0328 12       		.uleb128 0x12
+ 763 0329 01       		.uleb128 0x1
+ 764 032a 50       		.byte	0x50
+ 765 032b 01       		.uleb128 0x1
+ 766 032c 30       		.byte	0x30
+ 767 032d 00       		.byte	0
+ 768 032e 0A       		.uleb128 0xa
+ 769 032f FE000000 		.4byte	.LVL34
+ 770 0333 F8050000 		.4byte	0x5f8
+ 771 0337 11       		.uleb128 0x11
+ 772 0338 06010000 		.4byte	.LVL35
+ 773 033c E2050000 		.4byte	0x5e2
+ 774 0340 4F030000 		.4byte	0x34f
+ 775 0344 12       		.uleb128 0x12
+ 776 0345 01       		.uleb128 0x1
+ 777 0346 51       		.byte	0x51
+ 778 0347 01       		.uleb128 0x1
+ 779 0348 3A       		.byte	0x3a
+ 780 0349 12       		.uleb128 0x12
+ 781 034a 01       		.uleb128 0x1
+ 782 034b 50       		.byte	0x50
+ 783 034c 01       		.uleb128 0x1
+ 784 034d 31       		.byte	0x31
+ 785 034e 00       		.byte	0
+ 786 034f 0A       		.uleb128 0xa
+ 787 0350 0C010000 		.4byte	.LVL36
+ 788 0354 F8050000 		.4byte	0x5f8
+ 789 0358 00       		.byte	0
+ 790 0359 00       		.byte	0
+ 791 035a 0A       		.uleb128 0xa
+ 792 035b 08000000 		.4byte	.LVL4
+ 793 035f 09060000 		.4byte	0x609
+ 794 0363 11       		.uleb128 0x11
+ 795 0364 0E000000 		.4byte	.LVL5
+ 796 0368 10060000 		.4byte	0x610
+ 797 036c 7A030000 		.4byte	0x37a
+ 798 0370 12       		.uleb128 0x12
+ 799 0371 01       		.uleb128 0x1
+ 800 0372 50       		.byte	0x50
+ 801 0373 05       		.uleb128 0x5
+ 802 0374 03       		.byte	0x3
+ 803 0375 00000000 		.4byte	.LC0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 20
+
+
+ 804 0379 00       		.byte	0
+ 805 037a 11       		.uleb128 0x11
+ 806 037b 16000000 		.4byte	.LVL6
+ 807 037f E2050000 		.4byte	0x5e2
+ 808 0383 92030000 		.4byte	0x392
+ 809 0387 12       		.uleb128 0x12
+ 810 0388 01       		.uleb128 0x1
+ 811 0389 51       		.byte	0x51
+ 812 038a 01       		.uleb128 0x1
+ 813 038b 30       		.byte	0x30
+ 814 038c 12       		.uleb128 0x12
+ 815 038d 01       		.uleb128 0x1
+ 816 038e 50       		.byte	0x50
+ 817 038f 01       		.uleb128 0x1
+ 818 0390 31       		.byte	0x31
+ 819 0391 00       		.byte	0
+ 820 0392 11       		.uleb128 0x11
+ 821 0393 1C000000 		.4byte	.LVL7
+ 822 0397 10060000 		.4byte	0x610
+ 823 039b A9030000 		.4byte	0x3a9
+ 824 039f 12       		.uleb128 0x12
+ 825 03a0 01       		.uleb128 0x1
+ 826 03a1 50       		.byte	0x50
+ 827 03a2 05       		.uleb128 0x5
+ 828 03a3 03       		.byte	0x3
+ 829 03a4 05000000 		.4byte	.LC1
+ 830 03a8 00       		.byte	0
+ 831 03a9 0A       		.uleb128 0xa
+ 832 03aa 20000000 		.4byte	.LVL8
+ 833 03ae 2C060000 		.4byte	0x62c
+ 834 03b2 11       		.uleb128 0x11
+ 835 03b3 26000000 		.4byte	.LVL9
+ 836 03b7 07050000 		.4byte	0x507
+ 837 03bb C5030000 		.4byte	0x3c5
+ 838 03bf 12       		.uleb128 0x12
+ 839 03c0 01       		.uleb128 0x1
+ 840 03c1 50       		.byte	0x50
+ 841 03c2 01       		.uleb128 0x1
+ 842 03c3 30       		.byte	0x30
+ 843 03c4 00       		.byte	0
+ 844 03c5 11       		.uleb128 0x11
+ 845 03c6 AE000000 		.4byte	.LVL22
+ 846 03ca 33060000 		.4byte	0x633
+ 847 03ce DC030000 		.4byte	0x3dc
+ 848 03d2 12       		.uleb128 0x12
+ 849 03d3 01       		.uleb128 0x1
+ 850 03d4 50       		.byte	0x50
+ 851 03d5 05       		.uleb128 0x5
+ 852 03d6 03       		.byte	0x3
+ 853 03d7 00000000 		.4byte	sampleInt
+ 854 03db 00       		.byte	0
+ 855 03dc 11       		.uleb128 0x11
+ 856 03dd B6000000 		.4byte	.LVL23
+ 857 03e1 E2050000 		.4byte	0x5e2
+ 858 03e5 F4030000 		.4byte	0x3f4
+ 859 03e9 12       		.uleb128 0x12
+ 860 03ea 01       		.uleb128 0x1
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 21
+
+
+ 861 03eb 51       		.byte	0x51
+ 862 03ec 01       		.uleb128 0x1
+ 863 03ed 30       		.byte	0x30
+ 864 03ee 12       		.uleb128 0x12
+ 865 03ef 01       		.uleb128 0x1
+ 866 03f0 50       		.byte	0x50
+ 867 03f1 01       		.uleb128 0x1
+ 868 03f2 31       		.byte	0x31
+ 869 03f3 00       		.byte	0
+ 870 03f4 0A       		.uleb128 0xa
+ 871 03f5 BA000000 		.4byte	.LVL24
+ 872 03f9 44060000 		.4byte	0x644
+ 873 03fd 11       		.uleb128 0x11
+ 874 03fe C8000000 		.4byte	.LVL25
+ 875 0402 4B060000 		.4byte	0x64b
+ 876 0406 10040000 		.4byte	0x410
+ 877 040a 12       		.uleb128 0x12
+ 878 040b 01       		.uleb128 0x1
+ 879 040c 50       		.byte	0x50
+ 880 040d 01       		.uleb128 0x1
+ 881 040e 31       		.byte	0x31
+ 882 040f 00       		.byte	0
+ 883 0410 0A       		.uleb128 0xa
+ 884 0411 CC000000 		.4byte	.LVL26
+ 885 0415 5C060000 		.4byte	0x65c
+ 886 0419 0A       		.uleb128 0xa
+ 887 041a D0000000 		.4byte	.LVL27
+ 888 041e 63060000 		.4byte	0x663
+ 889 0422 00       		.byte	0
+ 890 0423 16       		.uleb128 0x16
+ 891 0424 6C010000 		.4byte	.LASF27
+ 892 0428 01       		.byte	0x1
+ 893 0429 3E       		.byte	0x3e
+ 894 042a 81000000 		.4byte	0x81
+ 895 042e 05       		.uleb128 0x5
+ 896 042f 03       		.byte	0x3
+ 897 0430 1C000000 		.4byte	rxDmaChan
+ 898 0434 17       		.uleb128 0x17
+ 899 0435 81000000 		.4byte	0x81
+ 900 0439 44040000 		.4byte	0x444
+ 901 043d 18       		.uleb128 0x18
+ 902 043e FD000000 		.4byte	0xfd
+ 903 0442 00       		.byte	0
+ 904 0443 00       		.byte	0
+ 905 0444 16       		.uleb128 0x16
+ 906 0445 7F000000 		.4byte	.LASF28
+ 907 0449 01       		.byte	0x1
+ 908 044a 3F       		.byte	0x3f
+ 909 044b 34040000 		.4byte	0x434
+ 910 044f 05       		.uleb128 0x5
+ 911 0450 03       		.byte	0x3
+ 912 0451 1D000000 		.4byte	rxDmaTd
+ 913 0455 16       		.uleb128 0x16
+ 914 0456 24010000 		.4byte	.LASF29
+ 915 045a 01       		.byte	0x1
+ 916 045b 40       		.byte	0x40
+ 917 045c 81000000 		.4byte	0x81
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 22
+
+
+ 918 0460 05       		.uleb128 0x5
+ 919 0461 03       		.byte	0x3
+ 920 0462 1E000000 		.4byte	txDmaChan
+ 921 0466 16       		.uleb128 0x16
+ 922 0467 37020000 		.4byte	.LASF30
+ 923 046b 01       		.byte	0x1
+ 924 046c 41       		.byte	0x41
+ 925 046d 34040000 		.4byte	0x434
+ 926 0471 05       		.uleb128 0x5
+ 927 0472 03       		.byte	0x3
+ 928 0473 1F000000 		.4byte	txDmaTd
+ 929 0477 17       		.uleb128 0x17
+ 930 0478 A2000000 		.4byte	0xa2
+ 931 047c 87040000 		.4byte	0x487
+ 932 0480 18       		.uleb128 0x18
+ 933 0481 FD000000 		.4byte	0xfd
+ 934 0485 01       		.byte	0x1
+ 935 0486 00       		.byte	0
+ 936 0487 16       		.uleb128 0x16
+ 937 0488 5A030000 		.4byte	.LASF31
+ 938 048c 01       		.byte	0x1
+ 939 048d 45       		.byte	0x45
+ 940 048e 77040000 		.4byte	0x477
+ 941 0492 05       		.uleb128 0x5
+ 942 0493 03       		.byte	0x3
+ 943 0494 10000000 		.4byte	rxBuff
+ 944 0498 17       		.uleb128 0x17
+ 945 0499 68000000 		.4byte	0x68
+ 946 049d A8040000 		.4byte	0x4a8
+ 947 04a1 18       		.uleb128 0x18
+ 948 04a2 FD000000 		.4byte	0xfd
+ 949 04a6 01       		.byte	0x1
+ 950 04a7 00       		.byte	0
+ 951 04a8 16       		.uleb128 0x16
+ 952 04a9 61030000 		.4byte	.LASF32
+ 953 04ad 01       		.byte	0x1
+ 954 04ae 46       		.byte	0x46
+ 955 04af 98040000 		.4byte	0x498
+ 956 04b3 05       		.uleb128 0x5
+ 957 04b4 03       		.byte	0x3
+ 958 04b5 14000000 		.4byte	sampleIn
+ 959 04b9 17       		.uleb128 0x17
+ 960 04ba A2000000 		.4byte	0xa2
+ 961 04be C9040000 		.4byte	0x4c9
+ 962 04c2 18       		.uleb128 0x18
+ 963 04c3 FD000000 		.4byte	0xfd
+ 964 04c7 03       		.byte	0x3
+ 965 04c8 00       		.byte	0
+ 966 04c9 16       		.uleb128 0x16
+ 967 04ca A6000000 		.4byte	.LASF33
+ 968 04ce 01       		.byte	0x1
+ 969 04cf 49       		.byte	0x49
+ 970 04d0 B9040000 		.4byte	0x4b9
+ 971 04d4 05       		.uleb128 0x5
+ 972 04d5 03       		.byte	0x3
+ 973 04d6 00000000 		.4byte	txBuff
+ 974 04da 16       		.uleb128 0x16
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 23
+
+
+ 975 04db 5B010000 		.4byte	.LASF34
+ 976 04df 01       		.byte	0x1
+ 977 04e0 4A       		.byte	0x4a
+ 978 04e1 98040000 		.4byte	0x498
+ 979 04e5 05       		.uleb128 0x5
+ 980 04e6 03       		.byte	0x3
+ 981 04e7 08000000 		.4byte	sampleUit
+ 982 04eb 19       		.uleb128 0x19
+ 983 04ec 11010000 		.4byte	.LASF58
+ 984 04f0 0E       		.byte	0xe
+ 985 04f1 2A06     		.2byte	0x62a
+ 986 04f3 F7040000 		.4byte	0x4f7
+ 987 04f7 06       		.uleb128 0x6
+ 988 04f8 76000000 		.4byte	0x76
+ 989 04fc 1A       		.uleb128 0x1a
+ 990 04fd 61000000 		.4byte	.LASF35
+ 991 0501 05       		.byte	0x5
+ 992 0502 28       		.byte	0x28
+ 993 0503 81000000 		.4byte	0x81
+ 994 0507 1B       		.uleb128 0x1b
+ 995 0508 44020000 		.4byte	.LASF43
+ 996 050c 05       		.byte	0x5
+ 997 050d 27       		.byte	0x27
+ 998 050e 18050000 		.4byte	0x518
+ 999 0512 1C       		.uleb128 0x1c
+ 1000 0513 81000000 		.4byte	0x81
+ 1001 0517 00       		.byte	0
+ 1002 0518 1D       		.uleb128 0x1d
+ 1003 0519 3A030000 		.4byte	.LASF37
+ 1004 051d 07       		.byte	0x7
+ 1005 051e 1E       		.byte	0x1e
+ 1006 051f 81000000 		.4byte	0x81
+ 1007 0523 3C050000 		.4byte	0x53c
+ 1008 0527 1C       		.uleb128 0x1c
+ 1009 0528 81000000 		.4byte	0x81
+ 1010 052c 1C       		.uleb128 0x1c
+ 1011 052d 81000000 		.4byte	0x81
+ 1012 0531 1C       		.uleb128 0x1c
+ 1013 0532 8C000000 		.4byte	0x8c
+ 1014 0536 1C       		.uleb128 0x1c
+ 1015 0537 8C000000 		.4byte	0x8c
+ 1016 053b 00       		.byte	0
+ 1017 053c 1A       		.uleb128 0x1a
+ 1018 053d 87000000 		.4byte	.LASF36
+ 1019 0541 06       		.byte	0x6
+ 1020 0542 39       		.byte	0x39
+ 1021 0543 81000000 		.4byte	0x81
+ 1022 0547 1D       		.uleb128 0x1d
+ 1023 0548 D4000000 		.4byte	.LASF38
+ 1024 054c 06       		.byte	0x6
+ 1025 054d 3C       		.byte	0x3c
+ 1026 054e CD000000 		.4byte	0xcd
+ 1027 0552 6B050000 		.4byte	0x56b
+ 1028 0556 1C       		.uleb128 0x1c
+ 1029 0557 81000000 		.4byte	0x81
+ 1030 055b 1C       		.uleb128 0x1c
+ 1031 055c 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 24
+
+
+ 1032 0560 1C       		.uleb128 0x1c
+ 1033 0561 81000000 		.4byte	0x81
+ 1034 0565 1C       		.uleb128 0x1c
+ 1035 0566 81000000 		.4byte	0x81
+ 1036 056a 00       		.byte	0
+ 1037 056b 1D       		.uleb128 0x1d
+ 1038 056c 4F000000 		.4byte	.LASF39
+ 1039 0570 06       		.byte	0x6
+ 1040 0571 40       		.byte	0x40
+ 1041 0572 CD000000 		.4byte	0xcd
+ 1042 0576 8A050000 		.4byte	0x58a
+ 1043 057a 1C       		.uleb128 0x1c
+ 1044 057b 81000000 		.4byte	0x81
+ 1045 057f 1C       		.uleb128 0x1c
+ 1046 0580 8C000000 		.4byte	0x8c
+ 1047 0584 1C       		.uleb128 0x1c
+ 1048 0585 8C000000 		.4byte	0x8c
+ 1049 0589 00       		.byte	0
+ 1050 058a 1D       		.uleb128 0x1d
+ 1051 058b 6B000000 		.4byte	.LASF40
+ 1052 058f 06       		.byte	0x6
+ 1053 0590 30       		.byte	0x30
+ 1054 0591 CD000000 		.4byte	0xcd
+ 1055 0595 A4050000 		.4byte	0x5a4
+ 1056 0599 1C       		.uleb128 0x1c
+ 1057 059a 81000000 		.4byte	0x81
+ 1058 059e 1C       		.uleb128 0x1c
+ 1059 059f 81000000 		.4byte	0x81
+ 1060 05a3 00       		.byte	0
+ 1061 05a4 1D       		.uleb128 0x1d
+ 1062 05a5 4F020000 		.4byte	.LASF41
+ 1063 05a9 06       		.byte	0x6
+ 1064 05aa 2A       		.byte	0x2a
+ 1065 05ab CD000000 		.4byte	0xcd
+ 1066 05af BE050000 		.4byte	0x5be
+ 1067 05b3 1C       		.uleb128 0x1c
+ 1068 05b4 81000000 		.4byte	0x81
+ 1069 05b8 1C       		.uleb128 0x1c
+ 1070 05b9 81000000 		.4byte	0x81
+ 1071 05bd 00       		.byte	0
+ 1072 05be 1D       		.uleb128 0x1d
+ 1073 05bf 31000000 		.4byte	.LASF42
+ 1074 05c3 08       		.byte	0x8
+ 1075 05c4 1E       		.byte	0x1e
+ 1076 05c5 81000000 		.4byte	0x81
+ 1077 05c9 E2050000 		.4byte	0x5e2
+ 1078 05cd 1C       		.uleb128 0x1c
+ 1079 05ce 81000000 		.4byte	0x81
+ 1080 05d2 1C       		.uleb128 0x1c
+ 1081 05d3 81000000 		.4byte	0x81
+ 1082 05d7 1C       		.uleb128 0x1c
+ 1083 05d8 8C000000 		.4byte	0x8c
+ 1084 05dc 1C       		.uleb128 0x1c
+ 1085 05dd 8C000000 		.4byte	0x8c
+ 1086 05e1 00       		.byte	0
+ 1087 05e2 1B       		.uleb128 0x1b
+ 1088 05e3 A4010000 		.4byte	.LASF44
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 25
+
+
+ 1089 05e7 09       		.byte	0x9
+ 1090 05e8 3D       		.byte	0x3d
+ 1091 05e9 F8050000 		.4byte	0x5f8
+ 1092 05ed 1C       		.uleb128 0x1c
+ 1093 05ee 81000000 		.4byte	0x81
+ 1094 05f2 1C       		.uleb128 0x1c
+ 1095 05f3 81000000 		.4byte	0x81
+ 1096 05f7 00       		.byte	0
+ 1097 05f8 1B       		.uleb128 0x1b
+ 1098 05f9 13000000 		.4byte	.LASF45
+ 1099 05fd 09       		.byte	0x9
+ 1100 05fe 5E       		.byte	0x5e
+ 1101 05ff 09060000 		.4byte	0x609
+ 1102 0603 1C       		.uleb128 0x1c
+ 1103 0604 8C000000 		.4byte	0x8c
+ 1104 0608 00       		.byte	0
+ 1105 0609 1E       		.uleb128 0x1e
+ 1106 060a 1B030000 		.4byte	.LASF47
+ 1107 060e 09       		.byte	0x9
+ 1108 060f 38       		.byte	0x38
+ 1109 0610 1B       		.uleb128 0x1b
+ 1110 0611 41010000 		.4byte	.LASF46
+ 1111 0615 09       		.byte	0x9
+ 1112 0616 3C       		.byte	0x3c
+ 1113 0617 21060000 		.4byte	0x621
+ 1114 061b 1C       		.uleb128 0x1c
+ 1115 061c 21060000 		.4byte	0x621
+ 1116 0620 00       		.byte	0
+ 1117 0621 07       		.uleb128 0x7
+ 1118 0622 04       		.byte	0x4
+ 1119 0623 27060000 		.4byte	0x627
+ 1120 0627 1F       		.uleb128 0x1f
+ 1121 0628 BB000000 		.4byte	0xbb
+ 1122 062c 1E       		.uleb128 0x1e
+ 1123 062d 4E030000 		.4byte	.LASF48
+ 1124 0631 0A       		.byte	0xa
+ 1125 0632 28       		.byte	0x28
+ 1126 0633 1B       		.uleb128 0x1b
+ 1127 0634 C4010000 		.4byte	.LASF49
+ 1128 0638 0B       		.byte	0xb
+ 1129 0639 18       		.byte	0x18
+ 1130 063a 44060000 		.4byte	0x644
+ 1131 063e 1C       		.uleb128 0x1c
+ 1132 063f EA000000 		.4byte	0xea
+ 1133 0643 00       		.byte	0
+ 1134 0644 1E       		.uleb128 0x1e
+ 1135 0645 11020000 		.4byte	.LASF50
+ 1136 0649 0A       		.byte	0xa
+ 1137 064a 3A       		.byte	0x3a
+ 1138 064b 1B       		.uleb128 0x1b
+ 1139 064c 51010000 		.4byte	.LASF51
+ 1140 0650 0C       		.byte	0xc
+ 1141 0651 78       		.byte	0x78
+ 1142 0652 5C060000 		.4byte	0x65c
+ 1143 0656 1C       		.uleb128 0x1c
+ 1144 0657 8C000000 		.4byte	0x8c
+ 1145 065b 00       		.byte	0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 26
+
+
+ 1146 065c 1E       		.uleb128 0x1e
+ 1147 065d 22000000 		.4byte	.LASF52
+ 1148 0661 0A       		.byte	0xa
+ 1149 0662 34       		.byte	0x34
+ 1150 0663 1A       		.uleb128 0x1a
+ 1151 0664 83010000 		.4byte	.LASF53
+ 1152 0668 0D       		.byte	0xd
+ 1153 0669 28       		.byte	0x28
+ 1154 066a 81000000 		.4byte	0x81
+ 1155 066e 00       		.byte	0
+ 1156              		.section	.debug_abbrev,"",%progbits
+ 1157              	.Ldebug_abbrev0:
+ 1158 0000 01       		.uleb128 0x1
+ 1159 0001 11       		.uleb128 0x11
+ 1160 0002 01       		.byte	0x1
+ 1161 0003 25       		.uleb128 0x25
+ 1162 0004 0E       		.uleb128 0xe
+ 1163 0005 13       		.uleb128 0x13
+ 1164 0006 0B       		.uleb128 0xb
+ 1165 0007 03       		.uleb128 0x3
+ 1166 0008 0E       		.uleb128 0xe
+ 1167 0009 1B       		.uleb128 0x1b
+ 1168 000a 0E       		.uleb128 0xe
+ 1169 000b 55       		.uleb128 0x55
+ 1170 000c 17       		.uleb128 0x17
+ 1171 000d 11       		.uleb128 0x11
+ 1172 000e 01       		.uleb128 0x1
+ 1173 000f 10       		.uleb128 0x10
+ 1174 0010 17       		.uleb128 0x17
+ 1175 0011 00       		.byte	0
+ 1176 0012 00       		.byte	0
+ 1177 0013 02       		.uleb128 0x2
+ 1178 0014 24       		.uleb128 0x24
+ 1179 0015 00       		.byte	0
+ 1180 0016 0B       		.uleb128 0xb
+ 1181 0017 0B       		.uleb128 0xb
+ 1182 0018 3E       		.uleb128 0x3e
+ 1183 0019 0B       		.uleb128 0xb
+ 1184 001a 03       		.uleb128 0x3
+ 1185 001b 0E       		.uleb128 0xe
+ 1186 001c 00       		.byte	0
+ 1187 001d 00       		.byte	0
+ 1188 001e 03       		.uleb128 0x3
+ 1189 001f 16       		.uleb128 0x16
+ 1190 0020 00       		.byte	0
+ 1191 0021 03       		.uleb128 0x3
+ 1192 0022 0E       		.uleb128 0xe
+ 1193 0023 3A       		.uleb128 0x3a
+ 1194 0024 0B       		.uleb128 0xb
+ 1195 0025 3B       		.uleb128 0x3b
+ 1196 0026 0B       		.uleb128 0xb
+ 1197 0027 49       		.uleb128 0x49
+ 1198 0028 13       		.uleb128 0x13
+ 1199 0029 00       		.byte	0
+ 1200 002a 00       		.byte	0
+ 1201 002b 04       		.uleb128 0x4
+ 1202 002c 24       		.uleb128 0x24
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 27
+
+
+ 1203 002d 00       		.byte	0
+ 1204 002e 0B       		.uleb128 0xb
+ 1205 002f 0B       		.uleb128 0xb
+ 1206 0030 3E       		.uleb128 0x3e
+ 1207 0031 0B       		.uleb128 0xb
+ 1208 0032 03       		.uleb128 0x3
+ 1209 0033 08       		.uleb128 0x8
+ 1210 0034 00       		.byte	0
+ 1211 0035 00       		.byte	0
+ 1212 0036 05       		.uleb128 0x5
+ 1213 0037 16       		.uleb128 0x16
+ 1214 0038 00       		.byte	0
+ 1215 0039 03       		.uleb128 0x3
+ 1216 003a 0E       		.uleb128 0xe
+ 1217 003b 3A       		.uleb128 0x3a
+ 1218 003c 0B       		.uleb128 0xb
+ 1219 003d 3B       		.uleb128 0x3b
+ 1220 003e 05       		.uleb128 0x5
+ 1221 003f 49       		.uleb128 0x49
+ 1222 0040 13       		.uleb128 0x13
+ 1223 0041 00       		.byte	0
+ 1224 0042 00       		.byte	0
+ 1225 0043 06       		.uleb128 0x6
+ 1226 0044 35       		.uleb128 0x35
+ 1227 0045 00       		.byte	0
+ 1228 0046 49       		.uleb128 0x49
+ 1229 0047 13       		.uleb128 0x13
+ 1230 0048 00       		.byte	0
+ 1231 0049 00       		.byte	0
+ 1232 004a 07       		.uleb128 0x7
+ 1233 004b 0F       		.uleb128 0xf
+ 1234 004c 00       		.byte	0
+ 1235 004d 0B       		.uleb128 0xb
+ 1236 004e 0B       		.uleb128 0xb
+ 1237 004f 49       		.uleb128 0x49
+ 1238 0050 13       		.uleb128 0x13
+ 1239 0051 00       		.byte	0
+ 1240 0052 00       		.byte	0
+ 1241 0053 08       		.uleb128 0x8
+ 1242 0054 15       		.uleb128 0x15
+ 1243 0055 00       		.byte	0
+ 1244 0056 27       		.uleb128 0x27
+ 1245 0057 19       		.uleb128 0x19
+ 1246 0058 00       		.byte	0
+ 1247 0059 00       		.byte	0
+ 1248 005a 09       		.uleb128 0x9
+ 1249 005b 2E       		.uleb128 0x2e
+ 1250 005c 01       		.byte	0x1
+ 1251 005d 3F       		.uleb128 0x3f
+ 1252 005e 19       		.uleb128 0x19
+ 1253 005f 03       		.uleb128 0x3
+ 1254 0060 0E       		.uleb128 0xe
+ 1255 0061 3A       		.uleb128 0x3a
+ 1256 0062 0B       		.uleb128 0xb
+ 1257 0063 3B       		.uleb128 0x3b
+ 1258 0064 0B       		.uleb128 0xb
+ 1259 0065 27       		.uleb128 0x27
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 28
+
+
+ 1260 0066 19       		.uleb128 0x19
+ 1261 0067 11       		.uleb128 0x11
+ 1262 0068 01       		.uleb128 0x1
+ 1263 0069 12       		.uleb128 0x12
+ 1264 006a 06       		.uleb128 0x6
+ 1265 006b 40       		.uleb128 0x40
+ 1266 006c 18       		.uleb128 0x18
+ 1267 006d 9742     		.uleb128 0x2117
+ 1268 006f 19       		.uleb128 0x19
+ 1269 0070 01       		.uleb128 0x1
+ 1270 0071 13       		.uleb128 0x13
+ 1271 0072 00       		.byte	0
+ 1272 0073 00       		.byte	0
+ 1273 0074 0A       		.uleb128 0xa
+ 1274 0075 898201   		.uleb128 0x4109
+ 1275 0078 00       		.byte	0
+ 1276 0079 11       		.uleb128 0x11
+ 1277 007a 01       		.uleb128 0x1
+ 1278 007b 31       		.uleb128 0x31
+ 1279 007c 13       		.uleb128 0x13
+ 1280 007d 00       		.byte	0
+ 1281 007e 00       		.byte	0
+ 1282 007f 0B       		.uleb128 0xb
+ 1283 0080 898201   		.uleb128 0x4109
+ 1284 0083 00       		.byte	0
+ 1285 0084 11       		.uleb128 0x11
+ 1286 0085 01       		.uleb128 0x1
+ 1287 0086 9542     		.uleb128 0x2115
+ 1288 0088 19       		.uleb128 0x19
+ 1289 0089 31       		.uleb128 0x31
+ 1290 008a 13       		.uleb128 0x13
+ 1291 008b 00       		.byte	0
+ 1292 008c 00       		.byte	0
+ 1293 008d 0C       		.uleb128 0xc
+ 1294 008e 2E       		.uleb128 0x2e
+ 1295 008f 00       		.byte	0
+ 1296 0090 03       		.uleb128 0x3
+ 1297 0091 0E       		.uleb128 0xe
+ 1298 0092 3A       		.uleb128 0x3a
+ 1299 0093 0B       		.uleb128 0xb
+ 1300 0094 3B       		.uleb128 0x3b
+ 1301 0095 0B       		.uleb128 0xb
+ 1302 0096 27       		.uleb128 0x27
+ 1303 0097 19       		.uleb128 0x19
+ 1304 0098 20       		.uleb128 0x20
+ 1305 0099 0B       		.uleb128 0xb
+ 1306 009a 00       		.byte	0
+ 1307 009b 00       		.byte	0
+ 1308 009c 0D       		.uleb128 0xd
+ 1309 009d 2E       		.uleb128 0x2e
+ 1310 009e 01       		.byte	0x1
+ 1311 009f 03       		.uleb128 0x3
+ 1312 00a0 0E       		.uleb128 0xe
+ 1313 00a1 3A       		.uleb128 0x3a
+ 1314 00a2 0B       		.uleb128 0xb
+ 1315 00a3 3B       		.uleb128 0x3b
+ 1316 00a4 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 29
+
+
+ 1317 00a5 27       		.uleb128 0x27
+ 1318 00a6 19       		.uleb128 0x19
+ 1319 00a7 20       		.uleb128 0x20
+ 1320 00a8 0B       		.uleb128 0xb
+ 1321 00a9 01       		.uleb128 0x1
+ 1322 00aa 13       		.uleb128 0x13
+ 1323 00ab 00       		.byte	0
+ 1324 00ac 00       		.byte	0
+ 1325 00ad 0E       		.uleb128 0xe
+ 1326 00ae 34       		.uleb128 0x34
+ 1327 00af 00       		.byte	0
+ 1328 00b0 03       		.uleb128 0x3
+ 1329 00b1 08       		.uleb128 0x8
+ 1330 00b2 3A       		.uleb128 0x3a
+ 1331 00b3 0B       		.uleb128 0xb
+ 1332 00b4 3B       		.uleb128 0x3b
+ 1333 00b5 0B       		.uleb128 0xb
+ 1334 00b6 49       		.uleb128 0x49
+ 1335 00b7 13       		.uleb128 0x13
+ 1336 00b8 00       		.byte	0
+ 1337 00b9 00       		.byte	0
+ 1338 00ba 0F       		.uleb128 0xf
+ 1339 00bb 2E       		.uleb128 0x2e
+ 1340 00bc 01       		.byte	0x1
+ 1341 00bd 3F       		.uleb128 0x3f
+ 1342 00be 19       		.uleb128 0x19
+ 1343 00bf 03       		.uleb128 0x3
+ 1344 00c0 0E       		.uleb128 0xe
+ 1345 00c1 3A       		.uleb128 0x3a
+ 1346 00c2 0B       		.uleb128 0xb
+ 1347 00c3 3B       		.uleb128 0x3b
+ 1348 00c4 0B       		.uleb128 0xb
+ 1349 00c5 49       		.uleb128 0x49
+ 1350 00c6 13       		.uleb128 0x13
+ 1351 00c7 11       		.uleb128 0x11
+ 1352 00c8 01       		.uleb128 0x1
+ 1353 00c9 12       		.uleb128 0x12
+ 1354 00ca 06       		.uleb128 0x6
+ 1355 00cb 40       		.uleb128 0x40
+ 1356 00cc 18       		.uleb128 0x18
+ 1357 00cd 9742     		.uleb128 0x2117
+ 1358 00cf 19       		.uleb128 0x19
+ 1359 00d0 01       		.uleb128 0x1
+ 1360 00d1 13       		.uleb128 0x13
+ 1361 00d2 00       		.byte	0
+ 1362 00d3 00       		.byte	0
+ 1363 00d4 10       		.uleb128 0x10
+ 1364 00d5 1D       		.uleb128 0x1d
+ 1365 00d6 01       		.byte	0x1
+ 1366 00d7 31       		.uleb128 0x31
+ 1367 00d8 13       		.uleb128 0x13
+ 1368 00d9 11       		.uleb128 0x11
+ 1369 00da 01       		.uleb128 0x1
+ 1370 00db 12       		.uleb128 0x12
+ 1371 00dc 06       		.uleb128 0x6
+ 1372 00dd 58       		.uleb128 0x58
+ 1373 00de 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 30
+
+
+ 1374 00df 59       		.uleb128 0x59
+ 1375 00e0 0B       		.uleb128 0xb
+ 1376 00e1 01       		.uleb128 0x1
+ 1377 00e2 13       		.uleb128 0x13
+ 1378 00e3 00       		.byte	0
+ 1379 00e4 00       		.byte	0
+ 1380 00e5 11       		.uleb128 0x11
+ 1381 00e6 898201   		.uleb128 0x4109
+ 1382 00e9 01       		.byte	0x1
+ 1383 00ea 11       		.uleb128 0x11
+ 1384 00eb 01       		.uleb128 0x1
+ 1385 00ec 31       		.uleb128 0x31
+ 1386 00ed 13       		.uleb128 0x13
+ 1387 00ee 01       		.uleb128 0x1
+ 1388 00ef 13       		.uleb128 0x13
+ 1389 00f0 00       		.byte	0
+ 1390 00f1 00       		.byte	0
+ 1391 00f2 12       		.uleb128 0x12
+ 1392 00f3 8A8201   		.uleb128 0x410a
+ 1393 00f6 00       		.byte	0
+ 1394 00f7 02       		.uleb128 0x2
+ 1395 00f8 18       		.uleb128 0x18
+ 1396 00f9 9142     		.uleb128 0x2111
+ 1397 00fb 18       		.uleb128 0x18
+ 1398 00fc 00       		.byte	0
+ 1399 00fd 00       		.byte	0
+ 1400 00fe 13       		.uleb128 0x13
+ 1401 00ff 898201   		.uleb128 0x4109
+ 1402 0102 01       		.byte	0x1
+ 1403 0103 11       		.uleb128 0x11
+ 1404 0104 01       		.uleb128 0x1
+ 1405 0105 31       		.uleb128 0x31
+ 1406 0106 13       		.uleb128 0x13
+ 1407 0107 00       		.byte	0
+ 1408 0108 00       		.byte	0
+ 1409 0109 14       		.uleb128 0x14
+ 1410 010a 0B       		.uleb128 0xb
+ 1411 010b 01       		.byte	0x1
+ 1412 010c 11       		.uleb128 0x11
+ 1413 010d 01       		.uleb128 0x1
+ 1414 010e 12       		.uleb128 0x12
+ 1415 010f 06       		.uleb128 0x6
+ 1416 0110 00       		.byte	0
+ 1417 0111 00       		.byte	0
+ 1418 0112 15       		.uleb128 0x15
+ 1419 0113 34       		.uleb128 0x34
+ 1420 0114 00       		.byte	0
+ 1421 0115 31       		.uleb128 0x31
+ 1422 0116 13       		.uleb128 0x13
+ 1423 0117 02       		.uleb128 0x2
+ 1424 0118 17       		.uleb128 0x17
+ 1425 0119 00       		.byte	0
+ 1426 011a 00       		.byte	0
+ 1427 011b 16       		.uleb128 0x16
+ 1428 011c 34       		.uleb128 0x34
+ 1429 011d 00       		.byte	0
+ 1430 011e 03       		.uleb128 0x3
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 31
+
+
+ 1431 011f 0E       		.uleb128 0xe
+ 1432 0120 3A       		.uleb128 0x3a
+ 1433 0121 0B       		.uleb128 0xb
+ 1434 0122 3B       		.uleb128 0x3b
+ 1435 0123 0B       		.uleb128 0xb
+ 1436 0124 49       		.uleb128 0x49
+ 1437 0125 13       		.uleb128 0x13
+ 1438 0126 02       		.uleb128 0x2
+ 1439 0127 18       		.uleb128 0x18
+ 1440 0128 00       		.byte	0
+ 1441 0129 00       		.byte	0
+ 1442 012a 17       		.uleb128 0x17
+ 1443 012b 01       		.uleb128 0x1
+ 1444 012c 01       		.byte	0x1
+ 1445 012d 49       		.uleb128 0x49
+ 1446 012e 13       		.uleb128 0x13
+ 1447 012f 01       		.uleb128 0x1
+ 1448 0130 13       		.uleb128 0x13
+ 1449 0131 00       		.byte	0
+ 1450 0132 00       		.byte	0
+ 1451 0133 18       		.uleb128 0x18
+ 1452 0134 21       		.uleb128 0x21
+ 1453 0135 00       		.byte	0
+ 1454 0136 49       		.uleb128 0x49
+ 1455 0137 13       		.uleb128 0x13
+ 1456 0138 2F       		.uleb128 0x2f
+ 1457 0139 0B       		.uleb128 0xb
+ 1458 013a 00       		.byte	0
+ 1459 013b 00       		.byte	0
+ 1460 013c 19       		.uleb128 0x19
+ 1461 013d 34       		.uleb128 0x34
+ 1462 013e 00       		.byte	0
+ 1463 013f 03       		.uleb128 0x3
+ 1464 0140 0E       		.uleb128 0xe
+ 1465 0141 3A       		.uleb128 0x3a
+ 1466 0142 0B       		.uleb128 0xb
+ 1467 0143 3B       		.uleb128 0x3b
+ 1468 0144 05       		.uleb128 0x5
+ 1469 0145 49       		.uleb128 0x49
+ 1470 0146 13       		.uleb128 0x13
+ 1471 0147 3F       		.uleb128 0x3f
+ 1472 0148 19       		.uleb128 0x19
+ 1473 0149 3C       		.uleb128 0x3c
+ 1474 014a 19       		.uleb128 0x19
+ 1475 014b 00       		.byte	0
+ 1476 014c 00       		.byte	0
+ 1477 014d 1A       		.uleb128 0x1a
+ 1478 014e 2E       		.uleb128 0x2e
+ 1479 014f 00       		.byte	0
+ 1480 0150 3F       		.uleb128 0x3f
+ 1481 0151 19       		.uleb128 0x19
+ 1482 0152 03       		.uleb128 0x3
+ 1483 0153 0E       		.uleb128 0xe
+ 1484 0154 3A       		.uleb128 0x3a
+ 1485 0155 0B       		.uleb128 0xb
+ 1486 0156 3B       		.uleb128 0x3b
+ 1487 0157 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 32
+
+
+ 1488 0158 27       		.uleb128 0x27
+ 1489 0159 19       		.uleb128 0x19
+ 1490 015a 49       		.uleb128 0x49
+ 1491 015b 13       		.uleb128 0x13
+ 1492 015c 3C       		.uleb128 0x3c
+ 1493 015d 19       		.uleb128 0x19
+ 1494 015e 00       		.byte	0
+ 1495 015f 00       		.byte	0
+ 1496 0160 1B       		.uleb128 0x1b
+ 1497 0161 2E       		.uleb128 0x2e
+ 1498 0162 01       		.byte	0x1
+ 1499 0163 3F       		.uleb128 0x3f
+ 1500 0164 19       		.uleb128 0x19
+ 1501 0165 03       		.uleb128 0x3
+ 1502 0166 0E       		.uleb128 0xe
+ 1503 0167 3A       		.uleb128 0x3a
+ 1504 0168 0B       		.uleb128 0xb
+ 1505 0169 3B       		.uleb128 0x3b
+ 1506 016a 0B       		.uleb128 0xb
+ 1507 016b 27       		.uleb128 0x27
+ 1508 016c 19       		.uleb128 0x19
+ 1509 016d 3C       		.uleb128 0x3c
+ 1510 016e 19       		.uleb128 0x19
+ 1511 016f 01       		.uleb128 0x1
+ 1512 0170 13       		.uleb128 0x13
+ 1513 0171 00       		.byte	0
+ 1514 0172 00       		.byte	0
+ 1515 0173 1C       		.uleb128 0x1c
+ 1516 0174 05       		.uleb128 0x5
+ 1517 0175 00       		.byte	0
+ 1518 0176 49       		.uleb128 0x49
+ 1519 0177 13       		.uleb128 0x13
+ 1520 0178 00       		.byte	0
+ 1521 0179 00       		.byte	0
+ 1522 017a 1D       		.uleb128 0x1d
+ 1523 017b 2E       		.uleb128 0x2e
+ 1524 017c 01       		.byte	0x1
+ 1525 017d 3F       		.uleb128 0x3f
+ 1526 017e 19       		.uleb128 0x19
+ 1527 017f 03       		.uleb128 0x3
+ 1528 0180 0E       		.uleb128 0xe
+ 1529 0181 3A       		.uleb128 0x3a
+ 1530 0182 0B       		.uleb128 0xb
+ 1531 0183 3B       		.uleb128 0x3b
+ 1532 0184 0B       		.uleb128 0xb
+ 1533 0185 27       		.uleb128 0x27
+ 1534 0186 19       		.uleb128 0x19
+ 1535 0187 49       		.uleb128 0x49
+ 1536 0188 13       		.uleb128 0x13
+ 1537 0189 3C       		.uleb128 0x3c
+ 1538 018a 19       		.uleb128 0x19
+ 1539 018b 01       		.uleb128 0x1
+ 1540 018c 13       		.uleb128 0x13
+ 1541 018d 00       		.byte	0
+ 1542 018e 00       		.byte	0
+ 1543 018f 1E       		.uleb128 0x1e
+ 1544 0190 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 33
+
+
+ 1545 0191 00       		.byte	0
+ 1546 0192 3F       		.uleb128 0x3f
+ 1547 0193 19       		.uleb128 0x19
+ 1548 0194 03       		.uleb128 0x3
+ 1549 0195 0E       		.uleb128 0xe
+ 1550 0196 3A       		.uleb128 0x3a
+ 1551 0197 0B       		.uleb128 0xb
+ 1552 0198 3B       		.uleb128 0x3b
+ 1553 0199 0B       		.uleb128 0xb
+ 1554 019a 27       		.uleb128 0x27
+ 1555 019b 19       		.uleb128 0x19
+ 1556 019c 3C       		.uleb128 0x3c
+ 1557 019d 19       		.uleb128 0x19
+ 1558 019e 00       		.byte	0
+ 1559 019f 00       		.byte	0
+ 1560 01a0 1F       		.uleb128 0x1f
+ 1561 01a1 26       		.uleb128 0x26
+ 1562 01a2 00       		.byte	0
+ 1563 01a3 49       		.uleb128 0x49
+ 1564 01a4 13       		.uleb128 0x13
+ 1565 01a5 00       		.byte	0
+ 1566 01a6 00       		.byte	0
+ 1567 01a7 00       		.byte	0
+ 1568              		.section	.debug_loc,"",%progbits
+ 1569              	.Ldebug_loc0:
+ 1570              	.LLST0:
+ 1571 0000 D4000000 		.4byte	.LVL28
+ 1572 0004 F0000000 		.4byte	.LVL32
+ 1573 0008 0200     		.2byte	0x2
+ 1574 000a 30       		.byte	0x30
+ 1575 000b 9F       		.byte	0x9f
+ 1576 000c F0000000 		.4byte	.LVL32
+ 1577 0010 0C010000 		.4byte	.LVL36
+ 1578 0014 0200     		.2byte	0x2
+ 1579 0016 31       		.byte	0x31
+ 1580 0017 9F       		.byte	0x9f
+ 1581 0018 0C010000 		.4byte	.LVL36
+ 1582 001c 24010000 		.4byte	.LFE64
+ 1583 0020 0200     		.2byte	0x2
+ 1584 0022 32       		.byte	0x32
+ 1585 0023 9F       		.byte	0x9f
+ 1586 0024 00000000 		.4byte	0
+ 1587 0028 00000000 		.4byte	0
+ 1588              	.LLST1:
+ 1589 002c D4000000 		.4byte	.LVL28
+ 1590 0030 F0000000 		.4byte	.LVL32
+ 1591 0034 0200     		.2byte	0x2
+ 1592 0036 34       		.byte	0x34
+ 1593 0037 9F       		.byte	0x9f
+ 1594 0038 F0000000 		.4byte	.LVL32
+ 1595 003c 0C010000 		.4byte	.LVL36
+ 1596 0040 0200     		.2byte	0x2
+ 1597 0042 3A       		.byte	0x3a
+ 1598 0043 9F       		.byte	0x9f
+ 1599 0044 0C010000 		.4byte	.LVL36
+ 1600 0048 24010000 		.4byte	.LFE64
+ 1601 004c 0200     		.2byte	0x2
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 34
+
+
+ 1602 004e 40       		.byte	0x40
+ 1603 004f 9F       		.byte	0x9f
+ 1604 0050 00000000 		.4byte	0
+ 1605 0054 00000000 		.4byte	0
+ 1606              		.section	.debug_aranges,"",%progbits
+ 1607 0000 24000000 		.4byte	0x24
+ 1608 0004 0200     		.2byte	0x2
+ 1609 0006 00000000 		.4byte	.Ldebug_info0
+ 1610 000a 04       		.byte	0x4
+ 1611 000b 00       		.byte	0
+ 1612 000c 0000     		.2byte	0
+ 1613 000e 0000     		.2byte	0
+ 1614 0010 00000000 		.4byte	.LFB63
+ 1615 0014 40000000 		.4byte	.LFE63-.LFB63
+ 1616 0018 00000000 		.4byte	.LFB64
+ 1617 001c 24010000 		.4byte	.LFE64-.LFB64
+ 1618 0020 00000000 		.4byte	0
+ 1619 0024 00000000 		.4byte	0
+ 1620              		.section	.debug_ranges,"",%progbits
+ 1621              	.Ldebug_ranges0:
+ 1622 0000 00000000 		.4byte	.LFB63
+ 1623 0004 40000000 		.4byte	.LFE63
+ 1624 0008 00000000 		.4byte	.LFB64
+ 1625 000c 24010000 		.4byte	.LFE64
+ 1626 0010 00000000 		.4byte	0
+ 1627 0014 00000000 		.4byte	0
+ 1628              		.section	.debug_line,"",%progbits
+ 1629              	.Ldebug_line0:
+ 1630 0000 27020000 		.section	.debug_str,"MS",%progbits,1
+ 1630      0200B701 
+ 1630      00000201 
+ 1630      FB0E0D00 
+ 1630      01010101 
+ 1631              	.LASF25:
+ 1632 0000 73616D70 		.ascii	"sampleInt\000"
+ 1632      6C65496E 
+ 1632      7400
+ 1633              	.LASF19:
+ 1634 000a 63797374 		.ascii	"cystatus\000"
+ 1634      61747573 
+ 1634      00
+ 1635              	.LASF45:
+ 1636 0013 4C43445F 		.ascii	"LCD_PrintInt16\000"
+ 1636      5072696E 
+ 1636      74496E74 
+ 1636      313600
+ 1637              	.LASF52:
+ 1638 0022 4932535F 		.ascii	"I2S_1_EnableTx\000"
+ 1638      315F456E 
+ 1638      61626C65 
+ 1638      547800
+ 1639              	.LASF42:
+ 1640 0031 5478444D 		.ascii	"TxDMA_DmaInitialize\000"
+ 1640      415F446D 
+ 1640      61496E69 
+ 1640      7469616C 
+ 1640      697A6500 
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 35
+
+
+ 1641              	.LASF9:
+ 1642 0045 5F5F696E 		.ascii	"__int32_t\000"
+ 1642      7433325F 
+ 1642      7400
+ 1643              	.LASF39:
+ 1644 004f 4379446D 		.ascii	"CyDmaTdSetAddress\000"
+ 1644      61546453 
+ 1644      65744164 
+ 1644      64726573 
+ 1644      7300
+ 1645              	.LASF35:
+ 1646 0061 4C454473 		.ascii	"LEDs_Read\000"
+ 1646      5F526561 
+ 1646      6400
+ 1647              	.LASF40:
+ 1648 006b 4379446D 		.ascii	"CyDmaChSetInitialTd\000"
+ 1648      61436853 
+ 1648      6574496E 
+ 1648      69746961 
+ 1648      6C546400 
+ 1649              	.LASF28:
+ 1650 007f 7278446D 		.ascii	"rxDmaTd\000"
+ 1650      61546400 
+ 1651              	.LASF36:
+ 1652 0087 4379446D 		.ascii	"CyDmaTdAllocate\000"
+ 1652      61546441 
+ 1652      6C6C6F63 
+ 1652      61746500 
+ 1653              	.LASF55:
+ 1654 0097 2E5C6D61 		.ascii	".\\main.c\000"
+ 1654      696E2E63 
+ 1654      00
+ 1655              	.LASF15:
+ 1656 00a0 666C6F61 		.ascii	"float\000"
+ 1656      7400
+ 1657              	.LASF33:
+ 1658 00a6 74784275 		.ascii	"txBuff\000"
+ 1658      666600
+ 1659              	.LASF11:
+ 1660 00ad 75696E74 		.ascii	"uint8\000"
+ 1660      3800
+ 1661              	.LASF1:
+ 1662 00b3 756E7369 		.ascii	"unsigned char\000"
+ 1662      676E6564 
+ 1662      20636861 
+ 1662      7200
+ 1663              	.LASF57:
+ 1664 00c1 44697370 		.ascii	"DisplayUpdate\000"
+ 1664      6C617955 
+ 1664      70646174 
+ 1664      6500
+ 1665              	.LASF20:
+ 1666 00cf 72656738 		.ascii	"reg8\000"
+ 1666      00
+ 1667              	.LASF38:
+ 1668 00d4 4379446D 		.ascii	"CyDmaTdSetConfiguration\000"
+ 1668      61546453 
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 36
+
+
+ 1668      6574436F 
+ 1668      6E666967 
+ 1668      75726174 
+ 1669              	.LASF5:
+ 1670 00ec 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1670      20756E73 
+ 1670      69676E65 
+ 1670      6420696E 
+ 1670      7400
+ 1671              	.LASF3:
+ 1672 00fe 73686F72 		.ascii	"short unsigned int\000"
+ 1672      7420756E 
+ 1672      7369676E 
+ 1672      65642069 
+ 1672      6E7400
+ 1673              	.LASF58:
+ 1674 0111 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1674      52784275 
+ 1674      66666572 
+ 1674      00
+ 1675              	.LASF17:
+ 1676 011e 63686172 		.ascii	"char8\000"
+ 1676      3800
+ 1677              	.LASF29:
+ 1678 0124 7478446D 		.ascii	"txDmaChan\000"
+ 1678      61436861 
+ 1678      6E00
+ 1679              	.LASF16:
+ 1680 012e 646F7562 		.ascii	"double\000"
+ 1680      6C6500
+ 1681              	.LASF12:
+ 1682 0135 75696E74 		.ascii	"uint16\000"
+ 1682      313600
+ 1683              	.LASF26:
+ 1684 013c 6D61696E 		.ascii	"main\000"
+ 1684      00
+ 1685              	.LASF46:
+ 1686 0141 4C43445F 		.ascii	"LCD_PrintString\000"
+ 1686      5072696E 
+ 1686      74537472 
+ 1686      696E6700 
+ 1687              	.LASF51:
+ 1688 0151 43794465 		.ascii	"CyDelayUs\000"
+ 1688      6C617955 
+ 1688      7300
+ 1689              	.LASF34:
+ 1690 015b 73616D70 		.ascii	"sampleUit\000"
+ 1690      6C655569 
+ 1690      7400
+ 1691              	.LASF13:
+ 1692 0165 75696E74 		.ascii	"uint32\000"
+ 1692      333200
+ 1693              	.LASF27:
+ 1694 016c 7278446D 		.ascii	"rxDmaChan\000"
+ 1694      61436861 
+ 1694      6E00
+ 1695              	.LASF8:
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 37
+
+
+ 1696 0176 756E7369 		.ascii	"unsigned int\000"
+ 1696      676E6564 
+ 1696      20696E74 
+ 1696      00
+ 1697              	.LASF53:
+ 1698 0183 436C6970 		.ascii	"Clip_Read\000"
+ 1698      5F526561 
+ 1698      6400
+ 1699              	.LASF7:
+ 1700 018d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1700      206C6F6E 
+ 1700      6720756E 
+ 1700      7369676E 
+ 1700      65642069 
+ 1701              	.LASF44:
+ 1702 01a4 4C43445F 		.ascii	"LCD_Position\000"
+ 1702      506F7369 
+ 1702      74696F6E 
+ 1702      00
+ 1703              	.LASF14:
+ 1704 01b1 696E7431 		.ascii	"int16\000"
+ 1704      3600
+ 1705              	.LASF21:
+ 1706 01b7 63796973 		.ascii	"cyisraddress\000"
+ 1706      72616464 
+ 1706      72657373 
+ 1706      00
+ 1707              	.LASF49:
+ 1708 01c4 53616D70 		.ascii	"SampleKlaar_StartEx\000"
+ 1708      6C654B6C 
+ 1708      6161725F 
+ 1708      53746172 
+ 1708      74457800 
+ 1709              	.LASF10:
+ 1710 01d8 696E7433 		.ascii	"int32_t\000"
+ 1710      325F7400 
+ 1711              	.LASF56:
+ 1712 01e0 473A5C50 		.ascii	"G:\\PSoC_5LP\\I2S_DMA_example\\InterIcSound01.cydsn"
+ 1712      536F435F 
+ 1712      354C505C 
+ 1712      4932535F 
+ 1712      444D415F 
+ 1713 0210 00       		.ascii	"\000"
+ 1714              	.LASF50:
+ 1715 0211 4932535F 		.ascii	"I2S_1_EnableRx\000"
+ 1715      315F456E 
+ 1715      61626C65 
+ 1715      527800
+ 1716              	.LASF22:
+ 1717 0220 73697A65 		.ascii	"sizetype\000"
+ 1717      74797065 
+ 1717      00
+ 1718              	.LASF6:
+ 1719 0229 6C6F6E67 		.ascii	"long long int\000"
+ 1719      206C6F6E 
+ 1719      6720696E 
+ 1719      7400
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 38
+
+
+ 1720              	.LASF30:
+ 1721 0237 7478446D 		.ascii	"txDmaTd\000"
+ 1721      61546400 
+ 1722              	.LASF18:
+ 1723 023f 63686172 		.ascii	"char\000"
+ 1723      00
+ 1724              	.LASF43:
+ 1725 0244 4C454473 		.ascii	"LEDs_Write\000"
+ 1725      5F577269 
+ 1725      746500
+ 1726              	.LASF41:
+ 1727 024f 4379446D 		.ascii	"CyDmaChEnable\000"
+ 1727      61436845 
+ 1727      6E61626C 
+ 1727      6500
+ 1728              	.LASF2:
+ 1729 025d 73686F72 		.ascii	"short int\000"
+ 1729      7420696E 
+ 1729      7400
+ 1730              	.LASF54:
+ 1731 0267 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1731      4320342E 
+ 1731      392E3320 
+ 1731      32303135 
+ 1731      30333033 
+ 1732 029a 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1732      20726576 
+ 1732      6973696F 
+ 1732      6E203232 
+ 1732      31323230 
+ 1733 02cd 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1733      66756E63 
+ 1733      74696F6E 
+ 1733      2D736563 
+ 1733      74696F6E 
+ 1734              	.LASF24:
+ 1735 02f5 446D6154 		.ascii	"DmaTxConfiguration\000"
+ 1735      78436F6E 
+ 1735      66696775 
+ 1735      72617469 
+ 1735      6F6E00
+ 1736              	.LASF23:
+ 1737 0308 446D6152 		.ascii	"DmaRxConfiguration\000"
+ 1737      78436F6E 
+ 1737      66696775 
+ 1737      72617469 
+ 1737      6F6E00
+ 1738              	.LASF47:
+ 1739 031b 4C43445F 		.ascii	"LCD_Start\000"
+ 1739      53746172 
+ 1739      7400
+ 1740              	.LASF4:
+ 1741 0325 6C6F6E67 		.ascii	"long int\000"
+ 1741      20696E74 
+ 1741      00
+ 1742              	.LASF0:
+ 1743 032e 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccZqKeev.s 			page 39
+
+
+ 1743      65642063 
+ 1743      68617200 
+ 1744              	.LASF37:
+ 1745 033a 5278444D 		.ascii	"RxDMA_DmaInitialize\000"
+ 1745      415F446D 
+ 1745      61496E69 
+ 1745      7469616C 
+ 1745      697A6500 
+ 1746              	.LASF48:
+ 1747 034e 4932535F 		.ascii	"I2S_1_Start\000"
+ 1747      315F5374 
+ 1747      61727400 
+ 1748              	.LASF31:
+ 1749 035a 72784275 		.ascii	"rxBuff\000"
+ 1749      666600
+ 1750              	.LASF32:
+ 1751 0361 73616D70 		.ascii	"sampleIn\000"
+ 1751      6C65496E 
+ 1751      00
+ 1752              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

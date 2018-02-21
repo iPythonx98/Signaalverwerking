@@ -1,0 +1,1886 @@
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"I2S_Codec_audio.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	I2S_Codec_audio_initVar
+  20              		.bss
+  21              		.type	I2S_Codec_audio_initVar, %object
+  22              		.size	I2S_Codec_audio_initVar, 1
+  23              	I2S_Codec_audio_initVar:
+  24 0000 00       		.space	1
+  25              		.section	.text.I2S_Codec_audio_Enable,"ax",%progbits
+  26              		.align	2
+  27              		.global	I2S_Codec_audio_Enable
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	I2S_Codec_audio_Enable, %function
+  31              	I2S_Codec_audio_Enable:
+  32              	.LFB0:
+  33              		.file 1 "Generated_Source\\PSoC5\\I2S_Codec_audio.c"
+   1:Generated_Source\PSoC5/I2S_Codec_audio.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/I2S_Codec_audio.c **** * File Name: I2S_Codec_audio.c
+   3:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Version 2.70
+   4:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+   5:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Description:
+   6:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  This file contains the setup, control and status commands for the I2S
+   7:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  component.
+   8:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+   9:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Note:
+  10:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  11:Generated_Source\PSoC5/I2S_Codec_audio.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/I2S_Codec_audio.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC5/I2S_Codec_audio.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC5/I2S_Codec_audio.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/I2S_Codec_audio.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  18:Generated_Source\PSoC5/I2S_Codec_audio.c **** #include "CyLib.h"
+  19:Generated_Source\PSoC5/I2S_Codec_audio.c **** #include "I2S_Codec_audio.h"
+  20:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  21:Generated_Source\PSoC5/I2S_Codec_audio.c **** uint8 I2S_Codec_audio_initVar = 0u;
+  22:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  23:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  24:Generated_Source\PSoC5/I2S_Codec_audio.c **** /*******************************************************************************
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 2
+
+
+  25:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Function Name: I2S_Codec_audio_Enable
+  26:Generated_Source\PSoC5/I2S_Codec_audio.c **** ********************************************************************************
+  27:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  28:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Summary:
+  29:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  Enables I2S interface. Starts the generation of the sck and ws outputs.
+  30:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  The Tx and Rx directions remain disabled. It is not necessary to call
+  31:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  I2S_Enable() because the I2S_Start() routine calls this function, which is
+  32:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  the preferred method to begin component operation.
+  33:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  34:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Parameters:
+  35:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+  36:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  37:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Return:
+  38:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+  39:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  40:Generated_Source\PSoC5/I2S_Codec_audio.c **** *******************************************************************************/
+  41:Generated_Source\PSoC5/I2S_Codec_audio.c **** void I2S_Codec_audio_Enable(void) 
+  42:Generated_Source\PSoC5/I2S_Codec_audio.c **** {
+  34              		.loc 1 42 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 8
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 82B0     		sub	sp, sp, #8
+  43              		.cfi_def_cfa_offset 16
+  44 0004 00AF     		add	r7, sp, #0
+  45              		.cfi_def_cfa_register 7
+  43:Generated_Source\PSoC5/I2S_Codec_audio.c ****     uint8 enableInterrupts;
+  44:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  45:Generated_Source\PSoC5/I2S_Codec_audio.c ****     enableInterrupts = CyEnterCriticalSection();
+  46              		.loc 1 45 0
+  47 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+  48 000a 0346     		mov	r3, r0
+  49 000c FB71     		strb	r3, [r7, #7]
+  46:Generated_Source\PSoC5/I2S_Codec_audio.c ****     I2S_Codec_audio_AUX_CONTROL_REG |= I2S_Codec_audio_CNT_START;
+  50              		.loc 1 46 0
+  51 000e 0C4A     		ldr	r2, .L2
+  52 0010 0B4B     		ldr	r3, .L2
+  53 0012 1B78     		ldrb	r3, [r3]
+  54 0014 DBB2     		uxtb	r3, r3
+  55 0016 43F02003 		orr	r3, r3, #32
+  56 001a DBB2     		uxtb	r3, r3
+  57 001c 1370     		strb	r3, [r2]
+  47:Generated_Source\PSoC5/I2S_Codec_audio.c ****     CyExitCriticalSection(enableInterrupts);
+  58              		.loc 1 47 0
+  59 001e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  60 0020 1846     		mov	r0, r3
+  61 0022 FFF7FEFF 		bl	CyExitCriticalSection
+  48:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  49:Generated_Source\PSoC5/I2S_Codec_audio.c ****     I2S_Codec_audio_CONTROL_REG |= I2S_Codec_audio_EN;
+  62              		.loc 1 49 0
+  63 0026 074A     		ldr	r2, .L2+4
+  64 0028 064B     		ldr	r3, .L2+4
+  65 002a 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 3
+
+
+  66 002c DBB2     		uxtb	r3, r3
+  67 002e 43F00403 		orr	r3, r3, #4
+  68 0032 DBB2     		uxtb	r3, r3
+  69 0034 1370     		strb	r3, [r2]
+  50:Generated_Source\PSoC5/I2S_Codec_audio.c **** }
+  70              		.loc 1 50 0
+  71 0036 00BF     		nop
+  72 0038 0837     		adds	r7, r7, #8
+  73              		.cfi_def_cfa_offset 8
+  74 003a BD46     		mov	sp, r7
+  75              		.cfi_def_cfa_register 13
+  76              		@ sp needed
+  77 003c 80BD     		pop	{r7, pc}
+  78              	.L3:
+  79 003e 00BF     		.align	2
+  80              	.L2:
+  81 0040 95650040 		.word	1073767829
+  82 0044 76650040 		.word	1073767798
+  83              		.cfi_endproc
+  84              	.LFE0:
+  85              		.size	I2S_Codec_audio_Enable, .-I2S_Codec_audio_Enable
+  86              		.section	.text.I2S_Codec_audio_Init,"ax",%progbits
+  87              		.align	2
+  88              		.global	I2S_Codec_audio_Init
+  89              		.thumb
+  90              		.thumb_func
+  91              		.type	I2S_Codec_audio_Init, %function
+  92              	I2S_Codec_audio_Init:
+  93              	.LFB1:
+  51:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  52:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  53:Generated_Source\PSoC5/I2S_Codec_audio.c **** /*******************************************************************************
+  54:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Function Name: I2S_Codec_audio_Init
+  55:Generated_Source\PSoC5/I2S_Codec_audio.c **** ********************************************************************************
+  56:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  57:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Summary:
+  58:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  Initializes or restores default I2S configuration provided with customizer.
+  59:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  It is not necessary to call I2S_Init() because the I2S_Start() routine calls
+  60:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  this function, which is the preferred method to begin component operation.
+  61:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  62:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Parameters:
+  63:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+  64:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  65:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Return:
+  66:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+  67:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+  68:Generated_Source\PSoC5/I2S_Codec_audio.c **** *******************************************************************************/
+  69:Generated_Source\PSoC5/I2S_Codec_audio.c **** void I2S_Codec_audio_Init(void) 
+  70:Generated_Source\PSoC5/I2S_Codec_audio.c **** {
+  94              		.loc 1 70 0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 1, uses_anonymous_args = 0
+  98              		@ link register save eliminated.
+  99 0000 80B4     		push	{r7}
+ 100              		.cfi_def_cfa_offset 4
+ 101              		.cfi_offset 7, -4
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 4
+
+
+ 102 0002 00AF     		add	r7, sp, #0
+ 103              		.cfi_def_cfa_register 7
+  71:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #if (I2S_Codec_audio_CLIP_DETECT_ENABLE)
+  72:Generated_Source\PSoC5/I2S_Codec_audio.c ****         static const uint8 CYCODE I2S_Codec_audio_posThresholds[] = {120u};
+  73:Generated_Source\PSoC5/I2S_Codec_audio.c ****         static const int8  CYCODE I2S_Codec_audio_negThresholds[] = {-120};
+  74:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #endif /* I2S_Codec_audio_CLIP_DETECT_ENABLE */
+  75:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  76:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #if (I2S_Codec_audio_DYNAMIC_BIT_RESOLUTION)
+  77:Generated_Source\PSoC5/I2S_Codec_audio.c ****         (void)I2S_Codec_audio_SetDataBits(I2S_Codec_audio_DATA_BITS);
+  78:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #endif /* I2S_Codec_audio_DYNAMIC_BIT_RESOLUTION */
+  79:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+  80:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /* Initialize Tx interrupt source selected in customizer */
+  81:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #if (I2S_Codec_audio_TX_DIRECTION_ENABLE)
+  82:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_SET_TX_INT_MASK(CH0, I2S_Codec_audio_TX_INT_SOURCE);
+ 104              		.loc 1 82 0
+ 105 0004 0E4A     		ldr	r2, .L5
+ 106 0006 0E4B     		ldr	r3, .L5
+ 107 0008 1B78     		ldrb	r3, [r3]
+ 108 000a DBB2     		uxtb	r3, r3
+ 109 000c 23F00703 		bic	r3, r3, #7
+ 110 0010 DBB2     		uxtb	r3, r3
+ 111 0012 1370     		strb	r3, [r2]
+ 112 0014 0A4B     		ldr	r3, .L5
+ 113 0016 0A4A     		ldr	r2, .L5
+ 114 0018 1278     		ldrb	r2, [r2]
+ 115 001a D2B2     		uxtb	r2, r2
+ 116 001c 1A70     		strb	r2, [r3]
+  83:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_1_PRESENT)
+  84:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_TX_INT_MASK(CH1, I2S_Codec_audio_TX_INT_SOURCE);
+  85:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_1_PRESENT */
+  86:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_2_PRESENT)
+  87:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_TX_INT_MASK(CH2, I2S_Codec_audio_TX_INT_SOURCE);
+  88:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_2_PRESENT */
+  89:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_3_PRESENT)
+  90:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_TX_INT_MASK(CH3, I2S_Codec_audio_TX_INT_SOURCE);
+  91:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_3_PRESENT */
+  92:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_4_PRESENT)
+  93:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_TX_INT_MASK(CH4, I2S_Codec_audio_TX_INT_SOURCE);
+  94:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_4_PRESENT */
+  95:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #endif /* (I2S_Codec_audio_TX_DIRECTION_ENABLE) */
+  96:Generated_Source\PSoC5/I2S_Codec_audio.c ****     
+  97:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /* Initialize Rx interrupt source and clipping thresholds selected in customizer */
+  98:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #if (I2S_Codec_audio_RX_DIRECTION_ENABLE)
+  99:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_SET_RX_INT_MASK(CH0, I2S_Codec_audio_RX_INT_SOURCE);
+ 117              		.loc 1 99 0
+ 118 001e 094A     		ldr	r2, .L5+4
+ 119 0020 084B     		ldr	r3, .L5+4
+ 120 0022 1B78     		ldrb	r3, [r3]
+ 121 0024 DBB2     		uxtb	r3, r3
+ 122 0026 23F00703 		bic	r3, r3, #7
+ 123 002a DBB2     		uxtb	r3, r3
+ 124 002c 1370     		strb	r3, [r2]
+ 125 002e 054B     		ldr	r3, .L5+4
+ 126 0030 044A     		ldr	r2, .L5+4
+ 127 0032 1278     		ldrb	r2, [r2]
+ 128 0034 D2B2     		uxtb	r2, r2
+ 129 0036 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 5
+
+
+ 100:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_CLIP_DETECT_ENABLE)
+ 101:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_POS_THRESHOLD(CH0, I2S_Codec_audio_posThresholds[I2S_Codec_audio_ST
+ 102:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_NEG_THRESHOLD(CH0, I2S_Codec_audio_negThresholds[I2S_Codec_audio_ST
+ 103:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_CLIP_DETECT_ENABLE */
+ 104:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_1_PRESENT)
+ 105:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_RX_INT_MASK(CH1, I2S_Codec_audio_RX_INT_SOURCE);
+ 106:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #if (I2S_Codec_audio_CLIP_DETECT_ENABLE)
+ 107:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_POS_THRESHOLD(CH1, I2S_Codec_audio_posThresholds[I2S_Codec_audi
+ 108:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_NEG_THRESHOLD(CH1, I2S_Codec_audio_negThresholds[I2S_Codec_audi
+ 109:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #endif /* I2S_Codec_audio_CLIP_DETECT_ENABLE */
+ 110:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_1_PRESENT */
+ 111:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_2_PRESENT)
+ 112:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_RX_INT_MASK(CH2, I2S_Codec_audio_RX_INT_SOURCE);
+ 113:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #if (I2S_Codec_audio_CLIP_DETECT_ENABLE)
+ 114:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_POS_THRESHOLD(CH2, I2S_Codec_audio_posThresholds[I2S_Codec_audi
+ 115:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_NEG_THRESHOLD(CH2, I2S_Codec_audio_negThresholds[I2S_Codec_audi
+ 116:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #endif /* I2S_Codec_audio_CLIP_DETECT_ENABLE */
+ 117:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_2_PRESENT */
+ 118:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_3_PRESENT)
+ 119:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_RX_INT_MASK(CH3, I2S_Codec_audio_RX_INT_SOURCE);
+ 120:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #if (I2S_Codec_audio_CLIP_DETECT_ENABLE)
+ 121:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_POS_THRESHOLD(CH3, I2S_Codec_audio_posThresholds[I2S_Codec_audi
+ 122:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_NEG_THRESHOLD(CH3, I2S_Codec_audio_negThresholds[I2S_Codec_audi
+ 123:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #endif /* I2S_Codec_audio_CLIP_DETECT_ENABLE */
+ 124:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_3_PRESENT */
+ 125:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_4_PRESENT)
+ 126:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_SET_RX_INT_MASK(CH4, I2S_Codec_audio_RX_INT_SOURCE);
+ 127:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #if (I2S_Codec_audio_CLIP_DETECT_ENABLE)
+ 128:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_POS_THRESHOLD(CH4, I2S_Codec_audio_posThresholds[I2S_Codec_audi
+ 129:Generated_Source\PSoC5/I2S_Codec_audio.c ****                 I2S_Codec_audio_SET_NEG_THRESHOLD(CH4, I2S_Codec_audio_negThresholds[I2S_Codec_audi
+ 130:Generated_Source\PSoC5/I2S_Codec_audio.c ****             #endif /* I2S_Codec_audio_CLIP_DETECT_ENABLE */
+ 131:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_4_PRESENT */
+ 132:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #endif /* (I2S_Codec_audio_RX_DIRECTION_ENABLE) */
+ 133:Generated_Source\PSoC5/I2S_Codec_audio.c **** }
+ 130              		.loc 1 133 0
+ 131 0038 00BF     		nop
+ 132 003a BD46     		mov	sp, r7
+ 133              		.cfi_def_cfa_register 13
+ 134              		@ sp needed
+ 135 003c 80BC     		pop	{r7}
+ 136              		.cfi_restore 7
+ 137              		.cfi_def_cfa_offset 0
+ 138 003e 7047     		bx	lr
+ 139              	.L6:
+ 140              		.align	2
+ 141              	.L5:
+ 142 0040 86650040 		.word	1073767814
+ 143 0044 87650040 		.word	1073767815
+ 144              		.cfi_endproc
+ 145              	.LFE1:
+ 146              		.size	I2S_Codec_audio_Init, .-I2S_Codec_audio_Init
+ 147              		.section	.text.I2S_Codec_audio_Start,"ax",%progbits
+ 148              		.align	2
+ 149              		.global	I2S_Codec_audio_Start
+ 150              		.thumb
+ 151              		.thumb_func
+ 152              		.type	I2S_Codec_audio_Start, %function
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 6
+
+
+ 153              	I2S_Codec_audio_Start:
+ 154              	.LFB2:
+ 134:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 135:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 136:Generated_Source\PSoC5/I2S_Codec_audio.c **** /*******************************************************************************
+ 137:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Function Name: I2S_Codec_audio_Start
+ 138:Generated_Source\PSoC5/I2S_Codec_audio.c **** ********************************************************************************
+ 139:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 140:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Summary:
+ 141:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  Starts the I2S interface. Starts the generation of the sck and ws outputs.
+ 142:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  The Tx and Rx directions remain disabled.
+ 143:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 144:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Parameters:
+ 145:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+ 146:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 147:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Return:
+ 148:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+ 149:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 150:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Global Variables:
+ 151:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  I2S_Codec_audio_initVar - used to check initial configuration, modified on
+ 152:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  first function call.
+ 153:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 154:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Reentrant:
+ 155:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  No.
+ 156:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 157:Generated_Source\PSoC5/I2S_Codec_audio.c **** *******************************************************************************/
+ 158:Generated_Source\PSoC5/I2S_Codec_audio.c **** void I2S_Codec_audio_Start(void) 
+ 159:Generated_Source\PSoC5/I2S_Codec_audio.c **** {
+ 155              		.loc 1 159 0
+ 156              		.cfi_startproc
+ 157              		@ args = 0, pretend = 0, frame = 0
+ 158              		@ frame_needed = 1, uses_anonymous_args = 0
+ 159 0000 80B5     		push	{r7, lr}
+ 160              		.cfi_def_cfa_offset 8
+ 161              		.cfi_offset 7, -8
+ 162              		.cfi_offset 14, -4
+ 163 0002 00AF     		add	r7, sp, #0
+ 164              		.cfi_def_cfa_register 7
+ 160:Generated_Source\PSoC5/I2S_Codec_audio.c ****     if(0u == I2S_Codec_audio_initVar)
+ 165              		.loc 1 160 0
+ 166 0004 064B     		ldr	r3, .L9
+ 167 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 168 0008 002B     		cmp	r3, #0
+ 169 000a 04D1     		bne	.L8
+ 161:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 162:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_Init();
+ 170              		.loc 1 162 0
+ 171 000c FFF7FEFF 		bl	I2S_Codec_audio_Init
+ 163:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_initVar = 1u;
+ 172              		.loc 1 163 0
+ 173 0010 034B     		ldr	r3, .L9
+ 174 0012 0122     		movs	r2, #1
+ 175 0014 1A70     		strb	r2, [r3]
+ 176              	.L8:
+ 164:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 165:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 166:Generated_Source\PSoC5/I2S_Codec_audio.c ****     I2S_Codec_audio_Enable();
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 7
+
+
+ 177              		.loc 1 166 0
+ 178 0016 FFF7FEFF 		bl	I2S_Codec_audio_Enable
+ 167:Generated_Source\PSoC5/I2S_Codec_audio.c **** }
+ 179              		.loc 1 167 0
+ 180 001a 00BF     		nop
+ 181 001c 80BD     		pop	{r7, pc}
+ 182              	.L10:
+ 183 001e 00BF     		.align	2
+ 184              	.L9:
+ 185 0020 00000000 		.word	I2S_Codec_audio_initVar
+ 186              		.cfi_endproc
+ 187              	.LFE2:
+ 188              		.size	I2S_Codec_audio_Start, .-I2S_Codec_audio_Start
+ 189              		.section	.text.I2S_Codec_audio_Stop,"ax",%progbits
+ 190              		.align	2
+ 191              		.global	I2S_Codec_audio_Stop
+ 192              		.thumb
+ 193              		.thumb_func
+ 194              		.type	I2S_Codec_audio_Stop, %function
+ 195              	I2S_Codec_audio_Stop:
+ 196              	.LFB3:
+ 168:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 169:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 170:Generated_Source\PSoC5/I2S_Codec_audio.c **** /*******************************************************************************
+ 171:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Function Name: I2S_Codec_audio_Stop
+ 172:Generated_Source\PSoC5/I2S_Codec_audio.c **** ********************************************************************************
+ 173:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 174:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Summary:
+ 175:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  Disables the I2S interface. The sck and ws outputs are set to 0. The Tx and
+ 176:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  Rx directions are disabled and their FIFOs are cleared.
+ 177:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 178:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Parameters:
+ 179:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+ 180:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 181:Generated_Source\PSoC5/I2S_Codec_audio.c **** * Return:
+ 182:Generated_Source\PSoC5/I2S_Codec_audio.c **** *  None.
+ 183:Generated_Source\PSoC5/I2S_Codec_audio.c **** *
+ 184:Generated_Source\PSoC5/I2S_Codec_audio.c **** *******************************************************************************/
+ 185:Generated_Source\PSoC5/I2S_Codec_audio.c **** void I2S_Codec_audio_Stop(void) 
+ 186:Generated_Source\PSoC5/I2S_Codec_audio.c **** {
+ 197              		.loc 1 186 0
+ 198              		.cfi_startproc
+ 199              		@ args = 0, pretend = 0, frame = 8
+ 200              		@ frame_needed = 1, uses_anonymous_args = 0
+ 201 0000 80B5     		push	{r7, lr}
+ 202              		.cfi_def_cfa_offset 8
+ 203              		.cfi_offset 7, -8
+ 204              		.cfi_offset 14, -4
+ 205 0002 82B0     		sub	sp, sp, #8
+ 206              		.cfi_def_cfa_offset 16
+ 207 0004 00AF     		add	r7, sp, #0
+ 208              		.cfi_def_cfa_register 7
+ 187:Generated_Source\PSoC5/I2S_Codec_audio.c ****     uint8 enableInterrupts;
+ 188:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 189:Generated_Source\PSoC5/I2S_Codec_audio.c ****     I2S_Codec_audio_CONTROL_REG &= (uint8)~I2S_Codec_audio_EN;
+ 209              		.loc 1 189 0
+ 210 0006 134A     		ldr	r2, .L12
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 8
+
+
+ 211 0008 124B     		ldr	r3, .L12
+ 212 000a 1B78     		ldrb	r3, [r3]
+ 213 000c DBB2     		uxtb	r3, r3
+ 214 000e 23F00403 		bic	r3, r3, #4
+ 215 0012 DBB2     		uxtb	r3, r3
+ 216 0014 1370     		strb	r3, [r2]
+ 190:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 191:Generated_Source\PSoC5/I2S_Codec_audio.c ****     enableInterrupts = CyEnterCriticalSection();
+ 217              		.loc 1 191 0
+ 218 0016 FFF7FEFF 		bl	CyEnterCriticalSection
+ 219 001a 0346     		mov	r3, r0
+ 220 001c FB71     		strb	r3, [r7, #7]
+ 192:Generated_Source\PSoC5/I2S_Codec_audio.c ****     I2S_Codec_audio_AUX_CONTROL_REG &= (uint8)~I2S_Codec_audio_CNT_START;
+ 221              		.loc 1 192 0
+ 222 001e 0E4A     		ldr	r2, .L12+4
+ 223 0020 0D4B     		ldr	r3, .L12+4
+ 224 0022 1B78     		ldrb	r3, [r3]
+ 225 0024 DBB2     		uxtb	r3, r3
+ 226 0026 23F02003 		bic	r3, r3, #32
+ 227 002a DBB2     		uxtb	r3, r3
+ 228 002c 1370     		strb	r3, [r2]
+ 193:Generated_Source\PSoC5/I2S_Codec_audio.c ****     CyExitCriticalSection(enableInterrupts);
+ 229              		.loc 1 193 0
+ 230 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 231 0030 1846     		mov	r0, r3
+ 232 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 194:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 195:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /* Clear counter value to force reload when component is enabled */
+ 196:Generated_Source\PSoC5/I2S_Codec_audio.c ****     I2S_Codec_audio_CNT_COUNT_REG = 0u;
+ 233              		.loc 1 196 0
+ 234 0036 094B     		ldr	r3, .L12+8
+ 235 0038 0022     		movs	r2, #0
+ 236 003a 1A70     		strb	r2, [r3]
+ 197:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 198:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #if (I2S_Codec_audio_TX_DIRECTION_ENABLE)
+ 199:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_DisableTx();
+ 237              		.loc 1 199 0
+ 238 003c FFF7FEFF 		bl	I2S_Codec_audio_DisableTx
+ 200:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_ClearTxFIFO();
+ 239              		.loc 1 200 0
+ 240 0040 FFF7FEFF 		bl	I2S_Codec_audio_ClearTxFIFO
+ 201:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #endif /* (I2S_Codec_audio_TX_DIRECTION_ENABLE) */
+ 202:Generated_Source\PSoC5/I2S_Codec_audio.c ****     
+ 203:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #if (I2S_Codec_audio_RX_DIRECTION_ENABLE)
+ 204:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_DisableRx();
+ 241              		.loc 1 204 0
+ 242 0044 FFF7FEFF 		bl	I2S_Codec_audio_DisableRx
+ 205:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_ClearRxFIFO();
+ 243              		.loc 1 205 0
+ 244 0048 FFF7FEFF 		bl	I2S_Codec_audio_ClearRxFIFO
+ 206:Generated_Source\PSoC5/I2S_Codec_audio.c ****     #endif /* (I2S_Codec_audio_RX_DIRECTION_ENABLE) */
+ 207:Generated_Source\PSoC5/I2S_Codec_audio.c **** }
+ 245              		.loc 1 207 0
+ 246 004c 00BF     		nop
+ 247 004e 0837     		adds	r7, r7, #8
+ 248              		.cfi_def_cfa_offset 8
+ 249 0050 BD46     		mov	sp, r7
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 9
+
+
+ 250              		.cfi_def_cfa_register 13
+ 251              		@ sp needed
+ 252 0052 80BD     		pop	{r7, pc}
+ 253              	.L13:
+ 254              		.align	2
+ 255              	.L12:
+ 256 0054 76650040 		.word	1073767798
+ 257 0058 95650040 		.word	1073767829
+ 258 005c 75650040 		.word	1073767797
+ 259              		.cfi_endproc
+ 260              	.LFE3:
+ 261              		.size	I2S_Codec_audio_Stop, .-I2S_Codec_audio_Stop
+ 262              		.section	.text.I2S_Codec_audio_EnableTx,"ax",%progbits
+ 263              		.align	2
+ 264              		.global	I2S_Codec_audio_EnableTx
+ 265              		.thumb
+ 266              		.thumb_func
+ 267              		.type	I2S_Codec_audio_EnableTx, %function
+ 268              	I2S_Codec_audio_EnableTx:
+ 269              	.LFB4:
+ 208:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 209:Generated_Source\PSoC5/I2S_Codec_audio.c **** #if (I2S_Codec_audio_DYNAMIC_BIT_RESOLUTION)
+ 210:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /*******************************************************************************
+ 211:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Function Name: I2S_Codec_audio_SetDataBits
+ 212:Generated_Source\PSoC5/I2S_Codec_audio.c ****     ********************************************************************************
+ 213:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 214:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Summary:
+ 215:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Sets the number of data bits for each sample. The component must be stopped
+ 216:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  before calling this API.
+ 217:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 218:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Parameters:
+ 219:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  dataBits: the number of data bits for each sample. Valid values - 8/16/24/32.
+ 220:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  If Tx or Rx byte swapping is enabled, valid values are 16 and 24.
+ 221:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 222:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Return:
+ 223:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  CYRET_SUCCESS  : Operation is successful
+ 224:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  CYRET_BAD_PARAM: Invalid parameter value
+ 225:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 226:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Side effects:
+ 227:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Calling this API while the component is operating may cause unexpected
+ 228:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  behavior.
+ 229:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 230:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *******************************************************************************/
+ 231:Generated_Source\PSoC5/I2S_Codec_audio.c ****     cystatus I2S_Codec_audio_SetDataBits(uint8 dataBits)   
+ 232:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 233:Generated_Source\PSoC5/I2S_Codec_audio.c ****         cystatus status;
+ 234:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 235:Generated_Source\PSoC5/I2S_Codec_audio.c ****         CYASSERT((dataBits >= I2S_Codec_audio_MIN_DATA_BITS) && (dataBits <= I2S_Codec_audio_MAX_DA
+ 236:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 237:Generated_Source\PSoC5/I2S_Codec_audio.c ****         status = CYRET_SUCCESS;
+ 238:Generated_Source\PSoC5/I2S_Codec_audio.c ****         /* The component must be stopped prior calling this API. Therefore
+ 239:Generated_Source\PSoC5/I2S_Codec_audio.c ****         * all the control bits except the bits modified are zeros.
+ 240:Generated_Source\PSoC5/I2S_Codec_audio.c ****         */
+ 241:Generated_Source\PSoC5/I2S_Codec_audio.c ****         switch(dataBits)
+ 242:Generated_Source\PSoC5/I2S_Codec_audio.c ****         {
+ 243:Generated_Source\PSoC5/I2S_Codec_audio.c ****         case I2S_Codec_audio_8BIT_DATA:
+ 244:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CONTROL_REG = I2S_Codec_audio_8BIT_MODE;
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 10
+
+
+ 245:Generated_Source\PSoC5/I2S_Codec_audio.c ****             break;
+ 246:Generated_Source\PSoC5/I2S_Codec_audio.c ****         case I2S_Codec_audio_16BIT_DATA:
+ 247:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CONTROL_REG = I2S_Codec_audio_16BIT_MODE;
+ 248:Generated_Source\PSoC5/I2S_Codec_audio.c ****             break;
+ 249:Generated_Source\PSoC5/I2S_Codec_audio.c ****         case I2S_Codec_audio_24BIT_DATA:
+ 250:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CONTROL_REG = I2S_Codec_audio_24BIT_MODE;
+ 251:Generated_Source\PSoC5/I2S_Codec_audio.c ****             break;
+ 252:Generated_Source\PSoC5/I2S_Codec_audio.c ****         case I2S_Codec_audio_32BIT_DATA:
+ 253:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CONTROL_REG = I2S_Codec_audio_32BIT_MODE;
+ 254:Generated_Source\PSoC5/I2S_Codec_audio.c ****             break;
+ 255:Generated_Source\PSoC5/I2S_Codec_audio.c ****         default: status = CYRET_BAD_PARAM;
+ 256:Generated_Source\PSoC5/I2S_Codec_audio.c ****             break;
+ 257:Generated_Source\PSoC5/I2S_Codec_audio.c ****         }
+ 258:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 259:Generated_Source\PSoC5/I2S_Codec_audio.c ****         return (status);
+ 260:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 261:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 262:Generated_Source\PSoC5/I2S_Codec_audio.c **** #endif /* I2S_Codec_audio_DYNAMIC_BIT_RESOLUTION */
+ 263:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 264:Generated_Source\PSoC5/I2S_Codec_audio.c **** #if(I2S_Codec_audio_TX_DIRECTION_ENABLE)
+ 265:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /*******************************************************************************
+ 266:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Function Name: I2S_Codec_audio_EnableTx
+ 267:Generated_Source\PSoC5/I2S_Codec_audio.c ****     ********************************************************************************
+ 268:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 269:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Summary:
+ 270:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Enables the Tx direction of the I2S interface.  At the next word
+ 271:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  select falling edge transmission will begin.
+ 272:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 273:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Parameters:
+ 274:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 275:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 276:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Return:
+ 277:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 278:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 279:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *******************************************************************************/
+ 280:Generated_Source\PSoC5/I2S_Codec_audio.c ****     void I2S_Codec_audio_EnableTx(void) 
+ 281:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 270              		.loc 1 281 0
+ 271              		.cfi_startproc
+ 272              		@ args = 0, pretend = 0, frame = 8
+ 273              		@ frame_needed = 1, uses_anonymous_args = 0
+ 274 0000 80B5     		push	{r7, lr}
+ 275              		.cfi_def_cfa_offset 8
+ 276              		.cfi_offset 7, -8
+ 277              		.cfi_offset 14, -4
+ 278 0002 82B0     		sub	sp, sp, #8
+ 279              		.cfi_def_cfa_offset 16
+ 280 0004 00AF     		add	r7, sp, #0
+ 281              		.cfi_def_cfa_register 7
+ 282:Generated_Source\PSoC5/I2S_Codec_audio.c ****         uint8 enableInterrupts;
+ 283:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 284:Generated_Source\PSoC5/I2S_Codec_audio.c ****         enableInterrupts = CyEnterCriticalSection();
+ 282              		.loc 1 284 0
+ 283 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 284 000a 0346     		mov	r3, r0
+ 285 000c FB71     		strb	r3, [r7, #7]
+ 285:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_TX_STS0_1_ACTL_REG |= I2S_Codec_audio_INT_EN;
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 11
+
+
+ 286              		.loc 1 285 0
+ 287 000e 0C4A     		ldr	r2, .L15
+ 288 0010 0B4B     		ldr	r3, .L15
+ 289 0012 1B78     		ldrb	r3, [r3]
+ 290 0014 DBB2     		uxtb	r3, r3
+ 291 0016 43F01003 		orr	r3, r3, #16
+ 292 001a DBB2     		uxtb	r3, r3
+ 293 001c 1370     		strb	r3, [r2]
+ 286:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_TX_STS2_3_ACTL_REG
+ 287:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_TX_STS2_3_ACTL_REG |= I2S_Codec_audio_INT_EN;
+ 288:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STS2_3_ACTL_REG */
+ 289:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_TX_STS4_ACTL_REG
+ 290:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_TX_STS4_ACTL_REG |= I2S_Codec_audio_INT_EN;
+ 291:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STS4_ACTL_REG */
+ 292:Generated_Source\PSoC5/I2S_Codec_audio.c ****         CyExitCriticalSection(enableInterrupts);
+ 294              		.loc 1 292 0
+ 295 001e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 296 0020 1846     		mov	r0, r3
+ 297 0022 FFF7FEFF 		bl	CyExitCriticalSection
+ 293:Generated_Source\PSoC5/I2S_Codec_audio.c ****         
+ 294:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_CONTROL_REG |= I2S_Codec_audio_TX_EN;
+ 298              		.loc 1 294 0
+ 299 0026 074A     		ldr	r2, .L15+4
+ 300 0028 064B     		ldr	r3, .L15+4
+ 301 002a 1B78     		ldrb	r3, [r3]
+ 302 002c DBB2     		uxtb	r3, r3
+ 303 002e 43F00103 		orr	r3, r3, #1
+ 304 0032 DBB2     		uxtb	r3, r3
+ 305 0034 1370     		strb	r3, [r2]
+ 295:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 306              		.loc 1 295 0
+ 307 0036 00BF     		nop
+ 308 0038 0837     		adds	r7, r7, #8
+ 309              		.cfi_def_cfa_offset 8
+ 310 003a BD46     		mov	sp, r7
+ 311              		.cfi_def_cfa_register 13
+ 312              		@ sp needed
+ 313 003c 80BD     		pop	{r7, pc}
+ 314              	.L16:
+ 315 003e 00BF     		.align	2
+ 316              	.L15:
+ 317 0040 96650040 		.word	1073767830
+ 318 0044 76650040 		.word	1073767798
+ 319              		.cfi_endproc
+ 320              	.LFE4:
+ 321              		.size	I2S_Codec_audio_EnableTx, .-I2S_Codec_audio_EnableTx
+ 322              		.section	.text.I2S_Codec_audio_DisableTx,"ax",%progbits
+ 323              		.align	2
+ 324              		.global	I2S_Codec_audio_DisableTx
+ 325              		.thumb
+ 326              		.thumb_func
+ 327              		.type	I2S_Codec_audio_DisableTx, %function
+ 328              	I2S_Codec_audio_DisableTx:
+ 329              	.LFB5:
+ 296:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 297:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 298:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /*******************************************************************************
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 12
+
+
+ 299:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Function Name: I2S_Codec_audio_DisableTx
+ 300:Generated_Source\PSoC5/I2S_Codec_audio.c ****     ********************************************************************************
+ 301:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 302:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Summary:
+ 303:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Disables the Tx direction of the I2S interface.  At the next word
+ 304:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  select falling edge transmission of data will stop and a constant 0 value
+ 305:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  will be transmitted.
+ 306:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 307:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Parameters:
+ 308:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 309:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 310:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Return:
+ 311:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 312:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 313:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *******************************************************************************/
+ 314:Generated_Source\PSoC5/I2S_Codec_audio.c ****     void I2S_Codec_audio_DisableTx(void) 
+ 315:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 330              		.loc 1 315 0
+ 331              		.cfi_startproc
+ 332              		@ args = 0, pretend = 0, frame = 8
+ 333              		@ frame_needed = 1, uses_anonymous_args = 0
+ 334 0000 80B5     		push	{r7, lr}
+ 335              		.cfi_def_cfa_offset 8
+ 336              		.cfi_offset 7, -8
+ 337              		.cfi_offset 14, -4
+ 338 0002 82B0     		sub	sp, sp, #8
+ 339              		.cfi_def_cfa_offset 16
+ 340 0004 00AF     		add	r7, sp, #0
+ 341              		.cfi_def_cfa_register 7
+ 316:Generated_Source\PSoC5/I2S_Codec_audio.c ****         uint8 enableInterrupts;
+ 317:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 318:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_CONTROL_REG &= (uint8)~I2S_Codec_audio_TX_EN;
+ 342              		.loc 1 318 0
+ 343 0006 0E4A     		ldr	r2, .L18
+ 344 0008 0D4B     		ldr	r3, .L18
+ 345 000a 1B78     		ldrb	r3, [r3]
+ 346 000c DBB2     		uxtb	r3, r3
+ 347 000e 23F00103 		bic	r3, r3, #1
+ 348 0012 DBB2     		uxtb	r3, r3
+ 349 0014 1370     		strb	r3, [r2]
+ 319:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 320:Generated_Source\PSoC5/I2S_Codec_audio.c ****         enableInterrupts = CyEnterCriticalSection();
+ 350              		.loc 1 320 0
+ 351 0016 FFF7FEFF 		bl	CyEnterCriticalSection
+ 352 001a 0346     		mov	r3, r0
+ 353 001c FB71     		strb	r3, [r7, #7]
+ 321:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_TX_STS0_1_ACTL_REG &= (uint8)~I2S_Codec_audio_INT_EN;
+ 354              		.loc 1 321 0
+ 355 001e 094A     		ldr	r2, .L18+4
+ 356 0020 084B     		ldr	r3, .L18+4
+ 357 0022 1B78     		ldrb	r3, [r3]
+ 358 0024 DBB2     		uxtb	r3, r3
+ 359 0026 23F01003 		bic	r3, r3, #16
+ 360 002a DBB2     		uxtb	r3, r3
+ 361 002c 1370     		strb	r3, [r2]
+ 322:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_TX_STS2_3_ACTL_REG
+ 323:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_TX_STS2_3_ACTL_REG &= (uint8)~I2S_Codec_audio_INT_EN;
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 13
+
+
+ 324:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STS2_3_ACTL_REG */
+ 325:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_TX_STS4_ACTL_REG
+ 326:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_TX_STS4_ACTL_REG &= (uint8)~I2S_Codec_audio_INT_EN;
+ 327:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STS4_ACTL_REG */
+ 328:Generated_Source\PSoC5/I2S_Codec_audio.c ****         CyExitCriticalSection(enableInterrupts);
+ 362              		.loc 1 328 0
+ 363 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 364 0030 1846     		mov	r0, r3
+ 365 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 329:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 366              		.loc 1 329 0
+ 367 0036 00BF     		nop
+ 368 0038 0837     		adds	r7, r7, #8
+ 369              		.cfi_def_cfa_offset 8
+ 370 003a BD46     		mov	sp, r7
+ 371              		.cfi_def_cfa_register 13
+ 372              		@ sp needed
+ 373 003c 80BD     		pop	{r7, pc}
+ 374              	.L19:
+ 375 003e 00BF     		.align	2
+ 376              	.L18:
+ 377 0040 76650040 		.word	1073767798
+ 378 0044 96650040 		.word	1073767830
+ 379              		.cfi_endproc
+ 380              	.LFE5:
+ 381              		.size	I2S_Codec_audio_DisableTx, .-I2S_Codec_audio_DisableTx
+ 382              		.section	.text.I2S_Codec_audio_ClearTxFIFO,"ax",%progbits
+ 383              		.align	2
+ 384              		.global	I2S_Codec_audio_ClearTxFIFO
+ 385              		.thumb
+ 386              		.thumb_func
+ 387              		.type	I2S_Codec_audio_ClearTxFIFO, %function
+ 388              	I2S_Codec_audio_ClearTxFIFO:
+ 389              	.LFB6:
+ 330:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 331:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 332:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /*******************************************************************************
+ 333:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Function Name: I2S_Codec_audio_ClearTxFIFO
+ 334:Generated_Source\PSoC5/I2S_Codec_audio.c ****     ********************************************************************************
+ 335:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 336:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Summary:
+ 337:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Clears out the FIFOs for all Tx channels. Any data present in the FIFO will
+ 338:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  not be sent. This call should be made only when the Tx direction is disabled.
+ 339:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 340:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Parameters:
+ 341:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 342:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 343:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Return:
+ 344:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 345:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 346:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *******************************************************************************/
+ 347:Generated_Source\PSoC5/I2S_Codec_audio.c ****     void I2S_Codec_audio_ClearTxFIFO(void) 
+ 348:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 390              		.loc 1 348 0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 8
+ 393              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 14
+
+
+ 394 0000 80B5     		push	{r7, lr}
+ 395              		.cfi_def_cfa_offset 8
+ 396              		.cfi_offset 7, -8
+ 397              		.cfi_offset 14, -4
+ 398 0002 82B0     		sub	sp, sp, #8
+ 399              		.cfi_def_cfa_offset 16
+ 400 0004 00AF     		add	r7, sp, #0
+ 401              		.cfi_def_cfa_register 7
+ 349:Generated_Source\PSoC5/I2S_Codec_audio.c ****         uint8 enableInterrupts;
+ 350:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 351:Generated_Source\PSoC5/I2S_Codec_audio.c ****         enableInterrupts = CyEnterCriticalSection();
+ 402              		.loc 1 351 0
+ 403 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 404 000a 0346     		mov	r3, r0
+ 405 000c FB71     		strb	r3, [r7, #7]
+ 352:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_CLEAR_TX_FIFO(CH0);
+ 406              		.loc 1 352 0
+ 407 000e 0C4A     		ldr	r2, .L21
+ 408 0010 0B4B     		ldr	r3, .L21
+ 409 0012 1B78     		ldrb	r3, [r3]
+ 410 0014 DBB2     		uxtb	r3, r3
+ 411 0016 43F00303 		orr	r3, r3, #3
+ 412 001a DBB2     		uxtb	r3, r3
+ 413 001c 1370     		strb	r3, [r2]
+ 414 001e 084A     		ldr	r2, .L21
+ 415 0020 074B     		ldr	r3, .L21
+ 416 0022 1B78     		ldrb	r3, [r3]
+ 417 0024 DBB2     		uxtb	r3, r3
+ 418 0026 23F00303 		bic	r3, r3, #3
+ 419 002a DBB2     		uxtb	r3, r3
+ 420 002c 1370     		strb	r3, [r2]
+ 353:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_1_PRESENT)
+ 354:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_TX_FIFO(CH1);
+ 355:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_1_PRESENT */
+ 356:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_2_PRESENT)
+ 357:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_TX_FIFO(CH2);
+ 358:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_2_PRESENT */
+ 359:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_3_PRESENT)
+ 360:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_TX_FIFO(CH3);
+ 361:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_3_PRESENT */
+ 362:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_TX_STEREO_4_PRESENT)
+ 363:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_TX_FIFO(CH4);
+ 364:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_TX_STEREO_4_PRESENT */
+ 365:Generated_Source\PSoC5/I2S_Codec_audio.c ****         CyExitCriticalSection(enableInterrupts);
+ 421              		.loc 1 365 0
+ 422 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 423 0030 1846     		mov	r0, r3
+ 424 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 366:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 425              		.loc 1 366 0
+ 426 0036 00BF     		nop
+ 427 0038 0837     		adds	r7, r7, #8
+ 428              		.cfi_def_cfa_offset 8
+ 429 003a BD46     		mov	sp, r7
+ 430              		.cfi_def_cfa_register 13
+ 431              		@ sp needed
+ 432 003c 80BD     		pop	{r7, pc}
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 15
+
+
+ 433              	.L22:
+ 434 003e 00BF     		.align	2
+ 435              	.L21:
+ 436 0040 95650040 		.word	1073767829
+ 437              		.cfi_endproc
+ 438              	.LFE6:
+ 439              		.size	I2S_Codec_audio_ClearTxFIFO, .-I2S_Codec_audio_ClearTxFIFO
+ 440              		.section	.text.I2S_Codec_audio_EnableRx,"ax",%progbits
+ 441              		.align	2
+ 442              		.global	I2S_Codec_audio_EnableRx
+ 443              		.thumb
+ 444              		.thumb_func
+ 445              		.type	I2S_Codec_audio_EnableRx, %function
+ 446              	I2S_Codec_audio_EnableRx:
+ 447              	.LFB7:
+ 367:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 368:Generated_Source\PSoC5/I2S_Codec_audio.c **** #endif /* (I2S_Codec_audio_TX_DIRECTION_ENABLE) */
+ 369:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 370:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 371:Generated_Source\PSoC5/I2S_Codec_audio.c **** #if(I2S_Codec_audio_RX_DIRECTION_ENABLE)
+ 372:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /*******************************************************************************
+ 373:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Function Name: I2S_Codec_audio_EnableRx
+ 374:Generated_Source\PSoC5/I2S_Codec_audio.c ****     ********************************************************************************
+ 375:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 376:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Summary:
+ 377:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Enables the Rx direction of the I2S interface.  At the next word
+ 378:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  select falling edge reception of data will begin.
+ 379:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 380:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Parameters:
+ 381:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 382:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 383:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Return:
+ 384:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 385:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 386:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *******************************************************************************/
+ 387:Generated_Source\PSoC5/I2S_Codec_audio.c ****     void I2S_Codec_audio_EnableRx(void) 
+ 388:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 448              		.loc 1 388 0
+ 449              		.cfi_startproc
+ 450              		@ args = 0, pretend = 0, frame = 8
+ 451              		@ frame_needed = 1, uses_anonymous_args = 0
+ 452 0000 80B5     		push	{r7, lr}
+ 453              		.cfi_def_cfa_offset 8
+ 454              		.cfi_offset 7, -8
+ 455              		.cfi_offset 14, -4
+ 456 0002 82B0     		sub	sp, sp, #8
+ 457              		.cfi_def_cfa_offset 16
+ 458 0004 00AF     		add	r7, sp, #0
+ 459              		.cfi_def_cfa_register 7
+ 389:Generated_Source\PSoC5/I2S_Codec_audio.c ****         uint8 enableInterrupts;
+ 390:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 391:Generated_Source\PSoC5/I2S_Codec_audio.c ****         enableInterrupts = CyEnterCriticalSection();
+ 460              		.loc 1 391 0
+ 461 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 462 000a 0346     		mov	r3, r0
+ 463 000c FB71     		strb	r3, [r7, #7]
+ 392:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_RX_STS0_1_ACTL_REG |= I2S_Codec_audio_INT_EN;
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 16
+
+
+ 464              		.loc 1 392 0
+ 465 000e 0C4A     		ldr	r2, .L24
+ 466 0010 0B4B     		ldr	r3, .L24
+ 467 0012 1B78     		ldrb	r3, [r3]
+ 468 0014 DBB2     		uxtb	r3, r3
+ 469 0016 43F01003 		orr	r3, r3, #16
+ 470 001a DBB2     		uxtb	r3, r3
+ 471 001c 1370     		strb	r3, [r2]
+ 393:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_RX_STS2_3_ACTL_REG
+ 394:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_RX_STS2_3_ACTL_REG |= I2S_Codec_audio_INT_EN;
+ 395:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STS2_3_ACTL_REG */
+ 396:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_RX_STS4_ACTL_REG
+ 397:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_RX_STS4_ACTL_REG |= I2S_Codec_audio_INT_EN;
+ 398:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STS4_ACTL_REG */
+ 399:Generated_Source\PSoC5/I2S_Codec_audio.c ****         CyExitCriticalSection(enableInterrupts);
+ 472              		.loc 1 399 0
+ 473 001e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 474 0020 1846     		mov	r0, r3
+ 475 0022 FFF7FEFF 		bl	CyExitCriticalSection
+ 400:Generated_Source\PSoC5/I2S_Codec_audio.c ****         
+ 401:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_CONTROL_REG |= I2S_Codec_audio_RX_EN;
+ 476              		.loc 1 401 0
+ 477 0026 074A     		ldr	r2, .L24+4
+ 478 0028 064B     		ldr	r3, .L24+4
+ 479 002a 1B78     		ldrb	r3, [r3]
+ 480 002c DBB2     		uxtb	r3, r3
+ 481 002e 43F00203 		orr	r3, r3, #2
+ 482 0032 DBB2     		uxtb	r3, r3
+ 483 0034 1370     		strb	r3, [r2]
+ 402:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 484              		.loc 1 402 0
+ 485 0036 00BF     		nop
+ 486 0038 0837     		adds	r7, r7, #8
+ 487              		.cfi_def_cfa_offset 8
+ 488 003a BD46     		mov	sp, r7
+ 489              		.cfi_def_cfa_register 13
+ 490              		@ sp needed
+ 491 003c 80BD     		pop	{r7, pc}
+ 492              	.L25:
+ 493 003e 00BF     		.align	2
+ 494              	.L24:
+ 495 0040 97650040 		.word	1073767831
+ 496 0044 76650040 		.word	1073767798
+ 497              		.cfi_endproc
+ 498              	.LFE7:
+ 499              		.size	I2S_Codec_audio_EnableRx, .-I2S_Codec_audio_EnableRx
+ 500              		.section	.text.I2S_Codec_audio_DisableRx,"ax",%progbits
+ 501              		.align	2
+ 502              		.global	I2S_Codec_audio_DisableRx
+ 503              		.thumb
+ 504              		.thumb_func
+ 505              		.type	I2S_Codec_audio_DisableRx, %function
+ 506              	I2S_Codec_audio_DisableRx:
+ 507              	.LFB8:
+ 403:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 404:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 405:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /*******************************************************************************
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 17
+
+
+ 406:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Function Name: I2S_Codec_audio_DisableRx
+ 407:Generated_Source\PSoC5/I2S_Codec_audio.c ****     ********************************************************************************
+ 408:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 409:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Summary:
+ 410:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Disables the Rx direction of the I2S interface.
+ 411:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 412:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Parameters:
+ 413:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 414:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 415:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Return:
+ 416:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 417:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 418:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *******************************************************************************/
+ 419:Generated_Source\PSoC5/I2S_Codec_audio.c ****     void I2S_Codec_audio_DisableRx(void) 
+ 420:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 508              		.loc 1 420 0
+ 509              		.cfi_startproc
+ 510              		@ args = 0, pretend = 0, frame = 8
+ 511              		@ frame_needed = 1, uses_anonymous_args = 0
+ 512 0000 80B5     		push	{r7, lr}
+ 513              		.cfi_def_cfa_offset 8
+ 514              		.cfi_offset 7, -8
+ 515              		.cfi_offset 14, -4
+ 516 0002 82B0     		sub	sp, sp, #8
+ 517              		.cfi_def_cfa_offset 16
+ 518 0004 00AF     		add	r7, sp, #0
+ 519              		.cfi_def_cfa_register 7
+ 421:Generated_Source\PSoC5/I2S_Codec_audio.c ****         uint8 enableInterrupts;
+ 422:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 423:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_CONTROL_REG &= (uint8)~I2S_Codec_audio_RX_EN;
+ 520              		.loc 1 423 0
+ 521 0006 0E4A     		ldr	r2, .L27
+ 522 0008 0D4B     		ldr	r3, .L27
+ 523 000a 1B78     		ldrb	r3, [r3]
+ 524 000c DBB2     		uxtb	r3, r3
+ 525 000e 23F00203 		bic	r3, r3, #2
+ 526 0012 DBB2     		uxtb	r3, r3
+ 527 0014 1370     		strb	r3, [r2]
+ 424:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 425:Generated_Source\PSoC5/I2S_Codec_audio.c ****         enableInterrupts = CyEnterCriticalSection();
+ 528              		.loc 1 425 0
+ 529 0016 FFF7FEFF 		bl	CyEnterCriticalSection
+ 530 001a 0346     		mov	r3, r0
+ 531 001c FB71     		strb	r3, [r7, #7]
+ 426:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_RX_STS0_1_ACTL_REG &= (uint8)~I2S_Codec_audio_INT_EN;
+ 532              		.loc 1 426 0
+ 533 001e 094A     		ldr	r2, .L27+4
+ 534 0020 084B     		ldr	r3, .L27+4
+ 535 0022 1B78     		ldrb	r3, [r3]
+ 536 0024 DBB2     		uxtb	r3, r3
+ 537 0026 23F01003 		bic	r3, r3, #16
+ 538 002a DBB2     		uxtb	r3, r3
+ 539 002c 1370     		strb	r3, [r2]
+ 427:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_RX_STS2_3_ACTL_REG
+ 428:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_RX_STS2_3_ACTL_REG &= (uint8)~I2S_Codec_audio_INT_EN;
+ 429:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STS2_3_ACTL_REG */
+ 430:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #ifdef I2S_Codec_audio_RX_STS4_ACTL_REG
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 18
+
+
+ 431:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_RX_STS4_ACTL_REG &= (uint8)~I2S_Codec_audio_INT_EN;
+ 432:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STS4_ACTL_REG */
+ 433:Generated_Source\PSoC5/I2S_Codec_audio.c ****         CyExitCriticalSection(enableInterrupts);
+ 540              		.loc 1 433 0
+ 541 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 542 0030 1846     		mov	r0, r3
+ 543 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 434:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 544              		.loc 1 434 0
+ 545 0036 00BF     		nop
+ 546 0038 0837     		adds	r7, r7, #8
+ 547              		.cfi_def_cfa_offset 8
+ 548 003a BD46     		mov	sp, r7
+ 549              		.cfi_def_cfa_register 13
+ 550              		@ sp needed
+ 551 003c 80BD     		pop	{r7, pc}
+ 552              	.L28:
+ 553 003e 00BF     		.align	2
+ 554              	.L27:
+ 555 0040 76650040 		.word	1073767798
+ 556 0044 97650040 		.word	1073767831
+ 557              		.cfi_endproc
+ 558              	.LFE8:
+ 559              		.size	I2S_Codec_audio_DisableRx, .-I2S_Codec_audio_DisableRx
+ 560              		.section	.text.I2S_Codec_audio_ClearRxFIFO,"ax",%progbits
+ 561              		.align	2
+ 562              		.global	I2S_Codec_audio_ClearRxFIFO
+ 563              		.thumb
+ 564              		.thumb_func
+ 565              		.type	I2S_Codec_audio_ClearRxFIFO, %function
+ 566              	I2S_Codec_audio_ClearRxFIFO:
+ 567              	.LFB9:
+ 435:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 436:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 437:Generated_Source\PSoC5/I2S_Codec_audio.c ****     /*******************************************************************************
+ 438:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Function Name: I2S_Codec_audio_ClearRxFIFO
+ 439:Generated_Source\PSoC5/I2S_Codec_audio.c ****     ********************************************************************************
+ 440:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 441:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Summary:
+ 442:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  Clears out the Rx FIFO.  Any data present in the FIFO will be lost.
+ 443:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  This call should be made only when the Rx direction is disabled.
+ 444:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 445:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Parameters:
+ 446:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 447:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 448:Generated_Source\PSoC5/I2S_Codec_audio.c ****     * Return:
+ 449:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *  None.
+ 450:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *
+ 451:Generated_Source\PSoC5/I2S_Codec_audio.c ****     *******************************************************************************/
+ 452:Generated_Source\PSoC5/I2S_Codec_audio.c ****     void I2S_Codec_audio_ClearRxFIFO(void) 
+ 453:Generated_Source\PSoC5/I2S_Codec_audio.c ****     {
+ 568              		.loc 1 453 0
+ 569              		.cfi_startproc
+ 570              		@ args = 0, pretend = 0, frame = 8
+ 571              		@ frame_needed = 1, uses_anonymous_args = 0
+ 572 0000 80B5     		push	{r7, lr}
+ 573              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 19
+
+
+ 574              		.cfi_offset 7, -8
+ 575              		.cfi_offset 14, -4
+ 576 0002 82B0     		sub	sp, sp, #8
+ 577              		.cfi_def_cfa_offset 16
+ 578 0004 00AF     		add	r7, sp, #0
+ 579              		.cfi_def_cfa_register 7
+ 454:Generated_Source\PSoC5/I2S_Codec_audio.c ****         uint8 enableInterrupts;
+ 455:Generated_Source\PSoC5/I2S_Codec_audio.c **** 
+ 456:Generated_Source\PSoC5/I2S_Codec_audio.c ****         enableInterrupts = CyEnterCriticalSection();
+ 580              		.loc 1 456 0
+ 581 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 582 000a 0346     		mov	r3, r0
+ 583 000c FB71     		strb	r3, [r7, #7]
+ 457:Generated_Source\PSoC5/I2S_Codec_audio.c ****         I2S_Codec_audio_CLEAR_RX_FIFO(CH0);
+ 584              		.loc 1 457 0
+ 585 000e 0C4A     		ldr	r2, .L30
+ 586 0010 0B4B     		ldr	r3, .L30
+ 587 0012 1B78     		ldrb	r3, [r3]
+ 588 0014 DBB2     		uxtb	r3, r3
+ 589 0016 43F00303 		orr	r3, r3, #3
+ 590 001a DBB2     		uxtb	r3, r3
+ 591 001c 1370     		strb	r3, [r2]
+ 592 001e 084A     		ldr	r2, .L30
+ 593 0020 074B     		ldr	r3, .L30
+ 594 0022 1B78     		ldrb	r3, [r3]
+ 595 0024 DBB2     		uxtb	r3, r3
+ 596 0026 23F00303 		bic	r3, r3, #3
+ 597 002a DBB2     		uxtb	r3, r3
+ 598 002c 1370     		strb	r3, [r2]
+ 458:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_1_PRESENT)
+ 459:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_RX_FIFO(CH1);
+ 460:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_1_PRESENT */
+ 461:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_2_PRESENT)
+ 462:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_RX_FIFO(CH2);
+ 463:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_2_PRESENT */
+ 464:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_3_PRESENT)
+ 465:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_RX_FIFO(CH3);
+ 466:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_3_PRESENT */
+ 467:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #if (I2S_Codec_audio_RX_STEREO_4_PRESENT)
+ 468:Generated_Source\PSoC5/I2S_Codec_audio.c ****             I2S_Codec_audio_CLEAR_RX_FIFO(CH4);
+ 469:Generated_Source\PSoC5/I2S_Codec_audio.c ****         #endif /* I2S_Codec_audio_RX_STEREO_4_PRESENT */
+ 470:Generated_Source\PSoC5/I2S_Codec_audio.c ****         CyExitCriticalSection(enableInterrupts);
+ 599              		.loc 1 470 0
+ 600 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 601 0030 1846     		mov	r0, r3
+ 602 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 471:Generated_Source\PSoC5/I2S_Codec_audio.c ****     }
+ 603              		.loc 1 471 0
+ 604 0036 00BF     		nop
+ 605 0038 0837     		adds	r7, r7, #8
+ 606              		.cfi_def_cfa_offset 8
+ 607 003a BD46     		mov	sp, r7
+ 608              		.cfi_def_cfa_register 13
+ 609              		@ sp needed
+ 610 003c 80BD     		pop	{r7, pc}
+ 611              	.L31:
+ 612 003e 00BF     		.align	2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 20
+
+
+ 613              	.L30:
+ 614 0040 96650040 		.word	1073767830
+ 615              		.cfi_endproc
+ 616              	.LFE9:
+ 617              		.size	I2S_Codec_audio_ClearRxFIFO, .-I2S_Codec_audio_ClearRxFIFO
+ 618              		.text
+ 619              	.Letext0:
+ 620              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 621              		.section	.debug_info,"",%progbits
+ 622              	.Ldebug_info0:
+ 623 0000 07020000 		.4byte	0x207
+ 624 0004 0400     		.2byte	0x4
+ 625 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 626 000a 04       		.byte	0x4
+ 627 000b 01       		.uleb128 0x1
+ 628 000c 15000000 		.4byte	.LASF27
+ 629 0010 0C       		.byte	0xc
+ 630 0011 C5020000 		.4byte	.LASF28
+ 631 0015 4F010000 		.4byte	.LASF29
+ 632 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 633 001d 00000000 		.4byte	0
+ 634 0021 00000000 		.4byte	.Ldebug_line0
+ 635 0025 02       		.uleb128 0x2
+ 636 0026 04       		.byte	0x4
+ 637 0027 05       		.byte	0x5
+ 638 0028 696E7400 		.ascii	"int\000"
+ 639 002c 03       		.uleb128 0x3
+ 640 002d 04       		.byte	0x4
+ 641 002e 07       		.byte	0x7
+ 642 002f 42010000 		.4byte	.LASF0
+ 643 0033 03       		.uleb128 0x3
+ 644 0034 08       		.byte	0x8
+ 645 0035 05       		.byte	0x5
+ 646 0036 51020000 		.4byte	.LASF1
+ 647 003a 03       		.uleb128 0x3
+ 648 003b 08       		.byte	0x8
+ 649 003c 04       		.byte	0x4
+ 650 003d AD020000 		.4byte	.LASF2
+ 651 0041 03       		.uleb128 0x3
+ 652 0042 01       		.byte	0x1
+ 653 0043 06       		.byte	0x6
+ 654 0044 B9020000 		.4byte	.LASF3
+ 655 0048 03       		.uleb128 0x3
+ 656 0049 01       		.byte	0x1
+ 657 004a 08       		.byte	0x8
+ 658 004b D4000000 		.4byte	.LASF4
+ 659 004f 03       		.uleb128 0x3
+ 660 0050 02       		.byte	0x2
+ 661 0051 05       		.byte	0x5
+ 662 0052 7E020000 		.4byte	.LASF5
+ 663 0056 03       		.uleb128 0x3
+ 664 0057 02       		.byte	0x2
+ 665 0058 07       		.byte	0x7
+ 666 0059 BB000000 		.4byte	.LASF6
+ 667 005d 03       		.uleb128 0x3
+ 668 005e 04       		.byte	0x4
+ 669 005f 05       		.byte	0x5
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 21
+
+
+ 670 0060 A4020000 		.4byte	.LASF7
+ 671 0064 03       		.uleb128 0x3
+ 672 0065 04       		.byte	0x4
+ 673 0066 07       		.byte	0x7
+ 674 0067 FC000000 		.4byte	.LASF8
+ 675 006b 03       		.uleb128 0x3
+ 676 006c 08       		.byte	0x8
+ 677 006d 07       		.byte	0x7
+ 678 006e B2010000 		.4byte	.LASF9
+ 679 0072 03       		.uleb128 0x3
+ 680 0073 04       		.byte	0x4
+ 681 0074 07       		.byte	0x7
+ 682 0075 2E020000 		.4byte	.LASF10
+ 683 0079 03       		.uleb128 0x3
+ 684 007a 01       		.byte	0x1
+ 685 007b 08       		.byte	0x8
+ 686 007c 5F020000 		.4byte	.LASF11
+ 687 0080 04       		.uleb128 0x4
+ 688 0081 0E010000 		.4byte	.LASF14
+ 689 0085 02       		.byte	0x2
+ 690 0086 9201     		.2byte	0x192
+ 691 0088 48000000 		.4byte	0x48
+ 692 008c 03       		.uleb128 0x3
+ 693 008d 04       		.byte	0x4
+ 694 008e 04       		.byte	0x4
+ 695 008f CE000000 		.4byte	.LASF12
+ 696 0093 03       		.uleb128 0x3
+ 697 0094 08       		.byte	0x8
+ 698 0095 04       		.byte	0x4
+ 699 0096 3B010000 		.4byte	.LASF13
+ 700 009a 04       		.uleb128 0x4
+ 701 009b E2000000 		.4byte	.LASF15
+ 702 009f 02       		.byte	0x2
+ 703 00a0 3C02     		.2byte	0x23c
+ 704 00a2 A6000000 		.4byte	0xa6
+ 705 00a6 05       		.uleb128 0x5
+ 706 00a7 80000000 		.4byte	0x80
+ 707 00ab 06       		.uleb128 0x6
+ 708 00ac 17020000 		.4byte	.LASF18
+ 709 00b0 01       		.byte	0x1
+ 710 00b1 29       		.byte	0x29
+ 711 00b2 00000000 		.4byte	.LFB0
+ 712 00b6 48000000 		.4byte	.LFE0-.LFB0
+ 713 00ba 01       		.uleb128 0x1
+ 714 00bb 9C       		.byte	0x9c
+ 715 00bc CF000000 		.4byte	0xcf
+ 716 00c0 07       		.uleb128 0x7
+ 717 00c1 2A010000 		.4byte	.LASF20
+ 718 00c5 01       		.byte	0x1
+ 719 00c6 2B       		.byte	0x2b
+ 720 00c7 80000000 		.4byte	0x80
+ 721 00cb 02       		.uleb128 0x2
+ 722 00cc 91       		.byte	0x91
+ 723 00cd 77       		.sleb128 -9
+ 724 00ce 00       		.byte	0
+ 725 00cf 08       		.uleb128 0x8
+ 726 00d0 00000000 		.4byte	.LASF16
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 22
+
+
+ 727 00d4 01       		.byte	0x1
+ 728 00d5 45       		.byte	0x45
+ 729 00d6 00000000 		.4byte	.LFB1
+ 730 00da 48000000 		.4byte	.LFE1-.LFB1
+ 731 00de 01       		.uleb128 0x1
+ 732 00df 9C       		.byte	0x9c
+ 733 00e0 09       		.uleb128 0x9
+ 734 00e1 14010000 		.4byte	.LASF17
+ 735 00e5 01       		.byte	0x1
+ 736 00e6 9E       		.byte	0x9e
+ 737 00e7 00000000 		.4byte	.LFB2
+ 738 00eb 24000000 		.4byte	.LFE2-.LFB2
+ 739 00ef 01       		.uleb128 0x1
+ 740 00f0 9C       		.byte	0x9c
+ 741 00f1 06       		.uleb128 0x6
+ 742 00f2 E7000000 		.4byte	.LASF19
+ 743 00f6 01       		.byte	0x1
+ 744 00f7 B9       		.byte	0xb9
+ 745 00f8 00000000 		.4byte	.LFB3
+ 746 00fc 60000000 		.4byte	.LFE3-.LFB3
+ 747 0100 01       		.uleb128 0x1
+ 748 0101 9C       		.byte	0x9c
+ 749 0102 15010000 		.4byte	0x115
+ 750 0106 07       		.uleb128 0x7
+ 751 0107 2A010000 		.4byte	.LASF20
+ 752 010b 01       		.byte	0x1
+ 753 010c BB       		.byte	0xbb
+ 754 010d 80000000 		.4byte	0x80
+ 755 0111 02       		.uleb128 0x2
+ 756 0112 91       		.byte	0x91
+ 757 0113 77       		.sleb128 -9
+ 758 0114 00       		.byte	0
+ 759 0115 0A       		.uleb128 0xa
+ 760 0116 FE010000 		.4byte	.LASF21
+ 761 011a 01       		.byte	0x1
+ 762 011b 1801     		.2byte	0x118
+ 763 011d 00000000 		.4byte	.LFB4
+ 764 0121 48000000 		.4byte	.LFE4-.LFB4
+ 765 0125 01       		.uleb128 0x1
+ 766 0126 9C       		.byte	0x9c
+ 767 0127 3B010000 		.4byte	0x13b
+ 768 012b 0B       		.uleb128 0xb
+ 769 012c 2A010000 		.4byte	.LASF20
+ 770 0130 01       		.byte	0x1
+ 771 0131 1A01     		.2byte	0x11a
+ 772 0133 80000000 		.4byte	0x80
+ 773 0137 02       		.uleb128 0x2
+ 774 0138 91       		.byte	0x91
+ 775 0139 77       		.sleb128 -9
+ 776 013a 00       		.byte	0
+ 777 013b 0A       		.uleb128 0xa
+ 778 013c 64020000 		.4byte	.LASF22
+ 779 0140 01       		.byte	0x1
+ 780 0141 3A01     		.2byte	0x13a
+ 781 0143 00000000 		.4byte	.LFB5
+ 782 0147 48000000 		.4byte	.LFE5-.LFB5
+ 783 014b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 23
+
+
+ 784 014c 9C       		.byte	0x9c
+ 785 014d 61010000 		.4byte	0x161
+ 786 0151 0B       		.uleb128 0xb
+ 787 0152 2A010000 		.4byte	.LASF20
+ 788 0156 01       		.byte	0x1
+ 789 0157 3C01     		.2byte	0x13c
+ 790 0159 80000000 		.4byte	0x80
+ 791 015d 02       		.uleb128 0x2
+ 792 015e 91       		.byte	0x91
+ 793 015f 77       		.sleb128 -9
+ 794 0160 00       		.byte	0
+ 795 0161 0A       		.uleb128 0xa
+ 796 0162 E2010000 		.4byte	.LASF23
+ 797 0166 01       		.byte	0x1
+ 798 0167 5B01     		.2byte	0x15b
+ 799 0169 00000000 		.4byte	.LFB6
+ 800 016d 44000000 		.4byte	.LFE6-.LFB6
+ 801 0171 01       		.uleb128 0x1
+ 802 0172 9C       		.byte	0x9c
+ 803 0173 87010000 		.4byte	0x187
+ 804 0177 0B       		.uleb128 0xb
+ 805 0178 2A010000 		.4byte	.LASF20
+ 806 017c 01       		.byte	0x1
+ 807 017d 5D01     		.2byte	0x15d
+ 808 017f 80000000 		.4byte	0x80
+ 809 0183 02       		.uleb128 0x2
+ 810 0184 91       		.byte	0x91
+ 811 0185 77       		.sleb128 -9
+ 812 0186 00       		.byte	0
+ 813 0187 0A       		.uleb128 0xa
+ 814 0188 C9010000 		.4byte	.LASF24
+ 815 018c 01       		.byte	0x1
+ 816 018d 8301     		.2byte	0x183
+ 817 018f 00000000 		.4byte	.LFB7
+ 818 0193 48000000 		.4byte	.LFE7-.LFB7
+ 819 0197 01       		.uleb128 0x1
+ 820 0198 9C       		.byte	0x9c
+ 821 0199 AD010000 		.4byte	0x1ad
+ 822 019d 0B       		.uleb128 0xb
+ 823 019e 2A010000 		.4byte	.LASF20
+ 824 01a2 01       		.byte	0x1
+ 825 01a3 8501     		.2byte	0x185
+ 826 01a5 80000000 		.4byte	0x80
+ 827 01a9 02       		.uleb128 0x2
+ 828 01aa 91       		.byte	0x91
+ 829 01ab 77       		.sleb128 -9
+ 830 01ac 00       		.byte	0
+ 831 01ad 0A       		.uleb128 0xa
+ 832 01ae 37020000 		.4byte	.LASF25
+ 833 01b2 01       		.byte	0x1
+ 834 01b3 A301     		.2byte	0x1a3
+ 835 01b5 00000000 		.4byte	.LFB8
+ 836 01b9 48000000 		.4byte	.LFE8-.LFB8
+ 837 01bd 01       		.uleb128 0x1
+ 838 01be 9C       		.byte	0x9c
+ 839 01bf D3010000 		.4byte	0x1d3
+ 840 01c3 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 24
+
+
+ 841 01c4 2A010000 		.4byte	.LASF20
+ 842 01c8 01       		.byte	0x1
+ 843 01c9 A501     		.2byte	0x1a5
+ 844 01cb 80000000 		.4byte	0x80
+ 845 01cf 02       		.uleb128 0x2
+ 846 01d0 91       		.byte	0x91
+ 847 01d1 77       		.sleb128 -9
+ 848 01d2 00       		.byte	0
+ 849 01d3 0A       		.uleb128 0xa
+ 850 01d4 88020000 		.4byte	.LASF26
+ 851 01d8 01       		.byte	0x1
+ 852 01d9 C401     		.2byte	0x1c4
+ 853 01db 00000000 		.4byte	.LFB9
+ 854 01df 44000000 		.4byte	.LFE9-.LFB9
+ 855 01e3 01       		.uleb128 0x1
+ 856 01e4 9C       		.byte	0x9c
+ 857 01e5 F9010000 		.4byte	0x1f9
+ 858 01e9 0B       		.uleb128 0xb
+ 859 01ea 2A010000 		.4byte	.LASF20
+ 860 01ee 01       		.byte	0x1
+ 861 01ef C601     		.2byte	0x1c6
+ 862 01f1 80000000 		.4byte	0x80
+ 863 01f5 02       		.uleb128 0x2
+ 864 01f6 91       		.byte	0x91
+ 865 01f7 77       		.sleb128 -9
+ 866 01f8 00       		.byte	0
+ 867 01f9 0C       		.uleb128 0xc
+ 868 01fa A3000000 		.4byte	.LASF30
+ 869 01fe 01       		.byte	0x1
+ 870 01ff 15       		.byte	0x15
+ 871 0200 80000000 		.4byte	0x80
+ 872 0204 05       		.uleb128 0x5
+ 873 0205 03       		.byte	0x3
+ 874 0206 00000000 		.4byte	I2S_Codec_audio_initVar
+ 875 020a 00       		.byte	0
+ 876              		.section	.debug_abbrev,"",%progbits
+ 877              	.Ldebug_abbrev0:
+ 878 0000 01       		.uleb128 0x1
+ 879 0001 11       		.uleb128 0x11
+ 880 0002 01       		.byte	0x1
+ 881 0003 25       		.uleb128 0x25
+ 882 0004 0E       		.uleb128 0xe
+ 883 0005 13       		.uleb128 0x13
+ 884 0006 0B       		.uleb128 0xb
+ 885 0007 03       		.uleb128 0x3
+ 886 0008 0E       		.uleb128 0xe
+ 887 0009 1B       		.uleb128 0x1b
+ 888 000a 0E       		.uleb128 0xe
+ 889 000b 55       		.uleb128 0x55
+ 890 000c 17       		.uleb128 0x17
+ 891 000d 11       		.uleb128 0x11
+ 892 000e 01       		.uleb128 0x1
+ 893 000f 10       		.uleb128 0x10
+ 894 0010 17       		.uleb128 0x17
+ 895 0011 00       		.byte	0
+ 896 0012 00       		.byte	0
+ 897 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 25
+
+
+ 898 0014 24       		.uleb128 0x24
+ 899 0015 00       		.byte	0
+ 900 0016 0B       		.uleb128 0xb
+ 901 0017 0B       		.uleb128 0xb
+ 902 0018 3E       		.uleb128 0x3e
+ 903 0019 0B       		.uleb128 0xb
+ 904 001a 03       		.uleb128 0x3
+ 905 001b 08       		.uleb128 0x8
+ 906 001c 00       		.byte	0
+ 907 001d 00       		.byte	0
+ 908 001e 03       		.uleb128 0x3
+ 909 001f 24       		.uleb128 0x24
+ 910 0020 00       		.byte	0
+ 911 0021 0B       		.uleb128 0xb
+ 912 0022 0B       		.uleb128 0xb
+ 913 0023 3E       		.uleb128 0x3e
+ 914 0024 0B       		.uleb128 0xb
+ 915 0025 03       		.uleb128 0x3
+ 916 0026 0E       		.uleb128 0xe
+ 917 0027 00       		.byte	0
+ 918 0028 00       		.byte	0
+ 919 0029 04       		.uleb128 0x4
+ 920 002a 16       		.uleb128 0x16
+ 921 002b 00       		.byte	0
+ 922 002c 03       		.uleb128 0x3
+ 923 002d 0E       		.uleb128 0xe
+ 924 002e 3A       		.uleb128 0x3a
+ 925 002f 0B       		.uleb128 0xb
+ 926 0030 3B       		.uleb128 0x3b
+ 927 0031 05       		.uleb128 0x5
+ 928 0032 49       		.uleb128 0x49
+ 929 0033 13       		.uleb128 0x13
+ 930 0034 00       		.byte	0
+ 931 0035 00       		.byte	0
+ 932 0036 05       		.uleb128 0x5
+ 933 0037 35       		.uleb128 0x35
+ 934 0038 00       		.byte	0
+ 935 0039 49       		.uleb128 0x49
+ 936 003a 13       		.uleb128 0x13
+ 937 003b 00       		.byte	0
+ 938 003c 00       		.byte	0
+ 939 003d 06       		.uleb128 0x6
+ 940 003e 2E       		.uleb128 0x2e
+ 941 003f 01       		.byte	0x1
+ 942 0040 3F       		.uleb128 0x3f
+ 943 0041 19       		.uleb128 0x19
+ 944 0042 03       		.uleb128 0x3
+ 945 0043 0E       		.uleb128 0xe
+ 946 0044 3A       		.uleb128 0x3a
+ 947 0045 0B       		.uleb128 0xb
+ 948 0046 3B       		.uleb128 0x3b
+ 949 0047 0B       		.uleb128 0xb
+ 950 0048 27       		.uleb128 0x27
+ 951 0049 19       		.uleb128 0x19
+ 952 004a 11       		.uleb128 0x11
+ 953 004b 01       		.uleb128 0x1
+ 954 004c 12       		.uleb128 0x12
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 26
+
+
+ 955 004d 06       		.uleb128 0x6
+ 956 004e 40       		.uleb128 0x40
+ 957 004f 18       		.uleb128 0x18
+ 958 0050 9642     		.uleb128 0x2116
+ 959 0052 19       		.uleb128 0x19
+ 960 0053 01       		.uleb128 0x1
+ 961 0054 13       		.uleb128 0x13
+ 962 0055 00       		.byte	0
+ 963 0056 00       		.byte	0
+ 964 0057 07       		.uleb128 0x7
+ 965 0058 34       		.uleb128 0x34
+ 966 0059 00       		.byte	0
+ 967 005a 03       		.uleb128 0x3
+ 968 005b 0E       		.uleb128 0xe
+ 969 005c 3A       		.uleb128 0x3a
+ 970 005d 0B       		.uleb128 0xb
+ 971 005e 3B       		.uleb128 0x3b
+ 972 005f 0B       		.uleb128 0xb
+ 973 0060 49       		.uleb128 0x49
+ 974 0061 13       		.uleb128 0x13
+ 975 0062 02       		.uleb128 0x2
+ 976 0063 18       		.uleb128 0x18
+ 977 0064 00       		.byte	0
+ 978 0065 00       		.byte	0
+ 979 0066 08       		.uleb128 0x8
+ 980 0067 2E       		.uleb128 0x2e
+ 981 0068 00       		.byte	0
+ 982 0069 3F       		.uleb128 0x3f
+ 983 006a 19       		.uleb128 0x19
+ 984 006b 03       		.uleb128 0x3
+ 985 006c 0E       		.uleb128 0xe
+ 986 006d 3A       		.uleb128 0x3a
+ 987 006e 0B       		.uleb128 0xb
+ 988 006f 3B       		.uleb128 0x3b
+ 989 0070 0B       		.uleb128 0xb
+ 990 0071 27       		.uleb128 0x27
+ 991 0072 19       		.uleb128 0x19
+ 992 0073 11       		.uleb128 0x11
+ 993 0074 01       		.uleb128 0x1
+ 994 0075 12       		.uleb128 0x12
+ 995 0076 06       		.uleb128 0x6
+ 996 0077 40       		.uleb128 0x40
+ 997 0078 18       		.uleb128 0x18
+ 998 0079 9742     		.uleb128 0x2117
+ 999 007b 19       		.uleb128 0x19
+ 1000 007c 00       		.byte	0
+ 1001 007d 00       		.byte	0
+ 1002 007e 09       		.uleb128 0x9
+ 1003 007f 2E       		.uleb128 0x2e
+ 1004 0080 00       		.byte	0
+ 1005 0081 3F       		.uleb128 0x3f
+ 1006 0082 19       		.uleb128 0x19
+ 1007 0083 03       		.uleb128 0x3
+ 1008 0084 0E       		.uleb128 0xe
+ 1009 0085 3A       		.uleb128 0x3a
+ 1010 0086 0B       		.uleb128 0xb
+ 1011 0087 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 27
+
+
+ 1012 0088 0B       		.uleb128 0xb
+ 1013 0089 27       		.uleb128 0x27
+ 1014 008a 19       		.uleb128 0x19
+ 1015 008b 11       		.uleb128 0x11
+ 1016 008c 01       		.uleb128 0x1
+ 1017 008d 12       		.uleb128 0x12
+ 1018 008e 06       		.uleb128 0x6
+ 1019 008f 40       		.uleb128 0x40
+ 1020 0090 18       		.uleb128 0x18
+ 1021 0091 9642     		.uleb128 0x2116
+ 1022 0093 19       		.uleb128 0x19
+ 1023 0094 00       		.byte	0
+ 1024 0095 00       		.byte	0
+ 1025 0096 0A       		.uleb128 0xa
+ 1026 0097 2E       		.uleb128 0x2e
+ 1027 0098 01       		.byte	0x1
+ 1028 0099 3F       		.uleb128 0x3f
+ 1029 009a 19       		.uleb128 0x19
+ 1030 009b 03       		.uleb128 0x3
+ 1031 009c 0E       		.uleb128 0xe
+ 1032 009d 3A       		.uleb128 0x3a
+ 1033 009e 0B       		.uleb128 0xb
+ 1034 009f 3B       		.uleb128 0x3b
+ 1035 00a0 05       		.uleb128 0x5
+ 1036 00a1 27       		.uleb128 0x27
+ 1037 00a2 19       		.uleb128 0x19
+ 1038 00a3 11       		.uleb128 0x11
+ 1039 00a4 01       		.uleb128 0x1
+ 1040 00a5 12       		.uleb128 0x12
+ 1041 00a6 06       		.uleb128 0x6
+ 1042 00a7 40       		.uleb128 0x40
+ 1043 00a8 18       		.uleb128 0x18
+ 1044 00a9 9642     		.uleb128 0x2116
+ 1045 00ab 19       		.uleb128 0x19
+ 1046 00ac 01       		.uleb128 0x1
+ 1047 00ad 13       		.uleb128 0x13
+ 1048 00ae 00       		.byte	0
+ 1049 00af 00       		.byte	0
+ 1050 00b0 0B       		.uleb128 0xb
+ 1051 00b1 34       		.uleb128 0x34
+ 1052 00b2 00       		.byte	0
+ 1053 00b3 03       		.uleb128 0x3
+ 1054 00b4 0E       		.uleb128 0xe
+ 1055 00b5 3A       		.uleb128 0x3a
+ 1056 00b6 0B       		.uleb128 0xb
+ 1057 00b7 3B       		.uleb128 0x3b
+ 1058 00b8 05       		.uleb128 0x5
+ 1059 00b9 49       		.uleb128 0x49
+ 1060 00ba 13       		.uleb128 0x13
+ 1061 00bb 02       		.uleb128 0x2
+ 1062 00bc 18       		.uleb128 0x18
+ 1063 00bd 00       		.byte	0
+ 1064 00be 00       		.byte	0
+ 1065 00bf 0C       		.uleb128 0xc
+ 1066 00c0 34       		.uleb128 0x34
+ 1067 00c1 00       		.byte	0
+ 1068 00c2 03       		.uleb128 0x3
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 28
+
+
+ 1069 00c3 0E       		.uleb128 0xe
+ 1070 00c4 3A       		.uleb128 0x3a
+ 1071 00c5 0B       		.uleb128 0xb
+ 1072 00c6 3B       		.uleb128 0x3b
+ 1073 00c7 0B       		.uleb128 0xb
+ 1074 00c8 49       		.uleb128 0x49
+ 1075 00c9 13       		.uleb128 0x13
+ 1076 00ca 3F       		.uleb128 0x3f
+ 1077 00cb 19       		.uleb128 0x19
+ 1078 00cc 02       		.uleb128 0x2
+ 1079 00cd 18       		.uleb128 0x18
+ 1080 00ce 00       		.byte	0
+ 1081 00cf 00       		.byte	0
+ 1082 00d0 00       		.byte	0
+ 1083              		.section	.debug_aranges,"",%progbits
+ 1084 0000 64000000 		.4byte	0x64
+ 1085 0004 0200     		.2byte	0x2
+ 1086 0006 00000000 		.4byte	.Ldebug_info0
+ 1087 000a 04       		.byte	0x4
+ 1088 000b 00       		.byte	0
+ 1089 000c 0000     		.2byte	0
+ 1090 000e 0000     		.2byte	0
+ 1091 0010 00000000 		.4byte	.LFB0
+ 1092 0014 48000000 		.4byte	.LFE0-.LFB0
+ 1093 0018 00000000 		.4byte	.LFB1
+ 1094 001c 48000000 		.4byte	.LFE1-.LFB1
+ 1095 0020 00000000 		.4byte	.LFB2
+ 1096 0024 24000000 		.4byte	.LFE2-.LFB2
+ 1097 0028 00000000 		.4byte	.LFB3
+ 1098 002c 60000000 		.4byte	.LFE3-.LFB3
+ 1099 0030 00000000 		.4byte	.LFB4
+ 1100 0034 48000000 		.4byte	.LFE4-.LFB4
+ 1101 0038 00000000 		.4byte	.LFB5
+ 1102 003c 48000000 		.4byte	.LFE5-.LFB5
+ 1103 0040 00000000 		.4byte	.LFB6
+ 1104 0044 44000000 		.4byte	.LFE6-.LFB6
+ 1105 0048 00000000 		.4byte	.LFB7
+ 1106 004c 48000000 		.4byte	.LFE7-.LFB7
+ 1107 0050 00000000 		.4byte	.LFB8
+ 1108 0054 48000000 		.4byte	.LFE8-.LFB8
+ 1109 0058 00000000 		.4byte	.LFB9
+ 1110 005c 44000000 		.4byte	.LFE9-.LFB9
+ 1111 0060 00000000 		.4byte	0
+ 1112 0064 00000000 		.4byte	0
+ 1113              		.section	.debug_ranges,"",%progbits
+ 1114              	.Ldebug_ranges0:
+ 1115 0000 00000000 		.4byte	.LFB0
+ 1116 0004 48000000 		.4byte	.LFE0
+ 1117 0008 00000000 		.4byte	.LFB1
+ 1118 000c 48000000 		.4byte	.LFE1
+ 1119 0010 00000000 		.4byte	.LFB2
+ 1120 0014 24000000 		.4byte	.LFE2
+ 1121 0018 00000000 		.4byte	.LFB3
+ 1122 001c 60000000 		.4byte	.LFE3
+ 1123 0020 00000000 		.4byte	.LFB4
+ 1124 0024 48000000 		.4byte	.LFE4
+ 1125 0028 00000000 		.4byte	.LFB5
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 29
+
+
+ 1126 002c 48000000 		.4byte	.LFE5
+ 1127 0030 00000000 		.4byte	.LFB6
+ 1128 0034 44000000 		.4byte	.LFE6
+ 1129 0038 00000000 		.4byte	.LFB7
+ 1130 003c 48000000 		.4byte	.LFE7
+ 1131 0040 00000000 		.4byte	.LFB8
+ 1132 0044 48000000 		.4byte	.LFE8
+ 1133 0048 00000000 		.4byte	.LFB9
+ 1134 004c 44000000 		.4byte	.LFE9
+ 1135 0050 00000000 		.4byte	0
+ 1136 0054 00000000 		.4byte	0
+ 1137              		.section	.debug_line,"",%progbits
+ 1138              	.Ldebug_line0:
+ 1139 0000 2E010000 		.section	.debug_str,"MS",%progbits,1
+ 1139      02004C00 
+ 1139      00000201 
+ 1139      FB0E0D00 
+ 1139      01010101 
+ 1140              	.LASF16:
+ 1141 0000 4932535F 		.ascii	"I2S_Codec_audio_Init\000"
+ 1141      436F6465 
+ 1141      635F6175 
+ 1141      64696F5F 
+ 1141      496E6974 
+ 1142              	.LASF27:
+ 1143 0015 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1143      43313120 
+ 1143      352E342E 
+ 1143      31203230 
+ 1143      31363036 
+ 1144 0048 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1144      20726576 
+ 1144      6973696F 
+ 1144      6E203233 
+ 1144      37373135 
+ 1145 007b 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1145      66756E63 
+ 1145      74696F6E 
+ 1145      2D736563 
+ 1145      74696F6E 
+ 1146              	.LASF30:
+ 1147 00a3 4932535F 		.ascii	"I2S_Codec_audio_initVar\000"
+ 1147      436F6465 
+ 1147      635F6175 
+ 1147      64696F5F 
+ 1147      696E6974 
+ 1148              	.LASF6:
+ 1149 00bb 73686F72 		.ascii	"short unsigned int\000"
+ 1149      7420756E 
+ 1149      7369676E 
+ 1149      65642069 
+ 1149      6E7400
+ 1150              	.LASF12:
+ 1151 00ce 666C6F61 		.ascii	"float\000"
+ 1151      7400
+ 1152              	.LASF4:
+ 1153 00d4 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 30
+
+
+ 1153      676E6564 
+ 1153      20636861 
+ 1153      7200
+ 1154              	.LASF15:
+ 1155 00e2 72656738 		.ascii	"reg8\000"
+ 1155      00
+ 1156              	.LASF19:
+ 1157 00e7 4932535F 		.ascii	"I2S_Codec_audio_Stop\000"
+ 1157      436F6465 
+ 1157      635F6175 
+ 1157      64696F5F 
+ 1157      53746F70 
+ 1158              	.LASF8:
+ 1159 00fc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1159      20756E73 
+ 1159      69676E65 
+ 1159      6420696E 
+ 1159      7400
+ 1160              	.LASF14:
+ 1161 010e 75696E74 		.ascii	"uint8\000"
+ 1161      3800
+ 1162              	.LASF17:
+ 1163 0114 4932535F 		.ascii	"I2S_Codec_audio_Start\000"
+ 1163      436F6465 
+ 1163      635F6175 
+ 1163      64696F5F 
+ 1163      53746172 
+ 1164              	.LASF20:
+ 1165 012a 656E6162 		.ascii	"enableInterrupts\000"
+ 1165      6C65496E 
+ 1165      74657272 
+ 1165      75707473 
+ 1165      00
+ 1166              	.LASF13:
+ 1167 013b 646F7562 		.ascii	"double\000"
+ 1167      6C6500
+ 1168              	.LASF0:
+ 1169 0142 756E7369 		.ascii	"unsigned int\000"
+ 1169      676E6564 
+ 1169      20696E74 
+ 1169      00
+ 1170              	.LASF29:
+ 1171 014f 433A5C55 		.ascii	"C:\\Users\\Jona\\Documents\\GitHub\\Signaalverwerki"
+ 1171      73657273 
+ 1171      5C4A6F6E 
+ 1171      615C446F 
+ 1171      63756D65 
+ 1172 017d 6E675C4C 		.ascii	"ng\\Labo1\\Labo1_opg2\\basisDSPproject_labo1_opg2.c"
+ 1172      61626F31 
+ 1172      5C4C6162 
+ 1172      6F315F6F 
+ 1172      7067325C 
+ 1173 01ad 7964736E 		.ascii	"ydsn\000"
+ 1173      00
+ 1174              	.LASF9:
+ 1175 01b2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1175      206C6F6E 
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 31
+
+
+ 1175      6720756E 
+ 1175      7369676E 
+ 1175      65642069 
+ 1176              	.LASF24:
+ 1177 01c9 4932535F 		.ascii	"I2S_Codec_audio_EnableRx\000"
+ 1177      436F6465 
+ 1177      635F6175 
+ 1177      64696F5F 
+ 1177      456E6162 
+ 1178              	.LASF23:
+ 1179 01e2 4932535F 		.ascii	"I2S_Codec_audio_ClearTxFIFO\000"
+ 1179      436F6465 
+ 1179      635F6175 
+ 1179      64696F5F 
+ 1179      436C6561 
+ 1180              	.LASF21:
+ 1181 01fe 4932535F 		.ascii	"I2S_Codec_audio_EnableTx\000"
+ 1181      436F6465 
+ 1181      635F6175 
+ 1181      64696F5F 
+ 1181      456E6162 
+ 1182              	.LASF18:
+ 1183 0217 4932535F 		.ascii	"I2S_Codec_audio_Enable\000"
+ 1183      436F6465 
+ 1183      635F6175 
+ 1183      64696F5F 
+ 1183      456E6162 
+ 1184              	.LASF10:
+ 1185 022e 73697A65 		.ascii	"sizetype\000"
+ 1185      74797065 
+ 1185      00
+ 1186              	.LASF25:
+ 1187 0237 4932535F 		.ascii	"I2S_Codec_audio_DisableRx\000"
+ 1187      436F6465 
+ 1187      635F6175 
+ 1187      64696F5F 
+ 1187      44697361 
+ 1188              	.LASF1:
+ 1189 0251 6C6F6E67 		.ascii	"long long int\000"
+ 1189      206C6F6E 
+ 1189      6720696E 
+ 1189      7400
+ 1190              	.LASF11:
+ 1191 025f 63686172 		.ascii	"char\000"
+ 1191      00
+ 1192              	.LASF22:
+ 1193 0264 4932535F 		.ascii	"I2S_Codec_audio_DisableTx\000"
+ 1193      436F6465 
+ 1193      635F6175 
+ 1193      64696F5F 
+ 1193      44697361 
+ 1194              	.LASF5:
+ 1195 027e 73686F72 		.ascii	"short int\000"
+ 1195      7420696E 
+ 1195      7400
+ 1196              	.LASF26:
+ 1197 0288 4932535F 		.ascii	"I2S_Codec_audio_ClearRxFIFO\000"
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccxdIDuQ.s 			page 32
+
+
+ 1197      436F6465 
+ 1197      635F6175 
+ 1197      64696F5F 
+ 1197      436C6561 
+ 1198              	.LASF7:
+ 1199 02a4 6C6F6E67 		.ascii	"long int\000"
+ 1199      20696E74 
+ 1199      00
+ 1200              	.LASF2:
+ 1201 02ad 6C6F6E67 		.ascii	"long double\000"
+ 1201      20646F75 
+ 1201      626C6500 
+ 1202              	.LASF3:
+ 1203 02b9 7369676E 		.ascii	"signed char\000"
+ 1203      65642063 
+ 1203      68617200 
+ 1204              	.LASF28:
+ 1205 02c5 47656E65 		.ascii	"Generated_Source\\PSoC5\\I2S_Codec_audio.c\000"
+ 1205      72617465 
+ 1205      645F536F 
+ 1205      75726365 
+ 1205      5C50536F 
+ 1206              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

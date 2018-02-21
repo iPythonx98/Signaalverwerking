@@ -1,0 +1,6 @@
+G:\Labo_DSP\Labo_1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\basisDSPproject_labo1_opg2.cyprj|e3c90668-447a-4716-9923-32d806d25af1
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|fa896683-82bd-4dd6-b243-243671bb3431
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|a37897db-a55f-425a-8a01-5c8fb94fa0ca
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|64d7c08c-3bd5-4192-9bc3-f4b51f104946
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|40c800f1-66c8-4ccc-87a5-3f1368f49be7
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|c58812e5-97a2-45e6-ad3b-47a8c77d589c

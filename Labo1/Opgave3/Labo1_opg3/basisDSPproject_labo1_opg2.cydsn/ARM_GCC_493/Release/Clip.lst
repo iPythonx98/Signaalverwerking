@@ -1,0 +1,963 @@
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Clip.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Clip_Read,"ax",%progbits
+  19              		.align	1
+  20              		.global	Clip_Read
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Clip_Read, %function
+  24              	Clip_Read:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Clip.c"
+   1:.\Generated_Source\PSoC5/Clip.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Clip.c **** * File Name: Clip.c  
+   3:.\Generated_Source\PSoC5/Clip.c **** * Version 1.90
+   4:.\Generated_Source\PSoC5/Clip.c **** *
+   5:.\Generated_Source\PSoC5/Clip.c **** * Description:
+   6:.\Generated_Source\PSoC5/Clip.c **** *  This file contains API to enable firmware to read the value of a Status 
+   7:.\Generated_Source\PSoC5/Clip.c **** *  Register.
+   8:.\Generated_Source\PSoC5/Clip.c **** *
+   9:.\Generated_Source\PSoC5/Clip.c **** * Note:
+  10:.\Generated_Source\PSoC5/Clip.c **** *
+  11:.\Generated_Source\PSoC5/Clip.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/Clip.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/Clip.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:.\Generated_Source\PSoC5/Clip.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:.\Generated_Source\PSoC5/Clip.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/Clip.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/Clip.c **** 
+  18:.\Generated_Source\PSoC5/Clip.c **** #include "Clip.h"
+  19:.\Generated_Source\PSoC5/Clip.c **** 
+  20:.\Generated_Source\PSoC5/Clip.c **** #if !defined(Clip_sts_sts_reg__REMOVED) /* Check for removal by optimization */
+  21:.\Generated_Source\PSoC5/Clip.c **** 
+  22:.\Generated_Source\PSoC5/Clip.c **** 
+  23:.\Generated_Source\PSoC5/Clip.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC5/Clip.c **** * Function Name: Clip_Read
+  25:.\Generated_Source\PSoC5/Clip.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC5/Clip.c **** *
+  27:.\Generated_Source\PSoC5/Clip.c **** * Summary:
+  28:.\Generated_Source\PSoC5/Clip.c **** *  Reads the current value assigned to the Status Register.
+  29:.\Generated_Source\PSoC5/Clip.c **** *
+  30:.\Generated_Source\PSoC5/Clip.c **** * Parameters:
+  31:.\Generated_Source\PSoC5/Clip.c **** *  None.
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/Clip.c **** *
+  33:.\Generated_Source\PSoC5/Clip.c **** * Return:
+  34:.\Generated_Source\PSoC5/Clip.c **** *  The current value in the Status Register.
+  35:.\Generated_Source\PSoC5/Clip.c **** *
+  36:.\Generated_Source\PSoC5/Clip.c **** *******************************************************************************/
+  37:.\Generated_Source\PSoC5/Clip.c **** uint8 Clip_Read(void) 
+  38:.\Generated_Source\PSoC5/Clip.c **** { 
+  27              		.loc 1 38 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  39:.\Generated_Source\PSoC5/Clip.c ****     return Clip_Status;
+  32              		.loc 1 39 0
+  33 0000 014B     		ldr	r3, .L2
+  34 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  40:.\Generated_Source\PSoC5/Clip.c **** }
+  35              		.loc 1 40 0
+  36 0004 7047     		bx	lr
+  37              	.L3:
+  38 0006 00BF     		.align	2
+  39              	.L2:
+  40 0008 67640040 		.word	1073767527
+  41              		.cfi_endproc
+  42              	.LFE0:
+  43              		.size	Clip_Read, .-Clip_Read
+  44              		.section	.text.Clip_InterruptEnable,"ax",%progbits
+  45              		.align	1
+  46              		.global	Clip_InterruptEnable
+  47              		.thumb
+  48              		.thumb_func
+  49              		.type	Clip_InterruptEnable, %function
+  50              	Clip_InterruptEnable:
+  51              	.LFB1:
+  41:.\Generated_Source\PSoC5/Clip.c **** 
+  42:.\Generated_Source\PSoC5/Clip.c **** 
+  43:.\Generated_Source\PSoC5/Clip.c **** /*******************************************************************************
+  44:.\Generated_Source\PSoC5/Clip.c **** * Function Name: Clip_InterruptEnable
+  45:.\Generated_Source\PSoC5/Clip.c **** ********************************************************************************
+  46:.\Generated_Source\PSoC5/Clip.c **** *
+  47:.\Generated_Source\PSoC5/Clip.c **** * Summary:
+  48:.\Generated_Source\PSoC5/Clip.c **** *  Enables the Status Register interrupt.
+  49:.\Generated_Source\PSoC5/Clip.c **** *
+  50:.\Generated_Source\PSoC5/Clip.c **** * Parameters:
+  51:.\Generated_Source\PSoC5/Clip.c **** *  None.
+  52:.\Generated_Source\PSoC5/Clip.c **** *
+  53:.\Generated_Source\PSoC5/Clip.c **** * Return:
+  54:.\Generated_Source\PSoC5/Clip.c **** *  None.
+  55:.\Generated_Source\PSoC5/Clip.c **** *
+  56:.\Generated_Source\PSoC5/Clip.c **** *******************************************************************************/
+  57:.\Generated_Source\PSoC5/Clip.c **** void Clip_InterruptEnable(void) 
+  58:.\Generated_Source\PSoC5/Clip.c **** {
+  52              		.loc 1 58 0
+  53              		.cfi_startproc
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 3
+
+
+  57              		.cfi_def_cfa_offset 8
+  58              		.cfi_offset 3, -8
+  59              		.cfi_offset 14, -4
+  59:.\Generated_Source\PSoC5/Clip.c ****     uint8 interruptState;
+  60:.\Generated_Source\PSoC5/Clip.c ****     interruptState = CyEnterCriticalSection();
+  60              		.loc 1 60 0
+  61 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  62              	.LVL0:
+  61:.\Generated_Source\PSoC5/Clip.c ****     Clip_Status_Aux_Ctrl |= Clip_STATUS_INTR_ENBL;
+  63              		.loc 1 61 0
+  64 0006 044A     		ldr	r2, .L5
+  65 0008 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  66 000a 43F01003 		orr	r3, r3, #16
+  67 000e 1370     		strb	r3, [r2]
+  62:.\Generated_Source\PSoC5/Clip.c ****     CyExitCriticalSection(interruptState);
+  63:.\Generated_Source\PSoC5/Clip.c **** }
+  68              		.loc 1 63 0
+  69 0010 BDE80840 		pop	{r3, lr}
+  70              		.cfi_restore 14
+  71              		.cfi_restore 3
+  72              		.cfi_def_cfa_offset 0
+  62:.\Generated_Source\PSoC5/Clip.c ****     CyExitCriticalSection(interruptState);
+  73              		.loc 1 62 0
+  74 0014 FFF7FEBF 		b	CyExitCriticalSection
+  75              	.LVL1:
+  76              	.L6:
+  77              		.align	2
+  78              	.L5:
+  79 0018 97640040 		.word	1073767575
+  80              		.cfi_endproc
+  81              	.LFE1:
+  82              		.size	Clip_InterruptEnable, .-Clip_InterruptEnable
+  83              		.section	.text.Clip_InterruptDisable,"ax",%progbits
+  84              		.align	1
+  85              		.global	Clip_InterruptDisable
+  86              		.thumb
+  87              		.thumb_func
+  88              		.type	Clip_InterruptDisable, %function
+  89              	Clip_InterruptDisable:
+  90              	.LFB2:
+  64:.\Generated_Source\PSoC5/Clip.c **** 
+  65:.\Generated_Source\PSoC5/Clip.c **** 
+  66:.\Generated_Source\PSoC5/Clip.c **** /*******************************************************************************
+  67:.\Generated_Source\PSoC5/Clip.c **** * Function Name: Clip_InterruptDisable
+  68:.\Generated_Source\PSoC5/Clip.c **** ********************************************************************************
+  69:.\Generated_Source\PSoC5/Clip.c **** *
+  70:.\Generated_Source\PSoC5/Clip.c **** * Summary:
+  71:.\Generated_Source\PSoC5/Clip.c **** *  Disables the Status Register interrupt.
+  72:.\Generated_Source\PSoC5/Clip.c **** *
+  73:.\Generated_Source\PSoC5/Clip.c **** * Parameters:
+  74:.\Generated_Source\PSoC5/Clip.c **** *  None.
+  75:.\Generated_Source\PSoC5/Clip.c **** *
+  76:.\Generated_Source\PSoC5/Clip.c **** * Return:
+  77:.\Generated_Source\PSoC5/Clip.c **** *  None.
+  78:.\Generated_Source\PSoC5/Clip.c **** *
+  79:.\Generated_Source\PSoC5/Clip.c **** *******************************************************************************/
+  80:.\Generated_Source\PSoC5/Clip.c **** void Clip_InterruptDisable(void) 
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 4
+
+
+  81:.\Generated_Source\PSoC5/Clip.c **** {
+  91              		.loc 1 81 0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95 0000 08B5     		push	{r3, lr}
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 3, -8
+  98              		.cfi_offset 14, -4
+  82:.\Generated_Source\PSoC5/Clip.c ****     uint8 interruptState;
+  83:.\Generated_Source\PSoC5/Clip.c ****     interruptState = CyEnterCriticalSection();
+  99              		.loc 1 83 0
+ 100 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 101              	.LVL2:
+  84:.\Generated_Source\PSoC5/Clip.c ****     Clip_Status_Aux_Ctrl &= (uint8)(~Clip_STATUS_INTR_ENBL);
+ 102              		.loc 1 84 0
+ 103 0006 044A     		ldr	r2, .L8
+ 104 0008 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 105 000a 03F0EF03 		and	r3, r3, #239
+ 106 000e 1370     		strb	r3, [r2]
+  85:.\Generated_Source\PSoC5/Clip.c ****     CyExitCriticalSection(interruptState);
+  86:.\Generated_Source\PSoC5/Clip.c **** }
+ 107              		.loc 1 86 0
+ 108 0010 BDE80840 		pop	{r3, lr}
+ 109              		.cfi_restore 14
+ 110              		.cfi_restore 3
+ 111              		.cfi_def_cfa_offset 0
+  85:.\Generated_Source\PSoC5/Clip.c ****     CyExitCriticalSection(interruptState);
+ 112              		.loc 1 85 0
+ 113 0014 FFF7FEBF 		b	CyExitCriticalSection
+ 114              	.LVL3:
+ 115              	.L9:
+ 116              		.align	2
+ 117              	.L8:
+ 118 0018 97640040 		.word	1073767575
+ 119              		.cfi_endproc
+ 120              	.LFE2:
+ 121              		.size	Clip_InterruptDisable, .-Clip_InterruptDisable
+ 122              		.section	.text.Clip_WriteMask,"ax",%progbits
+ 123              		.align	1
+ 124              		.global	Clip_WriteMask
+ 125              		.thumb
+ 126              		.thumb_func
+ 127              		.type	Clip_WriteMask, %function
+ 128              	Clip_WriteMask:
+ 129              	.LFB3:
+  87:.\Generated_Source\PSoC5/Clip.c **** 
+  88:.\Generated_Source\PSoC5/Clip.c **** 
+  89:.\Generated_Source\PSoC5/Clip.c **** /*******************************************************************************
+  90:.\Generated_Source\PSoC5/Clip.c **** * Function Name: Clip_WriteMask
+  91:.\Generated_Source\PSoC5/Clip.c **** ********************************************************************************
+  92:.\Generated_Source\PSoC5/Clip.c **** *
+  93:.\Generated_Source\PSoC5/Clip.c **** * Summary:
+  94:.\Generated_Source\PSoC5/Clip.c **** *  Writes the current mask value assigned to the Status Register.
+  95:.\Generated_Source\PSoC5/Clip.c **** *
+  96:.\Generated_Source\PSoC5/Clip.c **** * Parameters:
+  97:.\Generated_Source\PSoC5/Clip.c **** *  mask:  Value to write into the mask register.
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 5
+
+
+  98:.\Generated_Source\PSoC5/Clip.c **** *
+  99:.\Generated_Source\PSoC5/Clip.c **** * Return:
+ 100:.\Generated_Source\PSoC5/Clip.c **** *  None.
+ 101:.\Generated_Source\PSoC5/Clip.c **** *
+ 102:.\Generated_Source\PSoC5/Clip.c **** *******************************************************************************/
+ 103:.\Generated_Source\PSoC5/Clip.c **** void Clip_WriteMask(uint8 mask) 
+ 104:.\Generated_Source\PSoC5/Clip.c **** {
+ 130              		.loc 1 104 0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		@ link register save eliminated.
+ 135              	.LVL4:
+ 105:.\Generated_Source\PSoC5/Clip.c ****     #if(Clip_INPUTS < 8u)
+ 106:.\Generated_Source\PSoC5/Clip.c ****     	mask &= ((uint8)(1u << Clip_INPUTS) - 1u);
+ 107:.\Generated_Source\PSoC5/Clip.c **** 	#endif /* End Clip_INPUTS < 8u */
+ 108:.\Generated_Source\PSoC5/Clip.c ****     Clip_Status_Mask = mask;
+ 136              		.loc 1 108 0
+ 137 0000 024B     		ldr	r3, .L11
+ 106:.\Generated_Source\PSoC5/Clip.c **** 	#endif /* End Clip_INPUTS < 8u */
+ 138              		.loc 1 106 0
+ 139 0002 00F00100 		and	r0, r0, #1
+ 140              	.LVL5:
+ 141              		.loc 1 108 0
+ 142 0006 1870     		strb	r0, [r3]
+ 143 0008 7047     		bx	lr
+ 144              	.L12:
+ 145 000a 00BF     		.align	2
+ 146              	.L11:
+ 147 000c 87640040 		.word	1073767559
+ 148              		.cfi_endproc
+ 149              	.LFE3:
+ 150              		.size	Clip_WriteMask, .-Clip_WriteMask
+ 151              		.section	.text.Clip_ReadMask,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	Clip_ReadMask
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	Clip_ReadMask, %function
+ 157              	Clip_ReadMask:
+ 158              	.LFB4:
+ 109:.\Generated_Source\PSoC5/Clip.c **** }
+ 110:.\Generated_Source\PSoC5/Clip.c **** 
+ 111:.\Generated_Source\PSoC5/Clip.c **** 
+ 112:.\Generated_Source\PSoC5/Clip.c **** /*******************************************************************************
+ 113:.\Generated_Source\PSoC5/Clip.c **** * Function Name: Clip_ReadMask
+ 114:.\Generated_Source\PSoC5/Clip.c **** ********************************************************************************
+ 115:.\Generated_Source\PSoC5/Clip.c **** *
+ 116:.\Generated_Source\PSoC5/Clip.c **** * Summary:
+ 117:.\Generated_Source\PSoC5/Clip.c **** *  Reads the current interrupt mask assigned to the Status Register.
+ 118:.\Generated_Source\PSoC5/Clip.c **** *
+ 119:.\Generated_Source\PSoC5/Clip.c **** * Parameters:
+ 120:.\Generated_Source\PSoC5/Clip.c **** *  None.
+ 121:.\Generated_Source\PSoC5/Clip.c **** *
+ 122:.\Generated_Source\PSoC5/Clip.c **** * Return:
+ 123:.\Generated_Source\PSoC5/Clip.c **** *  The value of the interrupt mask of the Status Register.
+ 124:.\Generated_Source\PSoC5/Clip.c **** *
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 6
+
+
+ 125:.\Generated_Source\PSoC5/Clip.c **** *******************************************************************************/
+ 126:.\Generated_Source\PSoC5/Clip.c **** uint8 Clip_ReadMask(void) 
+ 127:.\Generated_Source\PSoC5/Clip.c **** {
+ 159              		.loc 1 127 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 128:.\Generated_Source\PSoC5/Clip.c ****     return Clip_Status_Mask;
+ 164              		.loc 1 128 0
+ 165 0000 014B     		ldr	r3, .L14
+ 166 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 129:.\Generated_Source\PSoC5/Clip.c **** }
+ 167              		.loc 1 129 0
+ 168 0004 7047     		bx	lr
+ 169              	.L15:
+ 170 0006 00BF     		.align	2
+ 171              	.L14:
+ 172 0008 87640040 		.word	1073767559
+ 173              		.cfi_endproc
+ 174              	.LFE4:
+ 175              		.size	Clip_ReadMask, .-Clip_ReadMask
+ 176              		.text
+ 177              	.Letext0:
+ 178              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 179              		.file 3 ".\\Generated_Source\\PSoC5\\CyLib.h"
+ 180              		.section	.debug_info,"",%progbits
+ 181              	.Ldebug_info0:
+ 182 0000 75010000 		.4byte	0x175
+ 183 0004 0400     		.2byte	0x4
+ 184 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 185 000a 04       		.byte	0x4
+ 186 000b 01       		.uleb128 0x1
+ 187 000c 08010000 		.4byte	.LASF21
+ 188 0010 01       		.byte	0x1
+ 189 0011 0E000000 		.4byte	.LASF22
+ 190 0015 89000000 		.4byte	.LASF23
+ 191 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 192 001d 00000000 		.4byte	0
+ 193 0021 00000000 		.4byte	.Ldebug_line0
+ 194 0025 02       		.uleb128 0x2
+ 195 0026 01       		.byte	0x1
+ 196 0027 06       		.byte	0x6
+ 197 0028 A9010000 		.4byte	.LASF0
+ 198 002c 02       		.uleb128 0x2
+ 199 002d 01       		.byte	0x1
+ 200 002e 08       		.byte	0x8
+ 201 002f D6000000 		.4byte	.LASF1
+ 202 0033 02       		.uleb128 0x2
+ 203 0034 02       		.byte	0x2
+ 204 0035 05       		.byte	0x5
+ 205 0036 DF010000 		.4byte	.LASF2
+ 206 003a 02       		.uleb128 0x2
+ 207 003b 02       		.byte	0x2
+ 208 003c 07       		.byte	0x7
+ 209 003d 96010000 		.4byte	.LASF3
+ 210 0041 02       		.uleb128 0x2
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 7
+
+
+ 211 0042 04       		.byte	0x4
+ 212 0043 05       		.byte	0x5
+ 213 0044 E9000000 		.4byte	.LASF4
+ 214 0048 02       		.uleb128 0x2
+ 215 0049 04       		.byte	0x4
+ 216 004a 07       		.byte	0x7
+ 217 004b 77000000 		.4byte	.LASF5
+ 218 004f 02       		.uleb128 0x2
+ 219 0050 08       		.byte	0x8
+ 220 0051 05       		.byte	0x5
+ 221 0052 00000000 		.4byte	.LASF6
+ 222 0056 02       		.uleb128 0x2
+ 223 0057 08       		.byte	0x8
+ 224 0058 07       		.byte	0x7
+ 225 0059 BA000000 		.4byte	.LASF7
+ 226 005d 03       		.uleb128 0x3
+ 227 005e 04       		.byte	0x4
+ 228 005f 05       		.byte	0x5
+ 229 0060 696E7400 		.ascii	"int\000"
+ 230 0064 02       		.uleb128 0x2
+ 231 0065 04       		.byte	0x4
+ 232 0066 07       		.byte	0x7
+ 233 0067 2E000000 		.4byte	.LASF8
+ 234 006b 04       		.uleb128 0x4
+ 235 006c 71000000 		.4byte	.LASF12
+ 236 0070 02       		.byte	0x2
+ 237 0071 C2       		.byte	0xc2
+ 238 0072 2C000000 		.4byte	0x2c
+ 239 0076 02       		.uleb128 0x2
+ 240 0077 04       		.byte	0x4
+ 241 0078 04       		.byte	0x4
+ 242 0079 CB010000 		.4byte	.LASF9
+ 243 007d 02       		.uleb128 0x2
+ 244 007e 08       		.byte	0x8
+ 245 007f 04       		.byte	0x4
+ 246 0080 F2000000 		.4byte	.LASF10
+ 247 0084 02       		.uleb128 0x2
+ 248 0085 01       		.byte	0x1
+ 249 0086 08       		.byte	0x8
+ 250 0087 E4000000 		.4byte	.LASF11
+ 251 008b 05       		.uleb128 0x5
+ 252 008c E9010000 		.4byte	.LASF13
+ 253 0090 02       		.byte	0x2
+ 254 0091 6C01     		.2byte	0x16c
+ 255 0093 97000000 		.4byte	0x97
+ 256 0097 06       		.uleb128 0x6
+ 257 0098 6B000000 		.4byte	0x6b
+ 258 009c 02       		.uleb128 0x2
+ 259 009d 04       		.byte	0x4
+ 260 009e 07       		.byte	0x7
+ 261 009f 04020000 		.4byte	.LASF14
+ 262 00a3 07       		.uleb128 0x7
+ 263 00a4 52000000 		.4byte	.LASF19
+ 264 00a8 01       		.byte	0x1
+ 265 00a9 25       		.byte	0x25
+ 266 00aa 6B000000 		.4byte	0x6b
+ 267 00ae 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 8
+
+
+ 268 00b2 0C000000 		.4byte	.LFE0-.LFB0
+ 269 00b6 01       		.uleb128 0x1
+ 270 00b7 9C       		.byte	0x9c
+ 271 00b8 08       		.uleb128 0x8
+ 272 00b9 5C000000 		.4byte	.LASF15
+ 273 00bd 01       		.byte	0x1
+ 274 00be 39       		.byte	0x39
+ 275 00bf 00000000 		.4byte	.LFB1
+ 276 00c3 1C000000 		.4byte	.LFE1-.LFB1
+ 277 00c7 01       		.uleb128 0x1
+ 278 00c8 9C       		.byte	0x9c
+ 279 00c9 EF000000 		.4byte	0xef
+ 280 00cd 09       		.uleb128 0x9
+ 281 00ce 0D020000 		.4byte	.LASF17
+ 282 00d2 01       		.byte	0x1
+ 283 00d3 3B       		.byte	0x3b
+ 284 00d4 6B000000 		.4byte	0x6b
+ 285 00d8 00000000 		.4byte	.LLST0
+ 286 00dc 0A       		.uleb128 0xa
+ 287 00dd 06000000 		.4byte	.LVL0
+ 288 00e1 60010000 		.4byte	0x160
+ 289 00e5 0B       		.uleb128 0xb
+ 290 00e6 18000000 		.4byte	.LVL1
+ 291 00ea 6B010000 		.4byte	0x16b
+ 292 00ee 00       		.byte	0
+ 293 00ef 08       		.uleb128 0x8
+ 294 00f0 EE010000 		.4byte	.LASF16
+ 295 00f4 01       		.byte	0x1
+ 296 00f5 50       		.byte	0x50
+ 297 00f6 00000000 		.4byte	.LFB2
+ 298 00fa 1C000000 		.4byte	.LFE2-.LFB2
+ 299 00fe 01       		.uleb128 0x1
+ 300 00ff 9C       		.byte	0x9c
+ 301 0100 26010000 		.4byte	0x126
+ 302 0104 09       		.uleb128 0x9
+ 303 0105 0D020000 		.4byte	.LASF17
+ 304 0109 01       		.byte	0x1
+ 305 010a 52       		.byte	0x52
+ 306 010b 6B000000 		.4byte	0x6b
+ 307 010f 13000000 		.4byte	.LLST1
+ 308 0113 0A       		.uleb128 0xa
+ 309 0114 06000000 		.4byte	.LVL2
+ 310 0118 60010000 		.4byte	0x160
+ 311 011c 0B       		.uleb128 0xb
+ 312 011d 18000000 		.4byte	.LVL3
+ 313 0121 6B010000 		.4byte	0x16b
+ 314 0125 00       		.byte	0
+ 315 0126 08       		.uleb128 0x8
+ 316 0127 F9000000 		.4byte	.LASF18
+ 317 012b 01       		.byte	0x1
+ 318 012c 67       		.byte	0x67
+ 319 012d 00000000 		.4byte	.LFB3
+ 320 0131 10000000 		.4byte	.LFE3-.LFB3
+ 321 0135 01       		.uleb128 0x1
+ 322 0136 9C       		.byte	0x9c
+ 323 0137 4B010000 		.4byte	0x14b
+ 324 013b 0C       		.uleb128 0xc
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 9
+
+
+ 325 013c D1000000 		.4byte	.LASF24
+ 326 0140 01       		.byte	0x1
+ 327 0141 67       		.byte	0x67
+ 328 0142 6B000000 		.4byte	0x6b
+ 329 0146 26000000 		.4byte	.LLST2
+ 330 014a 00       		.byte	0
+ 331 014b 07       		.uleb128 0x7
+ 332 014c D1010000 		.4byte	.LASF20
+ 333 0150 01       		.byte	0x1
+ 334 0151 7E       		.byte	0x7e
+ 335 0152 6B000000 		.4byte	0x6b
+ 336 0156 00000000 		.4byte	.LFB4
+ 337 015a 0C000000 		.4byte	.LFE4-.LFB4
+ 338 015e 01       		.uleb128 0x1
+ 339 015f 9C       		.byte	0x9c
+ 340 0160 0D       		.uleb128 0xd
+ 341 0161 3B000000 		.4byte	.LASF25
+ 342 0165 03       		.byte	0x3
+ 343 0166 7E       		.byte	0x7e
+ 344 0167 6B000000 		.4byte	0x6b
+ 345 016b 0E       		.uleb128 0xe
+ 346 016c B5010000 		.4byte	.LASF26
+ 347 0170 03       		.byte	0x3
+ 348 0171 7F       		.byte	0x7f
+ 349 0172 0F       		.uleb128 0xf
+ 350 0173 6B000000 		.4byte	0x6b
+ 351 0177 00       		.byte	0
+ 352 0178 00       		.byte	0
+ 353              		.section	.debug_abbrev,"",%progbits
+ 354              	.Ldebug_abbrev0:
+ 355 0000 01       		.uleb128 0x1
+ 356 0001 11       		.uleb128 0x11
+ 357 0002 01       		.byte	0x1
+ 358 0003 25       		.uleb128 0x25
+ 359 0004 0E       		.uleb128 0xe
+ 360 0005 13       		.uleb128 0x13
+ 361 0006 0B       		.uleb128 0xb
+ 362 0007 03       		.uleb128 0x3
+ 363 0008 0E       		.uleb128 0xe
+ 364 0009 1B       		.uleb128 0x1b
+ 365 000a 0E       		.uleb128 0xe
+ 366 000b 55       		.uleb128 0x55
+ 367 000c 17       		.uleb128 0x17
+ 368 000d 11       		.uleb128 0x11
+ 369 000e 01       		.uleb128 0x1
+ 370 000f 10       		.uleb128 0x10
+ 371 0010 17       		.uleb128 0x17
+ 372 0011 00       		.byte	0
+ 373 0012 00       		.byte	0
+ 374 0013 02       		.uleb128 0x2
+ 375 0014 24       		.uleb128 0x24
+ 376 0015 00       		.byte	0
+ 377 0016 0B       		.uleb128 0xb
+ 378 0017 0B       		.uleb128 0xb
+ 379 0018 3E       		.uleb128 0x3e
+ 380 0019 0B       		.uleb128 0xb
+ 381 001a 03       		.uleb128 0x3
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 10
+
+
+ 382 001b 0E       		.uleb128 0xe
+ 383 001c 00       		.byte	0
+ 384 001d 00       		.byte	0
+ 385 001e 03       		.uleb128 0x3
+ 386 001f 24       		.uleb128 0x24
+ 387 0020 00       		.byte	0
+ 388 0021 0B       		.uleb128 0xb
+ 389 0022 0B       		.uleb128 0xb
+ 390 0023 3E       		.uleb128 0x3e
+ 391 0024 0B       		.uleb128 0xb
+ 392 0025 03       		.uleb128 0x3
+ 393 0026 08       		.uleb128 0x8
+ 394 0027 00       		.byte	0
+ 395 0028 00       		.byte	0
+ 396 0029 04       		.uleb128 0x4
+ 397 002a 16       		.uleb128 0x16
+ 398 002b 00       		.byte	0
+ 399 002c 03       		.uleb128 0x3
+ 400 002d 0E       		.uleb128 0xe
+ 401 002e 3A       		.uleb128 0x3a
+ 402 002f 0B       		.uleb128 0xb
+ 403 0030 3B       		.uleb128 0x3b
+ 404 0031 0B       		.uleb128 0xb
+ 405 0032 49       		.uleb128 0x49
+ 406 0033 13       		.uleb128 0x13
+ 407 0034 00       		.byte	0
+ 408 0035 00       		.byte	0
+ 409 0036 05       		.uleb128 0x5
+ 410 0037 16       		.uleb128 0x16
+ 411 0038 00       		.byte	0
+ 412 0039 03       		.uleb128 0x3
+ 413 003a 0E       		.uleb128 0xe
+ 414 003b 3A       		.uleb128 0x3a
+ 415 003c 0B       		.uleb128 0xb
+ 416 003d 3B       		.uleb128 0x3b
+ 417 003e 05       		.uleb128 0x5
+ 418 003f 49       		.uleb128 0x49
+ 419 0040 13       		.uleb128 0x13
+ 420 0041 00       		.byte	0
+ 421 0042 00       		.byte	0
+ 422 0043 06       		.uleb128 0x6
+ 423 0044 35       		.uleb128 0x35
+ 424 0045 00       		.byte	0
+ 425 0046 49       		.uleb128 0x49
+ 426 0047 13       		.uleb128 0x13
+ 427 0048 00       		.byte	0
+ 428 0049 00       		.byte	0
+ 429 004a 07       		.uleb128 0x7
+ 430 004b 2E       		.uleb128 0x2e
+ 431 004c 00       		.byte	0
+ 432 004d 3F       		.uleb128 0x3f
+ 433 004e 19       		.uleb128 0x19
+ 434 004f 03       		.uleb128 0x3
+ 435 0050 0E       		.uleb128 0xe
+ 436 0051 3A       		.uleb128 0x3a
+ 437 0052 0B       		.uleb128 0xb
+ 438 0053 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 11
+
+
+ 439 0054 0B       		.uleb128 0xb
+ 440 0055 27       		.uleb128 0x27
+ 441 0056 19       		.uleb128 0x19
+ 442 0057 49       		.uleb128 0x49
+ 443 0058 13       		.uleb128 0x13
+ 444 0059 11       		.uleb128 0x11
+ 445 005a 01       		.uleb128 0x1
+ 446 005b 12       		.uleb128 0x12
+ 447 005c 06       		.uleb128 0x6
+ 448 005d 40       		.uleb128 0x40
+ 449 005e 18       		.uleb128 0x18
+ 450 005f 9742     		.uleb128 0x2117
+ 451 0061 19       		.uleb128 0x19
+ 452 0062 00       		.byte	0
+ 453 0063 00       		.byte	0
+ 454 0064 08       		.uleb128 0x8
+ 455 0065 2E       		.uleb128 0x2e
+ 456 0066 01       		.byte	0x1
+ 457 0067 3F       		.uleb128 0x3f
+ 458 0068 19       		.uleb128 0x19
+ 459 0069 03       		.uleb128 0x3
+ 460 006a 0E       		.uleb128 0xe
+ 461 006b 3A       		.uleb128 0x3a
+ 462 006c 0B       		.uleb128 0xb
+ 463 006d 3B       		.uleb128 0x3b
+ 464 006e 0B       		.uleb128 0xb
+ 465 006f 27       		.uleb128 0x27
+ 466 0070 19       		.uleb128 0x19
+ 467 0071 11       		.uleb128 0x11
+ 468 0072 01       		.uleb128 0x1
+ 469 0073 12       		.uleb128 0x12
+ 470 0074 06       		.uleb128 0x6
+ 471 0075 40       		.uleb128 0x40
+ 472 0076 18       		.uleb128 0x18
+ 473 0077 9742     		.uleb128 0x2117
+ 474 0079 19       		.uleb128 0x19
+ 475 007a 01       		.uleb128 0x1
+ 476 007b 13       		.uleb128 0x13
+ 477 007c 00       		.byte	0
+ 478 007d 00       		.byte	0
+ 479 007e 09       		.uleb128 0x9
+ 480 007f 34       		.uleb128 0x34
+ 481 0080 00       		.byte	0
+ 482 0081 03       		.uleb128 0x3
+ 483 0082 0E       		.uleb128 0xe
+ 484 0083 3A       		.uleb128 0x3a
+ 485 0084 0B       		.uleb128 0xb
+ 486 0085 3B       		.uleb128 0x3b
+ 487 0086 0B       		.uleb128 0xb
+ 488 0087 49       		.uleb128 0x49
+ 489 0088 13       		.uleb128 0x13
+ 490 0089 02       		.uleb128 0x2
+ 491 008a 17       		.uleb128 0x17
+ 492 008b 00       		.byte	0
+ 493 008c 00       		.byte	0
+ 494 008d 0A       		.uleb128 0xa
+ 495 008e 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 12
+
+
+ 496 0091 00       		.byte	0
+ 497 0092 11       		.uleb128 0x11
+ 498 0093 01       		.uleb128 0x1
+ 499 0094 31       		.uleb128 0x31
+ 500 0095 13       		.uleb128 0x13
+ 501 0096 00       		.byte	0
+ 502 0097 00       		.byte	0
+ 503 0098 0B       		.uleb128 0xb
+ 504 0099 898201   		.uleb128 0x4109
+ 505 009c 00       		.byte	0
+ 506 009d 11       		.uleb128 0x11
+ 507 009e 01       		.uleb128 0x1
+ 508 009f 9542     		.uleb128 0x2115
+ 509 00a1 19       		.uleb128 0x19
+ 510 00a2 31       		.uleb128 0x31
+ 511 00a3 13       		.uleb128 0x13
+ 512 00a4 00       		.byte	0
+ 513 00a5 00       		.byte	0
+ 514 00a6 0C       		.uleb128 0xc
+ 515 00a7 05       		.uleb128 0x5
+ 516 00a8 00       		.byte	0
+ 517 00a9 03       		.uleb128 0x3
+ 518 00aa 0E       		.uleb128 0xe
+ 519 00ab 3A       		.uleb128 0x3a
+ 520 00ac 0B       		.uleb128 0xb
+ 521 00ad 3B       		.uleb128 0x3b
+ 522 00ae 0B       		.uleb128 0xb
+ 523 00af 49       		.uleb128 0x49
+ 524 00b0 13       		.uleb128 0x13
+ 525 00b1 02       		.uleb128 0x2
+ 526 00b2 17       		.uleb128 0x17
+ 527 00b3 00       		.byte	0
+ 528 00b4 00       		.byte	0
+ 529 00b5 0D       		.uleb128 0xd
+ 530 00b6 2E       		.uleb128 0x2e
+ 531 00b7 00       		.byte	0
+ 532 00b8 3F       		.uleb128 0x3f
+ 533 00b9 19       		.uleb128 0x19
+ 534 00ba 03       		.uleb128 0x3
+ 535 00bb 0E       		.uleb128 0xe
+ 536 00bc 3A       		.uleb128 0x3a
+ 537 00bd 0B       		.uleb128 0xb
+ 538 00be 3B       		.uleb128 0x3b
+ 539 00bf 0B       		.uleb128 0xb
+ 540 00c0 27       		.uleb128 0x27
+ 541 00c1 19       		.uleb128 0x19
+ 542 00c2 49       		.uleb128 0x49
+ 543 00c3 13       		.uleb128 0x13
+ 544 00c4 3C       		.uleb128 0x3c
+ 545 00c5 19       		.uleb128 0x19
+ 546 00c6 00       		.byte	0
+ 547 00c7 00       		.byte	0
+ 548 00c8 0E       		.uleb128 0xe
+ 549 00c9 2E       		.uleb128 0x2e
+ 550 00ca 01       		.byte	0x1
+ 551 00cb 3F       		.uleb128 0x3f
+ 552 00cc 19       		.uleb128 0x19
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 13
+
+
+ 553 00cd 03       		.uleb128 0x3
+ 554 00ce 0E       		.uleb128 0xe
+ 555 00cf 3A       		.uleb128 0x3a
+ 556 00d0 0B       		.uleb128 0xb
+ 557 00d1 3B       		.uleb128 0x3b
+ 558 00d2 0B       		.uleb128 0xb
+ 559 00d3 27       		.uleb128 0x27
+ 560 00d4 19       		.uleb128 0x19
+ 561 00d5 3C       		.uleb128 0x3c
+ 562 00d6 19       		.uleb128 0x19
+ 563 00d7 00       		.byte	0
+ 564 00d8 00       		.byte	0
+ 565 00d9 0F       		.uleb128 0xf
+ 566 00da 05       		.uleb128 0x5
+ 567 00db 00       		.byte	0
+ 568 00dc 49       		.uleb128 0x49
+ 569 00dd 13       		.uleb128 0x13
+ 570 00de 00       		.byte	0
+ 571 00df 00       		.byte	0
+ 572 00e0 00       		.byte	0
+ 573              		.section	.debug_loc,"",%progbits
+ 574              	.Ldebug_loc0:
+ 575              	.LLST0:
+ 576 0000 06000000 		.4byte	.LVL0
+ 577 0004 17000000 		.4byte	.LVL1-1
+ 578 0008 0100     		.2byte	0x1
+ 579 000a 50       		.byte	0x50
+ 580 000b 00000000 		.4byte	0
+ 581 000f 00000000 		.4byte	0
+ 582              	.LLST1:
+ 583 0013 06000000 		.4byte	.LVL2
+ 584 0017 17000000 		.4byte	.LVL3-1
+ 585 001b 0100     		.2byte	0x1
+ 586 001d 50       		.byte	0x50
+ 587 001e 00000000 		.4byte	0
+ 588 0022 00000000 		.4byte	0
+ 589              	.LLST2:
+ 590 0026 00000000 		.4byte	.LVL4
+ 591 002a 06000000 		.4byte	.LVL5
+ 592 002e 0100     		.2byte	0x1
+ 593 0030 50       		.byte	0x50
+ 594 0031 06000000 		.4byte	.LVL5
+ 595 0035 10000000 		.4byte	.LFE3
+ 596 0039 0100     		.2byte	0x1
+ 597 003b 50       		.byte	0x50
+ 598 003c 00000000 		.4byte	0
+ 599 0040 00000000 		.4byte	0
+ 600              		.section	.debug_aranges,"",%progbits
+ 601 0000 3C000000 		.4byte	0x3c
+ 602 0004 0200     		.2byte	0x2
+ 603 0006 00000000 		.4byte	.Ldebug_info0
+ 604 000a 04       		.byte	0x4
+ 605 000b 00       		.byte	0
+ 606 000c 0000     		.2byte	0
+ 607 000e 0000     		.2byte	0
+ 608 0010 00000000 		.4byte	.LFB0
+ 609 0014 0C000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 14
+
+
+ 610 0018 00000000 		.4byte	.LFB1
+ 611 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 612 0020 00000000 		.4byte	.LFB2
+ 613 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 614 0028 00000000 		.4byte	.LFB3
+ 615 002c 10000000 		.4byte	.LFE3-.LFB3
+ 616 0030 00000000 		.4byte	.LFB4
+ 617 0034 0C000000 		.4byte	.LFE4-.LFB4
+ 618 0038 00000000 		.4byte	0
+ 619 003c 00000000 		.4byte	0
+ 620              		.section	.debug_ranges,"",%progbits
+ 621              	.Ldebug_ranges0:
+ 622 0000 00000000 		.4byte	.LFB0
+ 623 0004 0C000000 		.4byte	.LFE0
+ 624 0008 00000000 		.4byte	.LFB1
+ 625 000c 1C000000 		.4byte	.LFE1
+ 626 0010 00000000 		.4byte	.LFB2
+ 627 0014 1C000000 		.4byte	.LFE2
+ 628 0018 00000000 		.4byte	.LFB3
+ 629 001c 10000000 		.4byte	.LFE3
+ 630 0020 00000000 		.4byte	.LFB4
+ 631 0024 0C000000 		.4byte	.LFE4
+ 632 0028 00000000 		.4byte	0
+ 633 002c 00000000 		.4byte	0
+ 634              		.section	.debug_line,"",%progbits
+ 635              	.Ldebug_line0:
+ 636 0000 B1000000 		.section	.debug_str,"MS",%progbits,1
+ 636      02004E00 
+ 636      00000201 
+ 636      FB0E0D00 
+ 636      01010101 
+ 637              	.LASF6:
+ 638 0000 6C6F6E67 		.ascii	"long long int\000"
+ 638      206C6F6E 
+ 638      6720696E 
+ 638      7400
+ 639              	.LASF22:
+ 640 000e 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Clip.c\000"
+ 640      6E657261 
+ 640      7465645F 
+ 640      536F7572 
+ 640      63655C50 
+ 641              	.LASF8:
+ 642 002e 756E7369 		.ascii	"unsigned int\000"
+ 642      676E6564 
+ 642      20696E74 
+ 642      00
+ 643              	.LASF25:
+ 644 003b 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 644      74657243 
+ 644      72697469 
+ 644      63616C53 
+ 644      65637469 
+ 645              	.LASF19:
+ 646 0052 436C6970 		.ascii	"Clip_Read\000"
+ 646      5F526561 
+ 646      6400
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 15
+
+
+ 647              	.LASF15:
+ 648 005c 436C6970 		.ascii	"Clip_InterruptEnable\000"
+ 648      5F496E74 
+ 648      65727275 
+ 648      7074456E 
+ 648      61626C65 
+ 649              	.LASF12:
+ 650 0071 75696E74 		.ascii	"uint8\000"
+ 650      3800
+ 651              	.LASF5:
+ 652 0077 6C6F6E67 		.ascii	"long unsigned int\000"
+ 652      20756E73 
+ 652      69676E65 
+ 652      6420696E 
+ 652      7400
+ 653              	.LASF23:
+ 654 0089 473A5C50 		.ascii	"G:\\PSoC_5LP\\I2S_DMA_example\\InterIcSound01.cydsn"
+ 654      536F435F 
+ 654      354C505C 
+ 654      4932535F 
+ 654      444D415F 
+ 655 00b9 00       		.ascii	"\000"
+ 656              	.LASF7:
+ 657 00ba 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 657      206C6F6E 
+ 657      6720756E 
+ 657      7369676E 
+ 657      65642069 
+ 658              	.LASF24:
+ 659 00d1 6D61736B 		.ascii	"mask\000"
+ 659      00
+ 660              	.LASF1:
+ 661 00d6 756E7369 		.ascii	"unsigned char\000"
+ 661      676E6564 
+ 661      20636861 
+ 661      7200
+ 662              	.LASF11:
+ 663 00e4 63686172 		.ascii	"char\000"
+ 663      00
+ 664              	.LASF4:
+ 665 00e9 6C6F6E67 		.ascii	"long int\000"
+ 665      20696E74 
+ 665      00
+ 666              	.LASF10:
+ 667 00f2 646F7562 		.ascii	"double\000"
+ 667      6C6500
+ 668              	.LASF18:
+ 669 00f9 436C6970 		.ascii	"Clip_WriteMask\000"
+ 669      5F577269 
+ 669      74654D61 
+ 669      736B00
+ 670              	.LASF21:
+ 671 0108 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 671      4320342E 
+ 671      392E3320 
+ 671      32303135 
+ 671      30333033 
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 16
+
+
+ 672 013b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 672      20726576 
+ 672      6973696F 
+ 672      6E203232 
+ 672      31323230 
+ 673 016e 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 673      66756E63 
+ 673      74696F6E 
+ 673      2D736563 
+ 673      74696F6E 
+ 674              	.LASF3:
+ 675 0196 73686F72 		.ascii	"short unsigned int\000"
+ 675      7420756E 
+ 675      7369676E 
+ 675      65642069 
+ 675      6E7400
+ 676              	.LASF0:
+ 677 01a9 7369676E 		.ascii	"signed char\000"
+ 677      65642063 
+ 677      68617200 
+ 678              	.LASF26:
+ 679 01b5 43794578 		.ascii	"CyExitCriticalSection\000"
+ 679      69744372 
+ 679      69746963 
+ 679      616C5365 
+ 679      6374696F 
+ 680              	.LASF9:
+ 681 01cb 666C6F61 		.ascii	"float\000"
+ 681      7400
+ 682              	.LASF20:
+ 683 01d1 436C6970 		.ascii	"Clip_ReadMask\000"
+ 683      5F526561 
+ 683      644D6173 
+ 683      6B00
+ 684              	.LASF2:
+ 685 01df 73686F72 		.ascii	"short int\000"
+ 685      7420696E 
+ 685      7400
+ 686              	.LASF13:
+ 687 01e9 72656738 		.ascii	"reg8\000"
+ 687      00
+ 688              	.LASF16:
+ 689 01ee 436C6970 		.ascii	"Clip_InterruptDisable\000"
+ 689      5F496E74 
+ 689      65727275 
+ 689      70744469 
+ 689      7361626C 
+ 690              	.LASF14:
+ 691 0204 73697A65 		.ascii	"sizetype\000"
+ 691      74797065 
+ 691      00
+ 692              	.LASF17:
+ 693 020d 696E7465 		.ascii	"interruptState\000"
+ 693      72727570 
+ 693      74537461 
+ 693      746500
+ 694              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\PIET~1.COU\AppData\Local\Temp\ccOjm301.s 			page 17
+
+

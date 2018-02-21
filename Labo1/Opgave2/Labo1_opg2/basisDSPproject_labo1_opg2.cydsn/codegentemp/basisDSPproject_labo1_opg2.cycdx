@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
+  <block name="KNOP_TOGGLE" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <register name="KNOP_TOGGLE_STATUS_REG" address="0x40006568" bitWidth="8" desc="" hidden="false" />
+    <register name="KNOP_TOGGLE_MASK_REG" address="0x40006588" bitWidth="8" desc="" hidden="false" />
+    <register name="KNOP_TOGGLE_STATUS_AUX_CTL_REG" address="0x40006598" bitWidth="8" desc="" hidden="false">
+      <field name="FIFO0" from="5" to="5" access="RW" resetVal="" desc="FIFO0 clear" hidden="false">
+        <value name="ENABLED" value="1" desc="Enable counter" />
+        <value name="DISABLED" value="0" desc="Disable counter" />
+      </field>
+      <field name="INTRENBL" from="4" to="4" access="RW" resetVal="" desc="Enables or disables the Interrupt" hidden="false">
+        <value name="ENABLED" value="1" desc="Interrupt enabled" />
+        <value name="DISABLED" value="0" desc="Interrupt disabled" />
+      </field>
+      <field name="FIFO1LEVEL" from="3" to="3" access="RW" resetVal="" desc="FIFO level" hidden="false">
+        <value name="ENABLED" value="1" desc="FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full" />
+        <value name="DISABLED" value="0" desc="FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty" />
+      </field>
+      <field name="FIFO0LEVEL" from="2" to="2" access="RW" resetVal="" desc="FIFO level" hidden="false">
+        <value name="ENABLED" value="1" desc="FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full" />
+        <value name="DISABLED" value="0" desc="FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty" />
+      </field>
+      <field name="FIFO1CLEAR" from="1" to="1" access="RW" resetVal="" desc="FIFO clear" hidden="false">
+        <value name="ENABLED" value="1" desc="Clear FIFO state" />
+        <value name="DISABLED" value="0" desc="Normal FIFO operation" />
+      </field>
+      <field name="FIFO0CLEAR" from="0" to="0" access="RW" resetVal="" desc="FIFO clear" hidden="false">
+        <value name="ENABLED" value="1" desc="Clear FIFO state" />
+        <value name="DISABLED" value="0" desc="Normal FIFO operation" />
+      </field>
+    </register>
+  </block>
+  <block name="Debouncer_0" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="KNOP" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <register name="KNOP_STATUS_REG" address="0x40006469" bitWidth="8" desc="" hidden="false" />
+    <register name="KNOP_MASK_REG" address="0x40006489" bitWidth="8" desc="" hidden="false" />
+    <register name="KNOP_STATUS_AUX_CTL_REG" address="0x40006499" bitWidth="8" desc="" hidden="false">
+      <field name="FIFO0" from="5" to="5" access="RW" resetVal="" desc="FIFO0 clear" hidden="false">
+        <value name="ENABLED" value="1" desc="Enable counter" />
+        <value name="DISABLED" value="0" desc="Disable counter" />
+      </field>
+      <field name="INTRENBL" from="4" to="4" access="RW" resetVal="" desc="Enables or disables the Interrupt" hidden="false">
+        <value name="ENABLED" value="1" desc="Interrupt enabled" />
+        <value name="DISABLED" value="0" desc="Interrupt disabled" />
+      </field>
+      <field name="FIFO1LEVEL" from="3" to="3" access="RW" resetVal="" desc="FIFO level" hidden="false">
+        <value name="ENABLED" value="1" desc="FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full" />
+        <value name="DISABLED" value="0" desc="FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty" />
+      </field>
+      <field name="FIFO0LEVEL" from="2" to="2" access="RW" resetVal="" desc="FIFO level" hidden="false">
+        <value name="ENABLED" value="1" desc="FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full" />
+        <value name="DISABLED" value="0" desc="FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty" />
+      </field>
+      <field name="FIFO1CLEAR" from="1" to="1" access="RW" resetVal="" desc="FIFO clear" hidden="false">
+        <value name="ENABLED" value="1" desc="Clear FIFO state" />
+        <value name="DISABLED" value="0" desc="Normal FIFO operation" />
+      </field>
+      <field name="FIFO0CLEAR" from="0" to="0" access="RW" resetVal="" desc="FIFO clear" hidden="false">
+        <value name="ENABLED" value="1" desc="Clear FIFO state" />
+        <value name="DISABLED" value="0" desc="Normal FIFO operation" />
+      </field>
+    </register>
+  </block>
+  <block name="cy_tff_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_tff_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_tff_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="S3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="L3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="CLIP" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <register name="CLIP_CONTROL_REG" address="0x40006578" bitWidth="8" desc="" hidden="false" />
+  </block>
+  <block name="LINE" BASE="0x0" SIZE="0x0" desc="SAR ADC" visible="true" hidden="false">
+    <block name="ZeroTerminal_8" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Clock_VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="theACLK" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_6" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="vRef_Vdda_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_internalClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ADC_SAR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="noconnect" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="SAR_TR0" address="0x40004614" bitWidth="8" desc="SAR trim register" hidden="false" />
+    <register name="SAR_CSR0" address="0x40005900" bitWidth="8" desc="SAR status and control register 0" hidden="false" />
+    <register name="SAR_CSR1" address="0x40005901" bitWidth="8" desc="SAR status and control register 1" hidden="false" />
+    <register name="SAR_CSR2" address="0x40005902" bitWidth="8" desc="SAR status and control register 2" hidden="false" />
+    <register name="SAR_CSR3" address="0x40005903" bitWidth="8" desc="SAR status and control register 3" hidden="false" />
+    <register name="SAR_CSR4" address="0x40005904" bitWidth="8" desc="SAR status and control register 4" hidden="false" />
+    <register name="SAR_CSR5" address="0x40005905" bitWidth="8" desc="SAR status and control register 5" hidden="false" />
+    <register name="SAR_CSR6" address="0x40005906" bitWidth="8" desc="SAR status and control register 6" hidden="false" />
+    <register name="SAR_SW0" address="0x40005B20" bitWidth="8" desc="SAR Analog Routing Register 0" hidden="false" />
+    <register name="SAR_SW2" address="0x40005B22" bitWidth="8" desc="SAR Analog Routing Register 2" hidden="false" />
+    <register name="SAR_SW3" address="0x40005B23" bitWidth="8" desc="SAR Analog Routing Register 3" hidden="false" />
+    <register name="SAR_SW4" address="0x40005B24" bitWidth="8" desc="SAR Analog Routing Register 4" hidden="false" />
+    <register name="SAR_SW6" address="0x40005B26" bitWidth="8" desc="SAR Analog Routing Register 6" hidden="false" />
+    <register name="SAR_CLK" address="0x40005B27" bitWidth="8" desc="SAR Clock Selection Register" hidden="false" />
+    <register name="SAR_WRK" address="0x40005BA0" bitWidth="16" desc="SAR working register" hidden="false" />
+  </block>
+  <block name="S2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="S1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="S0" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SampleVraag" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Div2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Debounce" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_constant_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_tff_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Debouncer_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Debouncer_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Debouncer_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="L2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SDI" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="WS" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SampleKlaar" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Codec_en" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SCK" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="RxDMA" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="POT_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="I2S_Codec_audio" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="bI2S" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="TX_STATUS_0_REG" address="0x40006566" bitWidth="8" desc="" hidden="false">
+      <field name="INT" from="7" to="7" access="R" resetVal="" desc="Interrupt bit" hidden="false" />
+      <field name="CH1 F1" from="5" to="5" access="R" resetVal="" desc="Stereo channel 1 FIFO 1 state" hidden="false">
+        <value name="FULL" value="0" desc="" />
+        <value name="NOT_FULL" value="1" desc="" />
+      </field>
+      <field name="CH1 F0" from="4" to="4" access="R" resetVal="" desc="Stereo channel 1 FIFO 0 state" hidden="false">
+        <value name="FULL" value="0" desc="" />
+        <value name="NOT_FULL" value="1" desc="" />
+      </field>
+      <field name="CH1 UNDFL" from="3" to="3" access="R" resetVal="" desc="Stereo channel 1 FIFO underflow" hidden="false">
+        <value name="NO_UNDERFLOW" value="0" desc="" />
+        <value name="UNDERFLOW" value="1" desc="" />
+      </field>
+      <field name="CH0 F1" from="2" to="2" access="R" resetVal="" desc="Stereo channel 0 FIFO 1 state" hidden="false">
+        <value name="FULL" value="0" desc="" />
+        <value name="NOT_FULL" value="1" desc="" />
+      </field>
+      <field name="CH0 F0" from="1" to="1" access="R" resetVal="" desc="Stereo channel 0 FIFO 0 state" hidden="false">
+        <value name="FULL" value="0" desc="" />
+        <value name="NOT_FULL" value="1" desc="" />
+      </field>
+      <field name="CH0 UNDFL" from="0" to="0" access="R" resetVal="" desc="Stereo channel 0 FIFO underflow" hidden="false">
+        <value name="NO_UNDERFLOW" value="0" desc="" />
+        <value name="UNDERFLOW" value="1" desc="" />
+      </field>
+    </register>
+    <register name="RX_STATUS_0_REG" address="0x40006567" bitWidth="8" desc="" hidden="false">
+      <field name="INT" from="7" to="7" access="R" resetVal="" desc="Interrupt bit" hidden="false" />
+      <field name="CH1 F1" from="5" to="5" access="R" resetVal="" desc="Stereo channel 1 FIFO 1 state" hidden="false">
+        <value name="EMPTY" value="0" desc="" />
+        <value name="NOT_EMPTY" value="1" desc="" />
+      </field>
+      <field name="CH1 F0" from="4" to="4" access="R" resetVal="" desc="Stereo channel 1 FIFO 0 state" hidden="false">
+        <value name="EMPTY" value="0" desc="" />
+        <value name="NOT_EMPTY" value="1" desc="" />
+      </field>
+      <field name="CH1 OVRFL" from="3" to="3" access="R" resetVal="" desc="Stereo channel 1 FIFO overflow" hidden="false">
+        <value name="NO_OVERFLOW" value="0" desc="" />
+        <value name="OVERFLOW" value="1" desc="" />
+      </field>
+      <field name="CH0 F1" from="2" to="2" access="R" resetVal="" desc="Stereo channel 0 FIFO 1 state" hidden="false">
+        <value name="EMPTY" value="0" desc="" />
+        <value name="NOT_EMPTY" value="1" desc="" />
+      </field>
+      <field name="CH0 F0" from="1" to="1" access="R" resetVal="" desc="Stereo channel 0 FIFO 0 state" hidden="false">
+        <value name="EMPTY" value="0" desc="" />
+        <value name="NOT_EMPTY" value="1" desc="" />
+      </field>
+      <field name="CH0 OVRFL" from="0" to="0" access="R" resetVal="" desc="Stereo channel 0 FIFO overflow" hidden="false">
+        <value name="NO_OVERFLOW" value="0" desc="" />
+        <value name="OVERFLOW" value="1" desc="" />
+      </field>
+    </register>
+    <register name="CONTROL_REG" address="0x40006576" bitWidth="8" desc="" hidden="false">
+      <field name="RESOLUTION" from="4" to="3" access="RW" resetVal="" desc="Specifies data bits value. Applicable only if dynamic bit resolution is selected." hidden="false">
+        <value name="8-BIT" value="00" desc="" />
+        <value name="16-BIT" value="01" desc="" />
+        <value name="24-BIT" value="10" desc="" />
+        <value name="32-BIT" value="11" desc="" />
+      </field>
+      <field name="ENBL" from="2" to="2" access="RW" resetVal="" desc="Starts the generation of the WS and SCK outputs." hidden="false">
+        <value name="ENABLED" value="1" desc="" />
+        <value name="DISABLED" value="0" desc="" />
+      </field>
+      <field name="RX_ENBL" from="1" to="1" access="RW" resetVal="" desc="Enables Rx direction. Applicable only if Rx direction presents for the component." hidden="false">
+        <value name="ENABLED" value="1" desc="" />
+        <value name="DISABLED" value="0" desc="" />
+      </field>
+      <field name="TX_ENBL" from="0" to="0" access="RW" resetVal="" desc="Enables Tx direction. Applicable only if Tx direction presents for the component." hidden="false">
+        <value name="ENABLED" value="1" desc="" />
+        <value name="DISABLED" value="0" desc="" />
+      </field>
+    </register>
+  </block>
+  <block name="SDO" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="TxDMA" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LCD" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="LCDPort" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  </block>
+  <block name="VOL" BASE="0x0" SIZE="0x0" desc="SAR ADC" visible="true" hidden="false">
+    <block name="ZeroTerminal_8" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Clock_VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="theACLK" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_6" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="vRef_Vdda_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_internalClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ADC_SAR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="noconnect" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_analog_virtualmux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="SAR_TR0" address="0x40004616" bitWidth="8" desc="SAR trim register" hidden="false" />
+    <register name="SAR_CSR0" address="0x40005908" bitWidth="8" desc="SAR status and control register 0" hidden="false" />
+    <register name="SAR_CSR1" address="0x40005909" bitWidth="8" desc="SAR status and control register 1" hidden="false" />
+    <register name="SAR_CSR2" address="0x4000590A" bitWidth="8" desc="SAR status and control register 2" hidden="false" />
+    <register name="SAR_CSR3" address="0x4000590B" bitWidth="8" desc="SAR status and control register 3" hidden="false" />
+    <register name="SAR_CSR4" address="0x4000590C" bitWidth="8" desc="SAR status and control register 4" hidden="false" />
+    <register name="SAR_CSR5" address="0x4000590D" bitWidth="8" desc="SAR status and control register 5" hidden="false" />
+    <register name="SAR_CSR6" address="0x4000590E" bitWidth="8" desc="SAR status and control register 6" hidden="false" />
+    <register name="SAR_SW0" address="0x40005B28" bitWidth="8" desc="SAR Analog Routing Register 0" hidden="false" />
+    <register name="SAR_SW2" address="0x40005B2A" bitWidth="8" desc="SAR Analog Routing Register 2" hidden="false" />
+    <register name="SAR_SW3" address="0x40005B2B" bitWidth="8" desc="SAR Analog Routing Register 3" hidden="false" />
+    <register name="SAR_SW4" address="0x40005B2C" bitWidth="8" desc="SAR Analog Routing Register 4" hidden="false" />
+    <register name="SAR_SW6" address="0x40005B2E" bitWidth="8" desc="SAR Analog Routing Register 6" hidden="false" />
+    <register name="SAR_CLK" address="0x40005B2F" bitWidth="8" desc="SAR Clock Selection Register" hidden="false" />
+    <register name="SAR_WRK" address="0x40005BA2" bitWidth="16" desc="SAR working register" hidden="false" />
+  </block>
+  <block name="cy_constant_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="I2C_Codec_control" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="or_udb" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_scl_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_timeout_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_udb_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Bufoe_sda" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_sda_in" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Bufoe_scl" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="I2C_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_interrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_sda_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="Vmux_scl_out" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="bI2C_UDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="I2C_Codec_control_DATA" address="0x40006403" bitWidth="8" desc="I2C Data Register" hidden="false">
+      <field name="data" from="7" to="0" access="RW" resetVal="" desc="Read received data or write data to transmit." hidden="false" />
+    </register>
+    <register name="I2C_Codec_control_CSR" address="0x40006464" bitWidth="8" desc="I2C Status Register" hidden="false">
+      <field name="lost_arb" from="6" to="6" access="R" resetVal="" desc="If set, indicates arbitration was lost (multi-master and multi-master-slave modes)." hidden="false" />
+      <field name="stop_status" from="5" to="5" access="R" resetVal="" desc="If set, indicates a Stop condition was detected on the bus." hidden="false" />
+      <field name="bus_busy" from="4" to="4" access="R" resetVal="" desc="If set, indicates the bus is busy. Data is currently being transmitted or received." hidden="false" />
+      <field name="address" from="3" to="3" access="R" resetVal="" desc="Address detection. If set, indicates that an address byte was sent." hidden="false" />
+      <field name="master_mode" from="2" to="2" access="R" resetVal="" desc="Indicates that a valid Start condition was generated and a hardware device is operating as bus master." hidden="false" />
+      <field name="lrb" from="1" to="1" access="R" resetVal="" desc="Last Received Bit. Indicates the state of the last received bit, which is the ACK/NAK received for the last byte transmitted. Cleared = ACK and set = NAK." hidden="false" />
+      <field name="byte_complete" from="0" to="0" access="R" resetVal="" desc="Transmit or receive status since the last read of this register. In Transmit mode this bit indicates that eight bits of data plus ACK/NAK have been transmitted since the last read. In Receive mode this bit indicates that eight bits of data have been received since the last read of this register." hidden="false" />
+    </register>
+    <register name="I2C_Codec_control_CFG" address="0x40006472" bitWidth="8" desc="I2C Configuration Register" hidden="false">
+      <field name="start_gen" from="7" to="7" access="RW" resetVal="" desc="Set to 1 to generate a Start condition on the bus. This bit must be cleared by firmware before initiating the next transaction." hidden="false" />
+      <field name="stop_gen" from="6" to="6" access="RW" resetVal="" desc="Set to 1 to generate a Stop condition on the bus. This bit must be cleared by firmware before initiating the next transaction." hidden="false" />
+      <field name="restart_gen" from="5" to="5" access="RW" resetVal="" desc="Set to 1 to generate a Restart condition on the bus. This bit must be cleared by firmware after a Restart condition is generated." hidden="false" />
+      <field name="nack" from="4" to="4" access="RW" resetVal="" desc="Set to 1 to NAK the next read byte. Clear to ACK next read byte. This bit must be cleared by firmware between bytes." hidden="false" />
+      <field name="transmit" from="2" to="2" access="RW" resetVal="" desc="Set to 1 to set the current mode to transmit or clear to 0 to receive a byte of data. This bit must be cleared by firmware before starting the next transmit or receive transaction." hidden="false" />
+      <field name="master_en" from="1" to="1" access="RW" resetVal="" desc="Set to 1 to enable the master functionality." hidden="false" />
+    </register>
+    <register name="I2C_Codec_control_INT_MASK" address="0x40006484" bitWidth="8" desc="I2C Interrupt Enable Mask" hidden="false">
+      <field name="lost_arb" from="6" to="6" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="stop_status" from="5" to="5" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="bus_busy" from="4" to="4" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="address" from="3" to="3" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="master_mode" from="2" to="2" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="lrb" from="1" to="1" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+      <field name="byte_complete" from="0" to="0" access="RW" resetVal="" desc="Enables interrupt from the corresponding bit in status register." hidden="false" />
+    </register>
+  </block>
+  <block name="cy_constant_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="I2S_EN" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <register name="I2S_EN_CONTROL_REG" address="0x40006476" bitWidth="8" desc="" hidden="false" />
+  </block>
+  <block name="POT_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SCL" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="L0" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LEDs" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <register name="LEDs_CONTROL_REG" address="0x40006473" bitWidth="8" desc="" hidden="false" />
+  </block>
+  <block name="L1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SDA" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="AudioCodecClk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="CLIP_LED" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+</blockRegMap>

@@ -1,0 +1,17 @@
+--------------- Rebuild Started: 12/27/2015 19:18:05 Project: main.c, Configuration: ARM GCC 4.9-2015-q1-update Release ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\ARM_GCC_493\Release/main.lst -g -D NDEBUG -Wall -ffunction-sections -Os -ffat-lto-objects -c .\main.c -o .\ARM_GCC_493\Release\main.o
+.\main.c: In function 'DisplayUpdate':
+.\main.c:253:38: warning: iteration 1u invokes undefined behavior [-Waggressive-loop-optimizations]
+         LCD_PrintInt16(((int16)rxBuff[idx]<<8)+(int16)rxBuff[idx+1]);
+                                      ^
+.\main.c:248:2: note: containing loop
+  for(idx = 0u; idx < BUFFER_SIZE; idx+=2)
+  ^
+.\main.c: In function 'sampleInt':
+.\main.c:85:11: warning: array subscript is above array bounds [-Warray-bounds]
+     rxBuff[2] = (uint8)(sampleUit[RECHTS]>>8); rxBuff[3] = (uint8)(sampleUit[RECHTS]&0xFF);
+           ^
+.\main.c:85:54: warning: array subscript is above array bounds [-Warray-bounds]
+     rxBuff[2] = (uint8)(sampleUit[RECHTS]>>8); rxBuff[3] = (uint8)(sampleUit[RECHTS]&0xFF);
+                                                      ^
+--------------- Rebuild Succeeded: 12/27/2015 19:18:06 ---------------

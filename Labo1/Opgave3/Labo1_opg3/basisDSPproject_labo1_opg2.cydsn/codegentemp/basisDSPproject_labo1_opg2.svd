@@ -1,0 +1,1253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_0.xsd">
+  <name>CY8C5888LTI_LP097</name>
+  <version>0.1</version>
+  <description>CY8C58LP</description>
+  <addressUnitBits>8</addressUnitBits>
+  <width>32</width>
+  <peripherals>
+    <peripheral>
+      <name>KNOP_TOGGLE</name>
+      <description>No description available</description>
+      <baseAddress>0x40006568</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>KNOP_TOGGLE_STATUS_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>KNOP_TOGGLE_MASK_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x20</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>KNOP_TOGGLE_STATUS_AUX_CTL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x30</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>FIFO0</name>
+              <description>FIFO0 clear</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Enable counter</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Disable counter</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>INTRENBL</name>
+              <description>Enables or disables the Interrupt</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Interrupt enabled</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Interrupt disabled</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO1LEVEL</name>
+              <description>FIFO level</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO0LEVEL</name>
+              <description>FIFO level</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO1CLEAR</name>
+              <description>FIFO clear</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Clear FIFO state</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Normal FIFO operation</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO0CLEAR</name>
+              <description>FIFO clear</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Clear FIFO state</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Normal FIFO operation</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>KNOP</name>
+      <description>No description available</description>
+      <baseAddress>0x40006469</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>KNOP_STATUS_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>KNOP_MASK_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x20</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>KNOP_STATUS_AUX_CTL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x30</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>FIFO0</name>
+              <description>FIFO0 clear</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Enable counter</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Disable counter</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>INTRENBL</name>
+              <description>Enables or disables the Interrupt</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Interrupt enabled</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Interrupt disabled</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO1LEVEL</name>
+              <description>FIFO level</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO0LEVEL</name>
+              <description>FIFO level</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>FIFO LVL: input mode: FIFO at least 1/2 empty; output mode: FIFO at least 1/2 full</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>FIFO LVL: input mode: FIFO not full; output mode: FIFO not empty</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO1CLEAR</name>
+              <description>FIFO clear</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Clear FIFO state</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Normal FIFO operation</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>FIFO0CLEAR</name>
+              <description>FIFO clear</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>Clear FIFO state</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>Normal FIFO operation</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>CLIP</name>
+      <description>No description available</description>
+      <baseAddress>0x40006578</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>CLIP_CONTROL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>LINE</name>
+      <description>SAR ADC</description>
+      <baseAddress>0x0</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>SAR_TR0</name>
+          <description>SAR trim register</description>
+          <addressOffset>0x40004614</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR0</name>
+          <description>SAR status and control register 0</description>
+          <addressOffset>0x40005900</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR1</name>
+          <description>SAR status and control register 1</description>
+          <addressOffset>0x40005901</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR2</name>
+          <description>SAR status and control register 2</description>
+          <addressOffset>0x40005902</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR3</name>
+          <description>SAR status and control register 3</description>
+          <addressOffset>0x40005903</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR4</name>
+          <description>SAR status and control register 4</description>
+          <addressOffset>0x40005904</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR5</name>
+          <description>SAR status and control register 5</description>
+          <addressOffset>0x40005905</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR6</name>
+          <description>SAR status and control register 6</description>
+          <addressOffset>0x40005906</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW0</name>
+          <description>SAR Analog Routing Register 0</description>
+          <addressOffset>0x40005B20</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW2</name>
+          <description>SAR Analog Routing Register 2</description>
+          <addressOffset>0x40005B22</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW3</name>
+          <description>SAR Analog Routing Register 3</description>
+          <addressOffset>0x40005B23</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW4</name>
+          <description>SAR Analog Routing Register 4</description>
+          <addressOffset>0x40005B24</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW6</name>
+          <description>SAR Analog Routing Register 6</description>
+          <addressOffset>0x40005B26</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CLK</name>
+          <description>SAR Clock Selection Register</description>
+          <addressOffset>0x40005B27</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_WRK</name>
+          <description>SAR working register</description>
+          <addressOffset>0x40005BA0</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>I2S_Codec_audio</name>
+      <description>No description available</description>
+      <baseAddress>0x0</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>TX_STATUS_0_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x40006566</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>INT</name>
+              <description>Interrupt bit</description>
+              <lsb>7</lsb>
+              <msb>7</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>CH1_F1</name>
+              <description>Stereo channel 1 FIFO 1 state</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>FULL</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_FULL</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH1_F0</name>
+              <description>Stereo channel 1 FIFO 0 state</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>FULL</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_FULL</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH1_UNDFL</name>
+              <description>Stereo channel 1 FIFO underflow</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NO_UNDERFLOW</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>UNDERFLOW</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_F1</name>
+              <description>Stereo channel 0 FIFO 1 state</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>FULL</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_FULL</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_F0</name>
+              <description>Stereo channel 0 FIFO 0 state</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>FULL</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_FULL</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_UNDFL</name>
+              <description>Stereo channel 0 FIFO underflow</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NO_UNDERFLOW</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>UNDERFLOW</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>RX_STATUS_0_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x40006567</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>INT</name>
+              <description>Interrupt bit</description>
+              <lsb>7</lsb>
+              <msb>7</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>CH1_F1</name>
+              <description>Stereo channel 1 FIFO 1 state</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH1_F0</name>
+              <description>Stereo channel 1 FIFO 0 state</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH1_OVRFL</name>
+              <description>Stereo channel 1 FIFO overflow</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NO_OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_F1</name>
+              <description>Stereo channel 0 FIFO 1 state</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_F0</name>
+              <description>Stereo channel 0 FIFO 0 state</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_OVRFL</name>
+              <description>Stereo channel 0 FIFO overflow</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NO_OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>CONTROL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x40006576</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>RESOLUTION</name>
+              <description>Specifies data bits value. Applicable only if dynamic bit resolution is selected.</description>
+              <lsb>3</lsb>
+              <msb>4</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Cy8_BIT</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Cy16_BIT</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Cy24_BIT</name>
+                  <description>No description available</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Cy32_BIT</name>
+                  <description>No description available</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>ENBL</name>
+              <description>Starts the generation of the WS and SCK outputs.</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>RX_ENBL</name>
+              <description>Enables Rx direction. Applicable only if Rx direction presents for the component.</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>TX_ENBL</name>
+              <description>Enables Tx direction. Applicable only if Tx direction presents for the component.</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ENABLED</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DISABLED</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>VOL</name>
+      <description>SAR ADC</description>
+      <baseAddress>0x0</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>SAR_TR0</name>
+          <description>SAR trim register</description>
+          <addressOffset>0x40004616</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR0</name>
+          <description>SAR status and control register 0</description>
+          <addressOffset>0x40005908</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR1</name>
+          <description>SAR status and control register 1</description>
+          <addressOffset>0x40005909</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR2</name>
+          <description>SAR status and control register 2</description>
+          <addressOffset>0x4000590A</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR3</name>
+          <description>SAR status and control register 3</description>
+          <addressOffset>0x4000590B</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR4</name>
+          <description>SAR status and control register 4</description>
+          <addressOffset>0x4000590C</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR5</name>
+          <description>SAR status and control register 5</description>
+          <addressOffset>0x4000590D</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CSR6</name>
+          <description>SAR status and control register 6</description>
+          <addressOffset>0x4000590E</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW0</name>
+          <description>SAR Analog Routing Register 0</description>
+          <addressOffset>0x40005B28</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW2</name>
+          <description>SAR Analog Routing Register 2</description>
+          <addressOffset>0x40005B2A</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW3</name>
+          <description>SAR Analog Routing Register 3</description>
+          <addressOffset>0x40005B2B</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW4</name>
+          <description>SAR Analog Routing Register 4</description>
+          <addressOffset>0x40005B2C</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_SW6</name>
+          <description>SAR Analog Routing Register 6</description>
+          <addressOffset>0x40005B2E</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_CLK</name>
+          <description>SAR Clock Selection Register</description>
+          <addressOffset>0x40005B2F</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>SAR_WRK</name>
+          <description>SAR working register</description>
+          <addressOffset>0x40005BA2</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>I2C_Codec_control</name>
+      <description>No description available</description>
+      <baseAddress>0x0</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>I2C_Codec_control_DATA</name>
+          <description>I2C Data Register</description>
+          <addressOffset>0x40006403</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>data</name>
+              <description>Read received data or write data to transmit.</description>
+              <lsb>0</lsb>
+              <msb>7</msb>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>I2C_Codec_control_CSR</name>
+          <description>I2C Status Register</description>
+          <addressOffset>0x40006464</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>lost_arb</name>
+              <description>If set, indicates arbitration was lost (multi-master and multi-master-slave modes).</description>
+              <lsb>6</lsb>
+              <msb>6</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>stop_status</name>
+              <description>If set, indicates a Stop condition was detected on the bus.</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>bus_busy</name>
+              <description>If set, indicates the bus is busy. Data is currently being transmitted or received.</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>address</name>
+              <description>Address detection. If set, indicates that an address byte was sent.</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>master_mode</name>
+              <description>Indicates that a valid Start condition was generated and a hardware device is operating as bus master.</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>lrb</name>
+              <description>Last Received Bit. Indicates the state of the last received bit, which is the ACK/NAK received for the last byte transmitted. Cleared = ACK and set = NAK.</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>byte_complete</name>
+              <description>Transmit or receive status since the last read of this register. In Transmit mode this bit indicates that eight bits of data plus ACK/NAK have been transmitted since the last read. In Receive mode this bit indicates that eight bits of data have been received since the last read of this register.</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-only</access>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>I2C_Codec_control_CFG</name>
+          <description>I2C Configuration Register</description>
+          <addressOffset>0x40006472</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>start_gen</name>
+              <description>Set to 1 to generate a Start condition on the bus. This bit must be cleared by firmware before initiating the next transaction.</description>
+              <lsb>7</lsb>
+              <msb>7</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>stop_gen</name>
+              <description>Set to 1 to generate a Stop condition on the bus. This bit must be cleared by firmware before initiating the next transaction.</description>
+              <lsb>6</lsb>
+              <msb>6</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>restart_gen</name>
+              <description>Set to 1 to generate a Restart condition on the bus. This bit must be cleared by firmware after a Restart condition is generated.</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>nack</name>
+              <description>Set to 1 to NAK the next read byte. Clear to ACK next read byte. This bit must be cleared by firmware between bytes.</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>transmit</name>
+              <description>Set to 1 to set the current mode to transmit or clear to 0 to receive a byte of data. This bit must be cleared by firmware before starting the next transmit or receive transaction.</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>master_en</name>
+              <description>Set to 1 to enable the master functionality.</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>I2C_Codec_control_INT_MASK</name>
+          <description>I2C Interrupt Enable Mask</description>
+          <addressOffset>0x40006484</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>lost_arb</name>
+              <description>Enables interrupt from the corresponding bit in status register.</description>
+              <lsb>6</lsb>
+              <msb>6</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>stop_status</name>
+              <description>Enables interrupt from the corresponding bit in status register.</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>bus_busy</name>
+              <description>Enables interrupt from the corresponding bit in status register.</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>address</name>
+              <description>Enables interrupt from the corresponding bit in status register.</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>master_mode</name>
+              <description>Enables interrupt from the corresponding bit in status register.</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>lrb</name>
+              <description>Enables interrupt from the corresponding bit in status register.</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>byte_complete</name>
+              <description>Enables interrupt from the corresponding bit in status register.</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>I2S_EN</name>
+      <description>No description available</description>
+      <baseAddress>0x40006476</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>I2S_EN_CONTROL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>LEDs</name>
+      <description>No description available</description>
+      <baseAddress>0x40006473</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>LEDs_CONTROL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+</device>

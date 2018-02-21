@@ -1,0 +1,7 @@
+C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\basisDSPproject_labo1_opg2.cyprj|e04f7dff-4f05-46df-87e7-97e77e8fcfe5
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|6cb2cbe0-7aac-456c-a4ea-cc0e5cbaaeb3
+C:\Users\Jona\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|4d63915e-b45b-4d8b-815e-9406060a6411
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|61bf9413-9f52-4f27-80a2-bbd6b0c56693
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|d40ae98a-5b65-4aec-a0fc-f3fb2afe3b0b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|1e7572f8-603c-4736-a276-2cac696a77dc
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|19b1e263-0694-4a06-a28b-e61d5923fe44
