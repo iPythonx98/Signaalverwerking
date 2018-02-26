@@ -120,6 +120,30 @@
 <v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\PSoC 5LP Architecture TRM</v>
 <v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CY8C58LP Family Datasheet</v>
 <v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\System Reference Guides</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\System Reference Guides\cy_boot_v5_20</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\ADC_SAR_v3_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\ADC_SAR_v3_0\ADC_SAR_v3_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_clock_v2_20.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_constant_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_dma_v1_70</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_dma_v1_70\cy_dma_v1_70.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_isr_v1_70</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_pins_v2_10</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_tff_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_tff_v1_0\cy_tff_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyControlReg_v1_80</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyStatusReg_v1_90</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyStatusReg_v1_90\CyStatusReg_v1_90.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\Debouncer_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\Debouncer_v1_0\Debouncer_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\FreqDiv_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\I2C_v3_50.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\not_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\not_v1_0\not_v1_0.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>basisDSPproject_labo1_opg2</v>
@@ -127,6 +151,30 @@
 <v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\PSoC 5LP Architecture TRM</v>
 <v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CY8C58LP Family Datasheet</v>
 <v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\System Reference Guides</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\System Reference Guides\cy_boot_v5_20</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\ADC_SAR_v3_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\ADC_SAR_v3_0\ADC_SAR_v3_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_clock_v2_20.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_constant_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_dma_v1_70</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_dma_v1_70\cy_dma_v1_70.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_isr_v1_70</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_pins_v2_10</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_tff_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\cy_tff_v1_0\cy_tff_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyControlReg_v1_80</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyStatusReg_v1_90</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\CyStatusReg_v1_90\CyStatusReg_v1_90.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\Debouncer_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\Debouncer_v1_0\Debouncer_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\FreqDiv_v1_0.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\I2C_v3_50.pdf</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\not_v1_0</v>
+<v>basisDSPproject_labo1_opg2\basisDSPproject_labo1_opg2\not_v1_0\not_v1_0.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -135,7 +183,16 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v=".\basisDSPproject_labo1_opg2.cydsn\basisDSPproject_labo1_opg2.cydwr" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1186, 517" SelectedTabbedMdiWindow="774f0591-c3d3-46cb-9333-e6e4867d3b2f"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="40ac6c31-ecc4-4637-9271-43f1d681036a" /><DocumentWindow Key="C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo1\Opgave5\Labo1_opg2\basisDSPproject_labo1_opg2.cydsn\basisDSPproject_labo1_opg2.cydwr" Guid="774f0591-c3d3-46cb-9333-e6e4867d3b2f" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
