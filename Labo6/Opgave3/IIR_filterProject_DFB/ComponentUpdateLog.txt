@@ -1,0 +1,36 @@
+Last Modified Date & Time: 05/14/2018 13:39:11
+
+IIR_filterProject_DFB: IIR_filterProject_DFB.cydwr
+	cy_boot [v5.20] to [v5.60]
+	LIN_Dynamic [v3.20] to [v4.0]
+
+IIR_filterProject_DFB: TopDesign.cysch
+	LINE [v3.0] to [v3.10]
+	VOL [v3.0] to [v3.10]
+	LCD [v2.10] to [v2.20]
+	AnL_in [v2.10] to [v2.20]
+	AnL_uit [v2.10] to [v2.20]
+	AnR_in [v2.10] to [v2.20]
+	AnR_uit [v2.10] to [v2.20]
+	AudioCodecClk [v2.10] to [v2.20]
+	CLIP_LED [v2.10] to [v2.20]
+	Codec_en [v2.10] to [v2.20]
+	L0 [v2.10] to [v2.20]
+	L1 [v2.10] to [v2.20]
+	L2 [v2.10] to [v2.20]
+	L3 [v2.10] to [v2.20]
+	POT_1 [v2.10] to [v2.20]
+	POT_2 [v2.10] to [v2.20]
+	S0 [v2.10] to [v2.20]
+	S1 [v2.10] to [v2.20]
+	S2 [v2.10] to [v2.20]
+	S3 [v2.10] to [v2.20]
+	SCK [v2.10] to [v2.20]
+	SCL [v2.10] to [v2.20]
+	SDA [v2.10] to [v2.20]
+	SDI [v2.10] to [v2.20]
+	SDO [v2.10] to [v2.20]
+	WS [v2.10] to [v2.20]
+	I2S_Codec_audio [v2.60] to [v2.70]
+
+

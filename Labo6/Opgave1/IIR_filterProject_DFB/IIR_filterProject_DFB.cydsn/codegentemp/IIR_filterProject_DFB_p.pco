@@ -1,0 +1,156 @@
+dont_use_io iocell 1 0
+dont_use_io iocell 1 1
+dont_use_io iocell 1 2
+dont_use_io iocell 1 3
+set_location "\I2C_Codec_control:bI2C_UDB:bus_busy_reg\" macrocell 1 4 1 0
+set_location "\I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\" macrocell 2 1 1 3
+set_location "Net_1036" macrocell 1 2 0 0
+set_location "Net_1034" macrocell 3 1 1 0
+set_location "Net_925" macrocell 1 0 0 1
+set_location "\I2C_Codec_control:bI2C_UDB:scl_in_reg\" macrocell 1 4 0 3
+set_location "\I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\" macrocell 0 1 0 1
+set_location "\I2S_Codec_audio:bI2S:reset\" macrocell 0 2 1 1
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_2\" macrocell 0 3 0 1
+set_location "\I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\" macrocell 1 2 1 0
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_0_split\" macrocell 1 0 1 2
+set_location "Net_961" macrocell 3 1 0 2
+set_location "\I2S_Codec_audio:bI2S:rx_f0_load\" macrocell 0 2 0 3
+set_location "\I2S_Codec_audio:bI2S:BitCounter\" count7cell 0 4 7 
+set_location "\I2S_Codec_audio:bI2S:rx_state_2\" macrocell 0 2 0 2
+set_location "Net_985" macrocell 1 2 0 3
+set_location "Net_979" macrocell 3 1 1 2
+set_location "Net_973" macrocell 1 2 0 2
+set_location "\Div2:not_last_reset\" macrocell 1 3 0 2
+set_location "\I2S_Codec_audio:bI2S:rx_state_1\" macrocell 0 2 0 1
+set_location "\Div2:count_0\" macrocell 1 3 0 1
+set_location "\I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\" macrocell 1 4 1 3
+set_location "\I2C_Codec_control:sda_x_wire\" macrocell 0 0 0 0
+set_location "\I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\" macrocell 0 0 1 1
+set_location "\I2C_Codec_control:bI2C_UDB:Master:ClkGen:u0\" datapathcell 2 1 2 
+set_location "\I2S_Codec_audio:bI2S:Rx:STS[0]:Sts\" statusicell 0 2 4 
+set_location "\I2S_Codec_audio:bI2S:Tx:STS[0]:Sts\" statusicell 0 5 4 
+set_location "Net_917" macrocell 1 0 1 3
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_4_split\" macrocell 1 5 0 0
+set_location "Net_920" macrocell 1 1 0 0
+set_location "Net_895" macrocell 1 5 1 1
+set_location "Net_896" macrocell 1 2 1 1
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_3\" macrocell 0 1 0 0
+set_location "\Debouncer_1:DEBOUNCER[0]:d_sync_1\" macrocell 1 2 0 1
+set_location "\Debouncer_2:DEBOUNCER[0]:d_sync_1\" macrocell 1 0 0 0
+set_location "\Debouncer_3:DEBOUNCER[0]:d_sync_1\" macrocell 3 1 1 1
+set_location "\I2C_Codec_control:bI2C_UDB:sda_in_last_reg\" macrocell 1 3 1 3
+set_location "\I2C_Codec_control:bI2C_UDB:status_5\" macrocell 1 4 1 2
+set_location "\I2S_Codec_audio:bI2S:tx_state_2\" macrocell 0 5 1 3
+set_location "Net_1033" macrocell 3 1 0 3
+set_location "\I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\" macrocell 2 1 1 1
+set_location "\I2C_Codec_control:bI2C_UDB:status_1\" macrocell 1 1 1 0
+set_location "\I2C_Codec_control:bI2C_UDB:lost_arb_reg\" macrocell 0 3 0 2
+set_location "\I2C_Codec_control:bI2C_UDB:Shifter:u0\" datapathcell 1 1 2 
+set_location "\I2C_Codec_control:bI2C_UDB:m_reset\" macrocell 1 3 1 2
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_2_split\" macrocell 0 5 0 0
+set_location "\I2C_Codec_control:bI2C_UDB:clk_eq_reg\" macrocell 1 4 0 0
+set_location "\I2S_Codec_audio:bI2S:rx_overflow_0\" macrocell 0 2 1 3
+set_location "\I2C_Codec_control:bI2C_UDB:status_0\" macrocell 2 1 0 1
+set_location "\I2C_Codec_control:bI2C_UDB:status_4\" macrocell 1 2 1 3
+set_location "\I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\" macrocell 2 1 1 2
+set_location "\I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\" macrocell 1 4 1 1
+set_location "\I2C_Codec_control:bI2C_UDB:status_3\" macrocell 0 3 0 0
+set_location "\I2S_Codec_audio:bI2S:tx_state_0\" macrocell 0 5 1 1
+set_location "\I2S_Codec_audio:bI2S:tx_state_1\" macrocell 0 5 1 0
+set_location "\I2C_Codec_control:bI2C_UDB:StsReg\" statusicell 1 3 4 
+set_location "\Debouncer_0:DEBOUNCER[0]:d_sync_1\" macrocell 3 1 0 1
+set_location "\I2S_Codec_audio:bI2S:rxenable\" macrocell 0 3 1 0
+set_location "\I2C_Codec_control:bI2C_UDB:sda_in_reg\" macrocell 1 1 1 2
+set_location "Net_952" macrocell 3 1 1 3
+set_location "Net_951" macrocell 1 0 0 3
+set_location "Net_950" macrocell 1 2 1 2
+set_location "Net_15_0" macrocell 0 4 0 1
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_4\" macrocell 0 0 0 1
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_1\" macrocell 0 1 1 0
+set_location "Net_167" macrocell 0 3 1 1
+set_location "\I2S_Codec_audio:bI2S:rx_state_0\" macrocell 0 2 0 0
+set_location "Net_1037" macrocell 3 1 0 0
+set_location "\I2C_Codec_control:Net_643_3\" macrocell 2 1 0 0
+set_location "\I2S_Codec_audio:bI2S:rx_overflow_sticky\" macrocell 0 2 1 0
+set_location "Net_1050" macrocell 1 3 0 0
+set_location "\I2S_Codec_audio:bI2S:tx_underflow_sticky\" macrocell 0 4 0 0
+set_location "\I2C_Codec_control:bI2C_UDB:cnt_reset\" macrocell 2 1 1 0
+set_location "\I2S_Codec_audio:bI2S:tx_underflow_0\" macrocell 0 5 1 2
+set_location "\I2C_Codec_control:bI2C_UDB:scl_in_last_reg\" macrocell 1 3 1 0
+set_location "\I2S_Codec_audio:bI2S:txenable\" macrocell 0 4 1 0
+set_location "\I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:u0\" datapathcell 0 1 2 
+set_location "\I2S_Codec_audio:bI2S:rx_data_in_0\" macrocell 0 4 0 2
+set_location "__ONE__" macrocell 1 5 1 3
+set_location "\I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:u0\" datapathcell 0 5 2 
+set_location "\I2C_Codec_control:bI2C_UDB:m_state_0\" macrocell 0 0 1 0
+set_location "\I2C_Codec_control:bI2C_UDB:status_2\" macrocell 1 1 1 1
+set_io "\LCD:LCDPort(4)\" iocell 2 4
+# Note: port 15 is the logical name for port 8
+set_io "CLIP_LED(0)" iocell 15 4
+set_location "\KNOP_TOGGLE:sts:sts_reg\" statuscell 1 2 3 
+set_location "\KNOP:sts:sts_reg\" statuscell 1 0 3 
+# Note: port 15 is the logical name for port 8
+set_io "L3(0)" iocell 15 3
+set_location "SampleKlaar" interrupt -1 -1 0
+set_location "SampleVraag" interrupt -1 -1 1
+set_io "S0(0)" iocell 1 4
+set_location "TxDMA" drqcell -1 -1 1
+set_location "RxDMA" drqcell -1 -1 0
+set_io "Codec_en(0)" iocell 2 7
+set_location "\I2C_Codec_control:I2C_IRQ\" interrupt -1 -1 2
+# Note: port 15 is the logical name for port 8
+set_io "AudioCodecClk(0)" iocell 15 5
+# Note: port 15 is the logical name for port 8
+set_io "L1(0)" iocell 15 1
+set_location "\LINE:IRQ\" interrupt -1 -1 3
+set_location "\VOL:IRQ\" interrupt -1 -1 4
+set_location "\Filter:DFB\" dfbcell -1 -1 0
+set_location "\CLIP:Sync:ctrl_reg\" controlcell 2 1 6 
+set_io "\LCD:LCDPort(6)\" iocell 2 6
+set_io "\LCD:LCDPort(5)\" iocell 2 5
+set_io "\LCD:LCDPort(2)\" iocell 2 2
+# Note: port 15 is the logical name for port 8
+set_io "L2(0)" iocell 15 2
+# Note: port 12 is the logical name for port 7
+set_io "WS(0)" iocell 12 3
+# Note: port 12 is the logical name for port 7
+set_io "SCL(0)" iocell 12 0
+set_location "\I2S_EN:Sync:ctrl_reg\" controlcell 1 3 6 
+set_io "S2(0)" iocell 1 6
+set_io "S3(0)" iocell 1 7
+set_io "S1(0)" iocell 1 5
+set_location "\LINE:ADC_SAR\" sarcell -1 -1 0
+set_location "\AnalogeIngang_R:ABuf\" abufcell -1 -1 1
+set_location "\AnalogeIngang_L:ABuf\" abufcell -1 -1 3
+# Note: port 12 is the logical name for port 7
+set_io "SDA(0)" iocell 12 1
+set_location "\I2S_Codec_audio:bI2S:CtlReg\" controlcell 0 5 6 
+set_location "\VOL:ADC_SAR\" sarcell -1 -1 1
+set_location "S1(0)_SYNC" synccell 0 3 5 0
+set_location "S0(0)_SYNC" synccell 3 1 5 0
+set_location "S2(0)_SYNC" synccell 0 3 5 1
+set_location "SDI(0)_SYNC" synccell 1 4 5 0
+set_location "S3(0)_SYNC" synccell 3 1 5 1
+# Note: port 12 is the logical name for port 7
+set_io "SCK(0)" iocell 12 6
+set_location "\LEDs:Sync:ctrl_reg\" controlcell 0 0 6 
+set_io "\LCD:LCDPort(1)\" iocell 2 1
+set_location "ClockBlock" clockblockcell -1 -1 0
+set_io "POT_2(0)" iocell 0 4
+set_io "\LCD:LCDPort(0)\" iocell 2 0
+set_io "POT_1(0)" iocell 0 3
+set_io "AnR_uit(0)" iocell 3 6
+set_io "AnR_in(0)" iocell 3 5
+set_io "AnL_uit(0)" iocell 3 7
+set_io "AnL_in(0)" iocell 3 3
+set_io "\LCD:LCDPort(3)\" iocell 2 3
+# Note: port 12 is the logical name for port 7
+set_io "SDO(0)" iocell 12 4
+set_location "SCL(0)_SYNC" synccell 1 4 5 1
+set_location "SDA(0)_SYNC" synccell 1 1 5 0
+set_location "\I2C_Codec_control:bI2C_UDB:SyncCtl:CtrlReg\" controlcell 1 2 6 
+# Note: port 15 is the logical name for port 8
+set_io "L0(0)" iocell 15 0
+set_location "AudioCodecClk(0)_SYNC" synccell 1 1 5 1
+# Note: port 12 is the logical name for port 7
+set_io "SDI(0)" iocell 12 5
