@@ -1,6 +1,6 @@
 -- Project:   IIR_filterProject_DFB
--- Generated: 03/30/2016 21:01:23
--- PSoC Creator  3.3 CP1
+-- Generated: 05/18/2018 15:45:26
+-- PSoC Creator  4.1 Update 1
 
 ENTITY IIR_filterProject_DFB IS
     PORT(
@@ -30,8 +30,8 @@ ENTITY IIR_filterProject_DFB IS
         S3(0)_PAD : IN std_ulogic);
     ATTRIBUTE voltage_VDDABUF OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDA OF __DEFAULT__ : ENTITY IS 5e0;
-    ATTRIBUTE voltage_VDDD OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VUSB OF __DEFAULT__ : ENTITY IS 5e0;
+    ATTRIBUTE voltage_VDDD OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDIO0 OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDIO1 OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDIO2 OF __DEFAULT__ : ENTITY IS 5e0;
@@ -68,22 +68,22 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     ATTRIBUTE global_signal OF Net_1032 : SIGNAL IS true;
     SIGNAL Net_1032_local : bit;
     SIGNAL Net_1033 : bit;
-    ATTRIBUTE placement_force OF Net_1033 : SIGNAL IS "U(3,1,A)3";
+    ATTRIBUTE placement_force OF Net_1033 : SIGNAL IS "U(0,1,A)0";
     SIGNAL Net_1034 : bit;
-    ATTRIBUTE placement_force OF Net_1034 : SIGNAL IS "U(3,1,B)0";
+    ATTRIBUTE placement_force OF Net_1034 : SIGNAL IS "U(0,2,A)0";
     SIGNAL Net_1036 : bit;
-    ATTRIBUTE placement_force OF Net_1036 : SIGNAL IS "U(1,2,A)0";
+    ATTRIBUTE placement_force OF Net_1036 : SIGNAL IS "U(0,1,B)0";
     SIGNAL Net_1037 : bit;
-    ATTRIBUTE placement_force OF Net_1037 : SIGNAL IS "U(3,1,A)0";
+    ATTRIBUTE placement_force OF Net_1037 : SIGNAL IS "U(0,1,A)3";
     SIGNAL Net_1050 : bit;
-    ATTRIBUTE placement_force OF Net_1050 : SIGNAL IS "U(1,3,A)0";
+    ATTRIBUTE placement_force OF Net_1050 : SIGNAL IS "U(3,2,A)1";
     SIGNAL Net_1133 : bit;
     SIGNAL Net_1134 : bit;
     SIGNAL Net_1135 : bit;
     SIGNAL Net_15_0 : bit;
-    ATTRIBUTE placement_force OF Net_15_0 : SIGNAL IS "U(0,4,A)1";
+    ATTRIBUTE placement_force OF Net_15_0 : SIGNAL IS "U(3,1,A)0";
     SIGNAL Net_167 : bit;
-    ATTRIBUTE placement_force OF Net_167 : SIGNAL IS "U(0,3,B)1";
+    ATTRIBUTE placement_force OF Net_167 : SIGNAL IS "U(3,2,B)2";
     SIGNAL Net_168 : bit;
     SIGNAL Net_241 : bit;
     SIGNAL Net_244 : bit;
@@ -108,33 +108,33 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     SIGNAL Net_878 : bit;
     SIGNAL Net_878_SYNCOUT : bit;
     SIGNAL Net_895 : bit;
-    ATTRIBUTE placement_force OF Net_895 : SIGNAL IS "U(1,5,B)1";
+    ATTRIBUTE placement_force OF Net_895 : SIGNAL IS "U(1,1,B)0";
     SIGNAL Net_896 : bit;
-    ATTRIBUTE placement_force OF Net_896 : SIGNAL IS "U(1,2,B)1";
+    ATTRIBUTE placement_force OF Net_896 : SIGNAL IS "U(2,1,A)1";
     SIGNAL Net_917 : bit;
-    ATTRIBUTE placement_force OF Net_917 : SIGNAL IS "U(1,0,B)3";
+    ATTRIBUTE placement_force OF Net_917 : SIGNAL IS "U(2,4,B)0";
     SIGNAL Net_920 : bit;
-    ATTRIBUTE placement_force OF Net_920 : SIGNAL IS "U(1,1,A)0";
+    ATTRIBUTE placement_force OF Net_920 : SIGNAL IS "U(1,2,A)1";
     SIGNAL Net_925 : bit;
-    ATTRIBUTE placement_force OF Net_925 : SIGNAL IS "U(1,0,A)1";
+    ATTRIBUTE placement_force OF Net_925 : SIGNAL IS "U(2,4,A)0";
     SIGNAL Net_950 : bit;
-    ATTRIBUTE placement_force OF Net_950 : SIGNAL IS "U(1,2,B)2";
+    ATTRIBUTE placement_force OF Net_950 : SIGNAL IS "U(0,2,A)1";
     SIGNAL Net_951 : bit;
-    ATTRIBUTE placement_force OF Net_951 : SIGNAL IS "U(1,0,A)3";
+    ATTRIBUTE placement_force OF Net_951 : SIGNAL IS "U(2,4,A)3";
     SIGNAL Net_952 : bit;
-    ATTRIBUTE placement_force OF Net_952 : SIGNAL IS "U(3,1,B)3";
+    ATTRIBUTE placement_force OF Net_952 : SIGNAL IS "U(0,2,A)2";
     SIGNAL Net_959 : bit;
     SIGNAL Net_959_SYNCOUT : bit;
     SIGNAL Net_961 : bit;
-    ATTRIBUTE placement_force OF Net_961 : SIGNAL IS "U(3,1,A)2";
+    ATTRIBUTE placement_force OF Net_961 : SIGNAL IS "U(0,1,A)2";
     SIGNAL Net_973 : bit;
-    ATTRIBUTE placement_force OF Net_973 : SIGNAL IS "U(1,2,A)2";
+    ATTRIBUTE placement_force OF Net_973 : SIGNAL IS "U(2,4,A)2";
     SIGNAL Net_979 : bit;
-    ATTRIBUTE placement_force OF Net_979 : SIGNAL IS "U(3,1,B)2";
+    ATTRIBUTE placement_force OF Net_979 : SIGNAL IS "U(0,1,B)3";
     SIGNAL Net_984 : bit;
     SIGNAL Net_984_SYNCOUT : bit;
     SIGNAL Net_985 : bit;
-    ATTRIBUTE placement_force OF Net_985 : SIGNAL IS "U(1,2,A)3";
+    ATTRIBUTE placement_force OF Net_985 : SIGNAL IS "U(0,1,B)2";
     SIGNAL POT_1(0)__PA : bit;
     SIGNAL POT_2(0)__PA : bit;
     SIGNAL S0(0)__PA : bit;
@@ -155,17 +155,17 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     SIGNAL \CLIP:control_6\ : bit;
     SIGNAL \CLIP:control_7\ : bit;
     SIGNAL \Debouncer_0:DEBOUNCER[0]:d_sync_1\ : bit;
-    ATTRIBUTE placement_force OF \Debouncer_0:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(3,1,A)1";
+    ATTRIBUTE placement_force OF \Debouncer_0:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(0,1,A)1";
     SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : bit;
-    ATTRIBUTE placement_force OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(1,2,A)1";
+    ATTRIBUTE placement_force OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(0,1,B)1";
     SIGNAL \Debouncer_2:DEBOUNCER[0]:d_sync_1\ : bit;
-    ATTRIBUTE placement_force OF \Debouncer_2:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(1,0,A)0";
+    ATTRIBUTE placement_force OF \Debouncer_2:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(2,4,A)1";
     SIGNAL \Debouncer_3:DEBOUNCER[0]:d_sync_1\ : bit;
-    ATTRIBUTE placement_force OF \Debouncer_3:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(3,1,B)1";
+    ATTRIBUTE placement_force OF \Debouncer_3:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(0,2,A)3";
     SIGNAL \Div2:count_0\ : bit;
-    ATTRIBUTE placement_force OF \Div2:count_0\ : SIGNAL IS "U(1,3,A)1";
+    ATTRIBUTE placement_force OF \Div2:count_0\ : SIGNAL IS "U(3,2,A)2";
     SIGNAL \Div2:not_last_reset\ : bit;
-    ATTRIBUTE placement_force OF \Div2:not_last_reset\ : SIGNAL IS "U(1,3,A)2";
+    ATTRIBUTE placement_force OF \Div2:not_last_reset\ : SIGNAL IS "U(3,2,A)3";
     SIGNAL \Filter:Net_8\ : bit;
     SIGNAL \Filter:Net_9\ : bit;
     SIGNAL \I2C_Codec_control:Net_1109_0\ : bit;
@@ -173,24 +173,24 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     SIGNAL \I2C_Codec_control:Net_1109_1\ : bit;
     SIGNAL \I2C_Codec_control:Net_1109_1_SYNCOUT\ : bit;
     SIGNAL \I2C_Codec_control:Net_643_3\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:Net_643_3\ : SIGNAL IS "U(2,1,A)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:Net_643_3\ : SIGNAL IS "U(2,3,A)0";
     SIGNAL \I2C_Codec_control:Net_697\ : bit;
     SIGNAL \I2C_Codec_control:Net_970\ : bit;
     ATTRIBUTE udbclken_assigned OF \I2C_Codec_control:Net_970\ : SIGNAL IS "True";
     ATTRIBUTE global_signal OF \I2C_Codec_control:Net_970\ : SIGNAL IS true;
     SIGNAL \I2C_Codec_control:Net_970_local\ : bit;
     SIGNAL \I2C_Codec_control:bI2C_UDB:bus_busy_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:bus_busy_reg\ : SIGNAL IS "U(1,4,B)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:bus_busy_reg\ : SIGNAL IS "U(1,1,A)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:clk_eq_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:clk_eq_reg\ : SIGNAL IS "U(1,4,A)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:clk_eq_reg\ : SIGNAL IS "U(2,3,A)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:clkgen_cl1\ : bit;
     SIGNAL \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\ : SIGNAL IS "U(2,1,B)2";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\ : SIGNAL IS "U(2,2,B)2";
     SIGNAL \I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\ : SIGNAL IS "U(0,0,B)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\ : SIGNAL IS "U(3,4,A)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:clkgen_tc\ : bit;
     SIGNAL \I2C_Codec_control:bI2C_UDB:cnt_reset\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cnt_reset\ : SIGNAL IS "U(2,1,B)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cnt_reset\ : SIGNAL IS "U(2,2,B)0";
     ATTRIBUTE soft OF \I2C_Codec_control:bI2C_UDB:cnt_reset\ : SIGNAL IS 1;
     SIGNAL \I2C_Codec_control:bI2C_UDB:control_0\ : bit;
     SIGNAL \I2C_Codec_control:bI2C_UDB:control_1\ : bit;
@@ -201,111 +201,111 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     SIGNAL \I2C_Codec_control:bI2C_UDB:control_6\ : bit;
     SIGNAL \I2C_Codec_control:bI2C_UDB:control_7\ : bit;
     SIGNAL \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\ : SIGNAL IS "U(1,2,B)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\ : SIGNAL IS "U(2,2,A)2";
     SIGNAL \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\ : SIGNAL IS "U(2,1,B)3";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\ : SIGNAL IS "U(2,2,B)3";
     SIGNAL \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\ : SIGNAL IS "U(2,1,B)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\ : SIGNAL IS "U(2,2,B)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\ : SIGNAL IS "U(0,1,A)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\ : SIGNAL IS "U(0,2,B)1";
     ATTRIBUTE soft OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\ : SIGNAL IS 1;
     SIGNAL \I2C_Codec_control:bI2C_UDB:lost_arb_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:lost_arb_reg\ : SIGNAL IS "U(0,3,A)2";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:lost_arb_reg\ : SIGNAL IS "U(2,3,B)3";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_reset\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_reset\ : SIGNAL IS "U(1,3,B)2";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_reset\ : SIGNAL IS "U(2,1,B)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_0\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_0\ : SIGNAL IS "U(0,0,B)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_0\ : SIGNAL IS "U(0,2,B)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_0_split\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_0_split\ : SIGNAL IS "U(1,0,B)2";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_0_split\ : SIGNAL IS "U(1,2,A)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_1\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_1\ : SIGNAL IS "U(0,1,B)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_1\ : SIGNAL IS "U(3,3,B)2";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_2\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_2\ : SIGNAL IS "U(0,3,A)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_2\ : SIGNAL IS "U(1,2,B)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_2_split\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_2_split\ : SIGNAL IS "U(0,5,A)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_2_split\ : SIGNAL IS "U(1,1,B)3";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_3\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_3\ : SIGNAL IS "U(0,1,A)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_3\ : SIGNAL IS "U(3,3,A)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_4\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_4\ : SIGNAL IS "U(0,0,A)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_4\ : SIGNAL IS "U(3,4,B)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_4_split\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_4_split\ : SIGNAL IS "U(1,5,A)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:m_state_4_split\ : SIGNAL IS "U(3,4,A)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\ : SIGNAL IS "U(1,4,B)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\ : SIGNAL IS "U(1,1,A)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:scl_in_last_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:scl_in_last_reg\ : SIGNAL IS "U(1,3,B)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:scl_in_last_reg\ : SIGNAL IS "U(2,1,B)3";
     SIGNAL \I2C_Codec_control:bI2C_UDB:scl_in_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:scl_in_reg\ : SIGNAL IS "U(1,4,A)3";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:scl_in_reg\ : SIGNAL IS "U(2,3,B)2";
     SIGNAL \I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\ : SIGNAL IS "U(1,4,B)3";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\ : SIGNAL IS "U(1,1,A)3";
     SIGNAL \I2C_Codec_control:bI2C_UDB:sda_in_last_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:sda_in_last_reg\ : SIGNAL IS "U(1,3,B)3";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:sda_in_last_reg\ : SIGNAL IS "U(2,1,B)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:sda_in_reg\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:sda_in_reg\ : SIGNAL IS "U(1,1,B)2";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:sda_in_reg\ : SIGNAL IS "U(1,2,B)2";
     SIGNAL \I2C_Codec_control:bI2C_UDB:shift_data_out\ : bit;
     SIGNAL \I2C_Codec_control:bI2C_UDB:status_0\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_0\ : SIGNAL IS "U(2,1,A)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_0\ : SIGNAL IS "U(2,3,B)1";
     SIGNAL \I2C_Codec_control:bI2C_UDB:status_1\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_1\ : SIGNAL IS "U(1,1,B)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_1\ : SIGNAL IS "U(1,2,B)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:status_2\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_2\ : SIGNAL IS "U(1,1,B)1";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_2\ : SIGNAL IS "U(2,2,A)3";
     SIGNAL \I2C_Codec_control:bI2C_UDB:status_3\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_3\ : SIGNAL IS "U(0,3,A)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_3\ : SIGNAL IS "U(2,3,B)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:status_4\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_4\ : SIGNAL IS "U(1,2,B)3";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_4\ : SIGNAL IS "U(2,2,A)0";
     SIGNAL \I2C_Codec_control:bI2C_UDB:status_5\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_5\ : SIGNAL IS "U(1,4,B)2";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:bI2C_UDB:status_5\ : SIGNAL IS "U(1,1,A)2";
     SIGNAL \I2C_Codec_control:bI2C_UDB:tx_reg_empty\ : bit;
     SIGNAL \I2C_Codec_control:sda_x_wire\ : bit;
-    ATTRIBUTE placement_force OF \I2C_Codec_control:sda_x_wire\ : SIGNAL IS "U(0,0,A)0";
+    ATTRIBUTE placement_force OF \I2C_Codec_control:sda_x_wire\ : SIGNAL IS "U(3,4,B)0";
     SIGNAL \I2S_Codec_audio:bI2S:count_1\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:count_2\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:count_3\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:count_4\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:count_5\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:count_6\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_0\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_1\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_2\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_3\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_4\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_5\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_6\ : bit;
-    SIGNAL \I2S_Codec_audio:bI2S:ctrl_7\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_0\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_1\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_3\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_4\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_5\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_6\ : bit;
+    SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_7\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:reset\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:reset\ : SIGNAL IS "U(0,2,B)1";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:reset\ : SIGNAL IS "U(3,2,B)1";
     SIGNAL \I2S_Codec_audio:bI2S:rx_data_in_0\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_data_in_0\ : SIGNAL IS "U(0,4,A)2";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_data_in_0\ : SIGNAL IS "U(3,1,A)1";
     SIGNAL \I2S_Codec_audio:bI2S:rx_f0_full_0\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:rx_f0_load\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_f0_load\ : SIGNAL IS "U(0,2,A)3";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_f0_load\ : SIGNAL IS "U(3,1,B)3";
     SIGNAL \I2S_Codec_audio:bI2S:rx_int_out_0\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:rx_overflow_0\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_overflow_0\ : SIGNAL IS "U(0,2,B)3";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_overflow_0\ : SIGNAL IS "U(3,2,B)0";
     SIGNAL \I2S_Codec_audio:bI2S:rx_overflow_sticky\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_overflow_sticky\ : SIGNAL IS "U(0,2,B)0";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_overflow_sticky\ : SIGNAL IS "U(3,2,B)3";
     SIGNAL \I2S_Codec_audio:bI2S:rx_state_0\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_state_0\ : SIGNAL IS "U(0,2,A)0";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_state_0\ : SIGNAL IS "U(3,1,B)1";
     SIGNAL \I2S_Codec_audio:bI2S:rx_state_1\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_state_1\ : SIGNAL IS "U(0,2,A)1";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_state_1\ : SIGNAL IS "U(3,1,B)0";
     SIGNAL \I2S_Codec_audio:bI2S:rx_state_2\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_state_2\ : SIGNAL IS "U(0,2,A)2";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rx_state_2\ : SIGNAL IS "U(3,1,B)2";
     SIGNAL \I2S_Codec_audio:bI2S:rxenable\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rxenable\ : SIGNAL IS "U(0,3,B)0";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:rxenable\ : SIGNAL IS "U(3,0,A)0";
     SIGNAL \I2S_Codec_audio:bI2S:tx_data_out_0\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:tx_f0_empty_0\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:tx_int_out_0\ : bit;
     SIGNAL \I2S_Codec_audio:bI2S:tx_state_0\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_state_0\ : SIGNAL IS "U(0,5,B)1";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_state_0\ : SIGNAL IS "U(2,0,B)0";
     SIGNAL \I2S_Codec_audio:bI2S:tx_state_1\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_state_1\ : SIGNAL IS "U(0,5,B)0";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_state_1\ : SIGNAL IS "U(2,0,B)2";
     SIGNAL \I2S_Codec_audio:bI2S:tx_state_2\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_state_2\ : SIGNAL IS "U(0,5,B)3";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_state_2\ : SIGNAL IS "U(2,0,B)3";
     SIGNAL \I2S_Codec_audio:bI2S:tx_underflow_0\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_underflow_0\ : SIGNAL IS "U(0,5,B)2";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_underflow_0\ : SIGNAL IS "U(3,1,A)3";
     SIGNAL \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : SIGNAL IS "U(0,4,A)0";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : SIGNAL IS "U(3,1,A)2";
     SIGNAL \I2S_Codec_audio:bI2S:txenable\ : bit;
-    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:txenable\ : SIGNAL IS "U(0,4,B)0";
+    ATTRIBUTE placement_force OF \I2S_Codec_audio:bI2S:txenable\ : SIGNAL IS "U(3,0,B)0";
     SIGNAL \I2S_EN:control_1\ : bit;
     SIGNAL \I2S_EN:control_2\ : bit;
     SIGNAL \I2S_EN:control_3\ : bit;
@@ -337,9 +337,11 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     SIGNAL \LINE:Net_207_8\ : bit;
     SIGNAL \LINE:Net_207_9\ : bit;
     SIGNAL \LINE:Net_252\ : bit;
-    SIGNAL \LINE:Net_376\ : bit;
-    ATTRIBUTE global_signal OF \LINE:Net_376\ : SIGNAL IS true;
-    SIGNAL \LINE:Net_376_local\ : bit;
+    SIGNAL \LINE:Net_381\ : bit;
+    SIGNAL \LINE:Net_381_local\ : bit;
+    SIGNAL \LINE:Net_385\ : bit;
+    ATTRIBUTE global_signal OF \LINE:Net_385\ : SIGNAL IS true;
+    SIGNAL \LINE:Net_385_local\ : bit;
     SIGNAL \VOL:Net_207_0\ : bit;
     SIGNAL \VOL:Net_207_10\ : bit;
     SIGNAL \VOL:Net_207_11\ : bit;
@@ -353,11 +355,13 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     SIGNAL \VOL:Net_207_8\ : bit;
     SIGNAL \VOL:Net_207_9\ : bit;
     SIGNAL \VOL:Net_252\ : bit;
-    SIGNAL \VOL:Net_376\ : bit;
-    ATTRIBUTE global_signal OF \VOL:Net_376\ : SIGNAL IS true;
-    SIGNAL \VOL:Net_376_local\ : bit;
+    SIGNAL \VOL:Net_381\ : bit;
+    SIGNAL \VOL:Net_381_local\ : bit;
+    SIGNAL \VOL:Net_385\ : bit;
+    ATTRIBUTE global_signal OF \VOL:Net_385\ : SIGNAL IS true;
+    SIGNAL \VOL:Net_385_local\ : bit;
     SIGNAL __ONE__ : bit;
-    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(1,5,B)3";
+    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(2,0,A)0";
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
     ATTRIBUTE GROUND OF __ZERO__ : SIGNAL IS true;
@@ -365,8 +369,10 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     ATTRIBUTE POWER OF one : SIGNAL IS true;
     SIGNAL zero : bit;
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
+    SIGNAL \ClockBlock.aclk_glb_ff_0__sig\ : bit;
+    SIGNAL \ClockBlock.aclk_glb_ff_1__sig\ : bit;
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_4_split\ : LABEL IS "macrocell1";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_4_split\ : LABEL IS "U(1,5)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_4_split\ : LABEL IS "U(3,4)";
     ATTRIBUTE Location OF ClockBlock : LABEL IS "F(Clock,0)";
     ATTRIBUTE lib_model OF POT_2(0) : LABEL IS "iocell1";
     ATTRIBUTE Location OF POT_2(0) : LABEL IS "P0[4]";
@@ -397,7 +403,7 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     ATTRIBUTE lib_model OF Codec_en(0) : LABEL IS "iocell14";
     ATTRIBUTE Location OF Codec_en(0) : LABEL IS "P2[7]";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell2";
-    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(1,5)";
+    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(2,0)";
     ATTRIBUTE lib_model OF L1(0) : LABEL IS "iocell15";
     ATTRIBUTE Location OF L1(0) : LABEL IS "P15[1]";
     ATTRIBUTE lib_model OF L0(0) : LABEL IS "iocell16";
@@ -431,200 +437,200 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
     ATTRIBUTE lib_model OF AnL_in(0) : LABEL IS "iocell30";
     ATTRIBUTE Location OF AnL_in(0) : LABEL IS "P3[3]";
     ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_underflow_0\ : LABEL IS "macrocell3";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_underflow_0\ : LABEL IS "U(0,5)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_underflow_0\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_overflow_0\ : LABEL IS "macrocell4";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_overflow_0\ : LABEL IS "U(0,2)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_overflow_0\ : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:status_5\ : LABEL IS "macrocell5";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_5\ : LABEL IS "U(1,4)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_5\ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:status_4\ : LABEL IS "macrocell6";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_4\ : LABEL IS "U(1,2)";
-    ATTRIBUTE Location OF AudioCodecClk(0)_SYNC : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_4\ : LABEL IS "U(2,2)";
+    ATTRIBUTE Location OF AudioCodecClk(0)_SYNC : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:cnt_reset\ : LABEL IS "macrocell7";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cnt_reset\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cnt_reset\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\ : LABEL IS "macrocell8";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\ : LABEL IS "macrocell9";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\ : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\ : LABEL IS "macrocell10";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\ : LABEL IS "U(0,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\ : LABEL IS "macrocell11";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\ : LABEL IS "U(2,1)";
-    ATTRIBUTE Location OF SDI(0)_SYNC : LABEL IS "U(1,4)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\ : LABEL IS "U(2,2)";
+    ATTRIBUTE Location OF SDI(0)_SYNC : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF Net_1033 : LABEL IS "macrocell12";
-    ATTRIBUTE Location OF Net_1033 : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF Net_1033 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_950 : LABEL IS "macrocell13";
-    ATTRIBUTE Location OF Net_950 : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF Net_950 : LABEL IS "U(0,2)";
     ATTRIBUTE lib_model OF Net_951 : LABEL IS "macrocell14";
-    ATTRIBUTE Location OF Net_951 : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF Net_951 : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF Net_952 : LABEL IS "macrocell15";
-    ATTRIBUTE Location OF Net_952 : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF Net_952 : LABEL IS "U(0,2)";
     ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:CtlReg\ : LABEL IS "controlcell1";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:CtlReg\ : LABEL IS "U(0,5)";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:BitCounter\ : LABEL IS "U(0,4)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:CtlReg\ : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:BitCounter\ : LABEL IS "U(3,0)";
     ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:Tx:STS[0]:Sts\ : LABEL IS "statusicell1";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Tx:STS[0]:Sts\ : LABEL IS "U(0,5)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Tx:STS[0]:Sts\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:u0\ : LABEL IS "datapathcell1";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:u0\ : LABEL IS "U(0,5)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:u0\ : LABEL IS "U(3,0)";
     ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:Rx:STS[0]:Sts\ : LABEL IS "statusicell2";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Rx:STS[0]:Sts\ : LABEL IS "U(0,2)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Rx:STS[0]:Sts\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:u0\ : LABEL IS "datapathcell2";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:u0\ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:u0\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF RxDMA : LABEL IS "drqcell1";
     ATTRIBUTE Location OF RxDMA : LABEL IS "[DrqContainer=(0)][DrqId=(0)]";
     ATTRIBUTE lib_model OF TxDMA : LABEL IS "drqcell2";
     ATTRIBUTE Location OF TxDMA : LABEL IS "[DrqContainer=(0)][DrqId=(1)]";
     ATTRIBUTE Location OF SampleKlaar : LABEL IS "[IntrContainer=(0)][IntrId=(0)]";
     ATTRIBUTE lib_model OF \LEDs:Sync:ctrl_reg\ : LABEL IS "controlcell2";
-    ATTRIBUTE Location OF \LEDs:Sync:ctrl_reg\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \LEDs:Sync:ctrl_reg\ : LABEL IS "U(2,4)";
     ATTRIBUTE Location OF \I2C_Codec_control:I2C_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(2)]";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:SyncCtl:CtrlReg\ : LABEL IS "controlcell3";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:SyncCtl:CtrlReg\ : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:SyncCtl:CtrlReg\ : LABEL IS "U(3,4)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:StsReg\ : LABEL IS "statusicell3";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:StsReg\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:StsReg\ : LABEL IS "U(2,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:Shifter:u0\ : LABEL IS "datapathcell3";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:Shifter:u0\ : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:Shifter:u0\ : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:Master:ClkGen:u0\ : LABEL IS "datapathcell4";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:Master:ClkGen:u0\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:Master:ClkGen:u0\ : LABEL IS "U(2,2)";
     ATTRIBUTE Location OF \VOL:IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(4)]";
     ATTRIBUTE Location OF \VOL:ADC_SAR\ : LABEL IS "F(SAR,1)";
     ATTRIBUTE lib_model OF \I2S_EN:Sync:ctrl_reg\ : LABEL IS "controlcell4";
-    ATTRIBUTE Location OF \I2S_EN:Sync:ctrl_reg\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \I2S_EN:Sync:ctrl_reg\ : LABEL IS "U(3,2)";
     ATTRIBUTE Location OF \LINE:IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(3)]";
     ATTRIBUTE Location OF \LINE:ADC_SAR\ : LABEL IS "F(SAR,0)";
     ATTRIBUTE lib_model OF \CLIP:Sync:ctrl_reg\ : LABEL IS "controlcell5";
-    ATTRIBUTE Location OF \CLIP:Sync:ctrl_reg\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \CLIP:Sync:ctrl_reg\ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF \KNOP:sts:sts_reg\ : LABEL IS "statuscell1";
-    ATTRIBUTE Location OF \KNOP:sts:sts_reg\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \KNOP:sts:sts_reg\ : LABEL IS "U(0,2)";
     ATTRIBUTE lib_model OF \KNOP_TOGGLE:sts:sts_reg\ : LABEL IS "statuscell2";
-    ATTRIBUTE Location OF \KNOP_TOGGLE:sts:sts_reg\ : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF \KNOP_TOGGLE:sts:sts_reg\ : LABEL IS "U(1,1)";
     ATTRIBUTE Location OF SampleVraag : LABEL IS "[IntrContainer=(0)][IntrId=(1)]";
     ATTRIBUTE Location OF \AnalogeIngang_R:ABuf\ : LABEL IS "F(OpAmp,1)";
     ATTRIBUTE Location OF \AnalogeIngang_L:ABuf\ : LABEL IS "F(OpAmp,3)";
     ATTRIBUTE Location OF \Filter:DFB\ : LABEL IS "F(DFB,0)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:reset\ : LABEL IS "macrocell16";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:reset\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF Net_167 : LABEL IS "macrocell17";
-    ATTRIBUTE Location OF Net_167 : LABEL IS "U(0,3)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : LABEL IS "macrocell18";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:txenable\ : LABEL IS "macrocell19";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:txenable\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_state_2\ : LABEL IS "macrocell20";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_state_2\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_state_1\ : LABEL IS "macrocell21";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_state_1\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_state_0\ : LABEL IS "macrocell22";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_state_0\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF Net_15_0 : LABEL IS "macrocell23";
-    ATTRIBUTE Location OF Net_15_0 : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_f0_load\ : LABEL IS "macrocell24";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_f0_load\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_state_2\ : LABEL IS "macrocell25";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_state_2\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_state_1\ : LABEL IS "macrocell26";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_state_1\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_state_0\ : LABEL IS "macrocell27";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_state_0\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_0_split\ : LABEL IS "macrocell28";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_0_split\ : LABEL IS "U(1,0)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_overflow_sticky\ : LABEL IS "macrocell29";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_overflow_sticky\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rxenable\ : LABEL IS "macrocell30";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rxenable\ : LABEL IS "U(0,3)";
-    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_data_in_0\ : LABEL IS "macrocell31";
-    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_data_in_0\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF Net_1050 : LABEL IS "macrocell32";
-    ATTRIBUTE Location OF Net_1050 : LABEL IS "U(1,3)";
+    ATTRIBUTE lib_model OF Net_1050 : LABEL IS "macrocell16";
+    ATTRIBUTE Location OF Net_1050 : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:reset\ : LABEL IS "macrocell17";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:reset\ : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF Net_167 : LABEL IS "macrocell18";
+    ATTRIBUTE Location OF Net_167 : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : LABEL IS "macrocell19";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:txenable\ : LABEL IS "macrocell20";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:txenable\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_state_2\ : LABEL IS "macrocell21";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_state_2\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_state_1\ : LABEL IS "macrocell22";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_state_1\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:tx_state_0\ : LABEL IS "macrocell23";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:tx_state_0\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF Net_15_0 : LABEL IS "macrocell24";
+    ATTRIBUTE Location OF Net_15_0 : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_f0_load\ : LABEL IS "macrocell25";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_f0_load\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_state_2\ : LABEL IS "macrocell26";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_state_2\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_state_1\ : LABEL IS "macrocell27";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_state_1\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_state_0\ : LABEL IS "macrocell28";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_state_0\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_0_split\ : LABEL IS "macrocell29";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_0_split\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_overflow_sticky\ : LABEL IS "macrocell30";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_overflow_sticky\ : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rxenable\ : LABEL IS "macrocell31";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rxenable\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \I2S_Codec_audio:bI2S:rx_data_in_0\ : LABEL IS "macrocell32";
+    ATTRIBUTE Location OF \I2S_Codec_audio:bI2S:rx_data_in_0\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:sda_in_reg\ : LABEL IS "macrocell33";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:sda_in_reg\ : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:sda_in_reg\ : LABEL IS "U(1,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_4\ : LABEL IS "macrocell34";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_4\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_4\ : LABEL IS "U(3,4)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_3\ : LABEL IS "macrocell35";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_3\ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_3\ : LABEL IS "U(3,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_2\ : LABEL IS "macrocell36";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_2\ : LABEL IS "U(0,3)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_2\ : LABEL IS "U(1,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_1\ : LABEL IS "macrocell37";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_1\ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_1\ : LABEL IS "U(3,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_0\ : LABEL IS "macrocell38";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_0\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_0\ : LABEL IS "U(0,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:status_3\ : LABEL IS "macrocell39";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_3\ : LABEL IS "U(0,3)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_3\ : LABEL IS "U(2,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:status_2\ : LABEL IS "macrocell40";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_2\ : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_2\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:status_1\ : LABEL IS "macrocell41";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_1\ : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_1\ : LABEL IS "U(1,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:status_0\ : LABEL IS "macrocell42";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_0\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:status_0\ : LABEL IS "U(2,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:scl_in_reg\ : LABEL IS "macrocell43";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:scl_in_reg\ : LABEL IS "U(1,4)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:scl_in_reg\ : LABEL IS "U(2,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:scl_in_last_reg\ : LABEL IS "macrocell44";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:scl_in_last_reg\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:scl_in_last_reg\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\ : LABEL IS "macrocell45";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\ : LABEL IS "U(1,4)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:sda_in_last_reg\ : LABEL IS "macrocell46";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:sda_in_last_reg\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:sda_in_last_reg\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\ : LABEL IS "macrocell47";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\ : LABEL IS "U(1,4)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\ : LABEL IS "macrocell48";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:lost_arb_reg\ : LABEL IS "macrocell49";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:lost_arb_reg\ : LABEL IS "U(0,3)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:lost_arb_reg\ : LABEL IS "U(2,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_state_2_split\ : LABEL IS "macrocell50";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_2_split\ : LABEL IS "U(0,5)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_state_2_split\ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\ : LABEL IS "macrocell51";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\ : LABEL IS "U(3,4)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:bus_busy_reg\ : LABEL IS "macrocell52";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:bus_busy_reg\ : LABEL IS "U(1,4)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:bus_busy_reg\ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:clk_eq_reg\ : LABEL IS "macrocell53";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:clk_eq_reg\ : LABEL IS "U(1,4)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:clk_eq_reg\ : LABEL IS "U(2,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:Net_643_3\ : LABEL IS "macrocell54";
-    ATTRIBUTE Location OF \I2C_Codec_control:Net_643_3\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \I2C_Codec_control:Net_643_3\ : LABEL IS "U(2,3)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:sda_x_wire\ : LABEL IS "macrocell55";
-    ATTRIBUTE Location OF \I2C_Codec_control:sda_x_wire\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \I2C_Codec_control:sda_x_wire\ : LABEL IS "U(3,4)";
     ATTRIBUTE lib_model OF \I2C_Codec_control:bI2C_UDB:m_reset\ : LABEL IS "macrocell56";
-    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_reset\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \I2C_Codec_control:bI2C_UDB:m_reset\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF Net_961 : LABEL IS "macrocell57";
-    ATTRIBUTE Location OF Net_961 : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF Net_961 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF \Debouncer_0:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell58";
-    ATTRIBUTE Location OF \Debouncer_0:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF \Debouncer_0:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_1037 : LABEL IS "macrocell59";
-    ATTRIBUTE Location OF Net_1037 : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF Net_1037 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_1036 : LABEL IS "macrocell60";
-    ATTRIBUTE Location OF Net_1036 : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF Net_1036 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_896 : LABEL IS "macrocell61";
-    ATTRIBUTE Location OF Net_896 : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF Net_896 : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF Net_925 : LABEL IS "macrocell62";
-    ATTRIBUTE Location OF Net_925 : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF Net_925 : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF Net_917 : LABEL IS "macrocell63";
-    ATTRIBUTE Location OF Net_917 : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF Net_917 : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF Net_1034 : LABEL IS "macrocell64";
-    ATTRIBUTE Location OF Net_1034 : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF Net_1034 : LABEL IS "U(0,2)";
     ATTRIBUTE lib_model OF Net_920 : LABEL IS "macrocell65";
-    ATTRIBUTE Location OF Net_920 : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF Net_920 : LABEL IS "U(1,2)";
     ATTRIBUTE lib_model OF Net_895 : LABEL IS "macrocell66";
-    ATTRIBUTE Location OF Net_895 : LABEL IS "U(1,5)";
+    ATTRIBUTE Location OF Net_895 : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF Net_985 : LABEL IS "macrocell67";
-    ATTRIBUTE Location OF Net_985 : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF Net_985 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell68";
-    ATTRIBUTE Location OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(1,2)";
-    ATTRIBUTE Location OF S3(0)_SYNC : LABEL IS "U(3,1)";
-    ATTRIBUTE Location OF S2(0)_SYNC : LABEL IS "U(0,3)";
+    ATTRIBUTE Location OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF S3(0)_SYNC : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF S2(0)_SYNC : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF Net_973 : LABEL IS "macrocell69";
-    ATTRIBUTE Location OF Net_973 : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF Net_973 : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF \Debouncer_2:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell70";
-    ATTRIBUTE Location OF \Debouncer_2:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(1,0)";
-    ATTRIBUTE Location OF S1(0)_SYNC : LABEL IS "U(0,3)";
-    ATTRIBUTE Location OF S0(0)_SYNC : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF \Debouncer_2:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(2,4)";
+    ATTRIBUTE Location OF S1(0)_SYNC : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF S0(0)_SYNC : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_979 : LABEL IS "macrocell71";
-    ATTRIBUTE Location OF Net_979 : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF Net_979 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF \Debouncer_3:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell72";
-    ATTRIBUTE Location OF \Debouncer_3:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(3,1)";
-    ATTRIBUTE Location OF SCL(0)_SYNC : LABEL IS "U(1,4)";
-    ATTRIBUTE Location OF SDA(0)_SYNC : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \Debouncer_3:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(0,2)";
+    ATTRIBUTE Location OF SCL(0)_SYNC : LABEL IS "U(3,3)";
+    ATTRIBUTE Location OF SDA(0)_SYNC : LABEL IS "U(1,2)";
     ATTRIBUTE lib_model OF \Div2:not_last_reset\ : LABEL IS "macrocell73";
-    ATTRIBUTE Location OF \Div2:not_last_reset\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \Div2:not_last_reset\ : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF \Div2:count_0\ : LABEL IS "macrocell74";
-    ATTRIBUTE Location OF \Div2:count_0\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \Div2:count_0\ : LABEL IS "U(3,2)";
     COMPONENT abufcell
     END COMPONENT;
     COMPONENT clockblockcell
@@ -851,6 +857,7 @@ ARCHITECTURE __DEFAULT__ OF IIR_filterProject_DFB IS
             dmareq : IN std_ulogic;
             termin : IN std_ulogic;
             termout : OUT std_ulogic;
+            interrupt : OUT std_ulogic;
             clock : IN std_ulogic);
     END COMPONENT;
     COMPONENT interrupt
@@ -1006,6 +1013,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_4_split\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2 * !main_3 * !main_4 * main_6 * main_7 * main_8 * !main_9 * main_10 * !main_11) + (!main_3 * !main_5 * main_6 * main_7 * !main_8 * !main_9 * main_10 * !main_11) + (!main_4 * main_5 * main_6 * main_7 * main_8 * !main_9 * main_10) + (main_4 * !main_5 * !main_6 * !main_9) + (main_4 * !main_5 * !main_7 * !main_9) + (main_4 * !main_5 * !main_8 * !main_9) + (main_4 * !main_9 * !main_10)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:m_state_4_split\,
@@ -1039,12 +1047,18 @@ BEGIN
             dsi_glb_div => open,
             dclk_glb_0 => \I2C_Codec_control:Net_970\,
             dclk_0 => \I2C_Codec_control:Net_970_local\,
-            dclk_glb_1 => \LINE:Net_376\,
-            dclk_1 => \LINE:Net_376_local\,
-            dclk_glb_2 => \VOL:Net_376\,
-            dclk_2 => \VOL:Net_376_local\,
-            dclk_glb_3 => Net_1032,
-            dclk_3 => Net_1032_local);
+            aclk_glb_0 => \LINE:Net_385\,
+            aclk_0 => \LINE:Net_385_local\,
+            clk_a_dig_glb_0 => \LINE:Net_381\,
+            clk_a_dig_0 => \LINE:Net_381_local\,
+            aclk_glb_1 => \VOL:Net_385\,
+            aclk_1 => \VOL:Net_385_local\,
+            clk_a_dig_glb_1 => \VOL:Net_381\,
+            clk_a_dig_1 => \VOL:Net_381_local\,
+            dclk_glb_1 => Net_1032,
+            dclk_1 => Net_1032_local,
+            aclk_glb_ff_0 => \ClockBlock.aclk_glb_ff_0__sig\,
+            aclk_glb_ff_1 => \ClockBlock.aclk_glb_ff_1__sig\);
 
     POT_2:logicalport
         GENERIC MAP(
@@ -1089,13 +1103,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -1178,13 +1192,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1111111",
             sio_ibuf => "00000000",
             sio_info => "00000000000000",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0000000",
             spanning => 0,
@@ -1382,13 +1396,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -1474,13 +1488,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -1566,13 +1580,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -1658,13 +1672,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -1750,13 +1764,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -1842,13 +1856,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -1877,7 +1891,7 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "Codec_en",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
         PORT MAP(
             pa_out => Codec_en(0)__PA,
             oe => open,
@@ -1894,6 +1908,7 @@ BEGIN
     __ONE__:macrocell
         GENERIC MAP(
             eqn_main => "1'b0",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => __ONE__);
@@ -1941,13 +1956,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2033,13 +2048,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2125,13 +2140,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2217,13 +2232,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2309,13 +2324,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2403,13 +2418,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2497,13 +2512,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2586,13 +2601,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2678,13 +2693,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2770,13 +2785,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2862,13 +2877,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -2954,13 +2969,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 0,
@@ -3046,13 +3061,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 1,
@@ -3135,13 +3150,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 1,
@@ -3224,13 +3239,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 1,
@@ -3313,13 +3328,13 @@ BEGIN
             port_alias_group => "",
             port_alias_required => 0,
             sio_group_cnt => 0,
-            sio_hifreq => "",
+            sio_hifreq => "00000000",
             sio_hyst => "1",
             sio_ibuf => "00000000",
             sio_info => "00",
             sio_obuf => "00000000",
             sio_refsel => "00000000",
-            sio_vohsel => "",
+            sio_vohsel => "00000000",
             sio_vtrip => "00000000",
             slew_rate => "0",
             spanning => 1,
@@ -3362,6 +3377,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:tx_underflow_0\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * main_2 * main_3)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2S_Codec_audio:bI2S:tx_underflow_0\,
@@ -3373,6 +3389,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:rx_overflow_0\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2S_Codec_audio:bI2S:rx_overflow_0\,
@@ -3382,6 +3399,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:status_5\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1 * main_2 * main_3 * !main_4)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:status_5\,
@@ -3394,6 +3412,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:status_4\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2 * !main_3 * !main_4)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:status_4\,
@@ -3416,6 +3435,7 @@ BEGIN
         GENERIC MAP(
             soft => 1,
             eqn_main => "(main_0 * !main_5 * main_6 * !main_7 * main_8) + (main_1 * !main_5 * main_6 * !main_7 * main_8) + (main_2 * !main_5 * main_6 * !main_7 * main_8) + (main_3 * main_4 * !main_5 * main_6 * !main_7 * main_8)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:cnt_reset\,
@@ -3432,6 +3452,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_1\,
@@ -3441,6 +3462,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1 * !main_2 * !main_3 * !main_4 * !main_5) + (!main_6)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:cs_addr_clkgen_0\,
@@ -3456,6 +3478,7 @@ BEGIN
         GENERIC MAP(
             soft => 1,
             eqn_main => "(main_0) + (!main_1 * !main_2 * !main_3 * !main_4 * !main_5) + (!main_6)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_1\,
@@ -3470,6 +3493,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_3) + (!main_1 * !main_2) + (main_1 * main_2)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:cs_addr_shifter_0\,
@@ -3490,6 +3514,7 @@ BEGIN
     Net_1033:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => Net_1033,
@@ -3498,6 +3523,7 @@ BEGIN
     Net_950:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => Net_950,
@@ -3506,6 +3532,7 @@ BEGIN
     Net_951:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => Net_951,
@@ -3514,6 +3541,7 @@ BEGIN
     Net_952:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => Net_952,
@@ -3531,14 +3559,14 @@ BEGIN
             clken_mode => 2)
         PORT MAP(
             clock => ClockBlock_BUS_CLK,
-            control_7 => \I2S_Codec_audio:bI2S:ctrl_7\,
-            control_6 => \I2S_Codec_audio:bI2S:ctrl_6\,
-            control_5 => \I2S_Codec_audio:bI2S:ctrl_5\,
-            control_4 => \I2S_Codec_audio:bI2S:ctrl_4\,
-            control_3 => \I2S_Codec_audio:bI2S:ctrl_3\,
-            control_2 => \I2S_Codec_audio:bI2S:ctrl_2\,
-            control_1 => \I2S_Codec_audio:bI2S:ctrl_1\,
-            control_0 => \I2S_Codec_audio:bI2S:ctrl_0\,
+            control_7 => \I2S_Codec_audio:bI2S:ctrl_reg_out_7\,
+            control_6 => \I2S_Codec_audio:bI2S:ctrl_reg_out_6\,
+            control_5 => \I2S_Codec_audio:bI2S:ctrl_reg_out_5\,
+            control_4 => \I2S_Codec_audio:bI2S:ctrl_reg_out_4\,
+            control_3 => \I2S_Codec_audio:bI2S:ctrl_reg_out_3\,
+            control_2 => \I2S_Codec_audio:bI2S:ctrl_reg_out_2\,
+            control_1 => \I2S_Codec_audio:bI2S:ctrl_reg_out_1\,
+            control_0 => \I2S_Codec_audio:bI2S:ctrl_reg_out_0\,
             clk_en => Net_1050,
             busclk => ClockBlock_BUS_CLK);
 
@@ -3555,7 +3583,7 @@ BEGIN
         PORT MAP(
             clock => ClockBlock_BUS_CLK,
             load => open,
-            enable => \I2S_Codec_audio:bI2S:ctrl_2\,
+            enable => \I2S_Codec_audio:bI2S:ctrl_reg_out_2\,
             count_6 => \I2S_Codec_audio:bI2S:count_6\,
             count_5 => \I2S_Codec_audio:bI2S:count_5\,
             count_4 => \I2S_Codec_audio:bI2S:count_4\,
@@ -3708,7 +3736,8 @@ BEGIN
 
     SampleKlaar:interrupt
         GENERIC MAP(
-            int_type => "10")
+            int_type => "10",
+            is_nmi => 0)
         PORT MAP(
             interrupt => Net_367,
             clock => ClockBlock_BUS_CLK);
@@ -3734,7 +3763,8 @@ BEGIN
 
     \I2C_Codec_control:I2C_IRQ\:interrupt
         GENERIC MAP(
-            int_type => "00")
+            int_type => "00",
+            is_nmi => 0)
         PORT MAP(
             interrupt => \I2C_Codec_control:Net_697\,
             clock => ClockBlock_BUS_CLK);
@@ -3851,7 +3881,8 @@ BEGIN
 
     \VOL:IRQ\:interrupt
         GENERIC MAP(
-            int_type => "10")
+            int_type => "10",
+            is_nmi => 0)
         PORT MAP(
             interrupt => Net_241,
             clock => ClockBlock_BUS_CLK);
@@ -3860,7 +3891,8 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clk_udb => \VOL:Net_376_local\,
+            clock => \ClockBlock.aclk_glb_ff_1__sig\,
+            pump_clock => \ClockBlock.aclk_glb_ff_1__sig\,
             sof_udb => open,
             vp_ctl_udb_3 => open,
             vp_ctl_udb_2 => open,
@@ -3907,7 +3939,8 @@ BEGIN
 
     \LINE:IRQ\:interrupt
         GENERIC MAP(
-            int_type => "10")
+            int_type => "10",
+            is_nmi => 0)
         PORT MAP(
             interrupt => Net_778,
             clock => ClockBlock_BUS_CLK);
@@ -3916,7 +3949,8 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clk_udb => \LINE:Net_376_local\,
+            clock => \ClockBlock.aclk_glb_ff_0__sig\,
+            pump_clock => \ClockBlock.aclk_glb_ff_0__sig\,
             sof_udb => open,
             vp_ctl_udb_3 => open,
             vp_ctl_udb_2 => open,
@@ -3995,7 +4029,8 @@ BEGIN
 
     SampleVraag:interrupt
         GENERIC MAP(
-            int_type => "10")
+            int_type => "10",
+            is_nmi => 0)
         PORT MAP(
             interrupt => Net_50,
             clock => ClockBlock_BUS_CLK);
@@ -4020,9 +4055,26 @@ BEGIN
             dmareq_2 => Net_1134,
             interrupt => Net_1135);
 
+    Net_1050:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1) + (main_1 * main_2 * !main_3)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_1050,
+            clk_en => Net_727_SYNCOUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1050,
+            main_1 => Net_766,
+            main_2 => \Div2:not_last_reset\,
+            main_3 => \Div2:count_0\);
+
     \I2S_Codec_audio:bI2S:reset\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4030,11 +4082,12 @@ BEGIN
             q => \I2S_Codec_audio:bI2S:reset\,
             clk_en => Net_1050,
             clock_0 => ClockBlock_BUS_CLK,
-            main_0 => \I2S_Codec_audio:bI2S:ctrl_2\);
+            main_0 => \I2S_Codec_audio:bI2S:ctrl_reg_out_2\);
 
     Net_167:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4048,6 +4101,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:tx_underflow_sticky\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1) + (main_0 * !main_2 * !main_3 * main_4 * main_5)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4055,7 +4109,7 @@ BEGIN
             q => \I2S_Codec_audio:bI2S:tx_underflow_sticky\,
             clk_en => Net_1050,
             clock_0 => ClockBlock_BUS_CLK,
-            main_0 => \I2S_Codec_audio:bI2S:ctrl_0\,
+            main_0 => \I2S_Codec_audio:bI2S:ctrl_reg_out_0\,
             main_1 => \I2S_Codec_audio:bI2S:tx_underflow_sticky\,
             main_2 => \I2S_Codec_audio:bI2S:tx_state_2\,
             main_3 => \I2S_Codec_audio:bI2S:tx_state_1\,
@@ -4065,6 +4119,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:txenable\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_2 * !main_9 * main_10) + (main_0 * main_3 * !main_9 * main_10) + (main_0 * main_4 * !main_9 * main_10) + (main_0 * main_5 * !main_9 * main_10) + (main_0 * main_6 * !main_9 * main_10) + (main_0 * main_7 * !main_9 * main_10) + (main_0 * main_8 * !main_9 * main_10) + (main_1 * !main_2 * !main_3 * !main_4 * !main_5 * !main_6 * !main_7 * !main_8 * !main_9)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4072,8 +4127,8 @@ BEGIN
             q => \I2S_Codec_audio:bI2S:txenable\,
             clk_en => Net_1050,
             clock_0 => ClockBlock_BUS_CLK,
-            main_0 => \I2S_Codec_audio:bI2S:ctrl_2\,
-            main_1 => \I2S_Codec_audio:bI2S:ctrl_0\,
+            main_0 => \I2S_Codec_audio:bI2S:ctrl_reg_out_2\,
+            main_1 => \I2S_Codec_audio:bI2S:ctrl_reg_out_0\,
             main_2 => \I2S_Codec_audio:bI2S:count_6\,
             main_3 => \I2S_Codec_audio:bI2S:count_5\,
             main_4 => \I2S_Codec_audio:bI2S:count_4\,
@@ -4087,6 +4142,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:tx_state_2\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4099,6 +4155,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:tx_state_1\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_4 * !main_5 * !main_6) + (!main_1 * !main_4 * !main_5 * !main_6) + (!main_2 * !main_4 * !main_5 * !main_6) + (!main_3)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4117,6 +4174,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:tx_state_0\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1 * main_2 * !main_4 * !main_5 * !main_6) + (!main_3) + (main_4 * main_5 * main_6)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4135,6 +4193,7 @@ BEGIN
     Net_15_0:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * main_2) + (main_0 * main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4149,6 +4208,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:rx_f0_load\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1 * main_2) + (main_1 * !main_2)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4163,6 +4223,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:rx_state_2\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1 * main_2 * main_3)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4178,6 +4239,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:rx_state_1\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1 * !main_2 * !main_3 * !main_4 * !main_5 * main_6) + (main_3 * !main_4 * main_5 * main_6)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4196,6 +4258,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:rx_state_0\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1 * !main_2 * !main_3 * main_6) + (!main_3 * main_4 * main_6) + (main_3 * !main_4 * main_6) + (main_5 * main_6)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4214,6 +4277,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_0_split\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_5 * !main_6 * main_7 * !main_8 * !main_9 * main_10) + (main_1 * !main_4 * main_6 * main_7 * main_8 * !main_9 * !main_11) + (!main_2 * main_3 * main_5 * !main_6 * !main_7 * !main_8 * !main_9 * main_10) + (!main_4 * !main_5 * !main_6 * !main_7 * main_8 * !main_9) + (!main_4 * main_5 * main_6 * main_7 * !main_9 * main_10) + (main_4 * !main_5 * !main_8 * !main_9 * main_10) + (main_4 * main_5 * !main_6 * !main_7 * main_8 * !main_9) + (!main_5 * main_6 * !main_7 * !main_8 * !main_9 * main_10)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:m_state_0_split\,
@@ -4233,6 +4297,7 @@ BEGIN
     \I2S_Codec_audio:bI2S:rx_overflow_sticky\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1 * main_3) + (main_0 * main_2)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4240,14 +4305,15 @@ BEGIN
             q => \I2S_Codec_audio:bI2S:rx_overflow_sticky\,
             clk_en => Net_1050,
             clock_0 => ClockBlock_BUS_CLK,
-            main_0 => \I2S_Codec_audio:bI2S:ctrl_1\,
+            main_0 => \I2S_Codec_audio:bI2S:ctrl_reg_out_1\,
             main_1 => \I2S_Codec_audio:bI2S:rx_f0_load\,
             main_2 => \I2S_Codec_audio:bI2S:rx_overflow_sticky\,
             main_3 => \I2S_Codec_audio:bI2S:rx_f0_full_0\);
 
     \I2S_Codec_audio:bI2S:rxenable\:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * main_2 * !main_8 * main_9) + (main_0 * !main_3 * !main_8 * main_9) + (main_0 * !main_4 * !main_8 * main_9) + (main_0 * !main_5 * !main_8 * main_9) + (main_0 * !main_6 * !main_8 * main_9) + (main_0 * main_7 * !main_8 * main_9) + (main_1 * !main_2 * main_3 * main_4 * main_5 * main_6 * !main_7 * !main_8)",
+            eqn_main => "(main_0 * main_2 * !main_9 * main_10) + (main_0 * !main_3 * !main_9 * main_10) + (main_0 * !main_4 * !main_9 * main_10) + (main_0 * !main_5 * !main_9 * main_10) + (main_0 * !main_6 * !main_9 * main_10) + (main_0 * main_7 * !main_9 * main_10) + (main_1 * !main_2 * main_3 * main_4 * main_5 * main_6 * !main_7 * main_8 * !main_9) + (!main_2 * main_3 * main_4 * main_5 * main_6 * !main_7 * !main_8 * !main_9 * main_10)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4255,20 +4321,22 @@ BEGIN
             q => \I2S_Codec_audio:bI2S:rxenable\,
             clk_en => Net_1050,
             clock_0 => ClockBlock_BUS_CLK,
-            main_0 => \I2S_Codec_audio:bI2S:ctrl_2\,
-            main_1 => \I2S_Codec_audio:bI2S:ctrl_1\,
+            main_0 => \I2S_Codec_audio:bI2S:ctrl_reg_out_2\,
+            main_1 => \I2S_Codec_audio:bI2S:ctrl_reg_out_1\,
             main_2 => \I2S_Codec_audio:bI2S:count_6\,
             main_3 => \I2S_Codec_audio:bI2S:count_5\,
             main_4 => \I2S_Codec_audio:bI2S:count_4\,
             main_5 => \I2S_Codec_audio:bI2S:count_3\,
             main_6 => \I2S_Codec_audio:bI2S:count_2\,
             main_7 => \I2S_Codec_audio:bI2S:count_1\,
-            main_8 => \I2S_Codec_audio:bI2S:rx_overflow_sticky\,
-            main_9 => \I2S_Codec_audio:bI2S:rxenable\);
+            main_8 => Net_168,
+            main_9 => \I2S_Codec_audio:bI2S:rx_overflow_sticky\,
+            main_10 => \I2S_Codec_audio:bI2S:rxenable\);
 
     \I2S_Codec_audio:bI2S:rx_data_in_0\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * main_2) + (main_0 * main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4280,24 +4348,10 @@ BEGIN
             main_1 => \I2S_Codec_audio:bI2S:rx_data_in_0\,
             main_2 => Net_54_SYNCOUT);
 
-    Net_1050:macrocell
-        GENERIC MAP(
-            eqn_main => "(!main_0 * !main_1) + (main_1 * main_2 * !main_3)",
-            clk_inv => '0',
-            clken_inv => '0',
-            clken_mode => 2)
-        PORT MAP(
-            q => Net_1050,
-            clk_en => Net_727_SYNCOUT,
-            clock_0 => ClockBlock_BUS_CLK,
-            main_0 => Net_1050,
-            main_1 => Net_766,
-            main_2 => \Div2:not_last_reset\,
-            main_3 => \Div2:count_0\);
-
     \I2C_Codec_control:bI2C_UDB:sda_in_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4308,6 +4362,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_4\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * main_1 * !main_2 * !main_3 * !main_4 * !main_5) + (main_6)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4324,6 +4379,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_3\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * main_2 * !main_3 * !main_4 * main_7 * main_8 * !main_9 * main_10 * !main_11) + (!main_3 * !main_4 * main_6 * main_7 * !main_8 * !main_9 * main_10 * !main_11) + (!main_4 * main_5 * !main_9) + (!main_4 * !main_6 * main_7 * main_8 * !main_9 * main_10) + (main_5 * !main_9 * !main_10)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4345,6 +4401,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_2\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1 * main_2 * main_4) + (main_2 * main_3) + (main_5)",
+            regmode => 2,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4360,6 +4417,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_1\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_2 * main_3 * main_4 * !main_6) + (!main_1 * !main_2 * main_3 * !main_4 * !main_5 * !main_6 * main_7) + (!main_1 * main_2 * !main_4 * main_5 * !main_6 * main_7) + (!main_1 * main_2 * main_4 * !main_5 * !main_6) + (main_1 * !main_2 * main_3 * main_5 * !main_6 * main_7) + (main_1 * !main_2 * main_4 * !main_5 * !main_6) + (!main_3 * !main_4 * main_5 * !main_6 * main_7) + (main_4 * !main_6 * !main_7)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4377,6 +4435,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_0\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_2 * !main_4 * !main_5 * !main_6 * main_7) + (main_0 * !main_1 * main_3 * main_4 * main_5 * !main_6) + (!main_1 * main_2 * !main_5 * !main_6 * main_7) + (main_5 * !main_6 * !main_7) + (main_8)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4395,6 +4454,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:status_3\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2 * !main_3 * !main_4 * main_5 * main_6 * !main_7) + (main_0 * main_1) + (main_0 * !main_2 * !main_3 * !main_4 * !main_5 * !main_6) + (main_0 * main_7)",
+            regmode => 2,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4412,6 +4472,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:status_2\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2 * !main_3 * main_4 * main_5 * !main_6) + (main_0 * !main_1 * !main_2 * !main_3 * !main_4 * !main_5) + (main_0 * !main_1 * !main_2 * main_3 * !main_4 * main_5) + (main_0 * main_6)",
+            regmode => 2,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4428,6 +4489,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:status_1\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * main_1 * main_2 * !main_3 * !main_4 * main_5 * !main_6 * main_7 * main_8) + (main_0 * main_1 * main_2 * !main_3 * !main_4 * main_5 * main_7 * !main_8) + (main_0 * main_6)",
+            regmode => 2,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4446,6 +4508,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:status_0\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1 * !main_6) + (!main_1 * !main_2 * !main_3 * main_4 * main_5 * !main_6)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4462,6 +4525,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:scl_in_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4472,6 +4536,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:scl_in_last_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4482,6 +4547,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:scl_in_last2_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4492,6 +4558,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:sda_in_last_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4502,6 +4569,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:sda_in_last2_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4512,6 +4580,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4524,6 +4593,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:lost_arb_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * main_2)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4536,6 +4606,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_state_2_split\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_3 * !main_4 * !main_5 * main_6 * main_10) + (main_2 * main_4 * main_5 * !main_7 * !main_9 * main_10) + (!main_3 * !main_4 * !main_5 * main_6 * !main_8 * main_10) + (!main_3 * !main_4 * !main_5 * main_6 * main_10 * main_11) + (!main_4 * !main_5 * main_6 * !main_7 * main_10) + (!main_4 * main_5 * main_7 * main_8 * !main_9 * main_10) + (main_4 * !main_5 * !main_6 * main_7 * main_8 * !main_9 * main_10) + (main_4 * main_5 * !main_7 * main_8 * !main_9 * main_10)",
+            regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \I2C_Codec_control:bI2C_UDB:m_state_2_split\,
@@ -4555,6 +4626,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:clkgen_tc2_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4566,6 +4638,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:bus_busy_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1 * main_2 * !main_3 * main_4 * !main_5 * !main_6) + (main_0 * main_1 * main_2 * main_3 * !main_4 * main_6) + (main_5 * main_6)",
+            regmode => 2,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4582,6 +4655,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:clk_eq_reg\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1) + (main_0 * main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4593,6 +4667,7 @@ BEGIN
     \I2C_Codec_control:Net_643_3\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * main_1 * !main_6) + (!main_0 * main_2 * !main_6) + (!main_0 * main_3 * !main_6 * !main_7) + (!main_0 * main_4 * main_5 * !main_6 * main_7) + (!main_1 * !main_2 * main_3 * main_4 * !main_6) + (!main_6 * main_8)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4611,6 +4686,7 @@ BEGIN
     \I2C_Codec_control:sda_x_wire\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_8 * !main_10) + (!main_1 * main_3 * main_4 * !main_5 * !main_6 * !main_7 * !main_8 * !main_9 * main_10) + (!main_2 * !main_3 * main_4 * !main_8 * !main_9 * main_10) + (!main_3 * !main_4 * !main_5 * main_6 * main_7 * !main_8 * main_10) + (!main_3 * !main_4 * main_5 * !main_6 * main_7 * !main_8 * main_10)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4631,6 +4707,7 @@ BEGIN
     \I2C_Codec_control:bI2C_UDB:m_reset\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4641,6 +4718,7 @@ BEGIN
     Net_961:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4651,6 +4729,7 @@ BEGIN
     \Debouncer_0:DEBOUNCER[0]:d_sync_1\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4661,6 +4740,7 @@ BEGIN
     Net_1037:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4672,6 +4752,7 @@ BEGIN
     Net_1036:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4683,6 +4764,7 @@ BEGIN
     Net_896:macrocell
         GENERIC MAP(
             eqn_main => "1'b0",
+            regmode => 2,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4694,6 +4776,7 @@ BEGIN
     Net_925:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4705,6 +4788,7 @@ BEGIN
     Net_917:macrocell
         GENERIC MAP(
             eqn_main => "1'b0",
+            regmode => 2,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4716,6 +4800,7 @@ BEGIN
     Net_1034:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * !main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4727,6 +4812,7 @@ BEGIN
     Net_920:macrocell
         GENERIC MAP(
             eqn_main => "1'b0",
+            regmode => 2,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4738,6 +4824,7 @@ BEGIN
     Net_895:macrocell
         GENERIC MAP(
             eqn_main => "1'b0",
+            regmode => 2,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4749,6 +4836,7 @@ BEGIN
     Net_985:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4759,6 +4847,7 @@ BEGIN
     \Debouncer_1:DEBOUNCER[0]:d_sync_1\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4787,6 +4876,7 @@ BEGIN
     Net_973:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4797,6 +4887,7 @@ BEGIN
     \Debouncer_2:DEBOUNCER[0]:d_sync_1\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4825,6 +4916,7 @@ BEGIN
     Net_979:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4835,6 +4927,7 @@ BEGIN
     \Debouncer_3:DEBOUNCER[0]:d_sync_1\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0)",
+            regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
@@ -4863,6 +4956,7 @@ BEGIN
     \Div2:not_last_reset\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1)",
+            regmode => 1,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)
@@ -4876,6 +4970,7 @@ BEGIN
     \Div2:count_0\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1)",
+            regmode => 2,
             clk_inv => '0',
             clken_inv => '0',
             clken_mode => 2)

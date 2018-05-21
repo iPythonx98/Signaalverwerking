@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: I2S_Codec_audio_PVT.h
-* Version 2.60
+* Version 2.70
 *
 * Description:
 *  This file provides private constants and parameter values for the I2S
@@ -9,7 +9,7 @@
 * Note:
 *
 ********************************************************************************
-* Copyright 2008-2014, Cypress Semiconductor Corporation. All rights reserved.
+* Copyright 2008-2015, Cypress Semiconductor Corporation. All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.

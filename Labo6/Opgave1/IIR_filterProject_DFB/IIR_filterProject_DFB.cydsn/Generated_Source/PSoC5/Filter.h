@@ -34,10 +34,8 @@ extern uint8 Filter_initVar;
 #define Filter_ACU_RAM_SIZE_CUR       (0x40u)
 
 #define Filter_BIQUAD_A_SIZE    (40u)
-#define Filter_BIQUAD_B_SIZE    (40u)
 	
 extern const uint8 CYCODE Filter_ChannelABiquadCoefficients[Filter_BIQUAD_A_SIZE];
-extern const uint8 CYCODE Filter_ChannelBBiquadCoefficients[Filter_BIQUAD_B_SIZE];
 
 
 /***************************************

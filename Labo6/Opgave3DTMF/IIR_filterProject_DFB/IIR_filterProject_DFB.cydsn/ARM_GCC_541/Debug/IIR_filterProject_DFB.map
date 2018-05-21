@@ -1,0 +1,1969 @@
+Archive member included to satisfy reference by file (symbol)
+
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+                              .\ARM_GCC_541\Debug\dma.o (RxDMA_DmaInitialize)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                              .\ARM_GCC_541\Debug\main.o (LCD_WriteControl)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+                              .\ARM_GCC_541\Debug\dma.o (TxDMA_DmaInitialize)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+                              .\ARM_GCC_541\Debug\dma.o (CLIP_Write)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                              .\ARM_GCC_541\Debug\Cm3Start.o (CyDmacConfigure)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                              .\ARM_GCC_541\Debug\Cm3Start.o (CyResetStatus)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o) (CyPmReadStatus)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+                              .\ARM_GCC_541\Debug\main.o (LEDs_Write)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+                              .\ARM_GCC_541\Debug\main.o (SampleKlaar_StartEx)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+                              .\ARM_GCC_541\Debug\main.o (I2C_Codec_control_Start)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o) (I2C_Codec_control_ISR)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o) (I2C_Codec_control_mstrStatus)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                              .\ARM_GCC_541\Debug\main.o (I2S_Codec_audio_Start)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+                              .\ARM_GCC_541\Debug\main.o (I2S_EN_Write)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                              .\ARM_GCC_541\Debug\main.o (VOL_Start)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o) (VOL_ISR)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                              .\ARM_GCC_541\Debug\main.o (LINE_Start)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o) (LINE_ISR)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o) (VOL_theACLK_SetModeRegister)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o) (LINE_theACLK_SetModeRegister)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+                              .\ARM_GCC_541\Debug\main.o (S0_Read)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+                              .\ARM_GCC_541\Debug\main.o (SampleVraag_StartEx)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+                              .\ARM_GCC_541\Debug\main.o (AnalogeIngang_R_Start)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+                              .\ARM_GCC_541\Debug\main.o (AnalogeIngang_L_Start)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                              .\ARM_GCC_541\Debug\main.o (Filter_Start)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o) (Filter_SetInterruptMode)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o) (Filter_control)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+                              .\ARM_GCC_541\Debug\cyfitter_cfg.o (CyDelayCycles)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o) (CyFlash_SetWaitCycles)
+.\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o) (CySpcStart)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o) (__aeabi_i2f)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o) (__aeabi_fmul)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+                              .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o) (__aeabi_ldivmod)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+                              c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__udivmoddi4)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+                              c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__aeabi_ldiv0)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+                              .\ARM_GCC_541\Debug\Cm3Start.o (__errno)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+                              c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o (exit)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                              c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o) (_global_impure_ptr)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                              c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o (__libc_init_array)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+                              .\ARM_GCC_541\Debug\cyfitter_cfg.o (memcpy)
+c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                              c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o (memset)
+
+Allocating common symbols
+Common symbol       size              file
+
+maxR                0x4               .\ARM_GCC_541\Debug\main.o
+LINE_countsPer10Volt
+                    0x4               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+sampleIn            0x4               .\ARM_GCC_541\Debug\main.o
+LineVolume          0x1               .\ARM_GCC_541\Debug\main.o
+VOL_shift           0x2               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+I2C_Codec_control_mstrStatus
+                    0x1               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+I2C_Codec_control_mstrRdBufPtr
+                    0x4               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+S1                  0x1               .\ARM_GCC_541\Debug\main.o
+I2C_Codec_control_mstrRdBufSize
+                    0x1               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+LINE_offset         0x2               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+txBuff              0x4               .\ARM_GCC_541\Debug\main.o
+I2C_Codec_control_mstrWrBufSize
+                    0x1               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+I2C_Codec_control_mstrControl
+                    0x1               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+LINE_countsPerVolt  0x2               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+VOL_countsPerVolt   0x2               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+I2C_Codec_control_mstrWrBufIndex
+                    0x1               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+sampleUit           0x4               .\ARM_GCC_541\Debug\main.o
+I2C_Codec_control_mstrRdBufIndex
+                    0x1               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+HPvolume            0x1               .\ARM_GCC_541\Debug\main.o
+I2C_Codec_control_mstrWrBufPtr
+                    0x4               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+I2C_Codec_control_state
+                    0x1               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+VOL_offset          0x2               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+rxBuff              0x4               .\ARM_GCC_541\Debug\main.o
+displayVolume       0x1               .\ARM_GCC_541\Debug\main.o
+maxL                0x4               .\ARM_GCC_541\Debug\main.o
+dieTemperature      0x2               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+cyclusTel           0x4               .\ARM_GCC_541\Debug\main.o
+LINE_shift          0x2               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+VOL_countsPer10Volt
+                    0x4               .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+ .data          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .text          0x00000000       0x74 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\main.o
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\main.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\dma.o
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\dma.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\audioCodec.o
+ .text.StelSampleRateIn
+                0x00000000      0x1c8 .\ARM_GCC_541\Debug\audioCodec.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.CYCONFIGCPYCODE
+                0x00000000       0x20 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.SetAnalogRoutingPumps
+                0x00000000       0x3c .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\cymetadata.o
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\cymetadata.o
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\cymetadata.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\Cm3Start.o
+ .data          0x00000000        0x4 .\ARM_GCC_541\Debug\Cm3Start.o
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\Cm3Start.o
+ .text._exit    0x00000000       0x14 .\ARM_GCC_541\Debug\Cm3Start.o
+ .text._sbrk    0x00000000       0x50 .\ARM_GCC_541\Debug\Cm3Start.o
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .text.RxDMA_DmaRelease
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .text.LCD_Stop
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .text.LCD_PrintInt8
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .text.LCD_PrintInt16
+                0x00000000       0x2c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .text.LCD_PrintInt32
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .rodata        0x00000000       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .text.TxDMA_DmaRelease
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmacError
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmacClearError
+                0x00000000       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmacErrorAddress
+                0x00000000       0x14 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaChAlloc
+                0x00000000       0x64 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaChFree
+                0x00000000       0x4c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaChDisable
+                0x00000000       0x60 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaClearPendingDrq
+                0x00000000       0x60 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaChSetRequest
+                0x00000000       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaChGetRequest
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaChStatus
+                0x00000000       0x60 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaTdFree
+                0x00000000       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaTdFreeCount
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaTdGetConfiguration
+                0x00000000       0x84 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaTdGetAddress
+                0x00000000       0x6c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text.CyDmaChRoundRobin
+                0x00000000       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .bss           0x00000000       0x19 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyPLL_OUT_Start
+                0x00000000       0xb0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyPLL_OUT_Stop
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyPLL_OUT_SetPQ
+                0x00000000       0x94 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyPLL_OUT_SetSource
+                0x00000000       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIMO_Start
+                0x00000000       0x94 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIMO_Stop
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyUSB_PowerOnCheck
+                0x00000000       0x60 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIMO_SetTrimValue
+                0x00000000      0x108 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIMO_SetFreq
+                0x00000000      0x1b0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIMO_SetSource
+                0x00000000       0x8c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIMO_EnableDoubler
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIMO_DisableDoubler
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyMasterClk_SetSource
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyMasterClk_SetDivider
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyBusClk_Internal_SetDivider
+                0x00000000       0x78 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyBusClk_SetDivider
+                0x00000000       0xb4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyUsbClk_SetSource
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_Start1K
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_Stop1K
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_Start100K
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_Stop100K
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_Enable33K
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_Disable33K
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_SetSource
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyILO_SetPowerMode
+                0x00000000       0x4c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_32KHZ_Start
+                0x00000000       0x88 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_32KHZ_Stop
+                0x00000000       0x50 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_32KHZ_ReadStatus
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_32KHZ_SetPowerMode
+                0x00000000       0xb4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_Start
+                0x00000000       0xd0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_Stop
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_EnableErrStatus
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_DisableErrStatus
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_ReadStatus
+                0x00000000       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_EnableFaultRecovery
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_DisableFaultRecovery
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_SetStartup
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_SetFbVoltage
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyXTAL_SetWdVoltage
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySoftwareReset
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyDelayFreq
+                0x00000000       0x7c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyWdtStart
+                0x00000000       0x8c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyWdtClear
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdLvDigitEnable
+                0x00000000       0xcc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdLvAnalogEnable
+                0x00000000       0xcc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdLvDigitDisable
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdLvAnalogDisable
+                0x00000000       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdHvAnalogEnable
+                0x00000000       0x7c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdHvAnalogDisable
+                0x00000000       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdStickyStatus
+                0x00000000       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyVdRealTimeStatus
+                0x00000000       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyDisableInts
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyEnableInts
+                0x00000000       0x2c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyFlushCache
+                0x00000000       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIntSetSysVector
+                0x00000000       0x4c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIntGetSysVector
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIntGetVector
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIntGetPriority
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyIntGetState
+                0x00000000       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickStart
+                0x00000000       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickInit
+                0x00000000       0x6c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickEnable
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickStop
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickEnableInterrupt
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickDisableInterrupt
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickSetReload
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickGetReload
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickGetValue
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickSetClockSource
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickGetClockSource
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickGetCountFlag
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickClear
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickSetCallback
+                0x00000000       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickGetCallback
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CySysTickServiceCallbacks
+                0x00000000       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text.CyGetUniqueId
+                0x00000000       0xc4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .bss           0x00000000       0x43 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .rodata        0x00000000        0xf .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmSaveClocks
+                0x00000000      0x288 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmRestoreClocks
+                0x00000000      0x2f0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmAltAct
+                0x00000000       0xbc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmSleep
+                0x00000000      0x170 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHibernate
+                0x00000000       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHibernateEx
+                0x00000000      0x158 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmReadStatus
+                0x00000000       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHibSaveSet
+                0x00000000       0xe8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHibRestore
+                0x00000000       0x78 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmCtwSetInterval
+                0x00000000       0x94 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmOppsSet
+                0x00000000       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmFtwSetInterval
+                0x00000000       0x94 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHibSlpSaveSet
+                0x00000000      0x280 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHibSlpRestore
+                0x00000000      0x18c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHviLviSaveDisable
+                0x00000000       0xd8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text.CyPmHviLviRestore
+                0x00000000       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_Start
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_Stop
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_Interrupt
+                0x00000000        0xc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_GetVector
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_GetPriority
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_GetState
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_SetPending
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text.SampleKlaar_ClearPending
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .text.I2C_Codec_control_Stop
+                0x00000000       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterReadBuf
+                0x00000000      0x124 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterSendStart
+                0x00000000       0xd8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterSendRestart
+                0x00000000       0xbc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterSendStop
+                0x00000000       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterWriteByte
+                0x00000000       0xa0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterReadByte
+                0x00000000       0xb0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterGetReadBufSize
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterGetWriteBufSize
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterClearReadBuf
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text.I2C_Codec_control_MasterClearWriteBuf
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .text.I2S_Codec_audio_Stop
+                0x00000000       0x60 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .text.I2S_Codec_audio_DisableTx
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .text.I2S_Codec_audio_ClearTxFIFO
+                0x00000000       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .text.I2S_Codec_audio_DisableRx
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .text.I2S_Codec_audio_ClearRxFIFO
+                0x00000000       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .text.I2S_EN_Read
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_Stop
+                0x00000000       0x84 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_SetPower
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_StopConvert
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_IsEndConversion
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_GetResult16
+                0x00000000       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_SetOffset
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_SetGain
+                0x00000000       0x2c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_SetScaledGain
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_CountsTo_mVolts
+                0x00000000       0x8c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_CountsTo_uVolts
+                0x00000000       0x90 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_CountsTo_Volts
+                0x00000000       0x84 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_Stop
+                0x00000000       0x84 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_SetPower
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_StopConvert
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_IsEndConversion
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_GetResult16
+                0x00000000       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_SetOffset
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_SetGain
+                0x00000000       0x2c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_SetScaledGain
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_CountsTo_mVolts
+                0x00000000       0x8c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_CountsTo_uVolts
+                0x00000000       0x90 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_CountsTo_Volts
+                0x00000000       0x84 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_Start
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_Stop
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_StopBlock
+                0x00000000       0xb0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_StandbyPower
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_SetDividerRegister
+                0x00000000      0x164 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_GetDividerRegister
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_ClearModeRegister
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_GetModeRegister
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_SetSourceRegister
+                0x00000000       0xc4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_GetSourceRegister
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_SetPhaseRegister
+                0x00000000       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text.VOL_theACLK_GetPhaseRegister
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_Start
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_Stop
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_StopBlock
+                0x00000000       0xb0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_StandbyPower
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_SetDividerRegister
+                0x00000000      0x164 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_GetDividerRegister
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_ClearModeRegister
+                0x00000000       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_GetModeRegister
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_SetSourceRegister
+                0x00000000       0xc4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_GetSourceRegister
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_SetPhaseRegister
+                0x00000000       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text.LINE_theACLK_GetPhaseRegister
+                0x00000000       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .text.S0_Write
+                0x00000000       0x3c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .text.S0_SetDriveMode
+                0x00000000       0x3c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .text.S0_ReadDataReg
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_Start
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_Stop
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_Interrupt
+                0x00000000        0xc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_GetVector
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_GetPriority
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_GetState
+                0x00000000       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_SetPending
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text.SampleVraag_ClearPending
+                0x00000000       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .text.AnalogeIngang_R_Stop
+                0x00000000       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .text.AnalogeIngang_L_Stop
+                0x00000000       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_Stop
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_Read8
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_Read24
+                0x00000000       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_Write8
+                0x00000000       0x3c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_Write24
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_SetCoherency
+                0x00000000       0x98 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_SetCoherencyEx
+                0x00000000       0x60 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text.Filter_SetDalign
+                0x00000000       0x50 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .bss           0x00000000        0x4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyFlash_Start
+                0x00000000       0x8c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyFlash_Stop
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CySetTempInt
+                0x00000000       0x7c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyFlashGetSpcAlgorithm
+                0x00000000       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CySetTemp
+                0x00000000       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CySetFlashEEBuffer
+                0x00000000       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyWriteRowData
+                0x00000000       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyWriteRowFull
+                0x00000000      0x154 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyFlash_SetWaitCycles
+                0x00000000       0xbc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyEEPROM_Start
+                0x00000000       0x8c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyEEPROM_Stop
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyEEPROM_ReadReserve
+                0x00000000       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text.CyEEPROM_ReadRelease
+                0x00000000       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ COMMON         0x00000000        0x2 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .text          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .data          0x00000000        0x0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .bss           0x00000000        0x8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcStart
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcStop
+                0x00000000       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcReadData
+                0x00000000       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcLoadMultiByte
+                0x00000000       0xd0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcLoadRow
+                0x00000000       0x88 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcLoadRowFull
+                0x00000000       0xcc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcWriteRow
+                0x00000000       0x98 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcEraseSector
+                0x00000000       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcGetTemp
+                0x00000000       0x64 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcLock
+                0x00000000       0x68 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcUnlock
+                0x00000000       0x50 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text.CySpcGetAlgorithm
+                0x00000000       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .text          0x00000000      0x21c c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .text          0x00000000      0x2a0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .text          0x00000000       0xa0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .text          0x00000000      0x2ec c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .text          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .text.exit     0x00000000       0x28 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x00000000         0x00040000         xr
+ram              0x1fff8000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+START GROUP
+LOAD .\ARM_GCC_541\Debug\main.o
+LOAD .\ARM_GCC_541\Debug\dma.o
+LOAD .\ARM_GCC_541\Debug\audioCodec.o
+LOAD .\ARM_GCC_541\Debug\cyfitter_cfg.o
+LOAD .\ARM_GCC_541\Debug\cymetadata.o
+LOAD .\ARM_GCC_541\Debug\Cm3Start.o
+LOAD .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a
+LOAD C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libc_nano.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libc_nano.a
+END GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libnosys.a
+END GROUP
+                0x00000000                CY_APPL_ORIGIN = 0x0
+                0x00000100                CY_FLASH_ROW_SIZE = 0x100
+                0x00000020                CY_ECC_ROW_SIZE = 0x20
+                0x00000000                CY_EE_IN_BTLDR = 0x0
+                0x00000000                CY_APPL_LOADABLE = 0x0
+                0x00000800                CY_EE_SIZE = 0x800
+                0x00000001                CY_APPL_NUM = 0x1
+                0x00000001                CY_APPL_MAX = 0x1
+                0x00000040                CY_METADATA_SIZE = 0x40
+                0x00000000                CY_APPL_LOADABLE = 0x0
+                0x00000000                CY_CHECKSUM_EXCLUDE_SIZE = ALIGN (0x0, CY_FLASH_ROW_SIZE)
+                [!provide]                PROVIDE (__cy_heap_start, _end)
+                0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
+                0x20008000                PROVIDE (__cy_stack, (ORIGIN (ram) + LENGTH (ram)))
+                [!provide]                PROVIDE (__cy_heap_end, (__cy_stack - 0x800))
+
+.cybootloader   0x00000000        0x0
+ *(.cybootloader)
+                0x00000000                appl1_start = CY_APPL_ORIGIN?CY_APPL_ORIGIN:ALIGN (CY_FLASH_ROW_SIZE)
+                0x0001ff00                appl2_start = (appl1_start + ALIGN ((((LENGTH (rom) - appl1_start) - (0x2 * CY_FLASH_ROW_SIZE)) / 0x2), CY_FLASH_ROW_SIZE))
+                0x00000000                appl_start = (CY_APPL_NUM == 0x1)?appl1_start:appl2_start
+                0x00000000                ecc_offset = ((appl_start / CY_FLASH_ROW_SIZE) * CY_ECC_ROW_SIZE)
+                0x00000000                ee_offset = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?((CY_EE_SIZE / CY_APPL_MAX) * (CY_APPL_NUM - 0x1)):0x0
+                0x00000800                ee_size = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?(CY_EE_SIZE / CY_APPL_MAX):CY_EE_SIZE
+                [!provide]                PROVIDE (CY_ECC_OFFSET, ecc_offset)
+
+.text           0x00000000     0x301a
+ CREATE_OBJECT_SYMBOLS
+                0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
+ *(.romvectors)
+ .romvectors    0x00000000       0x10 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x00000000                RomVectors
+                0x00000001                ASSERT ((. != __cy_interrupt_vector), No interrupt vector)
+                0x00000001                ASSERT (CY_APPL_ORIGIN?(SIZEOF (.cybootloader) <= CY_APPL_ORIGIN):0x1, Wrong image location)
+                0x00000010                PROVIDE (__cy_reset, Reset)
+ *(.text.Reset)
+ .text.Reset    0x00000010       0x18 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x00000010                Reset
+                0x00000001                ASSERT ((. != __cy_reset), No reset code)
+ *(.dma_init)
+ .dma_init      0x00000028      0x298 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000001                ASSERT ((((appl_start + .) <= 0x10000) || 0x0), DMA Init must be within the first 64k of flash)
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x000002c0       0x5c c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .text.berekenMetSamples
+                0x0000031c      0x160 .\ARM_GCC_541\Debug\main.o
+                0x0000031c                berekenMetSamples
+ .text.main     0x0000047c      0x2f0 .\ARM_GCC_541\Debug\main.o
+                0x0000047c                main
+ .text.sampleIntRx_ISR
+                0x0000076c       0x78 .\ARM_GCC_541\Debug\dma.o
+                0x0000076c                sampleIntRx_ISR
+ .text.sampleIntTx_ISR
+                0x000007e4       0x4c .\ARM_GCC_541\Debug\dma.o
+                0x000007e4                sampleIntTx_ISR
+ .text.DmaRxConfiguration
+                0x00000830       0x78 .\ARM_GCC_541\Debug\dma.o
+                0x00000830                DmaRxConfiguration
+ .text.DmaTxConfiguration
+                0x000008a8       0x78 .\ARM_GCC_541\Debug\dma.o
+                0x000008a8                DmaTxConfiguration
+ .text.sendCodecCommand
+                0x00000920       0x4c .\ARM_GCC_541\Debug\audioCodec.o
+                0x00000920                sendCodecCommand
+ .text.initCodec
+                0x0000096c       0x5c .\ARM_GCC_541\Debug\audioCodec.o
+                0x0000096c                initCodec
+ .text.StelHPvolumeIn
+                0x000009c8       0x3c .\ARM_GCC_541\Debug\audioCodec.o
+                0x000009c8                StelHPvolumeIn
+ .text.StelLineVolumeIn
+                0x00000a04       0x3c .\ARM_GCC_541\Debug\audioCodec.o
+                0x00000a04                StelLineVolumeIn
+ .text._berekenVolumeHP
+                0x00000a40       0x7c .\ARM_GCC_541\Debug\audioCodec.o
+                0x00000a40                _berekenVolumeHP
+ .text._berekenVolumeLineIn
+                0x00000abc       0x78 .\ARM_GCC_541\Debug\audioCodec.o
+                0x00000abc                _berekenVolumeLineIn
+ .text.CYMEMZERO
+                0x00000b34       0x1c .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.CYCONFIGCPY
+                0x00000b50       0x20 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.CyClockStartupError
+                0x00000b70        0xc .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.cfg_dma_init
+                0x00000b7c      0x180 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.ClockSetup
+                0x00000cfc      0x15c .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.AnalogSetDefault
+                0x00000e58       0xf8 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.cyfitter_cfg
+                0x00000f50      0x130 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000f50                cyfitter_cfg
+ .text.IntDefaultHandler
+                0x00001080       0x14 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x00001080                IntDefaultHandler
+ .text.Start_c  0x00001094       0x98 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x00001094                Start_c
+ .text.initialize_psoc
+                0x0000112c       0x94 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x0000112c                initialize_psoc
+ .text.RxDMA_DmaInitialize
+                0x000011c0       0x64 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+                0x000011c0                RxDMA_DmaInitialize
+ .text.LCD_Init
+                0x00001224       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x00001224                LCD_Init
+ .text.LCD_Enable
+                0x00001294       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x00001294                LCD_Enable
+ .text.LCD_Start
+                0x000012ac       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x000012ac                LCD_Start
+ .text.LCD_Position
+                0x000012d0       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x000012d0                LCD_Position
+ .text.LCD_PrintString
+                0x00001340       0x3c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x00001340                LCD_PrintString
+ .text.LCD_PutChar
+                0x0000137c       0x1c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x0000137c                LCD_PutChar
+ .text.LCD_WriteData
+                0x00001398       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x00001398                LCD_WriteData
+ .text.LCD_WriteControl
+                0x000013cc       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x000013cc                LCD_WriteControl
+ .text.LCD_IsReady
+                0x00001400      0x178 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x00001400                LCD_IsReady
+ .text.LCD_WrDatNib
+                0x00001578       0x78 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .text.LCD_WrCntrlNib
+                0x000015f0       0x64 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .text.LCD_PrintU32Number
+                0x00001654       0xa4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x00001654                LCD_PrintU32Number
+ .text.TxDMA_DmaInitialize
+                0x000016f8       0x64 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+                0x000016f8                TxDMA_DmaInitialize
+ .text.CLIP_Write
+                0x0000175c       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+                0x0000175c                CLIP_Write
+ .text.CLIP_Read
+                0x0000177c       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+                0x0000177c                CLIP_Read
+ .text.CyDmacConfigure
+                0x00001794       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x00001794                CyDmacConfigure
+ .text.CyDmaChEnable
+                0x000017f0       0x8c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x000017f0                CyDmaChEnable
+ .text.CyDmaChPriority
+                0x0000187c       0x64 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x0000187c                CyDmaChPriority
+ .text.CyDmaChSetExtendedAddress
+                0x000018e0       0x78 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x000018e0                CyDmaChSetExtendedAddress
+ .text.CyDmaChSetInitialTd
+                0x00001958       0x3c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x00001958                CyDmaChSetInitialTd
+ .text.CyDmaChSetConfiguration
+                0x00001994       0xa0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x00001994                CyDmaChSetConfiguration
+ .text.CyDmaTdAllocate
+                0x00001a34       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x00001a34                CyDmaTdAllocate
+ .text.CyDmaTdSetConfiguration
+                0x00001a90       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x00001a90                CyDmaTdSetConfiguration
+ .text.CyDmaTdSetAddress
+                0x00001b10       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                0x00001b10                CyDmaTdSetAddress
+ .text.CyHalt   0x00001b6c       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                0x00001b6c                CyHalt
+ .text.CyDelay  0x00001b84       0x44 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                0x00001b84                CyDelay
+ .text.CyDelayUs
+                0x00001bc8       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                0x00001bc8                CyDelayUs
+ .text.CyIntSetVector
+                0x00001bf0       0x50 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                0x00001bf0                CyIntSetVector
+ .text.CyIntSetPriority
+                0x00001c40       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                0x00001c40                CyIntSetPriority
+ .text.LEDs_Write
+                0x00001c88       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+                0x00001c88                LEDs_Write
+ .text.LEDs_Read
+                0x00001ca8       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+                0x00001ca8                LEDs_Read
+ .text.SampleKlaar_StartEx
+                0x00001cc0       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+                0x00001cc0                SampleKlaar_StartEx
+ .text.SampleKlaar_SetVector
+                0x00001ce4       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+                0x00001ce4                SampleKlaar_SetVector
+ .text.SampleKlaar_SetPriority
+                0x00001d08       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+                0x00001d08                SampleKlaar_SetPriority
+ .text.SampleKlaar_Enable
+                0x00001d2c       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+                0x00001d2c                SampleKlaar_Enable
+ .text.SampleKlaar_Disable
+                0x00001d44       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+                0x00001d44                SampleKlaar_Disable
+ .text.I2C_Codec_control_Init
+                0x00001d5c       0xa0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+                0x00001d5c                I2C_Codec_control_Init
+ .text.I2C_Codec_control_Enable
+                0x00001dfc       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+                0x00001dfc                I2C_Codec_control_Enable
+ .text.I2C_Codec_control_Start
+                0x00001e1c       0x2c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+                0x00001e1c                I2C_Codec_control_Start
+ .text.I2C_Codec_control_ISR
+                0x00001e48      0x408 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+                0x00001e48                I2C_Codec_control_ISR
+ .text.I2C_Codec_control_MasterWriteBuf
+                0x00002250      0x120 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+                0x00002250                I2C_Codec_control_MasterWriteBuf
+ .text.I2C_Codec_control_MasterStatus
+                0x00002370       0x4c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+                0x00002370                I2C_Codec_control_MasterStatus
+ .text.I2C_Codec_control_MasterClearStatus
+                0x000023bc       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+                0x000023bc                I2C_Codec_control_MasterClearStatus
+ .text.I2S_Codec_audio_Enable
+                0x000023f4       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                0x000023f4                I2S_Codec_audio_Enable
+ .text.I2S_Codec_audio_Init
+                0x0000243c       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                0x0000243c                I2S_Codec_audio_Init
+ .text.I2S_Codec_audio_Start
+                0x00002484       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                0x00002484                I2S_Codec_audio_Start
+ .text.I2S_Codec_audio_EnableTx
+                0x000024a8       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                0x000024a8                I2S_Codec_audio_EnableTx
+ .text.I2S_Codec_audio_EnableRx
+                0x000024f0       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                0x000024f0                I2S_Codec_audio_EnableRx
+ .text.I2S_EN_Write
+                0x00002538       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+                0x00002538                I2S_EN_Write
+ .text.VOL_Start
+                0x00002558       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x00002558                VOL_Start
+ .text.VOL_Init
+                0x0000257c       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x0000257c                VOL_Init
+ .text.VOL_Enable
+                0x000025c4       0xf4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x000025c4                VOL_Enable
+ .text.VOL_SetResolution
+                0x000026b8       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x000026b8                VOL_SetResolution
+ .text.VOL_StartConvert
+                0x0000270c       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x0000270c                VOL_StartConvert
+ .text.VOL_GetResult8
+                0x0000272c       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x0000272c                VOL_GetResult8
+ .text.VOL_CalcGain
+                0x00002754       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .text.VOL_ISR  0x000027d4        0xc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+                0x000027d4                VOL_ISR
+ .text.LINE_Start
+                0x000027e0       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x000027e0                LINE_Start
+ .text.LINE_Init
+                0x00002804       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x00002804                LINE_Init
+ .text.LINE_Enable
+                0x0000284c       0xf4 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x0000284c                LINE_Enable
+ .text.LINE_SetResolution
+                0x00002940       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x00002940                LINE_SetResolution
+ .text.LINE_StartConvert
+                0x00002994       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x00002994                LINE_StartConvert
+ .text.LINE_GetResult8
+                0x000029b4       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x000029b4                LINE_GetResult8
+ .text.LINE_CalcGain
+                0x000029dc       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .text.LINE_ISR
+                0x00002a5c        0xc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+                0x00002a5c                LINE_ISR
+ .text.VOL_theACLK_SetModeRegister
+                0x00002a68       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+                0x00002a68                VOL_theACLK_SetModeRegister
+ .text.LINE_theACLK_SetModeRegister
+                0x00002a9c       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+                0x00002a9c                LINE_theACLK_SetModeRegister
+ .text.S0_Read  0x00002ad0       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+                0x00002ad0                S0_Read
+ .text.SampleVraag_StartEx
+                0x00002af0       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+                0x00002af0                SampleVraag_StartEx
+ .text.SampleVraag_SetVector
+                0x00002b14       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+                0x00002b14                SampleVraag_SetVector
+ .text.SampleVraag_SetPriority
+                0x00002b38       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+                0x00002b38                SampleVraag_SetPriority
+ .text.SampleVraag_Enable
+                0x00002b5c       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+                0x00002b5c                SampleVraag_Enable
+ .text.SampleVraag_Disable
+                0x00002b74       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+                0x00002b74                SampleVraag_Disable
+ .text.AnalogeIngang_R_Init
+                0x00002b8c       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+                0x00002b8c                AnalogeIngang_R_Init
+ .text.AnalogeIngang_R_Enable
+                0x00002b9c       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+                0x00002b9c                AnalogeIngang_R_Enable
+ .text.AnalogeIngang_R_Start
+                0x00002be4       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+                0x00002be4                AnalogeIngang_R_Start
+ .text.AnalogeIngang_R_SetPower
+                0x00002c08       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+                0x00002c08                AnalogeIngang_R_SetPower
+ .text.AnalogeIngang_L_Init
+                0x00002c48       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+                0x00002c48                AnalogeIngang_L_Init
+ .text.AnalogeIngang_L_Enable
+                0x00002c58       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+                0x00002c58                AnalogeIngang_L_Enable
+ .text.AnalogeIngang_L_Start
+                0x00002ca0       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+                0x00002ca0                AnalogeIngang_L_Start
+ .text.AnalogeIngang_L_SetPower
+                0x00002cc4       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+                0x00002cc4                AnalogeIngang_L_SetPower
+ .text.Filter_Init
+                0x00002d04      0x108 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                0x00002d04                Filter_Init
+ .text.Filter_Enable
+                0x00002e0c       0x48 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                0x00002e0c                Filter_Enable
+ .text.Filter_Start
+                0x00002e54       0x24 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                0x00002e54                Filter_Start
+ .text.Filter_Read16
+                0x00002e78       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                0x00002e78                Filter_Read16
+ .text.Filter_Write16
+                0x00002eb8       0x3c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                0x00002eb8                Filter_Write16
+ .text.Filter_SetInterruptMode
+                0x00002ef4       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+                0x00002ef4                Filter_SetInterruptMode
+ .text.Filter_SetDMAMode
+                0x00002f1c       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+                0x00002f1c                Filter_SetDMAMode
+ *fill*         0x00002f44        0x4 
+ .text          0x00002f48       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+                0x00002f48                CyDelayCycles
+                0x00002f86                CyEnterCriticalSection
+                0x00002f8e                CyExitCriticalSection
+ .text.__errno  0x00002f9c        0xc c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+                0x00002f9c                __errno
+ .text.__libc_init_array
+                0x00002fa8       0x4c c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                0x00002fa8                __libc_init_array
+ .text.memcpy   0x00002ff4       0x16 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x00002ff4                memcpy
+ .text.memset   0x0000300a       0x10 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                0x0000300a                memset
+ *(.plt)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x0000301a        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x0000301a        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x0000301a        0x0 linker stubs
+ *(.bootloader)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ *(.gcc_except_table)
+
+.v4_bx          0x0000301c        0x0
+ .v4_bx         0x0000301c        0x0 linker stubs
+
+.iplt           0x0000301c        0x0
+ .iplt          0x0000301c        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x0000301c        0x4
+ *(.eh_frame)
+ .eh_frame      0x0000301c        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .eh_frame      0x0000301c        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+                [!provide]                PROVIDE (__exidx_start, .)
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x00003020                __exidx_end = .
+
+.rodata         0x00003020      0x830
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x00003020       0x62 .\ARM_GCC_541\Debug\main.o
+ *fill*         0x00003082        0x2 
+ .rodata        0x00003084       0x16 .\ARM_GCC_541\Debug\audioCodec.o
+                0x00003084                CodecInitData
+ *fill*         0x0000309a        0x2 
+ .rodata        0x0000309c      0x138 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .rodata        0x000031d4      0x640 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+                0x000031d4                Filter_control
+                0x000032d4                Filter_data_a
+                0x000034d4                Filter_data_b
+                0x000036d4                Filter_acu
+                0x00003714                Filter_cfsm
+ .rodata.str1.1
+                0x00003814        0x2 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x00003818                . = ALIGN (0x4)
+ *fill*         0x00003816        0x2 
+ *(.init)
+ .init          0x00003818        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+                0x00003818                _init
+ .init          0x0000381c        0x8 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x00003824                . = ALIGN (0x4)
+                0x00003824                __preinit_array_start = .
+ *(.preinit_array)
+                0x00003824                __preinit_array_end = .
+                0x00003824                . = ALIGN (0x4)
+                0x00003824                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x00003824        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .init_array    0x00003828        0x4 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x0000382c                __init_array_end = .
+                0x0000382c                . = ALIGN (0x4)
+ *(.fini)
+ .fini          0x0000382c        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+                0x0000382c                _fini
+ .fini          0x00003830        0x8 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x00003838                . = ALIGN (0x4)
+                0x00003838                __fini_array_start = .
+ *(.fini_array)
+ .fini_array    0x00003838        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x0000383c                __fini_array_end = .
+                0x0000383c                . = ALIGN (0x4)
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+                0x0000383c                . = ALIGN (0x4)
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+                0x0000383c                . = ALIGN (0x4)
+                0x0000383c                __cy_regions = .
+                0x0000383c        0x4 LONG 0x3850 __cy_region_init_ram
+                0x00003840        0x4 LONG 0x1fff80c8 __cy_region_start_data
+                0x00003844        0x4 LONG 0x88 __cy_region_init_size_ram
+                0x00003848        0x4 LONG 0x98 __cy_region_zero_size_ram
+                0x0000384c                __cy_regions_end = .
+                0x00003850                . = ALIGN (0x8)
+ *fill*         0x0000384c        0x4 
+                0x00003850                _etext = .
+
+.cy_checksum_exclude
+                0x00003850        0x0
+ *(.cy_checksum_exclude)
+
+.ramvectors     0x1fff8000       0xc0
+                0x1fff8000                __cy_region_start_ram = .
+ *(.ramvectors)
+ .ramvectors    0x1fff8000       0xc0 .\ARM_GCC_541\Debug\Cm3Start.o
+                0x1fff8000                CyRamVectors
+
+.noinit         0x1fff80c0        0x5
+ *(.noinit)
+ .noinit        0x1fff80c0        0x4 .\ARM_GCC_541\Debug\Cm3Start.o
+ .noinit        0x1fff80c4        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                0x1fff80c4                CyResetStatus
+
+.data           0x1fff80c8       0x88 load address 0x00003850
+                0x1fff80c8                __cy_region_start_data = .
+ *(.jcr)
+ .jcr           0x1fff80c8        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .jcr           0x1fff80c8        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x1fff80cc        0x1 .\ARM_GCC_541\Debug\main.o
+                0x1fff80cc                ClipIndicator
+ *fill*         0x1fff80cd        0x1 
+ .data          0x1fff80ce        0x4 .\ARM_GCC_541\Debug\audioCodec.o
+ .data          0x1fff80d2        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+                0x1fff80d2                RxDMA_DmaHandle
+ .data          0x1fff80d3        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+                0x1fff80d3                TxDMA_DmaHandle
+ .data          0x1fff80d4        0x8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .data          0x1fff80dc       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                0x1fff80dc                cydelay_freq_hz
+                0x1fff80e0                cydelay_freq_khz
+                0x1fff80e4                cydelay_freq_mhz
+                0x1fff80e8                cydelay_32k_ms
+ .data.impure_data
+                0x1fff80ec       0x60 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x1fff814c        0x4 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x1fff814c                _impure_ptr
+                0x1fff8150                . = ALIGN (0x8)
+ *(.ram)
+                0x1fff8150                _edata = .
+
+.igot.plt       0x1fff8150        0x0 load address 0x000038d8
+ .igot.plt      0x1fff8150        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+
+.bss            0x1fff8150       0x98 load address 0x000038d8
+                0x1fff8150                PROVIDE (__bss_start__, .)
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x1fff8150       0x1c c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .bss           0x1fff816c        0x9 .\ARM_GCC_541\Debug\dma.o
+ *fill*         0x1fff8175        0x1 
+ .bss           0x1fff8176        0x6 .\ARM_GCC_541\Debug\audioCodec.o
+ *fill*         0x1fff817c        0x4 
+ .bss           0x1fff8180        0x4 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .bss           0x1fff8184        0x2 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                0x1fff8184                LCD_enableState
+                0x1fff8185                LCD_initVar
+ .bss           0x1fff8186        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+                0x1fff8186                I2C_Codec_control_initVar
+ .bss           0x1fff8187        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                0x1fff8187                I2S_Codec_audio_initVar
+ .bss           0x1fff8188        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x1fff8188                VOL_initVar
+ .bss           0x1fff8189        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x1fff8189                LINE_initVar
+ .bss           0x1fff818a        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+                0x1fff818a                AnalogeIngang_R_initVar
+ .bss           0x1fff818b        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+                0x1fff818b                AnalogeIngang_L_initVar
+ .bss           0x1fff818c        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                0x1fff818c                Filter_initVar
+ *(COMMON)
+ *fill*         0x1fff818d        0x3 
+ COMMON         0x1fff8190       0x28 .\ARM_GCC_541\Debug\main.o
+                0x1fff8190                maxR
+                0x1fff8194                sampleIn
+                0x1fff8198                LineVolume
+                0x1fff8199                S1
+                0x1fff819c                txBuff
+                0x1fff81a0                sampleUit
+                0x1fff81a4                HPvolume
+                0x1fff81a8                rxBuff
+                0x1fff81ac                displayVolume
+                0x1fff81b0                maxL
+                0x1fff81b4                cyclusTel
+ COMMON         0x1fff81b8        0x1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+                0x1fff81b8                I2C_Codec_control_state
+ *fill*         0x1fff81b9        0x3 
+ COMMON         0x1fff81bc       0x14 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+                0x1fff81bc                I2C_Codec_control_mstrStatus
+                0x1fff81c0                I2C_Codec_control_mstrRdBufPtr
+                0x1fff81c4                I2C_Codec_control_mstrRdBufSize
+                0x1fff81c5                I2C_Codec_control_mstrWrBufSize
+                0x1fff81c6                I2C_Codec_control_mstrControl
+                0x1fff81c7                I2C_Codec_control_mstrWrBufIndex
+                0x1fff81c8                I2C_Codec_control_mstrRdBufIndex
+                0x1fff81cc                I2C_Codec_control_mstrWrBufPtr
+ COMMON         0x1fff81d0        0xc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                0x1fff81d0                VOL_shift
+                0x1fff81d2                VOL_countsPerVolt
+                0x1fff81d4                VOL_offset
+                0x1fff81d8                VOL_countsPer10Volt
+ COMMON         0x1fff81dc        0xa .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                0x1fff81dc                LINE_countsPer10Volt
+                0x1fff81e0                LINE_offset
+                0x1fff81e2                LINE_countsPerVolt
+                0x1fff81e4                LINE_shift
+                0x1fff81e8                . = ALIGN (0x8)
+ *fill*         0x1fff81e6        0x2 
+ *(.ram.b)
+                0x1fff81e8                _end = .
+                0x1fff81e8                __end = .
+                0x1fff81e8                PROVIDE (end, .)
+                0x1fff81e8                PROVIDE (__bss_end__, .)
+                0x00003850                __cy_region_init_ram = LOADADDR (.data)
+                0x00000088                __cy_region_init_size_ram = (_edata - ADDR (.data))
+                0x00000098                __cy_region_zero_size_ram = (_end - _edata)
+
+.heap           0x1fff81e8       0x80 load address 0x000038d8
+                0x1fff81e8                . = _end
+                0x1fff8268                . = (. + 0x80)
+ *fill*         0x1fff81e8       0x80 
+                0x1fff8268                __cy_heap_limit = .
+
+.stack          0x20007800      0x800
+                0x20007800                __cy_stack_limit = .
+                0x20008000                . = (. + 0x800)
+ *fill*         0x20007800      0x800 
+                0x00000001                ASSERT ((__cy_stack_limit >= __cy_heap_limit), region RAM overflowed with stack)
+                0x00000000                cy_checksum_exclude_size = (CY_APPL_LOADABLE == 0x1)?SIZEOF (.cy_checksum_exclude):0x0
+                0x00000001                ASSERT ((cy_checksum_exclude_size <= CY_CHECKSUM_EXCLUDE_SIZE), CY_BOOT: Section .cy_checksum_exclude size exceedes specified limit.)
+
+.cyloadermeta
+ *(.cyloadermeta)
+
+.cyloadablemeta
+ *(.cyloadablemeta)
+
+.cyconfigecc    0x80000000     0x1af0
+ *(.cyconfigecc)
+ .cyconfigecc   0x80000000     0x1af0 .\ARM_GCC_541\Debug\cymetadata.o
+                0x80000000                cy_meta_configecc
+
+.cycustnvl      0x90000000        0x4
+ *(.cycustnvl)
+ .cycustnvl     0x90000000        0x4 .\ARM_GCC_541\Debug\cymetadata.o
+                0x90000000                cy_meta_custnvl
+
+.cywolatch      0x90100000        0x4
+ *(.cywolatch)
+ .cywolatch     0x90100000        0x4 .\ARM_GCC_541\Debug\cymetadata.o
+                0x90100000                cy_meta_wonvl
+
+.cyeeprom       0x90200000        0x0
+ *(.cyeeprom)
+                0x00000001                ASSERT ((. <= ((0x90200000 + ee_offset) + ee_size)), .cyeeprom data will not fit in EEPROM)
+
+.cyflashprotect
+                0x90400000      0x100
+ *(.cyflashprotect)
+ .cyflashprotect
+                0x90400000      0x100 .\ARM_GCC_541\Debug\cymetadata.o
+                0x90400000                cy_meta_flashprotect
+
+.cymeta         0x90500000        0xc
+ *(.cymeta)
+ .cymeta        0x90500000        0xc .\ARM_GCC_541\Debug\cymetadata.o
+                0x90500000                cy_metadata
+
+.rel.dyn        0x000038d8        0x0 load address 0x9050000c
+ .rel.iplt      0x000038d8        0x0 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0xe40
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x28 .\ARM_GCC_541\Debug\main.o
+ .debug_aranges
+                0x00000028       0x38 .\ARM_GCC_541\Debug\dma.o
+ .debug_aranges
+                0x00000060       0x50 .\ARM_GCC_541\Debug\audioCodec.o
+ .debug_aranges
+                0x000000b0       0x60 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_aranges
+                0x00000110       0x18 .\ARM_GCC_541\Debug\cymetadata.o
+ .debug_aranges
+                0x00000128       0x48 .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_aranges
+                0x00000170       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .debug_aranges
+                0x00000198       0x98 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .debug_aranges
+                0x00000230       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .debug_aranges
+                0x00000258       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .debug_aranges
+                0x00000280       0xd8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .debug_aranges
+                0x00000358      0x2a0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .debug_aranges
+                0x000005f8       0x98 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .debug_aranges
+                0x00000690       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .debug_aranges
+                0x000006b8       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .debug_aranges
+                0x00000738       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .debug_aranges
+                0x00000770       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .debug_aranges
+                0x00000790       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .debug_aranges
+                0x00000810       0x68 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .debug_aranges
+                0x00000878       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .debug_aranges
+                0x000008a0       0xa8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .debug_aranges
+                0x00000948       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .debug_aranges
+                0x00000968       0xa8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .debug_aranges
+                0x00000a10       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .debug_aranges
+                0x00000a30       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .debug_aranges
+                0x00000ab0       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .debug_aranges
+                0x00000b30       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .debug_aranges
+                0x00000b68       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .debug_aranges
+                0x00000be8       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .debug_aranges
+                0x00000c28       0x40 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .debug_aranges
+                0x00000c68       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .debug_aranges
+                0x00000ce8       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .debug_aranges
+                0x00000d10       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .debug_aranges
+                0x00000d28       0x20 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+ .debug_aranges
+                0x00000d48       0x80 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .debug_aranges
+                0x00000dc8       0x78 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x6294
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x208 .\ARM_GCC_541\Debug\main.o
+ .debug_info    0x00000208      0x1f3 .\ARM_GCC_541\Debug\dma.o
+ .debug_info    0x000003fb      0x2d3 .\ARM_GCC_541\Debug\audioCodec.o
+ .debug_info    0x000006ce      0x3ec .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_info    0x00000aba      0x139 .\ARM_GCC_541\Debug\cymetadata.o
+ .debug_info    0x00000bf3      0x32b .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_info    0x00000f1e      0x11b .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .debug_info    0x00001039      0x3cf .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .debug_info    0x00001408      0x11b .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .debug_info    0x00001523       0xd7 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .debug_info    0x000015fa      0x8c0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .debug_info    0x00001eba      0xe51 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .debug_info    0x00002d0b      0x57a .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .debug_info    0x00003285       0xd7 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .debug_info    0x0000335c      0x241 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .debug_info    0x0000359d      0x163 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .debug_info    0x00003700      0x156 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .debug_info    0x00003856      0x3f8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .debug_info    0x00003c4e      0x20b .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .debug_info    0x00003e59       0xd7 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .debug_info    0x00003f30      0x47f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .debug_info    0x000043af       0x92 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .debug_info    0x00004441      0x47f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .debug_info    0x000048c0       0x92 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .debug_info    0x00004952      0x299 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .debug_info    0x00004beb      0x299 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .debug_info    0x00004e84      0x11e .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .debug_info    0x00004fa2      0x241 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .debug_info    0x000051e3      0x125 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .debug_info    0x00005308      0x125 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .debug_info    0x0000542d      0x3b6 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .debug_info    0x000057e3       0xf0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .debug_info    0x000058d3      0x137 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .debug_info    0x00005a0a       0xbf .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+ .debug_info    0x00005ac9      0x371 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .debug_info    0x00005e3a      0x45a .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+
+.debug_abbrev   0x00000000     0x2181
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xc0 .\ARM_GCC_541\Debug\main.o
+ .debug_abbrev  0x000000c0       0xbe .\ARM_GCC_541\Debug\dma.o
+ .debug_abbrev  0x0000017e       0xf6 .\ARM_GCC_541\Debug\audioCodec.o
+ .debug_abbrev  0x00000274      0x16b .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_abbrev  0x000003df       0x77 .\ARM_GCC_541\Debug\cymetadata.o
+ .debug_abbrev  0x00000456      0x1d6 .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_abbrev  0x0000062c       0x8b .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .debug_abbrev  0x000006b7      0x120 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .debug_abbrev  0x000007d7       0x8b .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .debug_abbrev  0x00000862       0x81 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .debug_abbrev  0x000008e3      0x194 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .debug_abbrev  0x00000a77      0x217 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .debug_abbrev  0x00000c8e      0x161 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .debug_abbrev  0x00000def       0x81 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .debug_abbrev  0x00000e70      0x172 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .debug_abbrev  0x00000fe2       0xb9 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .debug_abbrev  0x0000109b       0x81 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .debug_abbrev  0x0000111c      0x11e .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .debug_abbrev  0x0000123a       0xd1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .debug_abbrev  0x0000130b       0x81 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .debug_abbrev  0x0000138c      0x173 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .debug_abbrev  0x000014ff       0x42 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .debug_abbrev  0x00001541      0x173 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .debug_abbrev  0x000016b4       0x42 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .debug_abbrev  0x000016f6      0x11d .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .debug_abbrev  0x00001813      0x11d .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .debug_abbrev  0x00001930       0x90 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .debug_abbrev  0x000019c0      0x172 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .debug_abbrev  0x00001b32       0xa8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .debug_abbrev  0x00001bda       0xa8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .debug_abbrev  0x00001c82      0x15e .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .debug_abbrev  0x00001de0       0x7f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .debug_abbrev  0x00001e5f       0x66 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .debug_abbrev  0x00001ec5       0x14 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00001ed9      0x13c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .debug_abbrev  0x00002015      0x16c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+
+.debug_line     0x00000000     0x37c8
+ *(.debug_line)
+ .debug_line    0x00000000      0x23a .\ARM_GCC_541\Debug\main.o
+ .debug_line    0x0000023a      0x1c0 .\ARM_GCC_541\Debug\dma.o
+ .debug_line    0x000003fa      0x220 .\ARM_GCC_541\Debug\audioCodec.o
+ .debug_line    0x0000061a      0x236 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_line    0x00000850      0x141 .\ARM_GCC_541\Debug\cymetadata.o
+ .debug_line    0x00000991      0x1db .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_line    0x00000b6c       0x78 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .debug_line    0x00000be4      0x1e1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .debug_line    0x00000dc5       0x78 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .debug_line    0x00000e3d       0x6d .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .debug_line    0x00000eaa      0x2b6 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .debug_line    0x00001160      0x883 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .debug_line    0x000019e3      0x38e .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .debug_line    0x00001d71       0x6d .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .debug_line    0x00001dde      0x146 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .debug_line    0x00001f24       0xdd .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .debug_line    0x00002001      0x158 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .debug_line    0x00002159      0x22c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .debug_line    0x00002385      0x132 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .debug_line    0x000024b7       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .debug_line    0x00002526      0x207 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .debug_line    0x0000272d       0x53 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .debug_line    0x00002780      0x208 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .debug_line    0x00002988       0x54 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .debug_line    0x000029dc      0x1ce .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .debug_line    0x00002baa      0x1cf .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .debug_line    0x00002d79       0x92 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .debug_line    0x00002e0b      0x156 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .debug_line    0x00002f61       0xb7 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .debug_line    0x00003018       0xb7 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .debug_line    0x000030cf      0x199 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .debug_line    0x00003268       0x76 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .debug_line    0x000032de       0x56 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .debug_line    0x00003334       0x7d .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+ .debug_line    0x000033b1      0x205 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .debug_line    0x000035b6      0x212 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+
+.debug_frame    0x00000000     0x363c
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x48 .\ARM_GCC_541\Debug\main.o
+ .debug_frame   0x00000048       0x88 .\ARM_GCC_541\Debug\dma.o
+ .debug_frame   0x000000d0      0x128 .\ARM_GCC_541\Debug\audioCodec.o
+ .debug_frame   0x000001f8      0x160 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_frame   0x00000358       0xd8 .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_frame   0x00000430       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .debug_frame   0x00000488      0x260 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .debug_frame   0x000006e8       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .debug_frame   0x00000740       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .debug_frame   0x0000079c      0x3d0 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .debug_frame   0x00000b6c      0xc0c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .debug_frame   0x00001778      0x234 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .debug_frame   0x000019ac       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .debug_frame   0x00001a08      0x1e8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .debug_frame   0x00001bf0       0x9c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .debug_frame   0x00001c8c       0x38 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .debug_frame   0x00001cc4      0x208 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .debug_frame   0x00001ecc      0x190 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .debug_frame   0x0000205c       0x5c .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .debug_frame   0x000020b8      0x2bc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .debug_frame   0x00002374       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .debug_frame   0x000023a8      0x2bc .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .debug_frame   0x00002664       0x34 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .debug_frame   0x00002698      0x200 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .debug_frame   0x00002898      0x200 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .debug_frame   0x00002a98       0xa8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .debug_frame   0x00002b40      0x1e8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .debug_frame   0x00002d28       0xb8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .debug_frame   0x00002de0       0xb8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .debug_frame   0x00002e98      0x204 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .debug_frame   0x0000309c       0x60 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .debug_frame   0x000030fc      0x210 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .debug_frame   0x0000330c      0x1f8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .debug_frame   0x00003504       0x44 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .debug_frame   0x00003548       0x38 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00003580       0x20 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x000035a0       0x28 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x000035c8       0x2c c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x000035f4       0x28 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x0000361c       0x20 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+
+.debug_str      0x00000000     0x2db2
+ *(.debug_str)
+ .debug_str     0x00000000      0x221 .\ARM_GCC_541\Debug\main.o
+                                0x26f (size before relaxing)
+ .debug_str     0x00000221       0x6a .\ARM_GCC_541\Debug\dma.o
+                                0x27d (size before relaxing)
+ .debug_str     0x0000028b      0x106 .\ARM_GCC_541\Debug\audioCodec.o
+                                0x305 (size before relaxing)
+ .debug_str     0x00000391      0x1f7 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+                                0x34e (size before relaxing)
+ .debug_str     0x00000588       0x7f .\ARM_GCC_541\Debug\cymetadata.o
+                                0x213 (size before relaxing)
+ .debug_str     0x00000607      0x124 .\ARM_GCC_541\Debug\Cm3Start.o
+                                0x306 (size before relaxing)
+ .debug_str     0x0000072b       0x93 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+                                0x24a (size before relaxing)
+ .debug_str     0x000007be      0x171 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+                                0x348 (size before relaxing)
+ .debug_str     0x0000092f       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+                                0x24a (size before relaxing)
+ .debug_str     0x00000987       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+                                0x1db (size before relaxing)
+ .debug_str     0x000009ba      0x36f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+                                0x54c (size before relaxing)
+ .debug_str     0x00000d29      0x7c7 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+                                0xa19 (size before relaxing)
+ .debug_str     0x000014f0      0x371 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+                                0x572 (size before relaxing)
+ .debug_str     0x00001861       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+                                0x1db (size before relaxing)
+ .debug_str     0x00001894      0x13a .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+                                0x329 (size before relaxing)
+ .debug_str     0x000019ce      0x11b .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+                                0x2e6 (size before relaxing)
+ .debug_str     0x00001ae9       0xe8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+                                0x321 (size before relaxing)
+ .debug_str     0x00001bd1      0x234 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+                                0x515 (size before relaxing)
+ .debug_str     0x00001e05      0x147 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+                                0x2fc (size before relaxing)
+ .debug_str     0x00001f4c       0x39 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+                                0x1e1 (size before relaxing)
+ .debug_str     0x00001f85      0x1bf .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+                                0x3dc (size before relaxing)
+ .debug_str     0x00002144       0x29 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+                                0x1be (size before relaxing)
+ .debug_str     0x0000216d      0x18a .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+                                0x3f4 (size before relaxing)
+ .debug_str     0x000022f7       0x2b .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+                                0x1c0 (size before relaxing)
+ .debug_str     0x00002322      0x1d5 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+                                0x390 (size before relaxing)
+ .debug_str     0x000024f7      0x18f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+                                0x39e (size before relaxing)
+ .debug_str     0x00002686       0x57 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+                                0x202 (size before relaxing)
+ .debug_str     0x000026dd      0x13a .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+                                0x329 (size before relaxing)
+ .debug_str     0x00002817       0xb1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+                                0x26c (size before relaxing)
+ .debug_str     0x000028c8       0xb1 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+                                0x26c (size before relaxing)
+ .debug_str     0x00002979      0x157 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+                                0x33e (size before relaxing)
+ .debug_str     0x00002ad0       0x55 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+                                0x20e (size before relaxing)
+ .debug_str     0x00002b25       0x29 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+                                0x21f (size before relaxing)
+ .debug_str     0x00002b4e      0x145 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+                                0x325 (size before relaxing)
+ .debug_str     0x00002c93      0x11f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+                                0x322 (size before relaxing)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_ranges   0x00000000      0xbe0
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x18 .\ARM_GCC_541\Debug\main.o
+ .debug_ranges  0x00000018       0x28 .\ARM_GCC_541\Debug\dma.o
+ .debug_ranges  0x00000040       0x40 .\ARM_GCC_541\Debug\audioCodec.o
+ .debug_ranges  0x00000080       0x50 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_ranges  0x000000d0       0x38 .\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_ranges  0x00000108       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .debug_ranges  0x00000120       0x88 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .debug_ranges  0x000001a8       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .debug_ranges  0x000001c0       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .debug_ranges  0x000001d8       0xc8 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .debug_ranges  0x000002a0      0x290 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .debug_ranges  0x00000530       0x88 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .debug_ranges  0x000005b8       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .debug_ranges  0x000005d0       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .debug_ranges  0x00000640       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .debug_ranges  0x00000668       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .debug_ranges  0x00000678       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .debug_ranges  0x000006e8       0x58 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .debug_ranges  0x00000740       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .debug_ranges  0x00000758       0x98 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .debug_ranges  0x000007f0       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .debug_ranges  0x00000800       0x98 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .debug_ranges  0x00000898       0x10 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .debug_ranges  0x000008a8       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .debug_ranges  0x00000918       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .debug_ranges  0x00000988       0x28 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .debug_ranges  0x000009b0       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .debug_ranges  0x00000a20       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .debug_ranges  0x00000a50       0x30 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .debug_ranges  0x00000a80       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .debug_ranges  0x00000af0       0x18 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .debug_ranges  0x00000b08       0x70 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .debug_ranges  0x00000b78       0x68 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+
+.comment        0x00000000       0x6e
+ .comment       0x00000000       0x6e .\ARM_GCC_541\Debug\main.o
+                                 0x6f (size before relaxing)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\dma.o
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\audioCodec.o
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\cymetadata.o
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\Cm3Start.o
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .comment       0x0000006e       0x6f .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+.ARM.attributes
+                0x00000000       0x29
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x1d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+ .ARM.attributes
+                0x0000001d       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .ARM.attributes
+                0x0000004a       0x1b c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.attributes
+                0x00000065       0x33 .\ARM_GCC_541\Debug\main.o
+ .ARM.attributes
+                0x00000098       0x33 .\ARM_GCC_541\Debug\dma.o
+ .ARM.attributes
+                0x000000cb       0x33 .\ARM_GCC_541\Debug\audioCodec.o
+ .ARM.attributes
+                0x000000fe       0x33 .\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .ARM.attributes
+                0x00000131       0x33 .\ARM_GCC_541\Debug\cymetadata.o
+ .ARM.attributes
+                0x00000164       0x33 .\ARM_GCC_541\Debug\Cm3Start.o
+ .ARM.attributes
+                0x00000197       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(RxDMA_dma.o)
+ .ARM.attributes
+                0x000001ca       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LCD.o)
+ .ARM.attributes
+                0x000001fd       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(TxDMA_dma.o)
+ .ARM.attributes
+                0x00000230       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CLIP.o)
+ .ARM.attributes
+                0x00000263       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyDmac.o)
+ .ARM.attributes
+                0x00000296       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyLib.o)
+ .ARM.attributes
+                0x000002c9       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(cyPm.o)
+ .ARM.attributes
+                0x000002fc       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LEDs.o)
+ .ARM.attributes
+                0x0000032f       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleKlaar.o)
+ .ARM.attributes
+                0x00000362       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control.o)
+ .ARM.attributes
+                0x00000395       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_INT.o)
+ .ARM.attributes
+                0x000003c8       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2C_Codec_control_MASTER.o)
+ .ARM.attributes
+                0x000003fb       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_Codec_audio.o)
+ .ARM.attributes
+                0x0000042e       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(I2S_EN.o)
+ .ARM.attributes
+                0x00000461       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL.o)
+ .ARM.attributes
+                0x00000494       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_INT.o)
+ .ARM.attributes
+                0x000004c7       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE.o)
+ .ARM.attributes
+                0x000004fa       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_INT.o)
+ .ARM.attributes
+                0x0000052d       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(VOL_theACLK.o)
+ .ARM.attributes
+                0x00000560       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(LINE_theACLK.o)
+ .ARM.attributes
+                0x00000593       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(S0.o)
+ .ARM.attributes
+                0x000005c6       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(SampleVraag.o)
+ .ARM.attributes
+                0x000005f9       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_R.o)
+ .ARM.attributes
+                0x0000062c       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(AnalogeIngang_L.o)
+ .ARM.attributes
+                0x0000065f       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter.o)
+ .ARM.attributes
+                0x00000692       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_PVT.o)
+ .ARM.attributes
+                0x000006c5       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(Filter_RAM_Data.o)
+ .ARM.attributes
+                0x000006f8       0x21 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyBootAsmGnu.o)
+ .ARM.attributes
+                0x00000719       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CyFlash.o)
+ .ARM.attributes
+                0x0000074c       0x33 .\ARM_GCC_541\Debug\IIR_filterProject_DFB.a(CySpc.o)
+ .ARM.attributes
+                0x0000077f       0x1d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x0000079c       0x1d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .ARM.attributes
+                0x000007b9       0x1d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .ARM.attributes
+                0x000007d6       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .ARM.attributes
+                0x00000803       0x1d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000820       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .ARM.attributes
+                0x0000084d       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x0000087a       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x000008a7       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x000008d4       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x00000901       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x0000092e       0x2d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ .ARM.attributes
+                0x0000095b       0x1d c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+
+/DISCARD/
+ *(.note.GNU-stack)
+OUTPUT(C:\Users\Jona\Documents\GitHub\Signaalverwerking\Labo6\Opgave3DTMF\IIR_filterProject_DFB\IIR_filterProject_DFB.cydsn\ARM_GCC_541\Debug\IIR_filterProject_DFB.elf elf32-littlearm)

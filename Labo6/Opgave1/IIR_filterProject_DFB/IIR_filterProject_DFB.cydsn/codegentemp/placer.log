@@ -4,9 +4,9 @@
 
 #Version:            1.1
 
-#Build Date:         Aug 18 2015 10:30:14
+#Build Date:         Jul 19 2017 14:31:00
 
-#File Generated:     Mar 30 2016 21:01:20
+#File Generated:     May 18 2018 15:45:23
 
 #Purpose:            
 
@@ -14,16 +14,16 @@
 
 #***************************************************************************
 
-Executing : C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\bin/sjplacer.exe --proj-name IIR_filterProject_DFB --netlist-vh2 IIR_filterProject_DFB_p.vh2 --arch-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/arch/p35_udb4x6.ark --rrg-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/psoc5/psoc5lp/route_arch-rrg.cydata --irq-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/psoc5/psoc5lp/irqconn.cydata --drq-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/psoc5/psoc5lp/dmaconn.cydata --dsi-conn-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/psoc5/psoc5lp/dsiconn.cydata --pins-file pins_68-QFN.xml --lib-file IIR_filterProject_DFB_p.lib --sdc-file IIR_filterProject_DFB.sdc --io-pcf IIR_filterProject_DFB.pci --outdir .
+Executing : C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\bin/sjplacer.exe --proj-name IIR_filterProject_DFB --netlist-vh2 IIR_filterProject_DFB_p.vh2 --arch p35_udb4x6 --arch-file C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata --ip-file C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/ip_blocks.cydata --rrg-file C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata --irq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/irqconn.cydata --drq-file C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/dmaconn.cydata --dsi-conn-file C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/dsiconn.cydata --pins-file pins_68-QFN.xml --lib-file IIR_filterProject_DFB_p.lib --sdc-file IIR_filterProject_DFB.sdc --io-pcf IIR_filterProject_DFB.pci --outdir .
 
 		Softjin Techologies Placer, Version 1.1
 
-Build Date : Aug 18 2015	10:29:37
+Build Date : Jul 19 2017	14:29:55
 
 D2004: Option and Settings Summary
 =============================================================
 Netlist vh2 file          - IIR_filterProject_DFB_p.vh2
-Architecture file         - C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/arch/p35_udb4x6.ark
+Architecture file         - C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata
 Package                   - 
 Defparam file             - 
 SDC file                  - IIR_filterProject_DFB.sdc
@@ -34,7 +34,7 @@ IO Placement file         - IIR_filterProject_DFB.pci
 D2050: Starting reading inputs for placer
 =============================================================
 D2065: Reading netlist file : "IIR_filterProject_DFB_p.vh2"
-D2065: Reading arch file : "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/arch/p35_udb4x6.ark"
+D2065: Reading arch file : "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\arch/udbdsi_4x6_24.cydata"
 D2051: Reading of inputs for placer completed successfully
 
 D2053: Starting placement of the design
@@ -54,7 +54,7 @@ Design Statistics after Packing
 
 Device Utilization Summary after Packing
     Macrocells                  :	74/192
-    UDBS                        :	14/24
+    UDBS                        :	13/24
     IOs                         :	30/72
 
 
@@ -80,17 +80,17 @@ analysis after routing.
                      Clock Summary 
 ======================================================================
 Number of clocks: 11
-Clock: CyBUS_CLK            | Frequency:  62.9 MHz | Target:  78.0 MHz
+Clock: CyBUS_CLK            | Frequency:  76.0 MHz | Target:  78.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  78.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  78.0 MHz
-Clock: Debounce             | Frequency: 115.1 MHz | Target:   0.0 MHz
-Clock: I2C_Codec_control_IntClock | Frequency:  30.1 MHz | Target:  15.6 MHz
+Clock: Debounce             | Frequency:  94.4 MHz | Target:   0.0 MHz
+Clock: I2C_Codec_control_IntClock | Frequency:  37.3 MHz | Target:  15.6 MHz
 Clock: LINE_theACLK         | Frequency: N/A       | Target:   1.6 MHz
-Clock: LINE_theACLK(routed) | Frequency: N/A       | Target:   1.6 MHz
+Clock: LINE_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: VOL_theACLK          | Frequency: N/A       | Target:   1.6 MHz
-Clock: VOL_theACLK(routed)  | Frequency: N/A       | Target:   1.6 MHz
+Clock: VOL_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -103,22 +103,22 @@ Phase 7
                      Clock Summary 
 ======================================================================
 Number of clocks: 11
-Clock: CyBUS_CLK            | Frequency:  70.2 MHz | Target:  78.0 MHz
+Clock: CyBUS_CLK            | Frequency:   7.4 MHz | Target:  78.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  78.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  78.0 MHz
-Clock: Debounce             | Frequency: 105.2 MHz | Target:   0.0 MHz
-Clock: I2C_Codec_control_IntClock | Frequency:  30.6 MHz | Target:  15.6 MHz
+Clock: Debounce             | Frequency:   7.4 MHz | Target:   0.0 MHz
+Clock: I2C_Codec_control_IntClock | Frequency:   9.9 MHz | Target:  15.6 MHz
 Clock: LINE_theACLK         | Frequency: N/A       | Target:   1.6 MHz
-Clock: LINE_theACLK(routed) | Frequency: N/A       | Target:   1.6 MHz
+Clock: LINE_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: VOL_theACLK          | Frequency: N/A       | Target:   1.6 MHz
-Clock: VOL_theACLK(routed)  | Frequency: N/A       | Target:   1.6 MHz
+Clock: VOL_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 1.1 (sec)
+D2088: Phase 7, elapsed time : 1.2 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	17
@@ -149,17 +149,17 @@ analysis after routing.
                      Clock Summary 
 ======================================================================
 Number of clocks: 11
-Clock: CyBUS_CLK            | Frequency:  76.8 MHz | Target:  78.0 MHz
+Clock: CyBUS_CLK            | Frequency:   9.9 MHz | Target:  78.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  78.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  78.0 MHz
-Clock: Debounce             | Frequency:  79.9 MHz | Target:   0.0 MHz
-Clock: I2C_Codec_control_IntClock | Frequency:  30.0 MHz | Target:  15.6 MHz
+Clock: Debounce             | Frequency:  11.5 MHz | Target:   0.0 MHz
+Clock: I2C_Codec_control_IntClock | Frequency:   9.9 MHz | Target:  15.6 MHz
 Clock: LINE_theACLK         | Frequency: N/A       | Target:   1.6 MHz
-Clock: LINE_theACLK(routed) | Frequency: N/A       | Target:   1.6 MHz
+Clock: LINE_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: VOL_theACLK          | Frequency: N/A       | Target:   1.6 MHz
-Clock: VOL_theACLK(routed)  | Frequency: N/A       | Target:   1.6 MHz
+Clock: VOL_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -170,5 +170,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 1.9 sec.
+I2076: Total run-time: 2.1 sec.
 

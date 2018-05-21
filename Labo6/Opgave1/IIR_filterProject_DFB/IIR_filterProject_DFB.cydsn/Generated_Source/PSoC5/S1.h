@@ -1,14 +1,14 @@
 /*******************************************************************************
 * File Name: S1.h  
-* Version 2.10
+* Version 2.20
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains Pin function prototypes and register defines
 *
 * Note:
 *
 ********************************************************************************
-* Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions, 
 * disclaimers, and limitations in the end user license agreement accompanying 
 * the software package with which this file was provided.
@@ -22,12 +22,6 @@
 #include "cypins.h"
 #include "S1_aliases.h"
 
-/* Check to see if required defines such as CY_PSOC5A are available */
-/* They are defined starting with cy_boot v3.0 */
-#if !defined (CY_PSOC5A)
-    #error Component cy_pins_v2_10 requires cy_boot v3.0 or later
-#endif /* (CY_PSOC5A) */
-
 /* APIs are not generated for P15[7:6] */
 #if !(CY_PSOC5A &&\
 	 S1__PORT == 15 && ((S1__MASK & 0xC0) != 0))
@@ -37,31 +31,64 @@
 *        Function Prototypes             
 ***************************************/    
 
-void    S1_Write(uint8 value) ;
-void    S1_SetDriveMode(uint8 mode) ;
-uint8   S1_ReadDataReg(void) ;
-uint8   S1_Read(void) ;
-uint8   S1_ClearInterrupt(void) ;
-
+/**
+* \addtogroup group_general
+* @{
+*/
+void    S1_Write(uint8 value);
+void    S1_SetDriveMode(uint8 mode);
+uint8   S1_ReadDataReg(void);
+uint8   S1_Read(void);
+void    S1_SetInterruptMode(uint16 position, uint16 mode);
+uint8   S1_ClearInterrupt(void);
+/** @} general */
 
 /***************************************
 *           API Constants        
 ***************************************/
-
-/* Drive Modes */
-#define S1_DM_ALG_HIZ         PIN_DM_ALG_HIZ
-#define S1_DM_DIG_HIZ         PIN_DM_DIG_HIZ
-#define S1_DM_RES_UP          PIN_DM_RES_UP
-#define S1_DM_RES_DWN         PIN_DM_RES_DWN
-#define S1_DM_OD_LO           PIN_DM_OD_LO
-#define S1_DM_OD_HI           PIN_DM_OD_HI
-#define S1_DM_STRONG          PIN_DM_STRONG
-#define S1_DM_RES_UPDWN       PIN_DM_RES_UPDWN
-
+/**
+* \addtogroup group_constants
+* @{
+*/
+    /** \addtogroup driveMode Drive mode constants
+     * \brief Constants to be passed as "mode" parameter in the S1_SetDriveMode() function.
+     *  @{
+     */
+        #define S1_DM_ALG_HIZ         PIN_DM_ALG_HIZ
+        #define S1_DM_DIG_HIZ         PIN_DM_DIG_HIZ
+        #define S1_DM_RES_UP          PIN_DM_RES_UP
+        #define S1_DM_RES_DWN         PIN_DM_RES_DWN
+        #define S1_DM_OD_LO           PIN_DM_OD_LO
+        #define S1_DM_OD_HI           PIN_DM_OD_HI
+        #define S1_DM_STRONG          PIN_DM_STRONG
+        #define S1_DM_RES_UPDWN       PIN_DM_RES_UPDWN
+    /** @} driveMode */
+/** @} group_constants */
+    
 /* Digital Port Constants */
 #define S1_MASK               S1__MASK
 #define S1_SHIFT              S1__SHIFT
 #define S1_WIDTH              1u
+
+/* Interrupt constants */
+#if defined(S1__INTSTAT)
+/**
+* \addtogroup group_constants
+* @{
+*/
+    /** \addtogroup intrMode Interrupt constants
+     * \brief Constants to be passed as "mode" parameter in S1_SetInterruptMode() function.
+     *  @{
+     */
+        #define S1_INTR_NONE      (uint16)(0x0000u)
+        #define S1_INTR_RISING    (uint16)(0x0001u)
+        #define S1_INTR_FALLING   (uint16)(0x0002u)
+        #define S1_INTR_BOTH      (uint16)(0x0003u) 
+    /** @} intrMode */
+/** @} group_constants */
+
+    #define S1_INTR_MASK      (0x01u) 
+#endif /* (S1__INTSTAT) */
 
 
 /***************************************
@@ -114,13 +141,21 @@ uint8   S1_ClearInterrupt(void) ;
 /* Sync Output Enable Registers */
 #define S1_PRTDSI__SYNC_OUT       (* (reg8 *) S1__PRTDSI__SYNC_OUT) 
 
+/* SIO registers */
+#if defined(S1__SIO_CFG)
+    #define S1_SIO_HYST_EN        (* (reg8 *) S1__SIO_HYST_EN)
+    #define S1_SIO_REG_HIFREQ     (* (reg8 *) S1__SIO_REG_HIFREQ)
+    #define S1_SIO_CFG            (* (reg8 *) S1__SIO_CFG)
+    #define S1_SIO_DIFF           (* (reg8 *) S1__SIO_DIFF)
+#endif /* (S1__SIO_CFG) */
 
-#if defined(S1__INTSTAT)  /* Interrupt Registers */
-
-    #define S1_INTSTAT                (* (reg8 *) S1__INTSTAT)
-    #define S1_SNAP                   (* (reg8 *) S1__SNAP)
-
-#endif /* Interrupt Registers */
+/* Interrupt Registers */
+#if defined(S1__INTSTAT)
+    #define S1_INTSTAT            (* (reg8 *) S1__INTSTAT)
+    #define S1_SNAP               (* (reg8 *) S1__SNAP)
+    
+	#define S1_0_INTTYPE_REG 		(* (reg8 *) S1__0__INTTYPE)
+#endif /* (S1__INTSTAT) */
 
 #endif /* CY_PSOC5A... */
 

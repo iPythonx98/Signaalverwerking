@@ -1,0 +1,1864 @@
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"audioCodec.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	CodecInitData
+  20              		.section	.rodata
+  21              		.align	2
+  22              		.type	CodecInitData, %object
+  23              		.size	CodecInitData, 22
+  24              	CodecInitData:
+  25 0000 1E       		.byte	30
+  26 0001 00       		.byte	0
+  27 0002 0C       		.byte	12
+  28 0003 00       		.byte	0
+  29 0004 0E       		.byte	14
+  30 0005 02       		.byte	2
+  31 0006 00       		.byte	0
+  32 0007 1F       		.byte	31
+  33 0008 02       		.byte	2
+  34 0009 1F       		.byte	31
+  35 000a 04       		.byte	4
+  36 000b 64       		.byte	100
+  37 000c 06       		.byte	6
+  38 000d 64       		.byte	100
+  39 000e 0A       		.byte	10
+  40 000f 00       		.byte	0
+  41 0010 08       		.byte	8
+  42 0011 12       		.byte	18
+  43 0012 10       		.byte	16
+  44 0013 A0       		.byte	-96
+  45 0014 12       		.byte	18
+  46 0015 01       		.byte	1
+  47              		.section	.text.sendCodecCommand,"ax",%progbits
+  48              		.align	2
+  49              		.global	sendCodecCommand
+  50              		.thumb
+  51              		.thumb_func
+  52              		.type	sendCodecCommand, %function
+  53              	sendCodecCommand:
+  54              	.LFB63:
+  55              		.file 1 "audioCodec.c"
+   1:audioCodec.c  **** /* ========================================
+   2:audioCodec.c  ****  *
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 2
+
+
+   3:audioCodec.c  ****  * AudioCodec.c
+   4:audioCodec.c  ****  * rev 1.6 10/2/2016
+   5:audioCodec.c  ****  * Piet Coussens & Rogier Delporte, 2015
+   6:audioCodec.c  ****  * Odisee PBa elektronica
+   7:audioCodec.c  ****  *
+   8:audioCodec.c  ****  * ========================================
+   9:audioCodec.c  **** */
+  10:audioCodec.c  **** 
+  11:audioCodec.c  **** #include <AudioCodec.h>
+  12:audioCodec.c  **** #include <dspSystem.h>
+  13:audioCodec.c  **** 
+  14:audioCodec.c  **** #define I2C_CODEC_INIT_LENGTH   (11u)   /* lengte van de initialisatie datastructuur CodecInitData 
+  15:audioCodec.c  **** 
+  16:audioCodec.c  **** /* Codec initialisation data structure (always 2 bytes) */
+  17:audioCodec.c  **** const uint8 CodecInitData[I2C_CODEC_INIT_LENGTH][2] = {
+  18:audioCodec.c  ****     {RESET_Reg,0x00},
+  19:audioCodec.c  ****     {PWR_DWN_CTRL_Reg, 0x00},                         // Power reduction register
+  20:audioCodec.c  ****     {DIGI_AUDIO_INTERFACE_FORMAT_Reg, 0x02},          // Digital data format 16b I2S mode
+  21:audioCodec.c  ****     {LEFT_LINE_IN_Reg, (uint8) LINVOL},               // Left in setup register
+  22:audioCodec.c  ****     {RIGHT_LINE_IN_Reg, (uint8) RINVOL},              // right in setup register
+  23:audioCodec.c  ****     {LEFT_HP_OUT_Reg, (uint8) LHPVOL},                // Left headphone out setup register
+  24:audioCodec.c  ****     {RIGHT_HP_OUT_Reg, (uint8) RHPVOL},               // right headphone out  setup register
+  25:audioCodec.c  ****     {DIGI_AUDIO_PATH_CTRL_Reg, (uint8) ADCHPD},      // digital audio path configuration
+  26:audioCodec.c  ****     {ANAL_AUDIO_PATH_CTRL_Reg,                        // analog audio pathway configuration
+  27:audioCodec.c  ****         (uint8) ((SIDEATT << 6)|(SIDETONE << 5)|(DACSEL << 4)|(BYPASS << 3)|(INSEL << 2)|(MUTEMIC <
+  28:audioCodec.c  ****     {SAMPLING_CTRL_Reg,                               // clock configuration
+  29:audioCodec.c  ****         #if SAMPLE_RATE == 88                            
+  30:audioCodec.c  ****         0xBC  
+  31:audioCodec.c  ****         #elif SAMPLE_RATE == 44
+  32:audioCodec.c  ****         0xA0
+  33:audioCodec.c  ****         #elif SAMPLE_RATE == 29
+  34:audioCodec.c  ****         0x9C
+  35:audioCodec.c  ****         #elif SAMPLE_RATE == 22
+  36:audioCodec.c  ****         0xE0
+  37:audioCodec.c  ****         #elif SAMPLE_RATE == 14
+  38:audioCodec.c  ****         0xE2
+  39:audioCodec.c  ****         #elif SAMPLE_RATE == 8
+  40:audioCodec.c  ****         0xAC
+  41:audioCodec.c  ****         #elif SAMPLE_RATE == 7
+  42:audioCodec.c  ****         0x8C
+  43:audioCodec.c  ****         #elif SAMPLE_RATE == 4
+  44:audioCodec.c  ****         0xEC
+  45:audioCodec.c  ****         #elif SAMPLE_RATE == 2
+  46:audioCodec.c  ****         0xCE
+  47:audioCodec.c  ****         #endif
+  48:audioCodec.c  ****     },
+  49:audioCodec.c  ****     {ACTIVE_CTRL_Reg, 0x01}      // Codec enable
+  50:audioCodec.c  **** };
+  51:audioCodec.c  **** 
+  52:audioCodec.c  **** /***********************************************************************************************
+  53:audioCodec.c  ****  * Private functie declaraties 
+  54:audioCodec.c  ****  ***********************************************************************************************/
+  55:audioCodec.c  **** 
+  56:audioCodec.c  **** // Bereken de volume-parameter voor de headphone (48-127) i.f.v. de potmeterwaarde (uint8 0-255)
+  57:audioCodec.c  **** // volume dient aangepast te worden als de returnwaarde van deze functie > 0;
+  58:audioCodec.c  **** uint8 _berekenVolumeHP(uint8 PotWaarde);
+  59:audioCodec.c  **** 
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 3
+
+
+  60:audioCodec.c  **** // Bereken de volume-parameter voor de line-ingang (0-31) i.f.v. de potmeterwaarde (uint8 0-255)
+  61:audioCodec.c  **** // zie definitie van LINVOL en RINVOC van de codec
+  62:audioCodec.c  **** // volume dient aangepast te worden als de returnwaarde van deze functie > 31;
+  63:audioCodec.c  **** uint8 _berekenVolumeLineIn(uint8 PotWaarde);
+  64:audioCodec.c  **** 
+  65:audioCodec.c  **** /***********************************************************************************************
+  66:audioCodec.c  ****  * Publieke functie Definities 
+  67:audioCodec.c  ****  ***********************************************************************************************/
+  68:audioCodec.c  **** // zend een commando naar de codec
+  69:audioCodec.c  **** uint8 sendCodecCommand(uint8 registerAddress, uint8 newData){
+  56              		.loc 1 69 0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 16
+  59              		@ frame_needed = 1, uses_anonymous_args = 0
+  60 0000 80B5     		push	{r7, lr}
+  61              		.cfi_def_cfa_offset 8
+  62              		.cfi_offset 7, -8
+  63              		.cfi_offset 14, -4
+  64 0002 84B0     		sub	sp, sp, #16
+  65              		.cfi_def_cfa_offset 24
+  66 0004 00AF     		add	r7, sp, #0
+  67              		.cfi_def_cfa_register 7
+  68 0006 0346     		mov	r3, r0
+  69 0008 0A46     		mov	r2, r1
+  70 000a FB71     		strb	r3, [r7, #7]
+  71 000c 1346     		mov	r3, r2
+  72 000e BB71     		strb	r3, [r7, #6]
+  70:audioCodec.c  ****     uint8 I2CData[2];
+  71:audioCodec.c  ****     I2S_EN_Write(0);                            // stop I2S interface als actief
+  73              		.loc 1 71 0
+  74 0010 0020     		movs	r0, #0
+  75 0012 FFF7FEFF 		bl	I2S_EN_Write
+  72:audioCodec.c  ****     I2C_Codec_control_MasterClearStatus();
+  76              		.loc 1 72 0
+  77 0016 FFF7FEFF 		bl	I2C_Codec_control_MasterClearStatus
+  73:audioCodec.c  ****     I2CData[0] = registerAddress; I2CData[1] = newData;
+  78              		.loc 1 73 0
+  79 001a FB79     		ldrb	r3, [r7, #7]
+  80 001c 3B73     		strb	r3, [r7, #12]
+  81 001e BB79     		ldrb	r3, [r7, #6]
+  82 0020 7B73     		strb	r3, [r7, #13]
+  74:audioCodec.c  ****     I2C_Codec_control_MasterWriteBuf(I2C_CODEC_ADDRESS, I2CData, 2, I2C_Codec_control_MODE_COMPLETE
+  83              		.loc 1 74 0
+  84 0022 07F10C01 		add	r1, r7, #12
+  85 0026 0023     		movs	r3, #0
+  86 0028 0222     		movs	r2, #2
+  87 002a 1A20     		movs	r0, #26
+  88 002c FFF7FEFF 		bl	I2C_Codec_control_MasterWriteBuf
+  75:audioCodec.c  ****     CyDelayUs(30);  
+  89              		.loc 1 75 0
+  90 0030 1E20     		movs	r0, #30
+  91 0032 FFF7FEFF 		bl	CyDelayUs
+  76:audioCodec.c  ****     I2S_EN_Write(1);                            // start I2S interface opnieuw
+  92              		.loc 1 76 0
+  93 0036 0120     		movs	r0, #1
+  94 0038 FFF7FEFF 		bl	I2S_EN_Write
+  77:audioCodec.c  ****     return (I2C_Codec_control_MasterStatus());
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 4
+
+
+  95              		.loc 1 77 0
+  96 003c FFF7FEFF 		bl	I2C_Codec_control_MasterStatus
+  97 0040 0346     		mov	r3, r0
+  78:audioCodec.c  **** }
+  98              		.loc 1 78 0
+  99 0042 1846     		mov	r0, r3
+ 100 0044 1037     		adds	r7, r7, #16
+ 101              		.cfi_def_cfa_offset 8
+ 102 0046 BD46     		mov	sp, r7
+ 103              		.cfi_def_cfa_register 13
+ 104              		@ sp needed
+ 105 0048 80BD     		pop	{r7, pc}
+ 106              		.cfi_endproc
+ 107              	.LFE63:
+ 108              		.size	sendCodecCommand, .-sendCodecCommand
+ 109 004a 00BF     		.section	.text.initCodec,"ax",%progbits
+ 110              		.align	2
+ 111              		.global	initCodec
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	initCodec, %function
+ 115              	initCodec:
+ 116              	.LFB64:
+  79:audioCodec.c  **** 
+  80:audioCodec.c  **** // initialiseer de codec met de datastructuur CodecInitData[] in AudioCodec.h
+  81:audioCodec.c  **** uint8 initCodec() {
+ 117              		.loc 1 81 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 8
+ 120              		@ frame_needed = 1, uses_anonymous_args = 0
+ 121 0000 80B5     		push	{r7, lr}
+ 122              		.cfi_def_cfa_offset 8
+ 123              		.cfi_offset 7, -8
+ 124              		.cfi_offset 14, -4
+ 125 0002 82B0     		sub	sp, sp, #8
+ 126              		.cfi_def_cfa_offset 16
+ 127 0004 00AF     		add	r7, sp, #0
+ 128              		.cfi_def_cfa_register 7
+  82:audioCodec.c  ****     uint8 temp;
+  83:audioCodec.c  ****     I2S_EN_Write(0);                            // stop I2S interface als actief
+ 129              		.loc 1 83 0
+ 130 0006 0020     		movs	r0, #0
+ 131 0008 FFF7FEFF 		bl	I2S_EN_Write
+  84:audioCodec.c  ****     for (temp = 0; temp < I2C_CODEC_INIT_LENGTH; temp++) {
+ 132              		.loc 1 84 0
+ 133 000c 0023     		movs	r3, #0
+ 134 000e FB71     		strb	r3, [r7, #7]
+ 135 0010 16E0     		b	.L4
+ 136              	.L6:
+  85:audioCodec.c  ****         I2C_Codec_control_MasterWriteBuf(I2C_CODEC_ADDRESS, (uint8 *)CodecInitData[temp], 2, I2C_Co
+ 137              		.loc 1 85 0
+ 138 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 139 0014 5B00     		lsls	r3, r3, #1
+ 140 0016 104A     		ldr	r2, .L8
+ 141 0018 9918     		adds	r1, r3, r2
+ 142 001a 0023     		movs	r3, #0
+ 143 001c 0222     		movs	r2, #2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 5
+
+
+ 144 001e 1A20     		movs	r0, #26
+ 145 0020 FFF7FEFF 		bl	I2C_Codec_control_MasterWriteBuf
+  86:audioCodec.c  ****         // Wait for the data transfer to complete
+  87:audioCodec.c  ****         while(I2C_Codec_control_MasterStatus() & I2C_Codec_control_MSTAT_XFER_INP);    
+ 146              		.loc 1 87 0
+ 147 0024 00BF     		nop
+ 148              	.L5:
+ 149              		.loc 1 87 0 is_stmt 0 discriminator 1
+ 150 0026 FFF7FEFF 		bl	I2C_Codec_control_MasterStatus
+ 151 002a 0346     		mov	r3, r0
+ 152 002c 03F00403 		and	r3, r3, #4
+ 153 0030 002B     		cmp	r3, #0
+ 154 0032 F8D1     		bne	.L5
+  88:audioCodec.c  ****         CyDelayUs(50);
+ 155              		.loc 1 88 0 is_stmt 1 discriminator 2
+ 156 0034 3220     		movs	r0, #50
+ 157 0036 FFF7FEFF 		bl	CyDelayUs
+  84:audioCodec.c  ****         I2C_Codec_control_MasterWriteBuf(I2C_CODEC_ADDRESS, (uint8 *)CodecInitData[temp], 2, I2C_Co
+ 158              		.loc 1 84 0 discriminator 2
+ 159 003a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 160 003c 0133     		adds	r3, r3, #1
+ 161 003e FB71     		strb	r3, [r7, #7]
+ 162              	.L4:
+  84:audioCodec.c  ****         I2C_Codec_control_MasterWriteBuf(I2C_CODEC_ADDRESS, (uint8 *)CodecInitData[temp], 2, I2C_Co
+ 163              		.loc 1 84 0 is_stmt 0 discriminator 1
+ 164 0040 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 165 0042 0A2B     		cmp	r3, #10
+ 166 0044 E5D9     		bls	.L6
+  89:audioCodec.c  ****         }
+  90:audioCodec.c  ****     I2S_EN_Write(1);                            // start I2S interface opnieuw
+ 167              		.loc 1 90 0 is_stmt 1
+ 168 0046 0120     		movs	r0, #1
+ 169 0048 FFF7FEFF 		bl	I2S_EN_Write
+  91:audioCodec.c  ****     return(1);
+ 170              		.loc 1 91 0
+ 171 004c 0123     		movs	r3, #1
+  92:audioCodec.c  **** }
+ 172              		.loc 1 92 0
+ 173 004e 1846     		mov	r0, r3
+ 174 0050 0837     		adds	r7, r7, #8
+ 175              		.cfi_def_cfa_offset 8
+ 176 0052 BD46     		mov	sp, r7
+ 177              		.cfi_def_cfa_register 13
+ 178              		@ sp needed
+ 179 0054 80BD     		pop	{r7, pc}
+ 180              	.L9:
+ 181 0056 00BF     		.align	2
+ 182              	.L8:
+ 183 0058 00000000 		.word	CodecInitData
+ 184              		.cfi_endproc
+ 185              	.LFE64:
+ 186              		.size	initCodec, .-initCodec
+ 187              		.section	.text.StelHPvolumeIn,"ax",%progbits
+ 188              		.align	2
+ 189              		.global	StelHPvolumeIn
+ 190              		.thumb
+ 191              		.thumb_func
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 6
+
+
+ 192              		.type	StelHPvolumeIn, %function
+ 193              	StelHPvolumeIn:
+ 194              	.LFB65:
+  93:audioCodec.c  **** 
+  94:audioCodec.c  **** // stel volume van de hoofdtelefoon-uitgang in i.f.v. een 8-bits getal (van een potmeter)
+  95:audioCodec.c  **** uint8 StelHPvolumeIn(uint8 VolWaarde) {
+ 195              		.loc 1 95 0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 16
+ 198              		@ frame_needed = 1, uses_anonymous_args = 0
+ 199 0000 80B5     		push	{r7, lr}
+ 200              		.cfi_def_cfa_offset 8
+ 201              		.cfi_offset 7, -8
+ 202              		.cfi_offset 14, -4
+ 203 0002 84B0     		sub	sp, sp, #16
+ 204              		.cfi_def_cfa_offset 24
+ 205 0004 00AF     		add	r7, sp, #0
+ 206              		.cfi_def_cfa_register 7
+ 207 0006 0346     		mov	r3, r0
+ 208 0008 FB71     		strb	r3, [r7, #7]
+  96:audioCodec.c  ****     uint8 HPvolume;
+  97:audioCodec.c  ****     static uint8 HPvolumeUit = 0;
+  98:audioCodec.c  ****     HPvolume = _berekenVolumeHP(VolWaarde);                     // Bereken HPvolume a.h.v. potmeter
+ 209              		.loc 1 98 0
+ 210 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 211 000c 1846     		mov	r0, r3
+ 212 000e FFF7FEFF 		bl	_berekenVolumeHP
+ 213 0012 0346     		mov	r3, r0
+ 214 0014 FB73     		strb	r3, [r7, #15]
+  99:audioCodec.c  ****     if (HPvolume != 0) {
+ 215              		.loc 1 99 0
+ 216 0016 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 217 0018 002B     		cmp	r3, #0
+ 218 001a 07D0     		beq	.L11
+ 100:audioCodec.c  ****         HPvolumeUit = HPvolume;
+ 219              		.loc 1 100 0
+ 220 001c 064A     		ldr	r2, .L13
+ 221 001e FB7B     		ldrb	r3, [r7, #15]
+ 222 0020 1370     		strb	r3, [r2]
+ 101:audioCodec.c  ****         sendCodecCommand(LEFT_HP_OUT_Reg|1, HPvolume);          // update  HP-volume links & rechts
+ 223              		.loc 1 101 0
+ 224 0022 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 225 0024 1946     		mov	r1, r3
+ 226 0026 0520     		movs	r0, #5
+ 227 0028 FFF7FEFF 		bl	sendCodecCommand
+ 228              	.L11:
+ 102:audioCodec.c  ****     }
+ 103:audioCodec.c  ****     return (HPvolumeUit);
+ 229              		.loc 1 103 0
+ 230 002c 024B     		ldr	r3, .L13
+ 231 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 104:audioCodec.c  **** }
+ 232              		.loc 1 104 0
+ 233 0030 1846     		mov	r0, r3
+ 234 0032 1037     		adds	r7, r7, #16
+ 235              		.cfi_def_cfa_offset 8
+ 236 0034 BD46     		mov	sp, r7
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 7
+
+
+ 237              		.cfi_def_cfa_register 13
+ 238              		@ sp needed
+ 239 0036 80BD     		pop	{r7, pc}
+ 240              	.L14:
+ 241              		.align	2
+ 242              	.L13:
+ 243 0038 00000000 		.word	HPvolumeUit.6415
+ 244              		.cfi_endproc
+ 245              	.LFE65:
+ 246              		.size	StelHPvolumeIn, .-StelHPvolumeIn
+ 247              		.section	.text.StelLineVolumeIn,"ax",%progbits
+ 248              		.align	2
+ 249              		.global	StelLineVolumeIn
+ 250              		.thumb
+ 251              		.thumb_func
+ 252              		.type	StelLineVolumeIn, %function
+ 253              	StelLineVolumeIn:
+ 254              	.LFB66:
+ 105:audioCodec.c  **** 
+ 106:audioCodec.c  **** // stel het ingangsvolume van de line-in van de codec in i.f.v. een 8-bits getal (van een potmeter)
+ 107:audioCodec.c  **** uint8 StelLineVolumeIn(uint8 VolWaarde) {
+ 255              		.loc 1 107 0
+ 256              		.cfi_startproc
+ 257              		@ args = 0, pretend = 0, frame = 16
+ 258              		@ frame_needed = 1, uses_anonymous_args = 0
+ 259 0000 80B5     		push	{r7, lr}
+ 260              		.cfi_def_cfa_offset 8
+ 261              		.cfi_offset 7, -8
+ 262              		.cfi_offset 14, -4
+ 263 0002 84B0     		sub	sp, sp, #16
+ 264              		.cfi_def_cfa_offset 24
+ 265 0004 00AF     		add	r7, sp, #0
+ 266              		.cfi_def_cfa_register 7
+ 267 0006 0346     		mov	r3, r0
+ 268 0008 FB71     		strb	r3, [r7, #7]
+ 108:audioCodec.c  ****     uint8 LineVolume;
+ 109:audioCodec.c  ****     static uint8 LineVolumeUit = 0;
+ 110:audioCodec.c  ****     LineVolume = _berekenVolumeLineIn(VolWaarde);             // Bereken LineVolume a.h.v. potmeter
+ 269              		.loc 1 110 0
+ 270 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 271 000c 1846     		mov	r0, r3
+ 272 000e FFF7FEFF 		bl	_berekenVolumeLineIn
+ 273 0012 0346     		mov	r3, r0
+ 274 0014 FB73     		strb	r3, [r7, #15]
+ 111:audioCodec.c  ****     if (LineVolume < 32) {
+ 275              		.loc 1 111 0
+ 276 0016 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 277 0018 1F2B     		cmp	r3, #31
+ 278 001a 07D8     		bhi	.L16
+ 112:audioCodec.c  ****         LineVolumeUit = LineVolume;
+ 279              		.loc 1 112 0
+ 280 001c 064A     		ldr	r2, .L18
+ 281 001e FB7B     		ldrb	r3, [r7, #15]
+ 282 0020 1370     		strb	r3, [r2]
+ 113:audioCodec.c  ****          sendCodecCommand(RIGHT_LINE_IN_Reg|1, LineVolume);    // update  Line-volume links & recht
+ 283              		.loc 1 113 0
+ 284 0022 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 8
+
+
+ 285 0024 1946     		mov	r1, r3
+ 286 0026 0320     		movs	r0, #3
+ 287 0028 FFF7FEFF 		bl	sendCodecCommand
+ 288              	.L16:
+ 114:audioCodec.c  ****     }
+ 115:audioCodec.c  ****     return (LineVolumeUit);
+ 289              		.loc 1 115 0
+ 290 002c 024B     		ldr	r3, .L18
+ 291 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 116:audioCodec.c  **** }
+ 292              		.loc 1 116 0
+ 293 0030 1846     		mov	r0, r3
+ 294 0032 1037     		adds	r7, r7, #16
+ 295              		.cfi_def_cfa_offset 8
+ 296 0034 BD46     		mov	sp, r7
+ 297              		.cfi_def_cfa_register 13
+ 298              		@ sp needed
+ 299 0036 80BD     		pop	{r7, pc}
+ 300              	.L19:
+ 301              		.align	2
+ 302              	.L18:
+ 303 0038 01000000 		.word	LineVolumeUit.6420
+ 304              		.cfi_endproc
+ 305              	.LFE66:
+ 306              		.size	StelLineVolumeIn, .-StelLineVolumeIn
+ 307              		.section	.text.StelSampleRateIn,"ax",%progbits
+ 308              		.align	2
+ 309              		.global	StelSampleRateIn
+ 310              		.thumb
+ 311              		.thumb_func
+ 312              		.type	StelSampleRateIn, %function
+ 313              	StelSampleRateIn:
+ 314              	.LFB67:
+ 117:audioCodec.c  **** // Stelt de samplerate van de codec in. Toegestane waarden voor de parameter 'sampleFreq' zijn
+ 118:audioCodec.c  **** // 88, 44, 29, 22, 14, 8, 7, 4 en 2 (waarde in kHz). Indien de samplefrequentie niet ondersteund wo
+ 119:audioCodec.c  **** // dan wordt 0 geretourneerd, anders de waarde van sampleFreq
+ 120:audioCodec.c  **** // opm 1: de waarde 29 lijkt niet goed te werken (werkt enkel op linker kanaal)
+ 121:audioCodec.c  **** // opm 2: De I2S-interface moet mee aangepast worden om de juiste wordrate te houden
+ 122:audioCodec.c  **** //      AudioCodeClock = 11,2896 MHz/2 => dus juiste deelfactor invoeren voor I2S-clock met 64 clks
+ 123:audioCodec.c  **** uint8 StelSampleRateIn(uint8 sampleFreq){
+ 315              		.loc 1 123 0
+ 316              		.cfi_startproc
+ 317              		@ args = 0, pretend = 0, frame = 16
+ 318              		@ frame_needed = 1, uses_anonymous_args = 0
+ 319 0000 80B5     		push	{r7, lr}
+ 320              		.cfi_def_cfa_offset 8
+ 321              		.cfi_offset 7, -8
+ 322              		.cfi_offset 14, -4
+ 323 0002 84B0     		sub	sp, sp, #16
+ 324              		.cfi_def_cfa_offset 24
+ 325 0004 00AF     		add	r7, sp, #0
+ 326              		.cfi_def_cfa_register 7
+ 327 0006 0346     		mov	r3, r0
+ 328 0008 FB71     		strb	r3, [r7, #7]
+ 124:audioCodec.c  ****     uint8 divider;
+ 125:audioCodec.c  ****     switch (sampleFreq) {
+ 329              		.loc 1 125 0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 9
+
+
+ 330 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 331 000c 023B     		subs	r3, r3, #2
+ 332 000e 562B     		cmp	r3, #86
+ 333 0010 00F2CD80 		bhi	.L21
+ 334 0014 01A2     		adr	r2, .L23
+ 335 0016 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 336 001a 00BF     		.p2align 2
+ 337              	.L23:
+ 338 001c A9010000 		.word	.L22+1
+ 339 0020 AF010000 		.word	.L21+1
+ 340 0024 A3010000 		.word	.L24+1
+ 341 0028 AF010000 		.word	.L21+1
+ 342 002c AF010000 		.word	.L21+1
+ 343 0030 9D010000 		.word	.L25+1
+ 344 0034 97010000 		.word	.L26+1
+ 345 0038 AF010000 		.word	.L21+1
+ 346 003c AF010000 		.word	.L21+1
+ 347 0040 AF010000 		.word	.L21+1
+ 348 0044 AF010000 		.word	.L21+1
+ 349 0048 AF010000 		.word	.L21+1
+ 350 004c 91010000 		.word	.L27+1
+ 351 0050 AF010000 		.word	.L21+1
+ 352 0054 AF010000 		.word	.L21+1
+ 353 0058 AF010000 		.word	.L21+1
+ 354 005c AF010000 		.word	.L21+1
+ 355 0060 AF010000 		.word	.L21+1
+ 356 0064 AF010000 		.word	.L21+1
+ 357 0068 AF010000 		.word	.L21+1
+ 358 006c 8B010000 		.word	.L28+1
+ 359 0070 AF010000 		.word	.L21+1
+ 360 0074 AF010000 		.word	.L21+1
+ 361 0078 AF010000 		.word	.L21+1
+ 362 007c AF010000 		.word	.L21+1
+ 363 0080 AF010000 		.word	.L21+1
+ 364 0084 AF010000 		.word	.L21+1
+ 365 0088 85010000 		.word	.L29+1
+ 366 008c AF010000 		.word	.L21+1
+ 367 0090 AF010000 		.word	.L21+1
+ 368 0094 AF010000 		.word	.L21+1
+ 369 0098 AF010000 		.word	.L21+1
+ 370 009c AF010000 		.word	.L21+1
+ 371 00a0 AF010000 		.word	.L21+1
+ 372 00a4 AF010000 		.word	.L21+1
+ 373 00a8 AF010000 		.word	.L21+1
+ 374 00ac AF010000 		.word	.L21+1
+ 375 00b0 AF010000 		.word	.L21+1
+ 376 00b4 AF010000 		.word	.L21+1
+ 377 00b8 AF010000 		.word	.L21+1
+ 378 00bc AF010000 		.word	.L21+1
+ 379 00c0 AF010000 		.word	.L21+1
+ 380 00c4 7F010000 		.word	.L30+1
+ 381 00c8 AF010000 		.word	.L21+1
+ 382 00cc AF010000 		.word	.L21+1
+ 383 00d0 AF010000 		.word	.L21+1
+ 384 00d4 AF010000 		.word	.L21+1
+ 385 00d8 AF010000 		.word	.L21+1
+ 386 00dc AF010000 		.word	.L21+1
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 10
+
+
+ 387 00e0 AF010000 		.word	.L21+1
+ 388 00e4 AF010000 		.word	.L21+1
+ 389 00e8 AF010000 		.word	.L21+1
+ 390 00ec AF010000 		.word	.L21+1
+ 391 00f0 AF010000 		.word	.L21+1
+ 392 00f4 AF010000 		.word	.L21+1
+ 393 00f8 AF010000 		.word	.L21+1
+ 394 00fc AF010000 		.word	.L21+1
+ 395 0100 AF010000 		.word	.L21+1
+ 396 0104 AF010000 		.word	.L21+1
+ 397 0108 AF010000 		.word	.L21+1
+ 398 010c AF010000 		.word	.L21+1
+ 399 0110 AF010000 		.word	.L21+1
+ 400 0114 AF010000 		.word	.L21+1
+ 401 0118 AF010000 		.word	.L21+1
+ 402 011c AF010000 		.word	.L21+1
+ 403 0120 AF010000 		.word	.L21+1
+ 404 0124 AF010000 		.word	.L21+1
+ 405 0128 AF010000 		.word	.L21+1
+ 406 012c AF010000 		.word	.L21+1
+ 407 0130 AF010000 		.word	.L21+1
+ 408 0134 AF010000 		.word	.L21+1
+ 409 0138 AF010000 		.word	.L21+1
+ 410 013c AF010000 		.word	.L21+1
+ 411 0140 AF010000 		.word	.L21+1
+ 412 0144 AF010000 		.word	.L21+1
+ 413 0148 AF010000 		.word	.L21+1
+ 414 014c AF010000 		.word	.L21+1
+ 415 0150 AF010000 		.word	.L21+1
+ 416 0154 AF010000 		.word	.L21+1
+ 417 0158 AF010000 		.word	.L21+1
+ 418 015c AF010000 		.word	.L21+1
+ 419 0160 AF010000 		.word	.L21+1
+ 420 0164 AF010000 		.word	.L21+1
+ 421 0168 AF010000 		.word	.L21+1
+ 422 016c AF010000 		.word	.L21+1
+ 423 0170 AF010000 		.word	.L21+1
+ 424 0174 79010000 		.word	.L31+1
+ 425              		.p2align 1
+ 426              	.L31:
+ 126:audioCodec.c  ****         case 88: divider = 0xBC; break;
+ 427              		.loc 1 126 0
+ 428 0178 BC23     		movs	r3, #188
+ 429 017a FB73     		strb	r3, [r7, #15]
+ 430 017c 19E0     		b	.L32
+ 431              	.L30:
+ 127:audioCodec.c  ****         case 44: divider = 0xA0; break;
+ 432              		.loc 1 127 0
+ 433 017e A023     		movs	r3, #160
+ 434 0180 FB73     		strb	r3, [r7, #15]
+ 435 0182 16E0     		b	.L32
+ 436              	.L29:
+ 128:audioCodec.c  ****         case 29: divider = 0xA2; break; 
+ 437              		.loc 1 128 0
+ 438 0184 A223     		movs	r3, #162
+ 439 0186 FB73     		strb	r3, [r7, #15]
+ 440 0188 13E0     		b	.L32
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 11
+
+
+ 441              	.L28:
+ 129:audioCodec.c  ****         case 22: divider = 0xE0; break;
+ 442              		.loc 1 129 0
+ 443 018a E023     		movs	r3, #224
+ 444 018c FB73     		strb	r3, [r7, #15]
+ 445 018e 10E0     		b	.L32
+ 446              	.L27:
+ 130:audioCodec.c  ****         case 14: divider = 0xE2; break;     
+ 447              		.loc 1 130 0
+ 448 0190 E223     		movs	r3, #226
+ 449 0192 FB73     		strb	r3, [r7, #15]
+ 450 0194 0DE0     		b	.L32
+ 451              	.L26:
+ 131:audioCodec.c  ****         case  8: divider = 0xAC; break;
+ 452              		.loc 1 131 0
+ 453 0196 AC23     		movs	r3, #172
+ 454 0198 FB73     		strb	r3, [r7, #15]
+ 455 019a 0AE0     		b	.L32
+ 456              	.L25:
+ 132:audioCodec.c  ****         case  7: divider = 0x8C; break;
+ 457              		.loc 1 132 0
+ 458 019c 8C23     		movs	r3, #140
+ 459 019e FB73     		strb	r3, [r7, #15]
+ 460 01a0 07E0     		b	.L32
+ 461              	.L24:
+ 133:audioCodec.c  ****         case  4: divider = 0xEC; break;
+ 462              		.loc 1 133 0
+ 463 01a2 EC23     		movs	r3, #236
+ 464 01a4 FB73     		strb	r3, [r7, #15]
+ 465 01a6 04E0     		b	.L32
+ 466              	.L22:
+ 134:audioCodec.c  ****         case  2: divider = 0xCE; break;
+ 467              		.loc 1 134 0
+ 468 01a8 CE23     		movs	r3, #206
+ 469 01aa FB73     		strb	r3, [r7, #15]
+ 470 01ac 01E0     		b	.L32
+ 471              	.L21:
+ 135:audioCodec.c  ****         default: return(0);
+ 472              		.loc 1 135 0
+ 473 01ae 0023     		movs	r3, #0
+ 474 01b0 05E0     		b	.L33
+ 475              	.L32:
+ 136:audioCodec.c  ****     }
+ 137:audioCodec.c  ****     sendCodecCommand(SAMPLING_CTRL_Reg, divider);
+ 476              		.loc 1 137 0
+ 477 01b2 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 478 01b4 1946     		mov	r1, r3
+ 479 01b6 1020     		movs	r0, #16
+ 480 01b8 FFF7FEFF 		bl	sendCodecCommand
+ 138:audioCodec.c  ****     return(sampleFreq);
+ 481              		.loc 1 138 0
+ 482 01bc FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 483              	.L33:
+ 139:audioCodec.c  **** }
+ 484              		.loc 1 139 0
+ 485 01be 1846     		mov	r0, r3
+ 486 01c0 1037     		adds	r7, r7, #16
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 12
+
+
+ 487              		.cfi_def_cfa_offset 8
+ 488 01c2 BD46     		mov	sp, r7
+ 489              		.cfi_def_cfa_register 13
+ 490              		@ sp needed
+ 491 01c4 80BD     		pop	{r7, pc}
+ 492              		.cfi_endproc
+ 493              	.LFE67:
+ 494              		.size	StelSampleRateIn, .-StelSampleRateIn
+ 495 01c6 00BF     		.section	.text._berekenVolumeHP,"ax",%progbits
+ 496              		.align	2
+ 497              		.global	_berekenVolumeHP
+ 498              		.thumb
+ 499              		.thumb_func
+ 500              		.type	_berekenVolumeHP, %function
+ 501              	_berekenVolumeHP:
+ 502              	.LFB68:
+ 140:audioCodec.c  **** 
+ 141:audioCodec.c  **** /***********************************************************************************************
+ 142:audioCodec.c  ****  * Private functie Definities 
+ 143:audioCodec.c  ****  ***********************************************************************************************/
+ 144:audioCodec.c  **** // Bereken de volume-parameter voor de headphone (48-127) i.f.v. de potmeterwaarde (uint8 0-255)
+ 145:audioCodec.c  **** // zie definitie van LHPVOL en RHPVOC van de codec
+ 146:audioCodec.c  **** // volume dient aangepast te worden als de returnwaarde van deze functie > 0;
+ 147:audioCodec.c  **** uint8 _berekenVolumeHP(uint8 PotWaarde) {
+ 503              		.loc 1 147 0
+ 504              		.cfi_startproc
+ 505              		@ args = 0, pretend = 0, frame = 8
+ 506              		@ frame_needed = 1, uses_anonymous_args = 0
+ 507              		@ link register save eliminated.
+ 508 0000 80B4     		push	{r7}
+ 509              		.cfi_def_cfa_offset 4
+ 510              		.cfi_offset 7, -4
+ 511 0002 83B0     		sub	sp, sp, #12
+ 512              		.cfi_def_cfa_offset 16
+ 513 0004 00AF     		add	r7, sp, #0
+ 514              		.cfi_def_cfa_register 7
+ 515 0006 0346     		mov	r3, r0
+ 516 0008 FB71     		strb	r3, [r7, #7]
+ 148:audioCodec.c  ****     static uint16 Volume, VolumeOud = 1000;
+ 149:audioCodec.c  ****     if (VolumeOud > 255) 
+ 517              		.loc 1 149 0
+ 518 000a 1A4B     		ldr	r3, .L39
+ 519 000c 1B88     		ldrh	r3, [r3]
+ 520 000e FF2B     		cmp	r3, #255
+ 521 0010 04D9     		bls	.L35
+ 150:audioCodec.c  ****         // Initialisatie van de routine de eerste keer
+ 151:audioCodec.c  ****         Volume = (uint16)(PotWaarde & 0xFF);
+ 522              		.loc 1 151 0
+ 523 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 524 0014 9AB2     		uxth	r2, r3
+ 525 0016 184B     		ldr	r3, .L39+4
+ 526 0018 1A80     		strh	r2, [r3]	@ movhi
+ 527 001a 0BE0     		b	.L36
+ 528              	.L35:
+ 152:audioCodec.c  ****     else
+ 153:audioCodec.c  ****         Volume = (Volume * 31 + ((uint16)PotWaarde & 0xFF)) >> 5;
+ 529              		.loc 1 153 0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 13
+
+
+ 530 001c 164B     		ldr	r3, .L39+4
+ 531 001e 1B88     		ldrh	r3, [r3]
+ 532 0020 1A46     		mov	r2, r3
+ 533 0022 1346     		mov	r3, r2
+ 534 0024 5B01     		lsls	r3, r3, #5
+ 535 0026 9A1A     		subs	r2, r3, r2
+ 536 0028 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 537 002a 1344     		add	r3, r3, r2
+ 538 002c 5B11     		asrs	r3, r3, #5
+ 539 002e 9AB2     		uxth	r2, r3
+ 540 0030 114B     		ldr	r3, .L39+4
+ 541 0032 1A80     		strh	r2, [r3]	@ movhi
+ 542              	.L36:
+ 154:audioCodec.c  ****     if ((Volume - VolumeOud)!= 0) {
+ 543              		.loc 1 154 0
+ 544 0034 104B     		ldr	r3, .L39+4
+ 545 0036 1A88     		ldrh	r2, [r3]
+ 546 0038 0E4B     		ldr	r3, .L39
+ 547 003a 1B88     		ldrh	r3, [r3]
+ 548 003c 9A42     		cmp	r2, r3
+ 549 003e 12D0     		beq	.L37
+ 155:audioCodec.c  ****         VolumeOud = Volume;
+ 550              		.loc 1 155 0
+ 551 0040 0D4B     		ldr	r3, .L39+4
+ 552 0042 1A88     		ldrh	r2, [r3]
+ 553 0044 0B4B     		ldr	r3, .L39
+ 554 0046 1A80     		strh	r2, [r3]	@ movhi
+ 156:audioCodec.c  ****         return(MIN((uint8)((Volume*90>> 8) + 49),127));              // zie def LHPVOL en RHPVOC co
+ 555              		.loc 1 156 0
+ 556 0048 0B4B     		ldr	r3, .L39+4
+ 557 004a 1B88     		ldrh	r3, [r3]
+ 558 004c 1A46     		mov	r2, r3
+ 559 004e 5A23     		movs	r3, #90
+ 560 0050 03FB02F3 		mul	r3, r3, r2
+ 561 0054 1B12     		asrs	r3, r3, #8
+ 562 0056 DBB2     		uxtb	r3, r3
+ 563 0058 3133     		adds	r3, r3, #49
+ 564 005a DBB2     		uxtb	r3, r3
+ 565 005c 7F2B     		cmp	r3, #127
+ 566 005e 28BF     		it	cs
+ 567 0060 7F23     		movcs	r3, #127
+ 568 0062 DBB2     		uxtb	r3, r3
+ 569 0064 00E0     		b	.L38
+ 570              	.L37:
+ 157:audioCodec.c  ****     }
+ 158:audioCodec.c  ****     else 
+ 159:audioCodec.c  ****         return(0);
+ 571              		.loc 1 159 0
+ 572 0066 0023     		movs	r3, #0
+ 573              	.L38:
+ 160:audioCodec.c  **** }
+ 574              		.loc 1 160 0
+ 575 0068 1846     		mov	r0, r3
+ 576 006a 0C37     		adds	r7, r7, #12
+ 577              		.cfi_def_cfa_offset 4
+ 578 006c BD46     		mov	sp, r7
+ 579              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 14
+
+
+ 580              		@ sp needed
+ 581 006e 80BC     		pop	{r7}
+ 582              		.cfi_restore 7
+ 583              		.cfi_def_cfa_offset 0
+ 584 0070 7047     		bx	lr
+ 585              	.L40:
+ 586 0072 00BF     		.align	2
+ 587              	.L39:
+ 588 0074 00000000 		.word	VolumeOud.6440
+ 589 0078 02000000 		.word	Volume.6439
+ 590              		.cfi_endproc
+ 591              	.LFE68:
+ 592              		.size	_berekenVolumeHP, .-_berekenVolumeHP
+ 593              		.section	.text._berekenVolumeLineIn,"ax",%progbits
+ 594              		.align	2
+ 595              		.global	_berekenVolumeLineIn
+ 596              		.thumb
+ 597              		.thumb_func
+ 598              		.type	_berekenVolumeLineIn, %function
+ 599              	_berekenVolumeLineIn:
+ 600              	.LFB69:
+ 161:audioCodec.c  **** 
+ 162:audioCodec.c  **** // Bereken de volume-parameter voor de line-ingang (0-31) i.f.v. de potmeterwaarde (uint8 0-255)
+ 163:audioCodec.c  **** // zie definitie van LINVOL en RINVOC van de codec
+ 164:audioCodec.c  **** // volume dient aangepast te worden als de returnwaarde van deze functie > 31;
+ 165:audioCodec.c  **** uint8 _berekenVolumeLineIn(uint8 PotWaarde) {
+ 601              		.loc 1 165 0
+ 602              		.cfi_startproc
+ 603              		@ args = 0, pretend = 0, frame = 8
+ 604              		@ frame_needed = 1, uses_anonymous_args = 0
+ 605              		@ link register save eliminated.
+ 606 0000 80B4     		push	{r7}
+ 607              		.cfi_def_cfa_offset 4
+ 608              		.cfi_offset 7, -4
+ 609 0002 83B0     		sub	sp, sp, #12
+ 610              		.cfi_def_cfa_offset 16
+ 611 0004 00AF     		add	r7, sp, #0
+ 612              		.cfi_def_cfa_register 7
+ 613 0006 0346     		mov	r3, r0
+ 614 0008 FB71     		strb	r3, [r7, #7]
+ 166:audioCodec.c  ****     static uint16 LVolume, LVolumeOud = 1000;
+ 167:audioCodec.c  ****     if (LVolumeOud > 255) 
+ 615              		.loc 1 167 0
+ 616 000a 194B     		ldr	r3, .L46
+ 617 000c 1B88     		ldrh	r3, [r3]
+ 618 000e FF2B     		cmp	r3, #255
+ 619 0010 04D9     		bls	.L42
+ 168:audioCodec.c  ****         // Initialisatie van de routine de eerste keer
+ 169:audioCodec.c  ****         LVolume = (uint16)(PotWaarde & 0xFF);
+ 620              		.loc 1 169 0
+ 621 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 622 0014 9AB2     		uxth	r2, r3
+ 623 0016 174B     		ldr	r3, .L46+4
+ 624 0018 1A80     		strh	r2, [r3]	@ movhi
+ 625 001a 0BE0     		b	.L43
+ 626              	.L42:
+ 170:audioCodec.c  ****     else
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 15
+
+
+ 171:audioCodec.c  ****         LVolume = (LVolume * 31 + ((uint16)PotWaarde & 0xFF)) >> 5;
+ 627              		.loc 1 171 0
+ 628 001c 154B     		ldr	r3, .L46+4
+ 629 001e 1B88     		ldrh	r3, [r3]
+ 630 0020 1A46     		mov	r2, r3
+ 631 0022 1346     		mov	r3, r2
+ 632 0024 5B01     		lsls	r3, r3, #5
+ 633 0026 9A1A     		subs	r2, r3, r2
+ 634 0028 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 635 002a 1344     		add	r3, r3, r2
+ 636 002c 5B11     		asrs	r3, r3, #5
+ 637 002e 9AB2     		uxth	r2, r3
+ 638 0030 104B     		ldr	r3, .L46+4
+ 639 0032 1A80     		strh	r2, [r3]	@ movhi
+ 640              	.L43:
+ 172:audioCodec.c  ****     if ((LVolume - LVolumeOud)!= 0) {
+ 641              		.loc 1 172 0
+ 642 0034 0F4B     		ldr	r3, .L46+4
+ 643 0036 1A88     		ldrh	r2, [r3]
+ 644 0038 0D4B     		ldr	r3, .L46
+ 645 003a 1B88     		ldrh	r3, [r3]
+ 646 003c 9A42     		cmp	r2, r3
+ 647 003e 10D0     		beq	.L44
+ 173:audioCodec.c  ****         LVolumeOud = LVolume;
+ 648              		.loc 1 173 0
+ 649 0040 0C4B     		ldr	r3, .L46+4
+ 650 0042 1A88     		ldrh	r2, [r3]
+ 651 0044 0A4B     		ldr	r3, .L46
+ 652 0046 1A80     		strh	r2, [r3]	@ movhi
+ 174:audioCodec.c  ****         return(MIN((uint8)((LVolume*9)>>6),31));              // zie def LINVOL en RINVOC codec
+ 653              		.loc 1 174 0
+ 654 0048 0A4B     		ldr	r3, .L46+4
+ 655 004a 1B88     		ldrh	r3, [r3]
+ 656 004c 1A46     		mov	r2, r3
+ 657 004e 1346     		mov	r3, r2
+ 658 0050 DB00     		lsls	r3, r3, #3
+ 659 0052 1344     		add	r3, r3, r2
+ 660 0054 9B11     		asrs	r3, r3, #6
+ 661 0056 DBB2     		uxtb	r3, r3
+ 662 0058 1F2B     		cmp	r3, #31
+ 663 005a A8BF     		it	ge
+ 664 005c 1F23     		movge	r3, #31
+ 665 005e DBB2     		uxtb	r3, r3
+ 666 0060 00E0     		b	.L45
+ 667              	.L44:
+ 175:audioCodec.c  ****     }
+ 176:audioCodec.c  ****     else 
+ 177:audioCodec.c  ****         return(32);
+ 668              		.loc 1 177 0
+ 669 0062 2023     		movs	r3, #32
+ 670              	.L45:
+ 178:audioCodec.c  **** }
+ 671              		.loc 1 178 0
+ 672 0064 1846     		mov	r0, r3
+ 673 0066 0C37     		adds	r7, r7, #12
+ 674              		.cfi_def_cfa_offset 4
+ 675 0068 BD46     		mov	sp, r7
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 16
+
+
+ 676              		.cfi_def_cfa_register 13
+ 677              		@ sp needed
+ 678 006a 80BC     		pop	{r7}
+ 679              		.cfi_restore 7
+ 680              		.cfi_def_cfa_offset 0
+ 681 006c 7047     		bx	lr
+ 682              	.L47:
+ 683 006e 00BF     		.align	2
+ 684              	.L46:
+ 685 0070 02000000 		.word	LVolumeOud.6445
+ 686 0074 04000000 		.word	LVolume.6444
+ 687              		.cfi_endproc
+ 688              	.LFE69:
+ 689              		.size	_berekenVolumeLineIn, .-_berekenVolumeLineIn
+ 690              		.bss
+ 691              	HPvolumeUit.6415:
+ 692 0000 00       		.space	1
+ 693              	LineVolumeUit.6420:
+ 694 0001 00       		.space	1
+ 695              		.data
+ 696              		.align	1
+ 697              		.type	VolumeOud.6440, %object
+ 698              		.size	VolumeOud.6440, 2
+ 699              	VolumeOud.6440:
+ 700 0000 E803     		.short	1000
+ 701              		.bss
+ 702              		.align	1
+ 703              	Volume.6439:
+ 704 0002 0000     		.space	2
+ 705              		.data
+ 706              		.align	1
+ 707              		.type	LVolumeOud.6445, %object
+ 708              		.size	LVolumeOud.6445, 2
+ 709              	LVolumeOud.6445:
+ 710 0002 E803     		.short	1000
+ 711              		.bss
+ 712              		.align	1
+ 713              	LVolume.6444:
+ 714 0004 0000     		.space	2
+ 715              		.text
+ 716              	.Letext0:
+ 717              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 718              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 719              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 720              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 721              		.section	.debug_info,"",%progbits
+ 722              	.Ldebug_info0:
+ 723 0000 CF020000 		.4byte	0x2cf
+ 724 0004 0400     		.2byte	0x4
+ 725 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 726 000a 04       		.byte	0x4
+ 727 000b 01       		.uleb128 0x1
+ 728 000c 0E000000 		.4byte	.LASF42
+ 729 0010 0C       		.byte	0xc
+ 730 0011 CC000000 		.4byte	.LASF43
+ 731 0015 3F020000 		.4byte	.LASF44
+ 732 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 17
+
+
+ 733 001d 00000000 		.4byte	0
+ 734 0021 00000000 		.4byte	.Ldebug_line0
+ 735 0025 02       		.uleb128 0x2
+ 736 0026 01       		.byte	0x1
+ 737 0027 06       		.byte	0x6
+ 738 0028 F4000000 		.4byte	.LASF0
+ 739 002c 02       		.uleb128 0x2
+ 740 002d 01       		.byte	0x1
+ 741 002e 08       		.byte	0x8
+ 742 002f 8E010000 		.4byte	.LASF1
+ 743 0033 02       		.uleb128 0x2
+ 744 0034 02       		.byte	0x2
+ 745 0035 05       		.byte	0x5
+ 746 0036 35020000 		.4byte	.LASF2
+ 747 003a 02       		.uleb128 0x2
+ 748 003b 02       		.byte	0x2
+ 749 003c 07       		.byte	0x7
+ 750 003d 34010000 		.4byte	.LASF3
+ 751 0041 03       		.uleb128 0x3
+ 752 0042 A2000000 		.4byte	.LASF9
+ 753 0046 02       		.byte	0x2
+ 754 0047 3F       		.byte	0x3f
+ 755 0048 4C000000 		.4byte	0x4c
+ 756 004c 02       		.uleb128 0x2
+ 757 004d 04       		.byte	0x4
+ 758 004e 05       		.byte	0x5
+ 759 004f B6020000 		.4byte	.LASF4
+ 760 0053 02       		.uleb128 0x2
+ 761 0054 04       		.byte	0x4
+ 762 0055 07       		.byte	0x7
+ 763 0056 1D010000 		.4byte	.LASF5
+ 764 005a 02       		.uleb128 0x2
+ 765 005b 08       		.byte	0x8
+ 766 005c 05       		.byte	0x5
+ 767 005d 0C020000 		.4byte	.LASF6
+ 768 0061 02       		.uleb128 0x2
+ 769 0062 08       		.byte	0x8
+ 770 0063 07       		.byte	0x7
+ 771 0064 B3010000 		.4byte	.LASF7
+ 772 0068 04       		.uleb128 0x4
+ 773 0069 04       		.byte	0x4
+ 774 006a 05       		.byte	0x5
+ 775 006b 696E7400 		.ascii	"int\000"
+ 776 006f 02       		.uleb128 0x2
+ 777 0070 04       		.byte	0x4
+ 778 0071 07       		.byte	0x7
+ 779 0072 9C010000 		.4byte	.LASF8
+ 780 0076 03       		.uleb128 0x3
+ 781 0077 FB010000 		.4byte	.LASF10
+ 782 007b 03       		.byte	0x3
+ 783 007c 2C       		.byte	0x2c
+ 784 007d 41000000 		.4byte	0x41
+ 785 0081 05       		.uleb128 0x5
+ 786 0082 B0020000 		.4byte	.LASF11
+ 787 0086 04       		.byte	0x4
+ 788 0087 9201     		.2byte	0x192
+ 789 0089 2C000000 		.4byte	0x2c
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 18
+
+
+ 790 008d 05       		.uleb128 0x5
+ 791 008e 87010000 		.4byte	.LASF12
+ 792 0092 04       		.byte	0x4
+ 793 0093 9301     		.2byte	0x193
+ 794 0095 3A000000 		.4byte	0x3a
+ 795 0099 02       		.uleb128 0x2
+ 796 009a 04       		.byte	0x4
+ 797 009b 04       		.byte	0x4
+ 798 009c 9C000000 		.4byte	.LASF13
+ 799 00a0 02       		.uleb128 0x2
+ 800 00a1 08       		.byte	0x8
+ 801 00a2 04       		.byte	0x4
+ 802 00a3 76010000 		.4byte	.LASF14
+ 803 00a7 02       		.uleb128 0x2
+ 804 00a8 01       		.byte	0x1
+ 805 00a9 08       		.byte	0x8
+ 806 00aa 25020000 		.4byte	.LASF15
+ 807 00ae 02       		.uleb128 0x2
+ 808 00af 08       		.byte	0x8
+ 809 00b0 04       		.byte	0x4
+ 810 00b1 BF020000 		.4byte	.LASF16
+ 811 00b5 02       		.uleb128 0x2
+ 812 00b6 04       		.byte	0x4
+ 813 00b7 07       		.byte	0x7
+ 814 00b8 03020000 		.4byte	.LASF17
+ 815 00bc 06       		.uleb128 0x6
+ 816 00bd 65010000 		.4byte	.LASF22
+ 817 00c1 01       		.byte	0x1
+ 818 00c2 45       		.byte	0x45
+ 819 00c3 81000000 		.4byte	0x81
+ 820 00c7 00000000 		.4byte	.LFB63
+ 821 00cb 4A000000 		.4byte	.LFE63-.LFB63
+ 822 00cf 01       		.uleb128 0x1
+ 823 00d0 9C       		.byte	0x9c
+ 824 00d1 00010000 		.4byte	0x100
+ 825 00d5 07       		.uleb128 0x7
+ 826 00d6 E5020000 		.4byte	.LASF18
+ 827 00da 01       		.byte	0x1
+ 828 00db 45       		.byte	0x45
+ 829 00dc 81000000 		.4byte	0x81
+ 830 00e0 02       		.uleb128 0x2
+ 831 00e1 91       		.byte	0x91
+ 832 00e2 6F       		.sleb128 -17
+ 833 00e3 07       		.uleb128 0x7
+ 834 00e4 AC000000 		.4byte	.LASF19
+ 835 00e8 01       		.byte	0x1
+ 836 00e9 45       		.byte	0x45
+ 837 00ea 81000000 		.4byte	0x81
+ 838 00ee 02       		.uleb128 0x2
+ 839 00ef 91       		.byte	0x91
+ 840 00f0 6E       		.sleb128 -18
+ 841 00f1 08       		.uleb128 0x8
+ 842 00f2 D5020000 		.4byte	.LASF20
+ 843 00f6 01       		.byte	0x1
+ 844 00f7 46       		.byte	0x46
+ 845 00f8 00010000 		.4byte	0x100
+ 846 00fc 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 19
+
+
+ 847 00fd 91       		.byte	0x91
+ 848 00fe 74       		.sleb128 -12
+ 849 00ff 00       		.byte	0
+ 850 0100 09       		.uleb128 0x9
+ 851 0101 81000000 		.4byte	0x81
+ 852 0105 10010000 		.4byte	0x110
+ 853 0109 0A       		.uleb128 0xa
+ 854 010a B5000000 		.4byte	0xb5
+ 855 010e 01       		.byte	0x1
+ 856 010f 00       		.byte	0
+ 857 0110 0B       		.uleb128 0xb
+ 858 0111 EA000000 		.4byte	.LASF45
+ 859 0115 01       		.byte	0x1
+ 860 0116 51       		.byte	0x51
+ 861 0117 81000000 		.4byte	0x81
+ 862 011b 00000000 		.4byte	.LFB64
+ 863 011f 5C000000 		.4byte	.LFE64-.LFB64
+ 864 0123 01       		.uleb128 0x1
+ 865 0124 9C       		.byte	0x9c
+ 866 0125 38010000 		.4byte	0x138
+ 867 0129 08       		.uleb128 0x8
+ 868 012a 2F010000 		.4byte	.LASF21
+ 869 012e 01       		.byte	0x1
+ 870 012f 52       		.byte	0x52
+ 871 0130 81000000 		.4byte	0x81
+ 872 0134 02       		.uleb128 0x2
+ 873 0135 91       		.byte	0x91
+ 874 0136 77       		.sleb128 -9
+ 875 0137 00       		.byte	0
+ 876 0138 06       		.uleb128 0x6
+ 877 0139 0E010000 		.4byte	.LASF23
+ 878 013d 01       		.byte	0x1
+ 879 013e 5F       		.byte	0x5f
+ 880 013f 81000000 		.4byte	0x81
+ 881 0143 00000000 		.4byte	.LFB65
+ 882 0147 3C000000 		.4byte	.LFE65-.LFB65
+ 883 014b 01       		.uleb128 0x1
+ 884 014c 9C       		.byte	0x9c
+ 885 014d 7F010000 		.4byte	0x17f
+ 886 0151 07       		.uleb128 0x7
+ 887 0152 7D010000 		.4byte	.LASF24
+ 888 0156 01       		.byte	0x1
+ 889 0157 5F       		.byte	0x5f
+ 890 0158 81000000 		.4byte	0x81
+ 891 015c 02       		.uleb128 0x2
+ 892 015d 91       		.byte	0x91
+ 893 015e 6F       		.sleb128 -17
+ 894 015f 08       		.uleb128 0x8
+ 895 0160 BC000000 		.4byte	.LASF25
+ 896 0164 01       		.byte	0x1
+ 897 0165 60       		.byte	0x60
+ 898 0166 81000000 		.4byte	0x81
+ 899 016a 02       		.uleb128 0x2
+ 900 016b 91       		.byte	0x91
+ 901 016c 77       		.sleb128 -9
+ 902 016d 08       		.uleb128 0x8
+ 903 016e F5020000 		.4byte	.LASF26
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 20
+
+
+ 904 0172 01       		.byte	0x1
+ 905 0173 61       		.byte	0x61
+ 906 0174 81000000 		.4byte	0x81
+ 907 0178 05       		.uleb128 0x5
+ 908 0179 03       		.byte	0x3
+ 909 017a 00000000 		.4byte	HPvolumeUit.6415
+ 910 017e 00       		.byte	0
+ 911 017f 06       		.uleb128 0x6
+ 912 0180 D9000000 		.4byte	.LASF27
+ 913 0184 01       		.byte	0x1
+ 914 0185 6B       		.byte	0x6b
+ 915 0186 81000000 		.4byte	0x81
+ 916 018a 00000000 		.4byte	.LFB66
+ 917 018e 3C000000 		.4byte	.LFE66-.LFB66
+ 918 0192 01       		.uleb128 0x1
+ 919 0193 9C       		.byte	0x9c
+ 920 0194 C6010000 		.4byte	0x1c6
+ 921 0198 07       		.uleb128 0x7
+ 922 0199 7D010000 		.4byte	.LASF24
+ 923 019d 01       		.byte	0x1
+ 924 019e 6B       		.byte	0x6b
+ 925 019f 81000000 		.4byte	0x81
+ 926 01a3 02       		.uleb128 0x2
+ 927 01a4 91       		.byte	0x91
+ 928 01a5 6F       		.sleb128 -17
+ 929 01a6 08       		.uleb128 0x8
+ 930 01a7 2A020000 		.4byte	.LASF28
+ 931 01ab 01       		.byte	0x1
+ 932 01ac 6C       		.byte	0x6c
+ 933 01ad 81000000 		.4byte	0x81
+ 934 01b1 02       		.uleb128 0x2
+ 935 01b2 91       		.byte	0x91
+ 936 01b3 77       		.sleb128 -9
+ 937 01b4 08       		.uleb128 0x8
+ 938 01b5 00010000 		.4byte	.LASF29
+ 939 01b9 01       		.byte	0x1
+ 940 01ba 6D       		.byte	0x6d
+ 941 01bb 81000000 		.4byte	0x81
+ 942 01bf 05       		.uleb128 0x5
+ 943 01c0 03       		.byte	0x3
+ 944 01c1 01000000 		.4byte	LineVolumeUit.6420
+ 945 01c5 00       		.byte	0
+ 946 01c6 06       		.uleb128 0x6
+ 947 01c7 CA010000 		.4byte	.LASF30
+ 948 01cb 01       		.byte	0x1
+ 949 01cc 7B       		.byte	0x7b
+ 950 01cd 81000000 		.4byte	0x81
+ 951 01d1 00000000 		.4byte	.LFB67
+ 952 01d5 C6010000 		.4byte	.LFE67-.LFB67
+ 953 01d9 01       		.uleb128 0x1
+ 954 01da 9C       		.byte	0x9c
+ 955 01db FC010000 		.4byte	0x1fc
+ 956 01df 07       		.uleb128 0x7
+ 957 01e0 F0010000 		.4byte	.LASF31
+ 958 01e4 01       		.byte	0x1
+ 959 01e5 7B       		.byte	0x7b
+ 960 01e6 81000000 		.4byte	0x81
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 21
+
+
+ 961 01ea 02       		.uleb128 0x2
+ 962 01eb 91       		.byte	0x91
+ 963 01ec 6F       		.sleb128 -17
+ 964 01ed 08       		.uleb128 0x8
+ 965 01ee B4000000 		.4byte	.LASF32
+ 966 01f2 01       		.byte	0x1
+ 967 01f3 7C       		.byte	0x7c
+ 968 01f4 81000000 		.4byte	0x81
+ 969 01f8 02       		.uleb128 0x2
+ 970 01f9 91       		.byte	0x91
+ 971 01fa 77       		.sleb128 -9
+ 972 01fb 00       		.byte	0
+ 973 01fc 0C       		.uleb128 0xc
+ 974 01fd 54010000 		.4byte	.LASF33
+ 975 0201 01       		.byte	0x1
+ 976 0202 93       		.byte	0x93
+ 977 0203 81000000 		.4byte	0x81
+ 978 0207 00000000 		.4byte	.LFB68
+ 979 020b 7C000000 		.4byte	.LFE68-.LFB68
+ 980 020f 01       		.uleb128 0x1
+ 981 0210 9C       		.byte	0x9c
+ 982 0211 46020000 		.4byte	0x246
+ 983 0215 07       		.uleb128 0x7
+ 984 0216 CB020000 		.4byte	.LASF34
+ 985 021a 01       		.byte	0x1
+ 986 021b 93       		.byte	0x93
+ 987 021c 81000000 		.4byte	0x81
+ 988 0220 02       		.uleb128 0x2
+ 989 0221 91       		.byte	0x91
+ 990 0222 77       		.sleb128 -9
+ 991 0223 08       		.uleb128 0x8
+ 992 0224 C5000000 		.4byte	.LASF35
+ 993 0228 01       		.byte	0x1
+ 994 0229 94       		.byte	0x94
+ 995 022a 8D000000 		.4byte	0x8d
+ 996 022e 05       		.uleb128 0x5
+ 997 022f 03       		.byte	0x3
+ 998 0230 02000000 		.4byte	Volume.6439
+ 999 0234 08       		.uleb128 0x8
+ 1000 0235 A9010000 		.4byte	.LASF36
+ 1001 0239 01       		.byte	0x1
+ 1002 023a 94       		.byte	0x94
+ 1003 023b 8D000000 		.4byte	0x8d
+ 1004 023f 05       		.uleb128 0x5
+ 1005 0240 03       		.byte	0x3
+ 1006 0241 00000000 		.4byte	VolumeOud.6440
+ 1007 0245 00       		.byte	0
+ 1008 0246 0C       		.uleb128 0xc
+ 1009 0247 DB010000 		.4byte	.LASF37
+ 1010 024b 01       		.byte	0x1
+ 1011 024c A5       		.byte	0xa5
+ 1012 024d 81000000 		.4byte	0x81
+ 1013 0251 00000000 		.4byte	.LFB69
+ 1014 0255 78000000 		.4byte	.LFE69-.LFB69
+ 1015 0259 01       		.uleb128 0x1
+ 1016 025a 9C       		.byte	0x9c
+ 1017 025b 90020000 		.4byte	0x290
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 22
+
+
+ 1018 025f 07       		.uleb128 0x7
+ 1019 0260 CB020000 		.4byte	.LASF34
+ 1020 0264 01       		.byte	0x1
+ 1021 0265 A5       		.byte	0xa5
+ 1022 0266 81000000 		.4byte	0x81
+ 1023 026a 02       		.uleb128 0x2
+ 1024 026b 91       		.byte	0x91
+ 1025 026c 77       		.sleb128 -9
+ 1026 026d 08       		.uleb128 0x8
+ 1027 026e DD020000 		.4byte	.LASF38
+ 1028 0272 01       		.byte	0x1
+ 1029 0273 A6       		.byte	0xa6
+ 1030 0274 8D000000 		.4byte	0x8d
+ 1031 0278 05       		.uleb128 0x5
+ 1032 0279 03       		.byte	0x3
+ 1033 027a 04000000 		.4byte	LVolume.6444
+ 1034 027e 08       		.uleb128 0x8
+ 1035 027f 1A020000 		.4byte	.LASF39
+ 1036 0283 01       		.byte	0x1
+ 1037 0284 A6       		.byte	0xa6
+ 1038 0285 8D000000 		.4byte	0x8d
+ 1039 0289 05       		.uleb128 0x5
+ 1040 028a 03       		.byte	0x3
+ 1041 028b 02000000 		.4byte	LVolumeOud.6445
+ 1042 028f 00       		.byte	0
+ 1043 0290 0D       		.uleb128 0xd
+ 1044 0291 47010000 		.4byte	.LASF40
+ 1045 0295 05       		.byte	0x5
+ 1046 0296 1207     		.2byte	0x712
+ 1047 0298 9C020000 		.4byte	0x29c
+ 1048 029c 0E       		.uleb128 0xe
+ 1049 029d 76000000 		.4byte	0x76
+ 1050 02a1 09       		.uleb128 0x9
+ 1051 02a2 B7020000 		.4byte	0x2b7
+ 1052 02a6 B7020000 		.4byte	0x2b7
+ 1053 02aa 0A       		.uleb128 0xa
+ 1054 02ab B5000000 		.4byte	0xb5
+ 1055 02af 0A       		.byte	0xa
+ 1056 02b0 0A       		.uleb128 0xa
+ 1057 02b1 B5000000 		.4byte	0xb5
+ 1058 02b5 01       		.byte	0x1
+ 1059 02b6 00       		.byte	0
+ 1060 02b7 0F       		.uleb128 0xf
+ 1061 02b8 81000000 		.4byte	0x81
+ 1062 02bc 10       		.uleb128 0x10
+ 1063 02bd 00000000 		.4byte	.LASF41
+ 1064 02c1 01       		.byte	0x1
+ 1065 02c2 11       		.byte	0x11
+ 1066 02c3 CD020000 		.4byte	0x2cd
+ 1067 02c7 05       		.uleb128 0x5
+ 1068 02c8 03       		.byte	0x3
+ 1069 02c9 00000000 		.4byte	CodecInitData
+ 1070 02cd 0F       		.uleb128 0xf
+ 1071 02ce A1020000 		.4byte	0x2a1
+ 1072 02d2 00       		.byte	0
+ 1073              		.section	.debug_abbrev,"",%progbits
+ 1074              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 23
+
+
+ 1075 0000 01       		.uleb128 0x1
+ 1076 0001 11       		.uleb128 0x11
+ 1077 0002 01       		.byte	0x1
+ 1078 0003 25       		.uleb128 0x25
+ 1079 0004 0E       		.uleb128 0xe
+ 1080 0005 13       		.uleb128 0x13
+ 1081 0006 0B       		.uleb128 0xb
+ 1082 0007 03       		.uleb128 0x3
+ 1083 0008 0E       		.uleb128 0xe
+ 1084 0009 1B       		.uleb128 0x1b
+ 1085 000a 0E       		.uleb128 0xe
+ 1086 000b 55       		.uleb128 0x55
+ 1087 000c 17       		.uleb128 0x17
+ 1088 000d 11       		.uleb128 0x11
+ 1089 000e 01       		.uleb128 0x1
+ 1090 000f 10       		.uleb128 0x10
+ 1091 0010 17       		.uleb128 0x17
+ 1092 0011 00       		.byte	0
+ 1093 0012 00       		.byte	0
+ 1094 0013 02       		.uleb128 0x2
+ 1095 0014 24       		.uleb128 0x24
+ 1096 0015 00       		.byte	0
+ 1097 0016 0B       		.uleb128 0xb
+ 1098 0017 0B       		.uleb128 0xb
+ 1099 0018 3E       		.uleb128 0x3e
+ 1100 0019 0B       		.uleb128 0xb
+ 1101 001a 03       		.uleb128 0x3
+ 1102 001b 0E       		.uleb128 0xe
+ 1103 001c 00       		.byte	0
+ 1104 001d 00       		.byte	0
+ 1105 001e 03       		.uleb128 0x3
+ 1106 001f 16       		.uleb128 0x16
+ 1107 0020 00       		.byte	0
+ 1108 0021 03       		.uleb128 0x3
+ 1109 0022 0E       		.uleb128 0xe
+ 1110 0023 3A       		.uleb128 0x3a
+ 1111 0024 0B       		.uleb128 0xb
+ 1112 0025 3B       		.uleb128 0x3b
+ 1113 0026 0B       		.uleb128 0xb
+ 1114 0027 49       		.uleb128 0x49
+ 1115 0028 13       		.uleb128 0x13
+ 1116 0029 00       		.byte	0
+ 1117 002a 00       		.byte	0
+ 1118 002b 04       		.uleb128 0x4
+ 1119 002c 24       		.uleb128 0x24
+ 1120 002d 00       		.byte	0
+ 1121 002e 0B       		.uleb128 0xb
+ 1122 002f 0B       		.uleb128 0xb
+ 1123 0030 3E       		.uleb128 0x3e
+ 1124 0031 0B       		.uleb128 0xb
+ 1125 0032 03       		.uleb128 0x3
+ 1126 0033 08       		.uleb128 0x8
+ 1127 0034 00       		.byte	0
+ 1128 0035 00       		.byte	0
+ 1129 0036 05       		.uleb128 0x5
+ 1130 0037 16       		.uleb128 0x16
+ 1131 0038 00       		.byte	0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 24
+
+
+ 1132 0039 03       		.uleb128 0x3
+ 1133 003a 0E       		.uleb128 0xe
+ 1134 003b 3A       		.uleb128 0x3a
+ 1135 003c 0B       		.uleb128 0xb
+ 1136 003d 3B       		.uleb128 0x3b
+ 1137 003e 05       		.uleb128 0x5
+ 1138 003f 49       		.uleb128 0x49
+ 1139 0040 13       		.uleb128 0x13
+ 1140 0041 00       		.byte	0
+ 1141 0042 00       		.byte	0
+ 1142 0043 06       		.uleb128 0x6
+ 1143 0044 2E       		.uleb128 0x2e
+ 1144 0045 01       		.byte	0x1
+ 1145 0046 3F       		.uleb128 0x3f
+ 1146 0047 19       		.uleb128 0x19
+ 1147 0048 03       		.uleb128 0x3
+ 1148 0049 0E       		.uleb128 0xe
+ 1149 004a 3A       		.uleb128 0x3a
+ 1150 004b 0B       		.uleb128 0xb
+ 1151 004c 3B       		.uleb128 0x3b
+ 1152 004d 0B       		.uleb128 0xb
+ 1153 004e 27       		.uleb128 0x27
+ 1154 004f 19       		.uleb128 0x19
+ 1155 0050 49       		.uleb128 0x49
+ 1156 0051 13       		.uleb128 0x13
+ 1157 0052 11       		.uleb128 0x11
+ 1158 0053 01       		.uleb128 0x1
+ 1159 0054 12       		.uleb128 0x12
+ 1160 0055 06       		.uleb128 0x6
+ 1161 0056 40       		.uleb128 0x40
+ 1162 0057 18       		.uleb128 0x18
+ 1163 0058 9642     		.uleb128 0x2116
+ 1164 005a 19       		.uleb128 0x19
+ 1165 005b 01       		.uleb128 0x1
+ 1166 005c 13       		.uleb128 0x13
+ 1167 005d 00       		.byte	0
+ 1168 005e 00       		.byte	0
+ 1169 005f 07       		.uleb128 0x7
+ 1170 0060 05       		.uleb128 0x5
+ 1171 0061 00       		.byte	0
+ 1172 0062 03       		.uleb128 0x3
+ 1173 0063 0E       		.uleb128 0xe
+ 1174 0064 3A       		.uleb128 0x3a
+ 1175 0065 0B       		.uleb128 0xb
+ 1176 0066 3B       		.uleb128 0x3b
+ 1177 0067 0B       		.uleb128 0xb
+ 1178 0068 49       		.uleb128 0x49
+ 1179 0069 13       		.uleb128 0x13
+ 1180 006a 02       		.uleb128 0x2
+ 1181 006b 18       		.uleb128 0x18
+ 1182 006c 00       		.byte	0
+ 1183 006d 00       		.byte	0
+ 1184 006e 08       		.uleb128 0x8
+ 1185 006f 34       		.uleb128 0x34
+ 1186 0070 00       		.byte	0
+ 1187 0071 03       		.uleb128 0x3
+ 1188 0072 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 25
+
+
+ 1189 0073 3A       		.uleb128 0x3a
+ 1190 0074 0B       		.uleb128 0xb
+ 1191 0075 3B       		.uleb128 0x3b
+ 1192 0076 0B       		.uleb128 0xb
+ 1193 0077 49       		.uleb128 0x49
+ 1194 0078 13       		.uleb128 0x13
+ 1195 0079 02       		.uleb128 0x2
+ 1196 007a 18       		.uleb128 0x18
+ 1197 007b 00       		.byte	0
+ 1198 007c 00       		.byte	0
+ 1199 007d 09       		.uleb128 0x9
+ 1200 007e 01       		.uleb128 0x1
+ 1201 007f 01       		.byte	0x1
+ 1202 0080 49       		.uleb128 0x49
+ 1203 0081 13       		.uleb128 0x13
+ 1204 0082 01       		.uleb128 0x1
+ 1205 0083 13       		.uleb128 0x13
+ 1206 0084 00       		.byte	0
+ 1207 0085 00       		.byte	0
+ 1208 0086 0A       		.uleb128 0xa
+ 1209 0087 21       		.uleb128 0x21
+ 1210 0088 00       		.byte	0
+ 1211 0089 49       		.uleb128 0x49
+ 1212 008a 13       		.uleb128 0x13
+ 1213 008b 2F       		.uleb128 0x2f
+ 1214 008c 0B       		.uleb128 0xb
+ 1215 008d 00       		.byte	0
+ 1216 008e 00       		.byte	0
+ 1217 008f 0B       		.uleb128 0xb
+ 1218 0090 2E       		.uleb128 0x2e
+ 1219 0091 01       		.byte	0x1
+ 1220 0092 3F       		.uleb128 0x3f
+ 1221 0093 19       		.uleb128 0x19
+ 1222 0094 03       		.uleb128 0x3
+ 1223 0095 0E       		.uleb128 0xe
+ 1224 0096 3A       		.uleb128 0x3a
+ 1225 0097 0B       		.uleb128 0xb
+ 1226 0098 3B       		.uleb128 0x3b
+ 1227 0099 0B       		.uleb128 0xb
+ 1228 009a 49       		.uleb128 0x49
+ 1229 009b 13       		.uleb128 0x13
+ 1230 009c 11       		.uleb128 0x11
+ 1231 009d 01       		.uleb128 0x1
+ 1232 009e 12       		.uleb128 0x12
+ 1233 009f 06       		.uleb128 0x6
+ 1234 00a0 40       		.uleb128 0x40
+ 1235 00a1 18       		.uleb128 0x18
+ 1236 00a2 9642     		.uleb128 0x2116
+ 1237 00a4 19       		.uleb128 0x19
+ 1238 00a5 01       		.uleb128 0x1
+ 1239 00a6 13       		.uleb128 0x13
+ 1240 00a7 00       		.byte	0
+ 1241 00a8 00       		.byte	0
+ 1242 00a9 0C       		.uleb128 0xc
+ 1243 00aa 2E       		.uleb128 0x2e
+ 1244 00ab 01       		.byte	0x1
+ 1245 00ac 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 26
+
+
+ 1246 00ad 19       		.uleb128 0x19
+ 1247 00ae 03       		.uleb128 0x3
+ 1248 00af 0E       		.uleb128 0xe
+ 1249 00b0 3A       		.uleb128 0x3a
+ 1250 00b1 0B       		.uleb128 0xb
+ 1251 00b2 3B       		.uleb128 0x3b
+ 1252 00b3 0B       		.uleb128 0xb
+ 1253 00b4 27       		.uleb128 0x27
+ 1254 00b5 19       		.uleb128 0x19
+ 1255 00b6 49       		.uleb128 0x49
+ 1256 00b7 13       		.uleb128 0x13
+ 1257 00b8 11       		.uleb128 0x11
+ 1258 00b9 01       		.uleb128 0x1
+ 1259 00ba 12       		.uleb128 0x12
+ 1260 00bb 06       		.uleb128 0x6
+ 1261 00bc 40       		.uleb128 0x40
+ 1262 00bd 18       		.uleb128 0x18
+ 1263 00be 9742     		.uleb128 0x2117
+ 1264 00c0 19       		.uleb128 0x19
+ 1265 00c1 01       		.uleb128 0x1
+ 1266 00c2 13       		.uleb128 0x13
+ 1267 00c3 00       		.byte	0
+ 1268 00c4 00       		.byte	0
+ 1269 00c5 0D       		.uleb128 0xd
+ 1270 00c6 34       		.uleb128 0x34
+ 1271 00c7 00       		.byte	0
+ 1272 00c8 03       		.uleb128 0x3
+ 1273 00c9 0E       		.uleb128 0xe
+ 1274 00ca 3A       		.uleb128 0x3a
+ 1275 00cb 0B       		.uleb128 0xb
+ 1276 00cc 3B       		.uleb128 0x3b
+ 1277 00cd 05       		.uleb128 0x5
+ 1278 00ce 49       		.uleb128 0x49
+ 1279 00cf 13       		.uleb128 0x13
+ 1280 00d0 3F       		.uleb128 0x3f
+ 1281 00d1 19       		.uleb128 0x19
+ 1282 00d2 3C       		.uleb128 0x3c
+ 1283 00d3 19       		.uleb128 0x19
+ 1284 00d4 00       		.byte	0
+ 1285 00d5 00       		.byte	0
+ 1286 00d6 0E       		.uleb128 0xe
+ 1287 00d7 35       		.uleb128 0x35
+ 1288 00d8 00       		.byte	0
+ 1289 00d9 49       		.uleb128 0x49
+ 1290 00da 13       		.uleb128 0x13
+ 1291 00db 00       		.byte	0
+ 1292 00dc 00       		.byte	0
+ 1293 00dd 0F       		.uleb128 0xf
+ 1294 00de 26       		.uleb128 0x26
+ 1295 00df 00       		.byte	0
+ 1296 00e0 49       		.uleb128 0x49
+ 1297 00e1 13       		.uleb128 0x13
+ 1298 00e2 00       		.byte	0
+ 1299 00e3 00       		.byte	0
+ 1300 00e4 10       		.uleb128 0x10
+ 1301 00e5 34       		.uleb128 0x34
+ 1302 00e6 00       		.byte	0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 27
+
+
+ 1303 00e7 03       		.uleb128 0x3
+ 1304 00e8 0E       		.uleb128 0xe
+ 1305 00e9 3A       		.uleb128 0x3a
+ 1306 00ea 0B       		.uleb128 0xb
+ 1307 00eb 3B       		.uleb128 0x3b
+ 1308 00ec 0B       		.uleb128 0xb
+ 1309 00ed 49       		.uleb128 0x49
+ 1310 00ee 13       		.uleb128 0x13
+ 1311 00ef 3F       		.uleb128 0x3f
+ 1312 00f0 19       		.uleb128 0x19
+ 1313 00f1 02       		.uleb128 0x2
+ 1314 00f2 18       		.uleb128 0x18
+ 1315 00f3 00       		.byte	0
+ 1316 00f4 00       		.byte	0
+ 1317 00f5 00       		.byte	0
+ 1318              		.section	.debug_aranges,"",%progbits
+ 1319 0000 4C000000 		.4byte	0x4c
+ 1320 0004 0200     		.2byte	0x2
+ 1321 0006 00000000 		.4byte	.Ldebug_info0
+ 1322 000a 04       		.byte	0x4
+ 1323 000b 00       		.byte	0
+ 1324 000c 0000     		.2byte	0
+ 1325 000e 0000     		.2byte	0
+ 1326 0010 00000000 		.4byte	.LFB63
+ 1327 0014 4A000000 		.4byte	.LFE63-.LFB63
+ 1328 0018 00000000 		.4byte	.LFB64
+ 1329 001c 5C000000 		.4byte	.LFE64-.LFB64
+ 1330 0020 00000000 		.4byte	.LFB65
+ 1331 0024 3C000000 		.4byte	.LFE65-.LFB65
+ 1332 0028 00000000 		.4byte	.LFB66
+ 1333 002c 3C000000 		.4byte	.LFE66-.LFB66
+ 1334 0030 00000000 		.4byte	.LFB67
+ 1335 0034 C6010000 		.4byte	.LFE67-.LFB67
+ 1336 0038 00000000 		.4byte	.LFB68
+ 1337 003c 7C000000 		.4byte	.LFE68-.LFB68
+ 1338 0040 00000000 		.4byte	.LFB69
+ 1339 0044 78000000 		.4byte	.LFE69-.LFB69
+ 1340 0048 00000000 		.4byte	0
+ 1341 004c 00000000 		.4byte	0
+ 1342              		.section	.debug_ranges,"",%progbits
+ 1343              	.Ldebug_ranges0:
+ 1344 0000 00000000 		.4byte	.LFB63
+ 1345 0004 4A000000 		.4byte	.LFE63
+ 1346 0008 00000000 		.4byte	.LFB64
+ 1347 000c 5C000000 		.4byte	.LFE64
+ 1348 0010 00000000 		.4byte	.LFB65
+ 1349 0014 3C000000 		.4byte	.LFE65
+ 1350 0018 00000000 		.4byte	.LFB66
+ 1351 001c 3C000000 		.4byte	.LFE66
+ 1352 0020 00000000 		.4byte	.LFB67
+ 1353 0024 C6010000 		.4byte	.LFE67
+ 1354 0028 00000000 		.4byte	.LFB68
+ 1355 002c 7C000000 		.4byte	.LFE68
+ 1356 0030 00000000 		.4byte	.LFB69
+ 1357 0034 78000000 		.4byte	.LFE69
+ 1358 0038 00000000 		.4byte	0
+ 1359 003c 00000000 		.4byte	0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 28
+
+
+ 1360              		.section	.debug_line,"",%progbits
+ 1361              	.Ldebug_line0:
+ 1362 0000 1C020000 		.section	.debug_str,"MS",%progbits,1
+ 1362      02005201 
+ 1362      00000201 
+ 1362      FB0E0D00 
+ 1362      01010101 
+ 1363              	.LASF41:
+ 1364 0000 436F6465 		.ascii	"CodecInitData\000"
+ 1364      63496E69 
+ 1364      74446174 
+ 1364      6100
+ 1365              	.LASF42:
+ 1366 000e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1366      43313120 
+ 1366      352E342E 
+ 1366      31203230 
+ 1366      31363036 
+ 1367 0041 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1367      20726576 
+ 1367      6973696F 
+ 1367      6E203233 
+ 1367      37373135 
+ 1368 0074 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1368      66756E63 
+ 1368      74696F6E 
+ 1368      2D736563 
+ 1368      74696F6E 
+ 1369              	.LASF13:
+ 1370 009c 666C6F61 		.ascii	"float\000"
+ 1370      7400
+ 1371              	.LASF9:
+ 1372 00a2 5F5F696E 		.ascii	"__int32_t\000"
+ 1372      7433325F 
+ 1372      7400
+ 1373              	.LASF19:
+ 1374 00ac 6E657744 		.ascii	"newData\000"
+ 1374      61746100 
+ 1375              	.LASF32:
+ 1376 00b4 64697669 		.ascii	"divider\000"
+ 1376      64657200 
+ 1377              	.LASF25:
+ 1378 00bc 4850766F 		.ascii	"HPvolume\000"
+ 1378      6C756D65 
+ 1378      00
+ 1379              	.LASF35:
+ 1380 00c5 566F6C75 		.ascii	"Volume\000"
+ 1380      6D6500
+ 1381              	.LASF43:
+ 1382 00cc 61756469 		.ascii	"audioCodec.c\000"
+ 1382      6F436F64 
+ 1382      65632E63 
+ 1382      00
+ 1383              	.LASF27:
+ 1384 00d9 5374656C 		.ascii	"StelLineVolumeIn\000"
+ 1384      4C696E65 
+ 1384      566F6C75 
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 29
+
+
+ 1384      6D65496E 
+ 1384      00
+ 1385              	.LASF45:
+ 1386 00ea 696E6974 		.ascii	"initCodec\000"
+ 1386      436F6465 
+ 1386      6300
+ 1387              	.LASF0:
+ 1388 00f4 7369676E 		.ascii	"signed char\000"
+ 1388      65642063 
+ 1388      68617200 
+ 1389              	.LASF29:
+ 1390 0100 4C696E65 		.ascii	"LineVolumeUit\000"
+ 1390      566F6C75 
+ 1390      6D655569 
+ 1390      7400
+ 1391              	.LASF23:
+ 1392 010e 5374656C 		.ascii	"StelHPvolumeIn\000"
+ 1392      4850766F 
+ 1392      6C756D65 
+ 1392      496E00
+ 1393              	.LASF5:
+ 1394 011d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1394      20756E73 
+ 1394      69676E65 
+ 1394      6420696E 
+ 1394      7400
+ 1395              	.LASF21:
+ 1396 012f 74656D70 		.ascii	"temp\000"
+ 1396      00
+ 1397              	.LASF3:
+ 1398 0134 73686F72 		.ascii	"short unsigned int\000"
+ 1398      7420756E 
+ 1398      7369676E 
+ 1398      65642069 
+ 1398      6E7400
+ 1399              	.LASF40:
+ 1400 0147 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1400      52784275 
+ 1400      66666572 
+ 1400      00
+ 1401              	.LASF33:
+ 1402 0154 5F626572 		.ascii	"_berekenVolumeHP\000"
+ 1402      656B656E 
+ 1402      566F6C75 
+ 1402      6D654850 
+ 1402      00
+ 1403              	.LASF22:
+ 1404 0165 73656E64 		.ascii	"sendCodecCommand\000"
+ 1404      436F6465 
+ 1404      63436F6D 
+ 1404      6D616E64 
+ 1404      00
+ 1405              	.LASF14:
+ 1406 0176 646F7562 		.ascii	"double\000"
+ 1406      6C6500
+ 1407              	.LASF24:
+ 1408 017d 566F6C57 		.ascii	"VolWaarde\000"
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 30
+
+
+ 1408      61617264 
+ 1408      6500
+ 1409              	.LASF12:
+ 1410 0187 75696E74 		.ascii	"uint16\000"
+ 1410      313600
+ 1411              	.LASF1:
+ 1412 018e 756E7369 		.ascii	"unsigned char\000"
+ 1412      676E6564 
+ 1412      20636861 
+ 1412      7200
+ 1413              	.LASF8:
+ 1414 019c 756E7369 		.ascii	"unsigned int\000"
+ 1414      676E6564 
+ 1414      20696E74 
+ 1414      00
+ 1415              	.LASF36:
+ 1416 01a9 566F6C75 		.ascii	"VolumeOud\000"
+ 1416      6D654F75 
+ 1416      6400
+ 1417              	.LASF7:
+ 1418 01b3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1418      206C6F6E 
+ 1418      6720756E 
+ 1418      7369676E 
+ 1418      65642069 
+ 1419              	.LASF30:
+ 1420 01ca 5374656C 		.ascii	"StelSampleRateIn\000"
+ 1420      53616D70 
+ 1420      6C655261 
+ 1420      7465496E 
+ 1420      00
+ 1421              	.LASF37:
+ 1422 01db 5F626572 		.ascii	"_berekenVolumeLineIn\000"
+ 1422      656B656E 
+ 1422      566F6C75 
+ 1422      6D654C69 
+ 1422      6E65496E 
+ 1423              	.LASF31:
+ 1424 01f0 73616D70 		.ascii	"sampleFreq\000"
+ 1424      6C654672 
+ 1424      657100
+ 1425              	.LASF10:
+ 1426 01fb 696E7433 		.ascii	"int32_t\000"
+ 1426      325F7400 
+ 1427              	.LASF17:
+ 1428 0203 73697A65 		.ascii	"sizetype\000"
+ 1428      74797065 
+ 1428      00
+ 1429              	.LASF6:
+ 1430 020c 6C6F6E67 		.ascii	"long long int\000"
+ 1430      206C6F6E 
+ 1430      6720696E 
+ 1430      7400
+ 1431              	.LASF39:
+ 1432 021a 4C566F6C 		.ascii	"LVolumeOud\000"
+ 1432      756D654F 
+ 1432      756400
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 31
+
+
+ 1433              	.LASF15:
+ 1434 0225 63686172 		.ascii	"char\000"
+ 1434      00
+ 1435              	.LASF28:
+ 1436 022a 4C696E65 		.ascii	"LineVolume\000"
+ 1436      566F6C75 
+ 1436      6D6500
+ 1437              	.LASF2:
+ 1438 0235 73686F72 		.ascii	"short int\000"
+ 1438      7420696E 
+ 1438      7400
+ 1439              	.LASF44:
+ 1440 023f 433A5C55 		.ascii	"C:\\Users\\Jona\\Documents\\GitHub\\Signaalverwerki"
+ 1440      73657273 
+ 1440      5C4A6F6E 
+ 1440      615C446F 
+ 1440      63756D65 
+ 1441 026d 6E675C4C 		.ascii	"ng\\Labo6\\Opgave1\\IIR_filterProject_DFB\\IIR_filt"
+ 1441      61626F36 
+ 1441      5C4F7067 
+ 1441      61766531 
+ 1441      5C494952 
+ 1442 029c 65725072 		.ascii	"erProject_DFB.cydsn\000"
+ 1442      6F6A6563 
+ 1442      745F4446 
+ 1442      422E6379 
+ 1442      64736E00 
+ 1443              	.LASF11:
+ 1444 02b0 75696E74 		.ascii	"uint8\000"
+ 1444      3800
+ 1445              	.LASF4:
+ 1446 02b6 6C6F6E67 		.ascii	"long int\000"
+ 1446      20696E74 
+ 1446      00
+ 1447              	.LASF16:
+ 1448 02bf 6C6F6E67 		.ascii	"long double\000"
+ 1448      20646F75 
+ 1448      626C6500 
+ 1449              	.LASF34:
+ 1450 02cb 506F7457 		.ascii	"PotWaarde\000"
+ 1450      61617264 
+ 1450      6500
+ 1451              	.LASF20:
+ 1452 02d5 49324344 		.ascii	"I2CData\000"
+ 1452      61746100 
+ 1453              	.LASF38:
+ 1454 02dd 4C566F6C 		.ascii	"LVolume\000"
+ 1454      756D6500 
+ 1455              	.LASF18:
+ 1456 02e5 72656769 		.ascii	"registerAddress\000"
+ 1456      73746572 
+ 1456      41646472 
+ 1456      65737300 
+ 1457              	.LASF26:
+ 1458 02f5 4850766F 		.ascii	"HPvolumeUit\000"
+ 1458      6C756D65 
+ 1458      55697400 
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\ccFXYtbg.s 			page 32
+
+
+ 1459              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

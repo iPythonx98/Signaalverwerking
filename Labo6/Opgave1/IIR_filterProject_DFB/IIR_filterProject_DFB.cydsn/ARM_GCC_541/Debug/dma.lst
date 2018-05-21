@@ -1,0 +1,1181 @@
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"dma.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	rxBuff,4,4
+  20              		.comm	txBuff,4,4
+  21              		.comm	sampleIn,4,4
+  22              		.comm	sampleUit,4,4
+  23              		.bss
+  24              	rxDmaChan:
+  25 0000 00       		.space	1
+  26 0001 000000   		.align	2
+  27              	rxDmaTd:
+  28 0004 00       		.space	1
+  29              	txDmaChan:
+  30 0005 00       		.space	1
+  31 0006 0000     		.align	2
+  32              	txDmaTd:
+  33 0008 00       		.space	1
+  34              		.section	.text.sampleIntRx_ISR,"ax",%progbits
+  35              		.align	2
+  36              		.global	sampleIntRx_ISR
+  37              		.thumb
+  38              		.thumb_func
+  39              		.type	sampleIntRx_ISR, %function
+  40              	sampleIntRx_ISR:
+  41              	.LFB63:
+  42              		.file 1 "dma.c"
+   1:dma.c         **** /* ========================================
+   2:dma.c         ****  *
+   3:dma.c         ****  * File: dma.c
+   4:dma.c         ****  * rev 1.6 10/2/2016
+   5:dma.c         ****  * Piet Coussens, Odisee PBa elektronica
+   6:dma.c         ****  * Geïnspireerd op het vb-programma van Cypress
+   7:dma.c         ****  *
+   8:dma.c         ****  * Code file voor DMA van I2S-interface
+   9:dma.c         ****  *
+  10:dma.c         ****  * ========================================
+  11:dma.c         **** */
+  12:dma.c         **** 
+  13:dma.c         **** #include <project.h>
+  14:dma.c         **** #include <dspSystem.h>
+  15:dma.c         **** #include <dma.h>
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 2
+
+
+  16:dma.c         **** #include <stdlib.h>
+  17:dma.c         **** 
+  18:dma.c         **** /* DMA Configuration for RxDMA */
+  19:dma.c         **** #define RxDMA_BYTES_PER_BURST       (1u)
+  20:dma.c         **** #define RxDMA_REQUEST_PER_BURST     (1u)
+  21:dma.c         **** #define RxDMA_SRC_BASE              (CYDEV_PERIPH_BASE)
+  22:dma.c         **** #define RxDMA_DST_BASE              (CYDEV_SRAM_BASE)
+  23:dma.c         **** 
+  24:dma.c         **** /* DMA Configuration for TxDMA */
+  25:dma.c         **** #define TxDMA_BYTES_PER_BURST       (1u)
+  26:dma.c         **** #define TxDMA_REQUEST_PER_BURST     (1u)
+  27:dma.c         **** #define TxDMA_SRC_BASE              (CYDEV_SRAM_BASE)
+  28:dma.c         **** #define TxDMA_DST_BASE              (CYDEV_PERIPH_BASE)
+  29:dma.c         **** 
+  30:dma.c         **** /* Variable declarations for RxDMA and TxDMA */
+  31:dma.c         **** static uint8 rxDmaChan;
+  32:dma.c         **** static uint8 rxDmaTd[1u];
+  33:dma.c         **** static uint8 txDmaChan;
+  34:dma.c         **** static uint8 txDmaTd[1u];
+  35:dma.c         **** 
+  36:dma.c         **** // Haal de audiosamples van de codec uit de I2S interface en stop ze in samplesIn
+  37:dma.c         **** // Verzend de audiosamples in samplesUit via de I2S interface naar de codec
+  38:dma.c         **** // de data komt toe in de 4-byte buffer als [3]=R_lo, [2]=R_hi, [1]=L_lo, [0]=L_hi
+  39:dma.c         **** // plaats 0 = LINKS, plaats 1 = RECHTS
+  40:dma.c         **** 
+  41:dma.c         **** /*******************************************************************************
+  42:dma.c         **** * Function Name: sampleIntRx_ISR - sampleIntTx_ISR
+  43:dma.c         **** ********************************************************************************
+  44:dma.c         **** * interrupt-routines voor het ophalen en verwerken van de samples van de codec
+  45:dma.c         **** * Parameters: None.
+  46:dma.c         **** * Return: None.
+  47:dma.c         **** * Uitvoeringstijd: 2,3 us voor sampleIntTx_ISR (@78 MHz) 
+  48:dma.c         **** *                  3,0 us voor sampleIntRx_ISR (@78 MHz)
+  49:dma.c         **** *******************************************************************************/
+  50:dma.c         **** CY_ISR(sampleIntRx_ISR) {
+  43              		.loc 1 50 0
+  44              		.cfi_startproc
+  45              		@ args = 0, pretend = 0, frame = 0
+  46              		@ frame_needed = 1, uses_anonymous_args = 0
+  47 0000 80B5     		push	{r7, lr}
+  48              		.cfi_def_cfa_offset 8
+  49              		.cfi_offset 7, -8
+  50              		.cfi_offset 14, -4
+  51 0002 00AF     		add	r7, sp, #0
+  52              		.cfi_def_cfa_register 7
+  51:dma.c         ****     #if CLIPnTIME == 0
+  52:dma.c         ****       CLIP_Write(1);
+  53:dma.c         ****     #endif
+  54:dma.c         ****     sampleIn[0] = (int16)((rxBuff[0]<<8) | rxBuff[1]);
+  53              		.loc 1 54 0
+  54 0004 1A4B     		ldr	r3, .L5
+  55 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  56 0008 1B02     		lsls	r3, r3, #8
+  57 000a 1AB2     		sxth	r2, r3
+  58 000c 184B     		ldr	r3, .L5
+  59 000e 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+  60 0010 1BB2     		sxth	r3, r3
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 3
+
+
+  61 0012 1343     		orrs	r3, r3, r2
+  62 0014 1AB2     		sxth	r2, r3
+  63 0016 174B     		ldr	r3, .L5+4
+  64 0018 1A80     		strh	r2, [r3]	@ movhi
+  55:dma.c         ****     sampleIn[1] = (int16)((rxBuff[2]<<8) | rxBuff[3]);
+  65              		.loc 1 55 0
+  66 001a 154B     		ldr	r3, .L5
+  67 001c 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+  68 001e 1B02     		lsls	r3, r3, #8
+  69 0020 1AB2     		sxth	r2, r3
+  70 0022 134B     		ldr	r3, .L5
+  71 0024 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+  72 0026 1BB2     		sxth	r3, r3
+  73 0028 1343     		orrs	r3, r3, r2
+  74 002a 1AB2     		sxth	r2, r3
+  75 002c 114B     		ldr	r3, .L5+4
+  76 002e 5A80     		strh	r2, [r3, #2]	@ movhi
+  56:dma.c         ****     berekenMetSamples();
+  77              		.loc 1 56 0
+  78 0030 FFF7FEFF 		bl	berekenMetSamples
+  57:dma.c         ****     #if CLIPnTIME == 0
+  58:dma.c         ****       CLIP_Write(0);
+  59:dma.c         ****     #else
+  60:dma.c         ****       if((abs(sampleIn[0]>>8) > CLIP_LEVEL) || (abs(sampleIn[1]>>8) > CLIP_LEVEL))
+  79              		.loc 1 60 0
+  80 0034 0F4B     		ldr	r3, .L5+4
+  81 0036 B3F90030 		ldrsh	r3, [r3]
+  82 003a 1B12     		asrs	r3, r3, #8
+  83 003c 1BB2     		sxth	r3, r3
+  84 003e 002B     		cmp	r3, #0
+  85 0040 B8BF     		it	lt
+  86 0042 5B42     		rsblt	r3, r3, #0
+  87 0044 782B     		cmp	r3, #120
+  88 0046 09DC     		bgt	.L2
+  89              		.loc 1 60 0 is_stmt 0 discriminator 1
+  90 0048 0A4B     		ldr	r3, .L5+4
+  91 004a B3F90230 		ldrsh	r3, [r3, #2]
+  92 004e 1B12     		asrs	r3, r3, #8
+  93 0050 1BB2     		sxth	r3, r3
+  94 0052 002B     		cmp	r3, #0
+  95 0054 B8BF     		it	lt
+  96 0056 5B42     		rsblt	r3, r3, #0
+  97 0058 782B     		cmp	r3, #120
+  98 005a 03DD     		ble	.L3
+  99              	.L2:
+  61:dma.c         ****         CLIP_Write(1);
+ 100              		.loc 1 61 0 is_stmt 1
+ 101 005c 0120     		movs	r0, #1
+ 102 005e FFF7FEFF 		bl	CLIP_Write
+ 103 0062 02E0     		b	.L4
+ 104              	.L3:
+  62:dma.c         ****       else
+  63:dma.c         ****         CLIP_Write(0);
+ 105              		.loc 1 63 0
+ 106 0064 0020     		movs	r0, #0
+ 107 0066 FFF7FEFF 		bl	CLIP_Write
+ 108              	.L4:
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 4
+
+
+  64:dma.c         ****     #endif
+  65:dma.c         ****     }
+ 109              		.loc 1 65 0
+ 110 006a 00BF     		nop
+ 111 006c 80BD     		pop	{r7, pc}
+ 112              	.L6:
+ 113 006e 00BF     		.align	2
+ 114              	.L5:
+ 115 0070 00000000 		.word	rxBuff
+ 116 0074 00000000 		.word	sampleIn
+ 117              		.cfi_endproc
+ 118              	.LFE63:
+ 119              		.size	sampleIntRx_ISR, .-sampleIntRx_ISR
+ 120              		.section	.text.sampleIntTx_ISR,"ax",%progbits
+ 121              		.align	2
+ 122              		.global	sampleIntTx_ISR
+ 123              		.thumb
+ 124              		.thumb_func
+ 125              		.type	sampleIntTx_ISR, %function
+ 126              	sampleIntTx_ISR:
+ 127              	.LFB64:
+  66:dma.c         **** 
+  67:dma.c         **** CY_ISR(sampleIntTx_ISR) {
+ 128              		.loc 1 67 0
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 1, uses_anonymous_args = 0
+ 132              		@ link register save eliminated.
+ 133 0000 80B4     		push	{r7}
+ 134              		.cfi_def_cfa_offset 4
+ 135              		.cfi_offset 7, -4
+ 136 0002 00AF     		add	r7, sp, #0
+ 137              		.cfi_def_cfa_register 7
+  68:dma.c         ****     #if CLIPnTIME == 0
+  69:dma.c         ****       CLIP_Write(1);
+  70:dma.c         ****     #endif
+  71:dma.c         ****     txBuff[0]    = (uint8)((sampleUit[0]>> 8) &0xFF);      // hoog byte links
+ 138              		.loc 1 71 0
+ 139 0004 0F4B     		ldr	r3, .L8
+ 140 0006 B3F90030 		ldrsh	r3, [r3]
+ 141 000a 1B12     		asrs	r3, r3, #8
+ 142 000c 1BB2     		sxth	r3, r3
+ 143 000e DAB2     		uxtb	r2, r3
+ 144 0010 0D4B     		ldr	r3, .L8+4
+ 145 0012 1A70     		strb	r2, [r3]
+  72:dma.c         ****     txBuff[1]    = (uint8)(sampleUit[0] & 0xFF);           // laag byte links
+ 146              		.loc 1 72 0
+ 147 0014 0B4B     		ldr	r3, .L8
+ 148 0016 B3F90030 		ldrsh	r3, [r3]
+ 149 001a DAB2     		uxtb	r2, r3
+ 150 001c 0A4B     		ldr	r3, .L8+4
+ 151 001e 5A70     		strb	r2, [r3, #1]
+  73:dma.c         ****     txBuff[2]    = (uint8)((sampleUit[1]>> 8) &0xFF);      // hoog byte rechts
+ 152              		.loc 1 73 0
+ 153 0020 084B     		ldr	r3, .L8
+ 154 0022 B3F90230 		ldrsh	r3, [r3, #2]
+ 155 0026 1B12     		asrs	r3, r3, #8
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 5
+
+
+ 156 0028 1BB2     		sxth	r3, r3
+ 157 002a DAB2     		uxtb	r2, r3
+ 158 002c 064B     		ldr	r3, .L8+4
+ 159 002e 9A70     		strb	r2, [r3, #2]
+  74:dma.c         ****     txBuff[3]    = (uint8)(sampleUit[1] & 0xFF);           // laag byte rechts
+ 160              		.loc 1 74 0
+ 161 0030 044B     		ldr	r3, .L8
+ 162 0032 B3F90230 		ldrsh	r3, [r3, #2]
+ 163 0036 DAB2     		uxtb	r2, r3
+ 164 0038 034B     		ldr	r3, .L8+4
+ 165 003a DA70     		strb	r2, [r3, #3]
+  75:dma.c         ****     #if CLIPnTIME == 0
+  76:dma.c         ****       CLIP_Write(0);
+  77:dma.c         ****     #endif
+  78:dma.c         ****     }
+ 166              		.loc 1 78 0
+ 167 003c 00BF     		nop
+ 168 003e BD46     		mov	sp, r7
+ 169              		.cfi_def_cfa_register 13
+ 170              		@ sp needed
+ 171 0040 80BC     		pop	{r7}
+ 172              		.cfi_restore 7
+ 173              		.cfi_def_cfa_offset 0
+ 174 0042 7047     		bx	lr
+ 175              	.L9:
+ 176              		.align	2
+ 177              	.L8:
+ 178 0044 00000000 		.word	sampleUit
+ 179 0048 00000000 		.word	txBuff
+ 180              		.cfi_endproc
+ 181              	.LFE64:
+ 182              		.size	sampleIntTx_ISR, .-sampleIntTx_ISR
+ 183              		.section	.text.DmaRxConfiguration,"ax",%progbits
+ 184              		.align	2
+ 185              		.global	DmaRxConfiguration
+ 186              		.thumb
+ 187              		.thumb_func
+ 188              		.type	DmaRxConfiguration, %function
+ 189              	DmaRxConfiguration:
+ 190              	.LFB65:
+  79:dma.c         **** 
+  80:dma.c         **** /*******************************************************************************
+  81:dma.c         **** * Function Name: DmaRxConfiguration
+  82:dma.c         **** ********************************************************************************
+  83:dma.c         **** * Configures the DMA transfer for the Rx direction.
+  84:dma.c         **** * Parameters: None.
+  85:dma.c         **** * Return: None.
+  86:dma.c         **** *******************************************************************************/
+  87:dma.c         **** void DmaRxConfiguration(void)
+  88:dma.c         **** {
+ 191              		.loc 1 88 0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 1, uses_anonymous_args = 0
+ 195 0000 80B5     		push	{r7, lr}
+ 196              		.cfi_def_cfa_offset 8
+ 197              		.cfi_offset 7, -8
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 6
+
+
+ 198              		.cfi_offset 14, -4
+ 199 0002 00AF     		add	r7, sp, #0
+ 200              		.cfi_def_cfa_register 7
+  89:dma.c         ****     /* Rx DMA Config
+  90:dma.c         ****     * Init DMA, 1 byte bursts, each burst requires a request */
+  91:dma.c         ****     rxDmaChan = RxDMA_DmaInitialize(RxDMA_BYTES_PER_BURST, RxDMA_REQUEST_PER_BURST,
+ 201              		.loc 1 91 0
+ 202 0004 41F6FF73 		movw	r3, #8191
+ 203 0008 4FF48042 		mov	r2, #16384
+ 204 000c 0121     		movs	r1, #1
+ 205 000e 0120     		movs	r0, #1
+ 206 0010 FFF7FEFF 		bl	RxDMA_DmaInitialize
+ 207 0014 0346     		mov	r3, r0
+ 208 0016 1A46     		mov	r2, r3
+ 209 0018 144B     		ldr	r3, .L11
+ 210 001a 1A70     		strb	r2, [r3]
+  92:dma.c         ****                                      HI16(RxDMA_SRC_BASE), HI16(RxDMA_DST_BASE));
+  93:dma.c         **** 
+  94:dma.c         ****     rxDmaTd[0u] = CyDmaTdAllocate();
+ 211              		.loc 1 94 0
+ 212 001c FFF7FEFF 		bl	CyDmaTdAllocate
+ 213 0020 0346     		mov	r3, r0
+ 214 0022 1A46     		mov	r2, r3
+ 215 0024 124B     		ldr	r3, .L11+4
+ 216 0026 1A70     		strb	r2, [r3]
+  95:dma.c         ****     /* Configure this Td as follows:
+  96:dma.c         ****     *  - The TD is looping on itself
+  97:dma.c         ****     *  - Increment the destination address, but not the source address
+  98:dma.c         ****     */
+  99:dma.c         ****     CyDmaTdSetConfiguration(rxDmaTd[0], BUFFER_SIZE, rxDmaTd[0u], TD_INC_DST_ADR | RxDMA__TD_TERMOU
+ 217              		.loc 1 99 0
+ 218 0028 114B     		ldr	r3, .L11+4
+ 219 002a 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 220 002c 104B     		ldr	r3, .L11+4
+ 221 002e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 222 0030 0623     		movs	r3, #6
+ 223 0032 0421     		movs	r1, #4
+ 224 0034 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 100:dma.c         **** 
+ 101:dma.c         ****     /* From the I2S to the memory */
+ 102:dma.c         ****     CyDmaTdSetAddress(rxDmaTd[0u], LO16((uint32)I2S_Codec_audio_RX_CH0_F0_PTR), LO16((uint32)rxBuff
+ 225              		.loc 1 102 0
+ 226 0038 0D4B     		ldr	r3, .L11+4
+ 227 003a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 228 003c 0D4A     		ldr	r2, .L11+8
+ 229 003e 92B2     		uxth	r2, r2
+ 230 0040 46F24651 		movw	r1, #25926
+ 231 0044 1846     		mov	r0, r3
+ 232 0046 FFF7FEFF 		bl	CyDmaTdSetAddress
+ 103:dma.c         **** 
+ 104:dma.c         ****     /* Associate the TD with the channel */
+ 105:dma.c         ****     CyDmaChSetInitialTd(rxDmaChan, rxDmaTd[0u]);
+ 233              		.loc 1 105 0
+ 234 004a 084B     		ldr	r3, .L11
+ 235 004c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 236 004e 084B     		ldr	r3, .L11+4
+ 237 0050 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 7
+
+
+ 238 0052 1946     		mov	r1, r3
+ 239 0054 1046     		mov	r0, r2
+ 240 0056 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 106:dma.c         **** 
+ 107:dma.c         ****     /* Enable the channel */
+ 108:dma.c         ****     CyDmaChEnable(rxDmaChan, 1u);
+ 241              		.loc 1 108 0
+ 242 005a 044B     		ldr	r3, .L11
+ 243 005c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 244 005e 0121     		movs	r1, #1
+ 245 0060 1846     		mov	r0, r3
+ 246 0062 FFF7FEFF 		bl	CyDmaChEnable
+ 109:dma.c         **** }
+ 247              		.loc 1 109 0
+ 248 0066 00BF     		nop
+ 249 0068 80BD     		pop	{r7, pc}
+ 250              	.L12:
+ 251 006a 00BF     		.align	2
+ 252              	.L11:
+ 253 006c 00000000 		.word	rxDmaChan
+ 254 0070 04000000 		.word	rxDmaTd
+ 255 0074 00000000 		.word	rxBuff
+ 256              		.cfi_endproc
+ 257              	.LFE65:
+ 258              		.size	DmaRxConfiguration, .-DmaRxConfiguration
+ 259              		.section	.text.DmaTxConfiguration,"ax",%progbits
+ 260              		.align	2
+ 261              		.global	DmaTxConfiguration
+ 262              		.thumb
+ 263              		.thumb_func
+ 264              		.type	DmaTxConfiguration, %function
+ 265              	DmaTxConfiguration:
+ 266              	.LFB66:
+ 110:dma.c         **** 
+ 111:dma.c         **** /*******************************************************************************
+ 112:dma.c         **** * Function Name: DmaTxConfiguration
+ 113:dma.c         **** ********************************************************************************
+ 114:dma.c         **** * Configures the DMA transfer for the Tx direction.
+ 115:dma.c         **** * Parameters: None.
+ 116:dma.c         **** * Return: None.
+ 117:dma.c         **** *******************************************************************************/
+ 118:dma.c         **** void DmaTxConfiguration(void)
+ 119:dma.c         **** {
+ 267              		.loc 1 119 0
+ 268              		.cfi_startproc
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 1, uses_anonymous_args = 0
+ 271 0000 80B5     		push	{r7, lr}
+ 272              		.cfi_def_cfa_offset 8
+ 273              		.cfi_offset 7, -8
+ 274              		.cfi_offset 14, -4
+ 275 0002 00AF     		add	r7, sp, #0
+ 276              		.cfi_def_cfa_register 7
+ 120:dma.c         ****      /* Tx DMA Config
+ 121:dma.c         ****     * Init DMA, 1 byte bursts, each burst requires a request
+ 122:dma.c         ****     */ 
+ 123:dma.c         ****     txDmaChan = TxDMA_DmaInitialize(TxDMA_BYTES_PER_BURST, TxDMA_REQUEST_PER_BURST, 
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 8
+
+
+ 277              		.loc 1 123 0
+ 278 0004 4FF48043 		mov	r3, #16384
+ 279 0008 41F6FF72 		movw	r2, #8191
+ 280 000c 0121     		movs	r1, #1
+ 281 000e 0120     		movs	r0, #1
+ 282 0010 FFF7FEFF 		bl	TxDMA_DmaInitialize
+ 283 0014 0346     		mov	r3, r0
+ 284 0016 1A46     		mov	r2, r3
+ 285 0018 144B     		ldr	r3, .L14
+ 286 001a 1A70     		strb	r2, [r3]
+ 124:dma.c         ****                                     HI16(TxDMA_SRC_BASE), HI16(TxDMA_DST_BASE));
+ 125:dma.c         **** 
+ 126:dma.c         ****     txDmaTd[0u] = CyDmaTdAllocate();
+ 287              		.loc 1 126 0
+ 288 001c FFF7FEFF 		bl	CyDmaTdAllocate
+ 289 0020 0346     		mov	r3, r0
+ 290 0022 1A46     		mov	r2, r3
+ 291 0024 124B     		ldr	r3, .L14+4
+ 292 0026 1A70     		strb	r2, [r3]
+ 127:dma.c         **** 
+ 128:dma.c         ****     /* Configure this Td chain as follows:
+ 129:dma.c         ****     *  - The TD is looping on itself
+ 130:dma.c         ****     *  - Increment the source address, but not the destination address   
+ 131:dma.c         ****     */
+ 132:dma.c         ****     CyDmaTdSetConfiguration(txDmaTd[0u], BUFFER_SIZE, txDmaTd[0u], TD_INC_SRC_ADR | TxDMA__TD_TERMO
+ 293              		.loc 1 132 0
+ 294 0028 114B     		ldr	r3, .L14+4
+ 295 002a 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 296 002c 104B     		ldr	r3, .L14+4
+ 297 002e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 298 0030 0523     		movs	r3, #5
+ 299 0032 0421     		movs	r1, #4
+ 300 0034 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 133:dma.c         ****     
+ 134:dma.c         ****     /* From the memory to the I2S */
+ 135:dma.c         ****     CyDmaTdSetAddress(txDmaTd[0u], LO16((uint32)txBuff), LO16((uint32)I2S_Codec_audio_TX_CH0_F0_PTR
+ 301              		.loc 1 135 0
+ 302 0038 0D4B     		ldr	r3, .L14+4
+ 303 003a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 304 003c 0D4A     		ldr	r2, .L14+8
+ 305 003e 91B2     		uxth	r1, r2
+ 306 0040 46F24552 		movw	r2, #25925
+ 307 0044 1846     		mov	r0, r3
+ 308 0046 FFF7FEFF 		bl	CyDmaTdSetAddress
+ 136:dma.c         **** 
+ 137:dma.c         ****     /* Associate the TD with the channel */
+ 138:dma.c         ****     CyDmaChSetInitialTd(txDmaChan, txDmaTd[0u]);
+ 309              		.loc 1 138 0
+ 310 004a 084B     		ldr	r3, .L14
+ 311 004c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 312 004e 084B     		ldr	r3, .L14+4
+ 313 0050 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 314 0052 1946     		mov	r1, r3
+ 315 0054 1046     		mov	r0, r2
+ 316 0056 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 139:dma.c         **** 
+ 140:dma.c         ****     /* Enable the channel */
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 9
+
+
+ 141:dma.c         ****     CyDmaChEnable(txDmaChan, 1u);
+ 317              		.loc 1 141 0
+ 318 005a 044B     		ldr	r3, .L14
+ 319 005c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 320 005e 0121     		movs	r1, #1
+ 321 0060 1846     		mov	r0, r3
+ 322 0062 FFF7FEFF 		bl	CyDmaChEnable
+ 142:dma.c         **** }
+ 323              		.loc 1 142 0
+ 324 0066 00BF     		nop
+ 325 0068 80BD     		pop	{r7, pc}
+ 326              	.L15:
+ 327 006a 00BF     		.align	2
+ 328              	.L14:
+ 329 006c 05000000 		.word	txDmaChan
+ 330 0070 08000000 		.word	txDmaTd
+ 331 0074 00000000 		.word	txBuff
+ 332              		.cfi_endproc
+ 333              	.LFE66:
+ 334              		.size	DmaTxConfiguration, .-DmaTxConfiguration
+ 335              		.text
+ 336              	.Letext0:
+ 337              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 338              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 339              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 340              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 341              		.file 6 "./dma.h"
+ 342              		.section	.debug_info,"",%progbits
+ 343              	.Ldebug_info0:
+ 344 0000 EF010000 		.4byte	0x1ef
+ 345 0004 0400     		.2byte	0x4
+ 346 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 347 000a 04       		.byte	0x4
+ 348 000b 01       		.uleb128 0x1
+ 349 000c 00000000 		.4byte	.LASF34
+ 350 0010 0C       		.byte	0xc
+ 351 0011 9E000000 		.4byte	.LASF35
+ 352 0015 AB010000 		.4byte	.LASF36
+ 353 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 354 001d 00000000 		.4byte	0
+ 355 0021 00000000 		.4byte	.Ldebug_line0
+ 356 0025 02       		.uleb128 0x2
+ 357 0026 01       		.byte	0x1
+ 358 0027 06       		.byte	0x6
+ 359 0028 5D020000 		.4byte	.LASF0
+ 360 002c 02       		.uleb128 0x2
+ 361 002d 01       		.byte	0x1
+ 362 002e 08       		.byte	0x8
+ 363 002f C3000000 		.4byte	.LASF1
+ 364 0033 02       		.uleb128 0x2
+ 365 0034 02       		.byte	0x2
+ 366 0035 05       		.byte	0x5
+ 367 0036 A1010000 		.4byte	.LASF2
+ 368 003a 02       		.uleb128 0x2
+ 369 003b 02       		.byte	0x2
+ 370 003c 07       		.byte	0x7
+ 371 003d EE000000 		.4byte	.LASF3
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 10
+
+
+ 372 0041 03       		.uleb128 0x3
+ 373 0042 A4000000 		.4byte	.LASF9
+ 374 0046 02       		.byte	0x2
+ 375 0047 3F       		.byte	0x3f
+ 376 0048 4C000000 		.4byte	0x4c
+ 377 004c 02       		.uleb128 0x2
+ 378 004d 04       		.byte	0x4
+ 379 004e 05       		.byte	0x5
+ 380 004f 48020000 		.4byte	.LASF4
+ 381 0053 02       		.uleb128 0x2
+ 382 0054 04       		.byte	0x4
+ 383 0055 07       		.byte	0x7
+ 384 0056 DC000000 		.4byte	.LASF5
+ 385 005a 02       		.uleb128 0x2
+ 386 005b 08       		.byte	0x8
+ 387 005c 05       		.byte	0x5
+ 388 005d 86010000 		.4byte	.LASF6
+ 389 0061 02       		.uleb128 0x2
+ 390 0062 08       		.byte	0x8
+ 391 0063 07       		.byte	0x7
+ 392 0064 4E010000 		.4byte	.LASF7
+ 393 0068 04       		.uleb128 0x4
+ 394 0069 04       		.byte	0x4
+ 395 006a 05       		.byte	0x5
+ 396 006b 696E7400 		.ascii	"int\000"
+ 397 006f 02       		.uleb128 0x2
+ 398 0070 04       		.byte	0x4
+ 399 0071 07       		.byte	0x7
+ 400 0072 41010000 		.4byte	.LASF8
+ 401 0076 03       		.uleb128 0x3
+ 402 0077 75010000 		.4byte	.LASF10
+ 403 007b 03       		.byte	0x3
+ 404 007c 2C       		.byte	0x2c
+ 405 007d 41000000 		.4byte	0x41
+ 406 0081 05       		.uleb128 0x5
+ 407 0082 1C020000 		.4byte	.LASF11
+ 408 0086 04       		.byte	0x4
+ 409 0087 9201     		.2byte	0x192
+ 410 0089 2C000000 		.4byte	0x2c
+ 411 008d 05       		.uleb128 0x5
+ 412 008e 15010000 		.4byte	.LASF12
+ 413 0092 04       		.byte	0x4
+ 414 0093 9301     		.2byte	0x193
+ 415 0095 3A000000 		.4byte	0x3a
+ 416 0099 05       		.uleb128 0x5
+ 417 009a 30010000 		.4byte	.LASF13
+ 418 009e 04       		.byte	0x4
+ 419 009f 9401     		.2byte	0x194
+ 420 00a1 53000000 		.4byte	0x53
+ 421 00a5 05       		.uleb128 0x5
+ 422 00a6 D6000000 		.4byte	.LASF14
+ 423 00aa 04       		.byte	0x4
+ 424 00ab 9601     		.2byte	0x196
+ 425 00ad 33000000 		.4byte	0x33
+ 426 00b1 02       		.uleb128 0x2
+ 427 00b2 04       		.byte	0x4
+ 428 00b3 04       		.byte	0x4
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 11
+
+
+ 429 00b4 B6000000 		.4byte	.LASF15
+ 430 00b8 02       		.uleb128 0x2
+ 431 00b9 08       		.byte	0x8
+ 432 00ba 04       		.byte	0x4
+ 433 00bb 0E010000 		.4byte	.LASF16
+ 434 00bf 02       		.uleb128 0x2
+ 435 00c0 01       		.byte	0x1
+ 436 00c1 08       		.byte	0x8
+ 437 00c2 9C010000 		.4byte	.LASF17
+ 438 00c6 05       		.uleb128 0x5
+ 439 00c7 D1000000 		.4byte	.LASF18
+ 440 00cb 04       		.byte	0x4
+ 441 00cc 3C02     		.2byte	0x23c
+ 442 00ce D2000000 		.4byte	0xd2
+ 443 00d2 06       		.uleb128 0x6
+ 444 00d3 81000000 		.4byte	0x81
+ 445 00d7 02       		.uleb128 0x2
+ 446 00d8 08       		.byte	0x8
+ 447 00d9 04       		.byte	0x4
+ 448 00da 51020000 		.4byte	.LASF19
+ 449 00de 02       		.uleb128 0x2
+ 450 00df 04       		.byte	0x4
+ 451 00e0 07       		.byte	0x7
+ 452 00e1 7D010000 		.4byte	.LASF20
+ 453 00e5 07       		.uleb128 0x7
+ 454 00e6 8E000000 		.4byte	.LASF21
+ 455 00ea 01       		.byte	0x1
+ 456 00eb 32       		.byte	0x32
+ 457 00ec 00000000 		.4byte	.LFB63
+ 458 00f0 78000000 		.4byte	.LFE63-.LFB63
+ 459 00f4 01       		.uleb128 0x1
+ 460 00f5 9C       		.byte	0x9c
+ 461 00f6 08       		.uleb128 0x8
+ 462 00f7 65010000 		.4byte	.LASF22
+ 463 00fb 01       		.byte	0x1
+ 464 00fc 43       		.byte	0x43
+ 465 00fd 00000000 		.4byte	.LFB64
+ 466 0101 4C000000 		.4byte	.LFE64-.LFB64
+ 467 0105 01       		.uleb128 0x1
+ 468 0106 9C       		.byte	0x9c
+ 469 0107 07       		.uleb128 0x7
+ 470 0108 35020000 		.4byte	.LASF23
+ 471 010c 01       		.byte	0x1
+ 472 010d 57       		.byte	0x57
+ 473 010e 00000000 		.4byte	.LFB65
+ 474 0112 78000000 		.4byte	.LFE65-.LFB65
+ 475 0116 01       		.uleb128 0x1
+ 476 0117 9C       		.byte	0x9c
+ 477 0118 07       		.uleb128 0x7
+ 478 0119 22020000 		.4byte	.LASF24
+ 479 011d 01       		.byte	0x1
+ 480 011e 76       		.byte	0x76
+ 481 011f 00000000 		.4byte	.LFB66
+ 482 0123 78000000 		.4byte	.LFE66-.LFB66
+ 483 0127 01       		.uleb128 0x1
+ 484 0128 9C       		.byte	0x9c
+ 485 0129 09       		.uleb128 0x9
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 12
+
+
+ 486 012a 37010000 		.4byte	.LASF25
+ 487 012e 01       		.byte	0x1
+ 488 012f 1F       		.byte	0x1f
+ 489 0130 81000000 		.4byte	0x81
+ 490 0134 05       		.uleb128 0x5
+ 491 0135 03       		.byte	0x3
+ 492 0136 00000000 		.4byte	rxDmaChan
+ 493 013a 0A       		.uleb128 0xa
+ 494 013b 81000000 		.4byte	0x81
+ 495 013f 4A010000 		.4byte	0x14a
+ 496 0143 0B       		.uleb128 0xb
+ 497 0144 DE000000 		.4byte	0xde
+ 498 0148 00       		.byte	0
+ 499 0149 00       		.byte	0
+ 500 014a 09       		.uleb128 0x9
+ 501 014b AE000000 		.4byte	.LASF26
+ 502 014f 01       		.byte	0x1
+ 503 0150 20       		.byte	0x20
+ 504 0151 3A010000 		.4byte	0x13a
+ 505 0155 05       		.uleb128 0x5
+ 506 0156 03       		.byte	0x3
+ 507 0157 04000000 		.4byte	rxDmaTd
+ 508 015b 09       		.uleb128 0x9
+ 509 015c 1C010000 		.4byte	.LASF27
+ 510 0160 01       		.byte	0x1
+ 511 0161 21       		.byte	0x21
+ 512 0162 81000000 		.4byte	0x81
+ 513 0166 05       		.uleb128 0x5
+ 514 0167 03       		.byte	0x3
+ 515 0168 05000000 		.4byte	txDmaChan
+ 516 016c 09       		.uleb128 0x9
+ 517 016d 94010000 		.4byte	.LASF28
+ 518 0171 01       		.byte	0x1
+ 519 0172 22       		.byte	0x22
+ 520 0173 3A010000 		.4byte	0x13a
+ 521 0177 05       		.uleb128 0x5
+ 522 0178 03       		.byte	0x3
+ 523 0179 08000000 		.4byte	txDmaTd
+ 524 017d 0C       		.uleb128 0xc
+ 525 017e 01010000 		.4byte	.LASF29
+ 526 0182 05       		.byte	0x5
+ 527 0183 1207     		.2byte	0x712
+ 528 0185 89010000 		.4byte	0x189
+ 529 0189 06       		.uleb128 0x6
+ 530 018a 76000000 		.4byte	0x76
+ 531 018e 0A       		.uleb128 0xa
+ 532 018f 81000000 		.4byte	0x81
+ 533 0193 9E010000 		.4byte	0x19e
+ 534 0197 0B       		.uleb128 0xb
+ 535 0198 DE000000 		.4byte	0xde
+ 536 019c 03       		.byte	0x3
+ 537 019d 00       		.byte	0
+ 538 019e 0D       		.uleb128 0xd
+ 539 019f 69020000 		.4byte	.LASF30
+ 540 01a3 06       		.byte	0x6
+ 541 01a4 13       		.byte	0x13
+ 542 01a5 8E010000 		.4byte	0x18e
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 13
+
+
+ 543 01a9 05       		.uleb128 0x5
+ 544 01aa 03       		.byte	0x3
+ 545 01ab 00000000 		.4byte	rxBuff
+ 546 01af 0D       		.uleb128 0xd
+ 547 01b0 BC000000 		.4byte	.LASF31
+ 548 01b4 06       		.byte	0x6
+ 549 01b5 14       		.byte	0x14
+ 550 01b6 8E010000 		.4byte	0x18e
+ 551 01ba 05       		.uleb128 0x5
+ 552 01bb 03       		.byte	0x3
+ 553 01bc 00000000 		.4byte	txBuff
+ 554 01c0 0A       		.uleb128 0xa
+ 555 01c1 A5000000 		.4byte	0xa5
+ 556 01c5 D0010000 		.4byte	0x1d0
+ 557 01c9 0B       		.uleb128 0xb
+ 558 01ca DE000000 		.4byte	0xde
+ 559 01ce 01       		.byte	0x1
+ 560 01cf 00       		.byte	0
+ 561 01d0 0D       		.uleb128 0xd
+ 562 01d1 70020000 		.4byte	.LASF32
+ 563 01d5 06       		.byte	0x6
+ 564 01d6 17       		.byte	0x17
+ 565 01d7 C0010000 		.4byte	0x1c0
+ 566 01db 05       		.uleb128 0x5
+ 567 01dc 03       		.byte	0x3
+ 568 01dd 00000000 		.4byte	sampleIn
+ 569 01e1 0D       		.uleb128 0xd
+ 570 01e2 26010000 		.4byte	.LASF33
+ 571 01e6 06       		.byte	0x6
+ 572 01e7 18       		.byte	0x18
+ 573 01e8 C0010000 		.4byte	0x1c0
+ 574 01ec 05       		.uleb128 0x5
+ 575 01ed 03       		.byte	0x3
+ 576 01ee 00000000 		.4byte	sampleUit
+ 577 01f2 00       		.byte	0
+ 578              		.section	.debug_abbrev,"",%progbits
+ 579              	.Ldebug_abbrev0:
+ 580 0000 01       		.uleb128 0x1
+ 581 0001 11       		.uleb128 0x11
+ 582 0002 01       		.byte	0x1
+ 583 0003 25       		.uleb128 0x25
+ 584 0004 0E       		.uleb128 0xe
+ 585 0005 13       		.uleb128 0x13
+ 586 0006 0B       		.uleb128 0xb
+ 587 0007 03       		.uleb128 0x3
+ 588 0008 0E       		.uleb128 0xe
+ 589 0009 1B       		.uleb128 0x1b
+ 590 000a 0E       		.uleb128 0xe
+ 591 000b 55       		.uleb128 0x55
+ 592 000c 17       		.uleb128 0x17
+ 593 000d 11       		.uleb128 0x11
+ 594 000e 01       		.uleb128 0x1
+ 595 000f 10       		.uleb128 0x10
+ 596 0010 17       		.uleb128 0x17
+ 597 0011 00       		.byte	0
+ 598 0012 00       		.byte	0
+ 599 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 14
+
+
+ 600 0014 24       		.uleb128 0x24
+ 601 0015 00       		.byte	0
+ 602 0016 0B       		.uleb128 0xb
+ 603 0017 0B       		.uleb128 0xb
+ 604 0018 3E       		.uleb128 0x3e
+ 605 0019 0B       		.uleb128 0xb
+ 606 001a 03       		.uleb128 0x3
+ 607 001b 0E       		.uleb128 0xe
+ 608 001c 00       		.byte	0
+ 609 001d 00       		.byte	0
+ 610 001e 03       		.uleb128 0x3
+ 611 001f 16       		.uleb128 0x16
+ 612 0020 00       		.byte	0
+ 613 0021 03       		.uleb128 0x3
+ 614 0022 0E       		.uleb128 0xe
+ 615 0023 3A       		.uleb128 0x3a
+ 616 0024 0B       		.uleb128 0xb
+ 617 0025 3B       		.uleb128 0x3b
+ 618 0026 0B       		.uleb128 0xb
+ 619 0027 49       		.uleb128 0x49
+ 620 0028 13       		.uleb128 0x13
+ 621 0029 00       		.byte	0
+ 622 002a 00       		.byte	0
+ 623 002b 04       		.uleb128 0x4
+ 624 002c 24       		.uleb128 0x24
+ 625 002d 00       		.byte	0
+ 626 002e 0B       		.uleb128 0xb
+ 627 002f 0B       		.uleb128 0xb
+ 628 0030 3E       		.uleb128 0x3e
+ 629 0031 0B       		.uleb128 0xb
+ 630 0032 03       		.uleb128 0x3
+ 631 0033 08       		.uleb128 0x8
+ 632 0034 00       		.byte	0
+ 633 0035 00       		.byte	0
+ 634 0036 05       		.uleb128 0x5
+ 635 0037 16       		.uleb128 0x16
+ 636 0038 00       		.byte	0
+ 637 0039 03       		.uleb128 0x3
+ 638 003a 0E       		.uleb128 0xe
+ 639 003b 3A       		.uleb128 0x3a
+ 640 003c 0B       		.uleb128 0xb
+ 641 003d 3B       		.uleb128 0x3b
+ 642 003e 05       		.uleb128 0x5
+ 643 003f 49       		.uleb128 0x49
+ 644 0040 13       		.uleb128 0x13
+ 645 0041 00       		.byte	0
+ 646 0042 00       		.byte	0
+ 647 0043 06       		.uleb128 0x6
+ 648 0044 35       		.uleb128 0x35
+ 649 0045 00       		.byte	0
+ 650 0046 49       		.uleb128 0x49
+ 651 0047 13       		.uleb128 0x13
+ 652 0048 00       		.byte	0
+ 653 0049 00       		.byte	0
+ 654 004a 07       		.uleb128 0x7
+ 655 004b 2E       		.uleb128 0x2e
+ 656 004c 00       		.byte	0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 15
+
+
+ 657 004d 3F       		.uleb128 0x3f
+ 658 004e 19       		.uleb128 0x19
+ 659 004f 03       		.uleb128 0x3
+ 660 0050 0E       		.uleb128 0xe
+ 661 0051 3A       		.uleb128 0x3a
+ 662 0052 0B       		.uleb128 0xb
+ 663 0053 3B       		.uleb128 0x3b
+ 664 0054 0B       		.uleb128 0xb
+ 665 0055 27       		.uleb128 0x27
+ 666 0056 19       		.uleb128 0x19
+ 667 0057 11       		.uleb128 0x11
+ 668 0058 01       		.uleb128 0x1
+ 669 0059 12       		.uleb128 0x12
+ 670 005a 06       		.uleb128 0x6
+ 671 005b 40       		.uleb128 0x40
+ 672 005c 18       		.uleb128 0x18
+ 673 005d 9642     		.uleb128 0x2116
+ 674 005f 19       		.uleb128 0x19
+ 675 0060 00       		.byte	0
+ 676 0061 00       		.byte	0
+ 677 0062 08       		.uleb128 0x8
+ 678 0063 2E       		.uleb128 0x2e
+ 679 0064 00       		.byte	0
+ 680 0065 3F       		.uleb128 0x3f
+ 681 0066 19       		.uleb128 0x19
+ 682 0067 03       		.uleb128 0x3
+ 683 0068 0E       		.uleb128 0xe
+ 684 0069 3A       		.uleb128 0x3a
+ 685 006a 0B       		.uleb128 0xb
+ 686 006b 3B       		.uleb128 0x3b
+ 687 006c 0B       		.uleb128 0xb
+ 688 006d 27       		.uleb128 0x27
+ 689 006e 19       		.uleb128 0x19
+ 690 006f 11       		.uleb128 0x11
+ 691 0070 01       		.uleb128 0x1
+ 692 0071 12       		.uleb128 0x12
+ 693 0072 06       		.uleb128 0x6
+ 694 0073 40       		.uleb128 0x40
+ 695 0074 18       		.uleb128 0x18
+ 696 0075 9742     		.uleb128 0x2117
+ 697 0077 19       		.uleb128 0x19
+ 698 0078 00       		.byte	0
+ 699 0079 00       		.byte	0
+ 700 007a 09       		.uleb128 0x9
+ 701 007b 34       		.uleb128 0x34
+ 702 007c 00       		.byte	0
+ 703 007d 03       		.uleb128 0x3
+ 704 007e 0E       		.uleb128 0xe
+ 705 007f 3A       		.uleb128 0x3a
+ 706 0080 0B       		.uleb128 0xb
+ 707 0081 3B       		.uleb128 0x3b
+ 708 0082 0B       		.uleb128 0xb
+ 709 0083 49       		.uleb128 0x49
+ 710 0084 13       		.uleb128 0x13
+ 711 0085 02       		.uleb128 0x2
+ 712 0086 18       		.uleb128 0x18
+ 713 0087 00       		.byte	0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 16
+
+
+ 714 0088 00       		.byte	0
+ 715 0089 0A       		.uleb128 0xa
+ 716 008a 01       		.uleb128 0x1
+ 717 008b 01       		.byte	0x1
+ 718 008c 49       		.uleb128 0x49
+ 719 008d 13       		.uleb128 0x13
+ 720 008e 01       		.uleb128 0x1
+ 721 008f 13       		.uleb128 0x13
+ 722 0090 00       		.byte	0
+ 723 0091 00       		.byte	0
+ 724 0092 0B       		.uleb128 0xb
+ 725 0093 21       		.uleb128 0x21
+ 726 0094 00       		.byte	0
+ 727 0095 49       		.uleb128 0x49
+ 728 0096 13       		.uleb128 0x13
+ 729 0097 2F       		.uleb128 0x2f
+ 730 0098 0B       		.uleb128 0xb
+ 731 0099 00       		.byte	0
+ 732 009a 00       		.byte	0
+ 733 009b 0C       		.uleb128 0xc
+ 734 009c 34       		.uleb128 0x34
+ 735 009d 00       		.byte	0
+ 736 009e 03       		.uleb128 0x3
+ 737 009f 0E       		.uleb128 0xe
+ 738 00a0 3A       		.uleb128 0x3a
+ 739 00a1 0B       		.uleb128 0xb
+ 740 00a2 3B       		.uleb128 0x3b
+ 741 00a3 05       		.uleb128 0x5
+ 742 00a4 49       		.uleb128 0x49
+ 743 00a5 13       		.uleb128 0x13
+ 744 00a6 3F       		.uleb128 0x3f
+ 745 00a7 19       		.uleb128 0x19
+ 746 00a8 3C       		.uleb128 0x3c
+ 747 00a9 19       		.uleb128 0x19
+ 748 00aa 00       		.byte	0
+ 749 00ab 00       		.byte	0
+ 750 00ac 0D       		.uleb128 0xd
+ 751 00ad 34       		.uleb128 0x34
+ 752 00ae 00       		.byte	0
+ 753 00af 03       		.uleb128 0x3
+ 754 00b0 0E       		.uleb128 0xe
+ 755 00b1 3A       		.uleb128 0x3a
+ 756 00b2 0B       		.uleb128 0xb
+ 757 00b3 3B       		.uleb128 0x3b
+ 758 00b4 0B       		.uleb128 0xb
+ 759 00b5 49       		.uleb128 0x49
+ 760 00b6 13       		.uleb128 0x13
+ 761 00b7 3F       		.uleb128 0x3f
+ 762 00b8 19       		.uleb128 0x19
+ 763 00b9 02       		.uleb128 0x2
+ 764 00ba 18       		.uleb128 0x18
+ 765 00bb 00       		.byte	0
+ 766 00bc 00       		.byte	0
+ 767 00bd 00       		.byte	0
+ 768              		.section	.debug_aranges,"",%progbits
+ 769 0000 34000000 		.4byte	0x34
+ 770 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 17
+
+
+ 771 0006 00000000 		.4byte	.Ldebug_info0
+ 772 000a 04       		.byte	0x4
+ 773 000b 00       		.byte	0
+ 774 000c 0000     		.2byte	0
+ 775 000e 0000     		.2byte	0
+ 776 0010 00000000 		.4byte	.LFB63
+ 777 0014 78000000 		.4byte	.LFE63-.LFB63
+ 778 0018 00000000 		.4byte	.LFB64
+ 779 001c 4C000000 		.4byte	.LFE64-.LFB64
+ 780 0020 00000000 		.4byte	.LFB65
+ 781 0024 78000000 		.4byte	.LFE65-.LFB65
+ 782 0028 00000000 		.4byte	.LFB66
+ 783 002c 78000000 		.4byte	.LFE66-.LFB66
+ 784 0030 00000000 		.4byte	0
+ 785 0034 00000000 		.4byte	0
+ 786              		.section	.debug_ranges,"",%progbits
+ 787              	.Ldebug_ranges0:
+ 788 0000 00000000 		.4byte	.LFB63
+ 789 0004 78000000 		.4byte	.LFE63
+ 790 0008 00000000 		.4byte	.LFB64
+ 791 000c 4C000000 		.4byte	.LFE64
+ 792 0010 00000000 		.4byte	.LFB65
+ 793 0014 78000000 		.4byte	.LFE65
+ 794 0018 00000000 		.4byte	.LFB66
+ 795 001c 78000000 		.4byte	.LFE66
+ 796 0020 00000000 		.4byte	0
+ 797 0024 00000000 		.4byte	0
+ 798              		.section	.debug_line,"",%progbits
+ 799              	.Ldebug_line0:
+ 800 0000 BC010000 		.section	.debug_str,"MS",%progbits,1
+ 800      02005601 
+ 800      00000201 
+ 800      FB0E0D00 
+ 800      01010101 
+ 801              	.LASF34:
+ 802 0000 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 802      43313120 
+ 802      352E342E 
+ 802      31203230 
+ 802      31363036 
+ 803 0033 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 803      20726576 
+ 803      6973696F 
+ 803      6E203233 
+ 803      37373135 
+ 804 0066 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 804      66756E63 
+ 804      74696F6E 
+ 804      2D736563 
+ 804      74696F6E 
+ 805              	.LASF21:
+ 806 008e 73616D70 		.ascii	"sampleIntRx_ISR\000"
+ 806      6C65496E 
+ 806      7452785F 
+ 806      49535200 
+ 807              	.LASF35:
+ 808 009e 646D612E 		.ascii	"dma.c\000"
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 18
+
+
+ 808      6300
+ 809              	.LASF9:
+ 810 00a4 5F5F696E 		.ascii	"__int32_t\000"
+ 810      7433325F 
+ 810      7400
+ 811              	.LASF26:
+ 812 00ae 7278446D 		.ascii	"rxDmaTd\000"
+ 812      61546400 
+ 813              	.LASF15:
+ 814 00b6 666C6F61 		.ascii	"float\000"
+ 814      7400
+ 815              	.LASF31:
+ 816 00bc 74784275 		.ascii	"txBuff\000"
+ 816      666600
+ 817              	.LASF1:
+ 818 00c3 756E7369 		.ascii	"unsigned char\000"
+ 818      676E6564 
+ 818      20636861 
+ 818      7200
+ 819              	.LASF18:
+ 820 00d1 72656738 		.ascii	"reg8\000"
+ 820      00
+ 821              	.LASF14:
+ 822 00d6 696E7431 		.ascii	"int16\000"
+ 822      3600
+ 823              	.LASF5:
+ 824 00dc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 824      20756E73 
+ 824      69676E65 
+ 824      6420696E 
+ 824      7400
+ 825              	.LASF3:
+ 826 00ee 73686F72 		.ascii	"short unsigned int\000"
+ 826      7420756E 
+ 826      7369676E 
+ 826      65642069 
+ 826      6E7400
+ 827              	.LASF29:
+ 828 0101 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 828      52784275 
+ 828      66666572 
+ 828      00
+ 829              	.LASF16:
+ 830 010e 646F7562 		.ascii	"double\000"
+ 830      6C6500
+ 831              	.LASF12:
+ 832 0115 75696E74 		.ascii	"uint16\000"
+ 832      313600
+ 833              	.LASF27:
+ 834 011c 7478446D 		.ascii	"txDmaChan\000"
+ 834      61436861 
+ 834      6E00
+ 835              	.LASF33:
+ 836 0126 73616D70 		.ascii	"sampleUit\000"
+ 836      6C655569 
+ 836      7400
+ 837              	.LASF13:
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 19
+
+
+ 838 0130 75696E74 		.ascii	"uint32\000"
+ 838      333200
+ 839              	.LASF25:
+ 840 0137 7278446D 		.ascii	"rxDmaChan\000"
+ 840      61436861 
+ 840      6E00
+ 841              	.LASF8:
+ 842 0141 756E7369 		.ascii	"unsigned int\000"
+ 842      676E6564 
+ 842      20696E74 
+ 842      00
+ 843              	.LASF7:
+ 844 014e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 844      206C6F6E 
+ 844      6720756E 
+ 844      7369676E 
+ 844      65642069 
+ 845              	.LASF22:
+ 846 0165 73616D70 		.ascii	"sampleIntTx_ISR\000"
+ 846      6C65496E 
+ 846      7454785F 
+ 846      49535200 
+ 847              	.LASF10:
+ 848 0175 696E7433 		.ascii	"int32_t\000"
+ 848      325F7400 
+ 849              	.LASF20:
+ 850 017d 73697A65 		.ascii	"sizetype\000"
+ 850      74797065 
+ 850      00
+ 851              	.LASF6:
+ 852 0186 6C6F6E67 		.ascii	"long long int\000"
+ 852      206C6F6E 
+ 852      6720696E 
+ 852      7400
+ 853              	.LASF28:
+ 854 0194 7478446D 		.ascii	"txDmaTd\000"
+ 854      61546400 
+ 855              	.LASF17:
+ 856 019c 63686172 		.ascii	"char\000"
+ 856      00
+ 857              	.LASF2:
+ 858 01a1 73686F72 		.ascii	"short int\000"
+ 858      7420696E 
+ 858      7400
+ 859              	.LASF36:
+ 860 01ab 433A5C55 		.ascii	"C:\\Users\\Jona\\Documents\\GitHub\\Signaalverwerki"
+ 860      73657273 
+ 860      5C4A6F6E 
+ 860      615C446F 
+ 860      63756D65 
+ 861 01d9 6E675C4C 		.ascii	"ng\\Labo6\\Opgave1\\IIR_filterProject_DFB\\IIR_filt"
+ 861      61626F36 
+ 861      5C4F7067 
+ 861      61766531 
+ 861      5C494952 
+ 862 0208 65725072 		.ascii	"erProject_DFB.cydsn\000"
+ 862      6F6A6563 
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cc1CTC42.s 			page 20
+
+
+ 862      745F4446 
+ 862      422E6379 
+ 862      64736E00 
+ 863              	.LASF11:
+ 864 021c 75696E74 		.ascii	"uint8\000"
+ 864      3800
+ 865              	.LASF24:
+ 866 0222 446D6154 		.ascii	"DmaTxConfiguration\000"
+ 866      78436F6E 
+ 866      66696775 
+ 866      72617469 
+ 866      6F6E00
+ 867              	.LASF23:
+ 868 0235 446D6152 		.ascii	"DmaRxConfiguration\000"
+ 868      78436F6E 
+ 868      66696775 
+ 868      72617469 
+ 868      6F6E00
+ 869              	.LASF4:
+ 870 0248 6C6F6E67 		.ascii	"long int\000"
+ 870      20696E74 
+ 870      00
+ 871              	.LASF19:
+ 872 0251 6C6F6E67 		.ascii	"long double\000"
+ 872      20646F75 
+ 872      626C6500 
+ 873              	.LASF0:
+ 874 025d 7369676E 		.ascii	"signed char\000"
+ 874      65642063 
+ 874      68617200 
+ 875              	.LASF30:
+ 876 0269 72784275 		.ascii	"rxBuff\000"
+ 876      666600
+ 877              	.LASF32:
+ 878 0270 73616D70 		.ascii	"sampleIn\000"
+ 878      6C65496E 
+ 878      00
+ 879              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

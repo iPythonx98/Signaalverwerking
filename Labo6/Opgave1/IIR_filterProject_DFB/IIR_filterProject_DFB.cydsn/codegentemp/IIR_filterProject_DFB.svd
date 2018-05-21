@@ -9,7 +9,7 @@
     <peripheral>
       <name>KNOP</name>
       <description>No description available</description>
-      <baseAddress>0x4000656B</baseAddress>
+      <baseAddress>0x40006469</baseAddress>
       <addressBlock>
         <offset>0</offset>
         <size>0x0</size>
@@ -164,7 +164,7 @@
     <peripheral>
       <name>KNOP_TOGGLE</name>
       <description>No description available</description>
-      <baseAddress>0x40006468</baseAddress>
+      <baseAddress>0x40006568</baseAddress>
       <addressBlock>
         <offset>0</offset>
         <size>0x0</size>
@@ -2265,141 +2265,9 @@
       </addressBlock>
       <registers>
         <register>
-          <name>RX_STATUS_0_REG</name>
-          <description>No description available</description>
-          <addressOffset>0x40006469</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-          <fields>
-            <field>
-              <name>INT</name>
-              <description>Interrupt bit</description>
-              <lsb>7</lsb>
-              <msb>7</msb>
-              <access>read-only</access>
-            </field>
-            <field>
-              <name>CH1_F1</name>
-              <description>Stereo channel 1 FIFO 1 state</description>
-              <lsb>5</lsb>
-              <msb>5</msb>
-              <access>read-only</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>EMPTY</name>
-                  <description>No description available</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>NOT_EMPTY</name>
-                  <description>No description available</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>CH1_F0</name>
-              <description>Stereo channel 1 FIFO 0 state</description>
-              <lsb>4</lsb>
-              <msb>4</msb>
-              <access>read-only</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>EMPTY</name>
-                  <description>No description available</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>NOT_EMPTY</name>
-                  <description>No description available</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>CH1_OVRFL</name>
-              <description>Stereo channel 1 FIFO overflow</description>
-              <lsb>3</lsb>
-              <msb>3</msb>
-              <access>read-only</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>NO_OVERFLOW</name>
-                  <description>No description available</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>OVERFLOW</name>
-                  <description>No description available</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>CH0_F1</name>
-              <description>Stereo channel 0 FIFO 1 state</description>
-              <lsb>2</lsb>
-              <msb>2</msb>
-              <access>read-only</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>EMPTY</name>
-                  <description>No description available</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>NOT_EMPTY</name>
-                  <description>No description available</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>CH0_F0</name>
-              <description>Stereo channel 0 FIFO 0 state</description>
-              <lsb>1</lsb>
-              <msb>1</msb>
-              <access>read-only</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>EMPTY</name>
-                  <description>No description available</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>NOT_EMPTY</name>
-                  <description>No description available</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>CH0_OVRFL</name>
-              <description>Stereo channel 0 FIFO overflow</description>
-              <lsb>0</lsb>
-              <msb>0</msb>
-              <access>read-only</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>NO_OVERFLOW</name>
-                  <description>No description available</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>OVERFLOW</name>
-                  <description>No description available</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-          </fields>
-        </register>
-        <register>
           <name>TX_STATUS_0_REG</name>
           <description>No description available</description>
-          <addressOffset>0x4000646E</addressOffset>
+          <addressOffset>0x40006566</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -2529,9 +2397,141 @@
           </fields>
         </register>
         <register>
+          <name>RX_STATUS_0_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x40006567</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>INT</name>
+              <description>Interrupt bit</description>
+              <lsb>7</lsb>
+              <msb>7</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>CH1_F1</name>
+              <description>Stereo channel 1 FIFO 1 state</description>
+              <lsb>5</lsb>
+              <msb>5</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH1_F0</name>
+              <description>Stereo channel 1 FIFO 0 state</description>
+              <lsb>4</lsb>
+              <msb>4</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH1_OVRFL</name>
+              <description>Stereo channel 1 FIFO overflow</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NO_OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_F1</name>
+              <description>Stereo channel 0 FIFO 1 state</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_F0</name>
+              <description>Stereo channel 0 FIFO 0 state</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EMPTY</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CH0_OVRFL</name>
+              <description>Stereo channel 0 FIFO overflow</description>
+              <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NO_OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OVERFLOW</name>
+                  <description>No description available</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
           <name>CONTROL_REG</name>
           <description>No description available</description>
-          <addressOffset>0x4000647E</addressOffset>
+          <addressOffset>0x40006576</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -2545,22 +2545,22 @@
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>8_BIT</name>
+                  <name>Cy8_BIT</name>
                   <description>No description available</description>
                   <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>16_BIT</name>
+                  <name>Cy16_BIT</name>
                   <description>No description available</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>24_BIT</name>
+                  <name>Cy24_BIT</name>
                   <description>No description available</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>32_BIT</name>
+                  <name>Cy32_BIT</name>
                   <description>No description available</description>
                   <value>3</value>
                 </enumeratedValue>
@@ -2630,7 +2630,7 @@
     <peripheral>
       <name>LEDs</name>
       <description>No description available</description>
-      <baseAddress>0x4000657A</baseAddress>
+      <baseAddress>0x40006473</baseAddress>
       <addressBlock>
         <offset>0</offset>
         <size>0x0</size>
@@ -2651,7 +2651,7 @@
     <peripheral>
       <name>I2S_EN</name>
       <description>No description available</description>
-      <baseAddress>0x4000647B</baseAddress>
+      <baseAddress>0x40006476</baseAddress>
       <addressBlock>
         <offset>0</offset>
         <size>0x0</size>
@@ -2819,7 +2819,7 @@
     <peripheral>
       <name>CLIP</name>
       <description>No description available</description>
-      <baseAddress>0x40006577</baseAddress>
+      <baseAddress>0x40006578</baseAddress>
       <addressBlock>
         <offset>0</offset>
         <size>0x0</size>
@@ -2995,9 +2995,27 @@
       </addressBlock>
       <registers>
         <register>
+          <name>I2C_Codec_control_DATA</name>
+          <description>I2C Data Register</description>
+          <addressOffset>0x40006403</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>data</name>
+              <description>Read received data or write data to transmit.</description>
+              <lsb>0</lsb>
+              <msb>7</msb>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+        <register>
           <name>I2C_Codec_control_CSR</name>
           <description>I2C Status Register</description>
-          <addressOffset>0x4000646B</addressOffset>
+          <addressOffset>0x40006464</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3057,7 +3075,7 @@
         <register>
           <name>I2C_Codec_control_CFG</name>
           <description>I2C Configuration Register</description>
-          <addressOffset>0x40006478</addressOffset>
+          <addressOffset>0x40006472</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3110,7 +3128,7 @@
         <register>
           <name>I2C_Codec_control_INT_MASK</name>
           <description>I2C Interrupt Enable Mask</description>
-          <addressOffset>0x4000648B</addressOffset>
+          <addressOffset>0x40006484</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3163,24 +3181,6 @@
               <description>Enables interrupt from the corresponding bit in status register.</description>
               <lsb>0</lsb>
               <msb>0</msb>
-              <access>read-write</access>
-            </field>
-          </fields>
-        </register>
-        <register>
-          <name>I2C_Codec_control_DATA</name>
-          <description>I2C Data Register</description>
-          <addressOffset>0x40006508</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-          <fields>
-            <field>
-              <name>data</name>
-              <description>Read received data or write data to transmit.</description>
-              <lsb>0</lsb>
-              <msb>7</msb>
               <access>read-write</access>
             </field>
           </fields>

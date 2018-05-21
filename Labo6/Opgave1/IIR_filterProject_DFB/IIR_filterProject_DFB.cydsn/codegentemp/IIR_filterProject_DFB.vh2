@@ -2,7 +2,7 @@
 --	Conversion of IIR_filterProject_DFB.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Mar 30 21:01:19 2016
+--	Fri May 18 15:45:21 2018
 --
 
 USE cypress.cypress.all;
@@ -12,20 +12,21 @@ ATTRIBUTE part_name of top_RTL:TYPE IS "cpsoc3";
 END top_RTL;
 --------------------------------------------------------
 ARCHITECTURE R_T_L OF top_RTL IS
-SIGNAL \I2S_Codec_audio:Net_2\ : bit;
+SIGNAL Net_1050 : bit;
 SIGNAL one : bit;
 SIGNAL \I2S_Codec_audio:bI2S:op_clk\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:dyn_data_width_1\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:ctrl_4\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:dyn_data_width_0\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:ctrl_3\ : bit;
 SIGNAL zero : bit;
-SIGNAL \I2S_Codec_audio:bI2S:ctrl_7\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:ctrl_6\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:ctrl_5\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_7\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_6\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_5\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_4\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_3\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_1\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_reg_out_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:ctrl_2\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:ctrl_1\ : bit;
-SIGNAL \I2S_Codec_audio:bI2S:ctrl_0\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:dyn_data_width_1\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:dyn_data_width_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:enable\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:reset\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:count_6\ : bit;
@@ -65,6 +66,7 @@ SIGNAL \I2S_Codec_audio:bI2S:rx_rch_load_2\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_rch_load_1\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_rch_load_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:data_trunc\ : bit;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:tx_underflow_sticky\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:tx_underflow_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:txenable\ : bit;
@@ -83,7 +85,7 @@ SIGNAL \I2S_Codec_audio:bI2S:Tx:STS[0]:status_4\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:Tx:STS[0]:status_3\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:tx_int_out_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:tx_int_reg\ : bit;
-SIGNAL Net_44 : bit;
+SIGNAL Net_1139 : bit;
 SIGNAL \I2S_Codec_audio:bI2S:tx_f0_empty_0\ : bit;
 SIGNAL \I2S_Codec_audio:tx_drq0_0\ : bit;
 SIGNAL \I2S_Codec_audio:tx_drq1_0\ : bit;
@@ -145,6 +147,7 @@ SIGNAL \I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:f1_bus_stat_reg\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:f1_bus_stat_reg\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:f1_blk_stat_reg\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:bI2S:Tx:CH[0]:dpTx:f1_blk_stat_reg\:SIGNAL IS 2;
+SIGNAL \I2S_Codec_audio:bI2S:ctrl_1\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_f0_load\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_state_2\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_state_1\ : bit;
@@ -162,13 +165,13 @@ SIGNAL \I2S_Codec_audio:bI2S:Rx:STS[0]:status_4\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:Rx:STS[0]:status_3\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_int_out_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_int_reg\ : bit;
-SIGNAL Net_43 : bit;
+SIGNAL Net_1138 : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_f0_full_0\ : bit;
 SIGNAL \I2S_Codec_audio:rx_drq0_0\ : bit;
 SIGNAL \I2S_Codec_audio:rx_drq1_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_f1_n_empty_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_data_in_0\ : bit;
-SIGNAL \I2S_Codec_audio:Net_1_0\ : bit;
+SIGNAL \I2S_Codec_audio:rx_line_0\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:ce0\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:ce0\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:bI2S:pos_clip_cmp_0\ : bit;
@@ -224,16 +227,10 @@ SIGNAL \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:f1_bus_stat_reg\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:f1_bus_stat_reg\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:f1_blk_stat_reg\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:bI2S:Rx:CH[0]:dpRx:f1_blk_stat_reg\:SIGNAL IS 2;
-SIGNAL Net_1050 : bit;
-SIGNAL \I2S_Codec_audio:rx_line_0\ : bit;
-SIGNAL \I2S_Codec_audio:Net_1_1\ : bit;
-SIGNAL \I2S_Codec_audio:rx_line_1\ : bit;
-SIGNAL \I2S_Codec_audio:Net_1_2\ : bit;
-SIGNAL \I2S_Codec_audio:rx_line_2\ : bit;
-SIGNAL \I2S_Codec_audio:Net_1_3\ : bit;
-SIGNAL \I2S_Codec_audio:rx_line_3\ : bit;
-SIGNAL \I2S_Codec_audio:Net_1_4\ : bit;
 SIGNAL \I2S_Codec_audio:rx_line_4\ : bit;
+SIGNAL \I2S_Codec_audio:rx_line_3\ : bit;
+SIGNAL \I2S_Codec_audio:rx_line_2\ : bit;
+SIGNAL \I2S_Codec_audio:rx_line_1\ : bit;
 SIGNAL Net_54 : bit;
 SIGNAL \I2S_Codec_audio:sdo_4\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:sdo_4\:SIGNAL IS 2;
@@ -273,7 +270,7 @@ SIGNAL \I2S_Codec_audio:rx_drq1_2\ : bit;
 SIGNAL \I2S_Codec_audio:rx_dma1_1\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:rx_dma1_1\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:rx_drq1_1\ : bit;
-SIGNAL Net_41_0 : bit;
+SIGNAL Net_1136_0 : bit;
 SIGNAL \I2S_Codec_audio:tx_dma0_4\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:tx_dma0_4\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:tx_drq0_4\ : bit;
@@ -299,7 +296,7 @@ SIGNAL \I2S_Codec_audio:tx_drq1_2\ : bit;
 SIGNAL \I2S_Codec_audio:tx_dma1_1\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:tx_dma1_1\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:tx_drq1_1\ : bit;
-SIGNAL Net_42_0 : bit;
+SIGNAL Net_1137_0 : bit;
 SIGNAL \I2S_Codec_audio:clip_4\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:clip_4\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:clip_detect_4\ : bit;
@@ -312,7 +309,7 @@ SIGNAL \I2S_Codec_audio:clip_detect_2\ : bit;
 SIGNAL \I2S_Codec_audio:clip_1\ : bit;
 ATTRIBUTE port_state_att of \I2S_Codec_audio:clip_1\:SIGNAL IS 2;
 SIGNAL \I2S_Codec_audio:clip_detect_1\ : bit;
-SIGNAL Net_1060_0 : bit;
+SIGNAL Net_1140_0 : bit;
 SIGNAL \I2S_Codec_audio:clip_detect_0\ : bit;
 SIGNAL tmpOE__POT_2_net_0 : bit;
 SIGNAL tmpFB_0__POT_2_net_0 : bit;
@@ -716,8 +713,8 @@ SIGNAL \I2C_Codec_control:scl_x_wire\ : bit;
 SIGNAL \I2C_Codec_control:Net_969\ : bit;
 SIGNAL \I2C_Codec_control:Net_968\ : bit;
 SIGNAL Net_270 : bit;
-SIGNAL \I2C_Codec_control:bus_clk\ : bit;
 SIGNAL \I2C_Codec_control:Net_973\ : bit;
+SIGNAL \I2C_Codec_control:bus_clk\ : bit;
 SIGNAL Net_271 : bit;
 SIGNAL \I2C_Codec_control:Net_974\ : bit;
 SIGNAL \I2C_Codec_control:scl_yfb\ : bit;
@@ -727,8 +724,8 @@ SIGNAL \I2C_Codec_control:tmpOE__Bufoe_sda_net_0\ : bit;
 SIGNAL \I2C_Codec_control:timeout_clk\ : bit;
 SIGNAL Net_276 : bit;
 SIGNAL \I2C_Codec_control:Net_975\ : bit;
-SIGNAL Net_275 : bit;
 SIGNAL Net_274 : bit;
+SIGNAL Net_275 : bit;
 TERMINAL \VOL:Net_248\ : bit;
 TERMINAL \VOL:Net_235\ : bit;
 SIGNAL Net_241 : bit;
@@ -740,7 +737,8 @@ SIGNAL \VOL:vp_ctl_1\ : bit;
 SIGNAL \VOL:vp_ctl_3\ : bit;
 SIGNAL \VOL:vn_ctl_0\ : bit;
 SIGNAL \VOL:vn_ctl_2\ : bit;
-SIGNAL \VOL:Net_376\ : bit;
+SIGNAL \VOL:Net_385\ : bit;
+SIGNAL \VOL:Net_381\ : bit;
 SIGNAL \VOL:Net_188\ : bit;
 SIGNAL \VOL:Net_221\ : bit;
 TERMINAL Net_232 : bit;
@@ -766,7 +764,7 @@ TERMINAL \VOL:Net_209\ : bit;
 TERMINAL \VOL:Net_149\ : bit;
 TERMINAL \VOL:Net_255\ : bit;
 TERMINAL \VOL:Net_368\ : bit;
-SIGNAL \VOL:Net_381\ : bit;
+SIGNAL \VOL:Net_383\ : bit;
 SIGNAL tmpOE__POT_1_net_0 : bit;
 SIGNAL tmpFB_0__POT_1_net_0 : bit;
 SIGNAL tmpIO_0__POT_1_net_0 : bit;
@@ -810,7 +808,8 @@ SIGNAL \LINE:vp_ctl_1\ : bit;
 SIGNAL \LINE:vp_ctl_3\ : bit;
 SIGNAL \LINE:vn_ctl_0\ : bit;
 SIGNAL \LINE:vn_ctl_2\ : bit;
-SIGNAL \LINE:Net_376\ : bit;
+SIGNAL \LINE:Net_385\ : bit;
+SIGNAL \LINE:Net_381\ : bit;
 SIGNAL \LINE:Net_188\ : bit;
 SIGNAL \LINE:Net_221\ : bit;
 TERMINAL \LINE:Net_126\ : bit;
@@ -835,7 +834,7 @@ TERMINAL \LINE:Net_209\ : bit;
 TERMINAL \LINE:Net_149\ : bit;
 TERMINAL \LINE:Net_255\ : bit;
 TERMINAL \LINE:Net_368\ : bit;
-SIGNAL \LINE:Net_381\ : bit;
+SIGNAL \LINE:Net_383\ : bit;
 SIGNAL \CLIP:clk\ : bit;
 SIGNAL \CLIP:rst\ : bit;
 SIGNAL \CLIP:control_out_0\ : bit;
@@ -1177,6 +1176,7 @@ SIGNAL \Filter:Net_9\ : bit;
 SIGNAL Net_1133 : bit;
 SIGNAL Net_1134 : bit;
 SIGNAL Net_1135 : bit;
+SIGNAL Net_1050D : bit;
 SIGNAL \I2S_Codec_audio:bI2S:reset\\D\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:channel\\D\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:tx_underflow_sticky\\D\ : bit;
@@ -1197,7 +1197,6 @@ SIGNAL \I2S_Codec_audio:bI2S:rx_overflow_sticky\\D\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rxenable\\D\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_int_reg\\D\ : bit;
 SIGNAL \I2S_Codec_audio:bI2S:rx_data_in_0\\D\ : bit;
-SIGNAL Net_1050D : bit;
 SIGNAL \I2C_Codec_control:bI2C_UDB:sda_in_reg\\D\ : bit;
 SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_4\\D\ : bit;
 SIGNAL \I2C_Codec_control:bI2C_UDB:m_state_3\\D\ : bit;
@@ -1256,21 +1255,21 @@ one <=  ('1') ;
 
 zero <=  ('0') ;
 
-\I2S_Codec_audio:bI2S:reset\\D\ <= (not \I2S_Codec_audio:bI2S:ctrl_2\);
+\I2S_Codec_audio:bI2S:reset\\D\ <= (not \I2S_Codec_audio:bI2S:ctrl_reg_out_2\);
 
 \I2S_Codec_audio:bI2S:channel\\D\ <= ((not \I2S_Codec_audio:bI2S:reset\ and not \I2S_Codec_audio:bI2S:count_5\));
 
-\I2S_Codec_audio:bI2S:tx_underflow_sticky\\D\ <= ((not \I2S_Codec_audio:bI2S:tx_state_2\ and not \I2S_Codec_audio:bI2S:tx_state_1\ and \I2S_Codec_audio:bI2S:ctrl_0\ and \I2S_Codec_audio:bI2S:tx_state_0\ and \I2S_Codec_audio:bI2S:tx_f0_empty_0\)
-	OR (\I2S_Codec_audio:bI2S:ctrl_0\ and \I2S_Codec_audio:bI2S:tx_underflow_sticky\));
+\I2S_Codec_audio:bI2S:tx_underflow_sticky\\D\ <= ((not \I2S_Codec_audio:bI2S:tx_state_2\ and not \I2S_Codec_audio:bI2S:tx_state_1\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_0\ and \I2S_Codec_audio:bI2S:tx_state_0\ and \I2S_Codec_audio:bI2S:tx_f0_empty_0\)
+	OR (\I2S_Codec_audio:bI2S:ctrl_reg_out_0\ and \I2S_Codec_audio:bI2S:tx_underflow_sticky\));
 
-\I2S_Codec_audio:bI2S:txenable\\D\ <= ((not \I2S_Codec_audio:bI2S:count_6\ and not \I2S_Codec_audio:bI2S:count_5\ and not \I2S_Codec_audio:bI2S:count_4\ and not \I2S_Codec_audio:bI2S:count_3\ and not \I2S_Codec_audio:bI2S:count_2\ and not \I2S_Codec_audio:bI2S:count_1\ and not Net_168 and not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_0\)
-	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and Net_168 and \I2S_Codec_audio:bI2S:txenable\)
-	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_1\ and \I2S_Codec_audio:bI2S:txenable\)
-	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_2\ and \I2S_Codec_audio:bI2S:txenable\)
-	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_3\ and \I2S_Codec_audio:bI2S:txenable\)
-	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_4\ and \I2S_Codec_audio:bI2S:txenable\)
-	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_5\ and \I2S_Codec_audio:bI2S:txenable\)
-	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_6\ and \I2S_Codec_audio:bI2S:txenable\));
+\I2S_Codec_audio:bI2S:txenable\\D\ <= ((not \I2S_Codec_audio:bI2S:count_6\ and not \I2S_Codec_audio:bI2S:count_5\ and not \I2S_Codec_audio:bI2S:count_4\ and not \I2S_Codec_audio:bI2S:count_3\ and not \I2S_Codec_audio:bI2S:count_2\ and not \I2S_Codec_audio:bI2S:count_1\ and not Net_168 and not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_0\)
+	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and Net_168 and \I2S_Codec_audio:bI2S:txenable\)
+	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_1\ and \I2S_Codec_audio:bI2S:txenable\)
+	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_2\ and \I2S_Codec_audio:bI2S:txenable\)
+	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_3\ and \I2S_Codec_audio:bI2S:txenable\)
+	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_4\ and \I2S_Codec_audio:bI2S:txenable\)
+	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_5\ and \I2S_Codec_audio:bI2S:txenable\)
+	OR (not \I2S_Codec_audio:bI2S:tx_underflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_6\ and \I2S_Codec_audio:bI2S:txenable\));
 
 \I2S_Codec_audio:bI2S:tx_state_2\\D\ <= (not \I2S_Codec_audio:bI2S:txenable\);
 
@@ -1291,16 +1290,17 @@ zero <=  ('0') ;
 \I2S_Codec_audio:bI2S:rx_f0_load\\D\ <= ((not \I2S_Codec_audio:bI2S:rx_state_1\ and \I2S_Codec_audio:bI2S:rx_state_2\ and \I2S_Codec_audio:bI2S:rx_state_0\)
 	OR (not \I2S_Codec_audio:bI2S:rx_state_0\ and \I2S_Codec_audio:bI2S:rx_state_1\));
 
-\I2S_Codec_audio:bI2S:rx_overflow_sticky\\D\ <= ((\I2S_Codec_audio:bI2S:ctrl_1\ and \I2S_Codec_audio:bI2S:rx_f0_load\ and \I2S_Codec_audio:bI2S:rx_f0_full_0\)
-	OR (\I2S_Codec_audio:bI2S:ctrl_1\ and \I2S_Codec_audio:bI2S:rx_overflow_sticky\));
+\I2S_Codec_audio:bI2S:rx_overflow_sticky\\D\ <= ((\I2S_Codec_audio:bI2S:ctrl_reg_out_1\ and \I2S_Codec_audio:bI2S:rx_f0_load\ and \I2S_Codec_audio:bI2S:rx_f0_full_0\)
+	OR (\I2S_Codec_audio:bI2S:ctrl_reg_out_1\ and \I2S_Codec_audio:bI2S:rx_overflow_sticky\));
 
-\I2S_Codec_audio:bI2S:rxenable\\D\ <= ((not \I2S_Codec_audio:bI2S:count_6\ and not \I2S_Codec_audio:bI2S:count_1\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_1\ and \I2S_Codec_audio:bI2S:count_5\ and \I2S_Codec_audio:bI2S:count_4\ and \I2S_Codec_audio:bI2S:count_3\ and \I2S_Codec_audio:bI2S:count_2\)
-	OR (not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_1\ and \I2S_Codec_audio:bI2S:rxenable\)
-	OR (not \I2S_Codec_audio:bI2S:count_2\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:rxenable\)
-	OR (not \I2S_Codec_audio:bI2S:count_3\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:rxenable\)
-	OR (not \I2S_Codec_audio:bI2S:count_4\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:rxenable\)
-	OR (not \I2S_Codec_audio:bI2S:count_5\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:rxenable\)
-	OR (not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_2\ and \I2S_Codec_audio:bI2S:count_6\ and \I2S_Codec_audio:bI2S:rxenable\));
+\I2S_Codec_audio:bI2S:rxenable\\D\ <= ((not \I2S_Codec_audio:bI2S:count_6\ and not \I2S_Codec_audio:bI2S:count_1\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_1\ and \I2S_Codec_audio:bI2S:count_5\ and \I2S_Codec_audio:bI2S:count_4\ and \I2S_Codec_audio:bI2S:count_3\ and \I2S_Codec_audio:bI2S:count_2\ and Net_168)
+	OR (not \I2S_Codec_audio:bI2S:count_6\ and not \I2S_Codec_audio:bI2S:count_1\ and not Net_168 and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:count_5\ and \I2S_Codec_audio:bI2S:count_4\ and \I2S_Codec_audio:bI2S:count_3\ and \I2S_Codec_audio:bI2S:count_2\ and \I2S_Codec_audio:bI2S:rxenable\)
+	OR (not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_1\ and \I2S_Codec_audio:bI2S:rxenable\)
+	OR (not \I2S_Codec_audio:bI2S:count_2\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:rxenable\)
+	OR (not \I2S_Codec_audio:bI2S:count_3\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:rxenable\)
+	OR (not \I2S_Codec_audio:bI2S:count_4\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:rxenable\)
+	OR (not \I2S_Codec_audio:bI2S:count_5\ and not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:rxenable\)
+	OR (not \I2S_Codec_audio:bI2S:rx_overflow_sticky\ and \I2S_Codec_audio:bI2S:ctrl_reg_out_2\ and \I2S_Codec_audio:bI2S:count_6\ and \I2S_Codec_audio:bI2S:rxenable\));
 
 \I2S_Codec_audio:bI2S:rx_state_2\\D\ <= ((not \I2S_Codec_audio:bI2S:rx_state_1\ and \I2S_Codec_audio:bI2S:rx_state_2\ and \I2S_Codec_audio:bI2S:rx_state_0\ and \I2S_Codec_audio:bI2S:rxenable\));
 
@@ -1366,8 +1366,8 @@ zero <=  ('0') ;
 \I2C_Codec_control:bI2C_UDB:m_state_0\\D\ <= ((not \I2C_Codec_control:bI2C_UDB:control_5\ and not \I2C_Codec_control:bI2C_UDB:m_state_2\ and not \I2C_Codec_control:bI2C_UDB:m_state_1\ and not \I2C_Codec_control:bI2C_UDB:m_state_0\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and not \I2C_Codec_control:bI2C_UDB:lost_arb2_reg\ and \I2C_Codec_control:bI2C_UDB:control_4\ and \I2C_Codec_control:bI2C_UDB:m_state_3\ and \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Codec_control:bI2C_UDB:m_state_4\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and \I2C_Codec_control:bI2C_UDB:m_state_3\ and \I2C_Codec_control:bI2C_UDB:m_state_2\ and \I2C_Codec_control:bI2C_UDB:m_state_1\ and \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Codec_control:bI2C_UDB:m_state_3\ and not \I2C_Codec_control:bI2C_UDB:m_state_2\ and not \I2C_Codec_control:bI2C_UDB:m_state_0\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and \I2C_Codec_control:bI2C_UDB:control_7\ and \I2C_Codec_control:bI2C_UDB:m_state_1\ and \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\)
-	OR (not \I2C_Codec_control:bI2C_UDB:tx_reg_empty\ and not \I2C_Codec_control:bI2C_UDB:m_state_3\ and not \I2C_Codec_control:bI2C_UDB:m_state_1\ and not \I2C_Codec_control:bI2C_UDB:m_state_0\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Codec_control:bI2C_UDB:m_state_3\ and not \I2C_Codec_control:bI2C_UDB:m_state_1\ and not \I2C_Codec_control:bI2C_UDB:m_state_0\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and \I2C_Codec_control:bI2C_UDB:m_state_2\ and \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\)
+	OR (not \I2C_Codec_control:bI2C_UDB:tx_reg_empty\ and not \I2C_Codec_control:bI2C_UDB:m_state_3\ and not \I2C_Codec_control:bI2C_UDB:m_state_1\ and not \I2C_Codec_control:bI2C_UDB:m_state_0\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and \I2C_Codec_control:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Codec_control:bI2C_UDB:m_state_4\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and not \I2C_Codec_control:bI2C_UDB:lost_arb_reg\ and \I2C_Codec_control:bI2C_UDB:control_6\ and \I2C_Codec_control:bI2C_UDB:m_state_2\ and \I2C_Codec_control:bI2C_UDB:m_state_1\ and \I2C_Codec_control:bI2C_UDB:m_state_0\)
 	OR (not \I2C_Codec_control:bI2C_UDB:m_state_4\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and \I2C_Codec_control:bI2C_UDB:tx_reg_empty\ and \I2C_Codec_control:bI2C_UDB:m_state_2\ and \I2C_Codec_control:bI2C_UDB:m_state_1\ and \I2C_Codec_control:bI2C_UDB:m_state_0\)
 	OR (not \I2C_Codec_control:bI2C_UDB:m_state_2\ and not \I2C_Codec_control:bI2C_UDB:m_state_1\ and not \I2C_Codec_control:bI2C_UDB:m_reset\ and \I2C_Codec_control:bI2C_UDB:m_state_4\ and \I2C_Codec_control:bI2C_UDB:m_state_3\ and \I2C_Codec_control:bI2C_UDB:m_state_0\)
@@ -1529,8 +1529,8 @@ Net_1050D <= ((not Net_766 and Net_1050)
 		cy_ext_reset=>'0')
 	PORT MAP(reset=>zero,
 		clock=>\I2S_Codec_audio:bI2S:op_clk\,
-		control=>(\I2S_Codec_audio:bI2S:ctrl_7\, \I2S_Codec_audio:bI2S:ctrl_6\, \I2S_Codec_audio:bI2S:ctrl_5\, \I2S_Codec_audio:bI2S:ctrl_4\,
-			\I2S_Codec_audio:bI2S:ctrl_3\, \I2S_Codec_audio:bI2S:ctrl_2\, \I2S_Codec_audio:bI2S:ctrl_1\, \I2S_Codec_audio:bI2S:ctrl_0\));
+		control=>(\I2S_Codec_audio:bI2S:ctrl_reg_out_7\, \I2S_Codec_audio:bI2S:ctrl_reg_out_6\, \I2S_Codec_audio:bI2S:ctrl_reg_out_5\, \I2S_Codec_audio:bI2S:ctrl_reg_out_4\,
+			\I2S_Codec_audio:bI2S:ctrl_reg_out_3\, \I2S_Codec_audio:bI2S:ctrl_reg_out_2\, \I2S_Codec_audio:bI2S:ctrl_reg_out_1\, \I2S_Codec_audio:bI2S:ctrl_reg_out_0\));
 \I2S_Codec_audio:bI2S:BitCounter\:cy_psoc3_count7
 	GENERIC MAP(cy_period=>"0111111",
 		cy_init_value=>"0000000",
@@ -1540,7 +1540,7 @@ Net_1050D <= ((not Net_766 and Net_1050)
 	PORT MAP(clock=>\I2S_Codec_audio:bI2S:op_clk\,
 		reset=>zero,
 		load=>zero,
-		enable=>\I2S_Codec_audio:bI2S:ctrl_2\,
+		enable=>\I2S_Codec_audio:bI2S:ctrl_reg_out_2\,
 		count=>(\I2S_Codec_audio:bI2S:count_6\, \I2S_Codec_audio:bI2S:count_5\, \I2S_Codec_audio:bI2S:count_4\, \I2S_Codec_audio:bI2S:count_3\,
 			\I2S_Codec_audio:bI2S:count_2\, \I2S_Codec_audio:bI2S:count_1\, Net_168),
 		tc=>open);
@@ -1764,14 +1764,14 @@ POT_2:cy_psoc3_pins_v1_10
 		pin_mode=>"A",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -1840,14 +1840,14 @@ RxDMA:cy_dma_v1_0
 		pin_mode=>"OOOOOOO",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1111111",
 		sio_ibuf=>"00000000",
 		sio_info=>"00000000000000",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0000000",
 		spanning=>'0',
 		sw_only=>'0',
@@ -1922,14 +1922,14 @@ SDO:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -1992,14 +1992,14 @@ SCK:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2062,14 +2062,14 @@ WS:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2132,14 +2132,14 @@ SDI:cy_psoc3_pins_v1_10
 		pin_mode=>"I",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2202,14 +2202,14 @@ L2:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2272,14 +2272,14 @@ Codec_en:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2313,7 +2313,8 @@ Codec_en:cy_psoc3_pins_v1_10
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Codec_en_net_0);
 SampleKlaar:cy_isr_v1_0
-	GENERIC MAP(int_type=>"10")
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
 	PORT MAP(int_signal=>Net_367);
 L1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"16f204b6-3bc6-4b86-bfd3-a5b1466e48ba",
@@ -2345,14 +2346,14 @@ L1:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2425,14 +2426,14 @@ L0:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2495,14 +2496,14 @@ CLIP_LED:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2565,14 +2566,14 @@ AudioCodecClk:cy_psoc3_pins_v1_10
 		pin_mode=>"I",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2635,14 +2636,14 @@ SDA:cy_psoc3_pins_v1_10
 		pin_mode=>"B",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2705,14 +2706,14 @@ SCL:cy_psoc3_pins_v1_10
 		pin_mode=>"B",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -2746,7 +2747,8 @@ SCL:cy_psoc3_pins_v1_10
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__SCL_net_0);
 \I2C_Codec_control:I2C_IRQ\:cy_isr_v1_0
-	GENERIC MAP(int_type=>"00")
+	GENERIC MAP(int_type=>"00",
+		is_nmi=>'0')
 	PORT MAP(int_signal=>\I2C_Codec_control:Net_697\);
 \I2C_Codec_control:IntClock\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -2970,7 +2972,8 @@ SCL:cy_psoc3_pins_v1_10
 	PORT MAP(signal1=>\VOL:Net_248\,
 		signal2=>\VOL:Net_235\);
 \VOL:IRQ\:cy_isr_v1_0
-	GENERIC MAP(int_type=>"10")
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
 	PORT MAP(int_signal=>Net_241);
 \VOL:theACLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -2979,9 +2982,9 @@ SCL:cy_psoc3_pins_v1_10
 		divisor=>0,
 		period=>"625001562.503906",
 		is_direct=>'0',
-		is_digital=>'1')
-	PORT MAP(clock_out=>\VOL:Net_376\,
-		dig_domain_out=>open);
+		is_digital=>'0')
+	PORT MAP(clock_out=>\VOL:Net_385\,
+		dig_domain_out=>\VOL:Net_381\);
 \VOL:ADC_SAR\:cy_psoc5_sar_v2_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(vplus=>Net_232,
@@ -2989,8 +2992,8 @@ SCL:cy_psoc3_pins_v1_10
 		ext_pin=>\VOL:Net_215\,
 		vrefhi_out=>\VOL:Net_257\,
 		vref=>\VOL:Net_248\,
-		clock=>\VOL:Net_376\,
-		pump_clock=>\VOL:Net_376\,
+		clock=>\VOL:Net_385\,
+		pump_clock=>\VOL:Net_385\,
 		sof_udb=>zero,
 		clk_udb=>zero,
 		vp_ctl_udb=>(zero, zero, zero, zero),
@@ -3058,14 +3061,14 @@ POT_1:cy_psoc3_pins_v1_10
 		pin_mode=>"A",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -3114,7 +3117,8 @@ POT_1:cy_psoc3_pins_v1_10
 	PORT MAP(signal1=>\LINE:Net_248\,
 		signal2=>\LINE:Net_235\);
 \LINE:IRQ\:cy_isr_v1_0
-	GENERIC MAP(int_type=>"10")
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
 	PORT MAP(int_signal=>Net_778);
 \LINE:theACLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -3123,9 +3127,9 @@ POT_1:cy_psoc3_pins_v1_10
 		divisor=>0,
 		period=>"625001562.503906",
 		is_direct=>'0',
-		is_digital=>'1')
-	PORT MAP(clock_out=>\LINE:Net_376\,
-		dig_domain_out=>open);
+		is_digital=>'0')
+	PORT MAP(clock_out=>\LINE:Net_385\,
+		dig_domain_out=>\LINE:Net_381\);
 \LINE:ADC_SAR\:cy_psoc5_sar_v2_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(vplus=>Net_775,
@@ -3133,8 +3137,8 @@ POT_1:cy_psoc3_pins_v1_10
 		ext_pin=>\LINE:Net_215\,
 		vrefhi_out=>\LINE:Net_257\,
 		vref=>\LINE:Net_248\,
-		clock=>\LINE:Net_376\,
-		pump_clock=>\LINE:Net_376\,
+		clock=>\LINE:Net_385\,
+		pump_clock=>\LINE:Net_385\,
 		sof_udb=>zero,
 		clk_udb=>zero,
 		vp_ctl_udb=>(zero, zero, zero, zero),
@@ -3212,14 +3216,14 @@ L3:cy_psoc3_pins_v1_10
 		pin_mode=>"O",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -3282,14 +3286,14 @@ S0:cy_psoc3_pins_v1_10
 		pin_mode=>"I",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -3352,14 +3356,14 @@ S1:cy_psoc3_pins_v1_10
 		pin_mode=>"I",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -3422,14 +3426,14 @@ S2:cy_psoc3_pins_v1_10
 		pin_mode=>"I",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -3492,14 +3496,14 @@ S3:cy_psoc3_pins_v1_10
 		pin_mode=>"I",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -3586,7 +3590,8 @@ Debounce:cy_clock_v1_0
 	PORT MAP(x=>zero,
 		y=>\Div2:MODULE_3:g2:a0:g1:z1:s0:g1:u0:c_8\);
 SampleVraag:cy_isr_v1_0
-	GENERIC MAP(int_type=>"10")
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
 	PORT MAP(int_signal=>Net_50);
 \AnalogeIngang_R:ABuf\:cy_psoc3_abuf_v1_0
 	GENERIC MAP(cy_registers=>"")
@@ -3628,14 +3633,14 @@ AnR_uit:cy_psoc3_pins_v1_10
 		pin_mode=>"A",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'1',
 		sw_only=>'0',
@@ -3698,14 +3703,14 @@ AnR_in:cy_psoc3_pins_v1_10
 		pin_mode=>"A",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'1',
 		sw_only=>'0',
@@ -3778,14 +3783,14 @@ AnL_uit:cy_psoc3_pins_v1_10
 		pin_mode=>"A",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'1',
 		sw_only=>'0',
@@ -3848,14 +3853,14 @@ AnL_in:cy_psoc3_pins_v1_10
 		pin_mode=>"A",
 		por_state=>4,
 		sio_group_cnt=>0,
-		sio_hifreq=>"",
+		sio_hifreq=>"00000000",
 		sio_hyst=>"1",
 		sio_ibuf=>"00000000",
 		sio_info=>"00",
 		sio_obuf=>"00000000",
 		sio_refsel=>"00000000",
 		sio_vtrip=>"00000000",
-		sio_vohsel=>"",
+		sio_vohsel=>"00000000",
 		slew_rate=>"0",
 		spanning=>'1',
 		sw_only=>'0',
@@ -3898,6 +3903,10 @@ AnL_in:cy_psoc3_pins_v1_10
 		dmareq_1=>Net_1133,
 		dmareq_2=>Net_1134,
 		interrupt=>Net_1135);
+Net_1050:cy_dff
+	PORT MAP(d=>Net_1050D,
+		clk=>Net_727,
+		q=>Net_1050);
 \I2S_Codec_audio:bI2S:reset\:cy_dff
 	PORT MAP(d=>\I2S_Codec_audio:bI2S:reset\\D\,
 		clk=>\I2S_Codec_audio:bI2S:op_clk\,
@@ -3978,10 +3987,6 @@ AnL_in:cy_psoc3_pins_v1_10
 	PORT MAP(d=>\I2S_Codec_audio:bI2S:rx_data_in_0\\D\,
 		clk=>\I2S_Codec_audio:bI2S:op_clk\,
 		q=>\I2S_Codec_audio:bI2S:rx_data_in_0\);
-Net_1050:cy_dff
-	PORT MAP(d=>Net_1050D,
-		clk=>Net_727,
-		q=>Net_1050);
 \I2C_Codec_control:bI2C_UDB:sda_in_reg\:cy_dff
 	PORT MAP(d=>\I2C_Codec_control:Net_1109_1\,
 		clk=>\I2C_Codec_control:bI2C_UDB:op_clk\,

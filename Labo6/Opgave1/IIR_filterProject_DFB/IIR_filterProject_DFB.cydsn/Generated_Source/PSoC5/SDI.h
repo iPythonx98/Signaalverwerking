@@ -1,14 +1,14 @@
 /*******************************************************************************
 * File Name: SDI.h  
-* Version 2.10
+* Version 2.20
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains Pin function prototypes and register defines
 *
 * Note:
 *
 ********************************************************************************
-* Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions, 
 * disclaimers, and limitations in the end user license agreement accompanying 
 * the software package with which this file was provided.
@@ -22,12 +22,6 @@
 #include "cypins.h"
 #include "SDI_aliases.h"
 
-/* Check to see if required defines such as CY_PSOC5A are available */
-/* They are defined starting with cy_boot v3.0 */
-#if !defined (CY_PSOC5A)
-    #error Component cy_pins_v2_10 requires cy_boot v3.0 or later
-#endif /* (CY_PSOC5A) */
-
 /* APIs are not generated for P15[7:6] */
 #if !(CY_PSOC5A &&\
 	 SDI__PORT == 15 && ((SDI__MASK & 0xC0) != 0))
@@ -37,31 +31,64 @@
 *        Function Prototypes             
 ***************************************/    
 
-void    SDI_Write(uint8 value) ;
-void    SDI_SetDriveMode(uint8 mode) ;
-uint8   SDI_ReadDataReg(void) ;
-uint8   SDI_Read(void) ;
-uint8   SDI_ClearInterrupt(void) ;
-
+/**
+* \addtogroup group_general
+* @{
+*/
+void    SDI_Write(uint8 value);
+void    SDI_SetDriveMode(uint8 mode);
+uint8   SDI_ReadDataReg(void);
+uint8   SDI_Read(void);
+void    SDI_SetInterruptMode(uint16 position, uint16 mode);
+uint8   SDI_ClearInterrupt(void);
+/** @} general */
 
 /***************************************
 *           API Constants        
 ***************************************/
-
-/* Drive Modes */
-#define SDI_DM_ALG_HIZ         PIN_DM_ALG_HIZ
-#define SDI_DM_DIG_HIZ         PIN_DM_DIG_HIZ
-#define SDI_DM_RES_UP          PIN_DM_RES_UP
-#define SDI_DM_RES_DWN         PIN_DM_RES_DWN
-#define SDI_DM_OD_LO           PIN_DM_OD_LO
-#define SDI_DM_OD_HI           PIN_DM_OD_HI
-#define SDI_DM_STRONG          PIN_DM_STRONG
-#define SDI_DM_RES_UPDWN       PIN_DM_RES_UPDWN
-
+/**
+* \addtogroup group_constants
+* @{
+*/
+    /** \addtogroup driveMode Drive mode constants
+     * \brief Constants to be passed as "mode" parameter in the SDI_SetDriveMode() function.
+     *  @{
+     */
+        #define SDI_DM_ALG_HIZ         PIN_DM_ALG_HIZ
+        #define SDI_DM_DIG_HIZ         PIN_DM_DIG_HIZ
+        #define SDI_DM_RES_UP          PIN_DM_RES_UP
+        #define SDI_DM_RES_DWN         PIN_DM_RES_DWN
+        #define SDI_DM_OD_LO           PIN_DM_OD_LO
+        #define SDI_DM_OD_HI           PIN_DM_OD_HI
+        #define SDI_DM_STRONG          PIN_DM_STRONG
+        #define SDI_DM_RES_UPDWN       PIN_DM_RES_UPDWN
+    /** @} driveMode */
+/** @} group_constants */
+    
 /* Digital Port Constants */
 #define SDI_MASK               SDI__MASK
 #define SDI_SHIFT              SDI__SHIFT
 #define SDI_WIDTH              1u
+
+/* Interrupt constants */
+#if defined(SDI__INTSTAT)
+/**
+* \addtogroup group_constants
+* @{
+*/
+    /** \addtogroup intrMode Interrupt constants
+     * \brief Constants to be passed as "mode" parameter in SDI_SetInterruptMode() function.
+     *  @{
+     */
+        #define SDI_INTR_NONE      (uint16)(0x0000u)
+        #define SDI_INTR_RISING    (uint16)(0x0001u)
+        #define SDI_INTR_FALLING   (uint16)(0x0002u)
+        #define SDI_INTR_BOTH      (uint16)(0x0003u) 
+    /** @} intrMode */
+/** @} group_constants */
+
+    #define SDI_INTR_MASK      (0x01u) 
+#endif /* (SDI__INTSTAT) */
 
 
 /***************************************
@@ -114,13 +141,21 @@ uint8   SDI_ClearInterrupt(void) ;
 /* Sync Output Enable Registers */
 #define SDI_PRTDSI__SYNC_OUT       (* (reg8 *) SDI__PRTDSI__SYNC_OUT) 
 
+/* SIO registers */
+#if defined(SDI__SIO_CFG)
+    #define SDI_SIO_HYST_EN        (* (reg8 *) SDI__SIO_HYST_EN)
+    #define SDI_SIO_REG_HIFREQ     (* (reg8 *) SDI__SIO_REG_HIFREQ)
+    #define SDI_SIO_CFG            (* (reg8 *) SDI__SIO_CFG)
+    #define SDI_SIO_DIFF           (* (reg8 *) SDI__SIO_DIFF)
+#endif /* (SDI__SIO_CFG) */
 
-#if defined(SDI__INTSTAT)  /* Interrupt Registers */
-
-    #define SDI_INTSTAT                (* (reg8 *) SDI__INTSTAT)
-    #define SDI_SNAP                   (* (reg8 *) SDI__SNAP)
-
-#endif /* Interrupt Registers */
+/* Interrupt Registers */
+#if defined(SDI__INTSTAT)
+    #define SDI_INTSTAT            (* (reg8 *) SDI__INTSTAT)
+    #define SDI_SNAP               (* (reg8 *) SDI__SNAP)
+    
+	#define SDI_0_INTTYPE_REG 		(* (reg8 *) SDI__0__INTTYPE)
+#endif /* (SDI__INTSTAT) */
 
 #endif /* CY_PSOC5A... */
 

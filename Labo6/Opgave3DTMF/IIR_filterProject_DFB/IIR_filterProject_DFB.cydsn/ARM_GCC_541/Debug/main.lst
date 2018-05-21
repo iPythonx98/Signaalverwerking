@@ -1,0 +1,1628 @@
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	rxBuff,4,4
+  20              		.comm	txBuff,4,4
+  21              		.comm	sampleIn,4,4
+  22              		.comm	sampleUit,4,4
+  23              		.comm	HPvolume,1,1
+  24              		.comm	displayVolume,1,1
+  25              		.comm	LineVolume,1,1
+  26              		.global	ClipIndicator
+  27              		.data
+  28              		.type	ClipIndicator, %object
+  29              		.size	ClipIndicator, 1
+  30              	ClipIndicator:
+  31 0000 20       		.byte	32
+  32              		.comm	maxL,4,4
+  33              		.comm	maxR,4,4
+  34              		.comm	cyclusTel,4,4
+  35              		.comm	S1,1,1
+  36              		.section	.text.berekenMetSamples,"ax",%progbits
+  37              		.align	2
+  38              		.global	berekenMetSamples
+  39              		.thumb
+  40              		.thumb_func
+  41              		.type	berekenMetSamples, %function
+  42              	berekenMetSamples:
+  43              	.LFB63:
+  44              		.file 1 "main.c"
+   1:main.c        **** /*******************************************************************************
+   2:main.c        **** *
+   3:main.c        **** * Naam student 1:
+   4:main.c        **** * Naam student 2:
+   5:main.c        **** *
+   6:main.c        **** * Datum: 
+   7:main.c        **** *
+   8:main.c        **** * File Naam: main.c
+   9:main.c        **** * Projectnaam: IIR_filterproject
+  10:main.c        **** * Versie: 2.0 10/2/2016
+  11:main.c        **** * Author: Piet Coussens 
+  12:main.c        **** *
+  13:main.c        **** * Beschrijving:
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 2
+
+
+  14:main.c        **** *  Demo programma voor het samplen van audio via de codec
+  15:main.c        **** *
+  16:main.c        **** * Gebruikte instellingen I2S:
+  17:main.c        **** *   Direction:           Tx and Rx
+  18:main.c        **** *   WordSelect:          32 bits
+  19:main.c        **** *   DataBits:            16 bits
+  20:main.c        **** *   DataInterleaving:    Interleaved
+  21:main.c        **** *   DMA Request:         Tx and Rx
+  22:main.c        **** *   Rx clip detection:   Enabled op 120
+  23:main.c        **** *
+  24:main.c        **** * Gebruikte instellingen codec
+  25:main.c        **** *   Via P1 is het uitgangsniveau van de hoofdtelefoon in te stellen (tussen 0 en 79 dB)
+  26:main.c        **** *   Via P2 is de gevoeligheid van de line-ingang in te stellen (tussen 0 en 31 dB)
+  27:main.c        **** *   CLIP is een oversturingsindicator die oplicht als het ingangsniveau te hoog is.
+  28:main.c        **** *     Deze LED gaat aan als de sample-waarde boven de clip-treshold uitkomt (MSB=120)
+  29:main.c        **** *     Regel P2 zo dat deze LED uit blijft. 
+  30:main.c        **** *   CLIP kan ook ingesteld worden om op te lichten als de sample-interrupt actief is. 
+  31:main.c        **** *     Daarmee kan de lengte van de sample-interrupt gemeten worden
+  32:main.c        **** *     Zet daartoe de define CLIPnTIME in de file dma.h op 0 i.p.v. op 1
+  33:main.c        **** *   L0 licht op als filter A niet op tijd berekend kan worden
+  34:main.c        **** *   L1 licht op als filter B niet op tijd berekend kan worden
+  35:main.c        **** *
+  36:main.c        **** *   Codec-instellingen: inputLevel: 22, HPlevel: 75, ingangsignaal: 2Vpp
+  37:main.c        **** *
+  38:main.c        **** ********************************************************************************/
+  39:main.c        **** 
+  40:main.c        **** #include <project.h>
+  41:main.c        **** #include <dspSystem.h>
+  42:main.c        **** #include <dma.h>
+  43:main.c        **** #include <audioCodec.h>
+  44:main.c        **** #include <stdlib.h>
+  45:main.c        **** 
+  46:main.c        **** // zet filters aan (1) of uit (0) in linker of rechter kanaal
+  47:main.c        **** #define USE_FILTER_LINKS 1
+  48:main.c        **** #define USE_FILTER_RECHTS 1
+  49:main.c        **** // LCD-tekst
+  50:main.c        **** #define TITEL1 "bandsperfilter "
+  51:main.c        **** #define TITEL2 "2e orde 100Hz & 300Hz"
+  52:main.c        **** 
+  53:main.c        **** 
+  54:main.c        **** // Globale variabelen
+  55:main.c        **** uint8 HPvolume, displayVolume, LineVolume, ClipIndicator = ' ';
+  56:main.c        **** int maxL, maxR;
+  57:main.c        **** uint32 cyclusTel;
+  58:main.c        **** uint8 S1;
+  59:main.c        **** 
+  60:main.c        **** void berekenMetSamples(){
+  45              		.loc 1 60 0
+  46              		.cfi_startproc
+  47              		@ args = 0, pretend = 0, frame = 0
+  48              		@ frame_needed = 1, uses_anonymous_args = 0
+  49 0000 80B5     		push	{r7, lr}
+  50              		.cfi_def_cfa_offset 8
+  51              		.cfi_offset 7, -8
+  52              		.cfi_offset 14, -4
+  53 0002 00AF     		add	r7, sp, #0
+  54              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 3
+
+
+  61:main.c        ****     // zet hier je code voor de berekeningen met de samples
+  62:main.c        ****     // check of filterblok klaar is, indien niet, zet L0
+  63:main.c        **** 
+  64:main.c        ****     S1 = S0_Read();
+  55              		.loc 1 64 0
+  56 0004 FFF7FEFF 		bl	S0_Read
+  57 0008 0346     		mov	r3, r0
+  58 000a 1A46     		mov	r2, r3
+  59 000c 4E4B     		ldr	r3, .L12
+  60 000e 1A70     		strb	r2, [r3]
+  65:main.c        **** #if (USE_FILTER_LINKS == 1)
+  66:main.c        ****     if (S1 == 0)
+  61              		.loc 1 66 0
+  62 0010 4D4B     		ldr	r3, .L12
+  63 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  64 0014 002B     		cmp	r3, #0
+  65 0016 05D1     		bne	.L2
+  67:main.c        ****     {
+  68:main.c        ****          sampleUit[LINKS] = sampleIn[LINKS];
+  66              		.loc 1 68 0
+  67 0018 4C4B     		ldr	r3, .L12+4
+  68 001a B3F90020 		ldrsh	r2, [r3]
+  69 001e 4C4B     		ldr	r3, .L12+8
+  70 0020 1A80     		strh	r2, [r3]	@ movhi
+  71 0022 2BE0     		b	.L3
+  72              	.L2:
+  69:main.c        ****     } else {
+  70:main.c        ****        
+  71:main.c        ****     if (Filter_IsInterruptChannelA() == 0) {
+  73              		.loc 1 71 0
+  74 0024 4B4B     		ldr	r3, .L12+12
+  75 0026 1B78     		ldrb	r3, [r3]
+  76 0028 DBB2     		uxtb	r3, r3
+  77 002a 03F00803 		and	r3, r3, #8
+  78 002e 002B     		cmp	r3, #0
+  79 0030 0CD1     		bne	.L4
+  72:main.c        ****         sampleUit[LINKS] = 0;
+  80              		.loc 1 72 0
+  81 0032 474B     		ldr	r3, .L12+8
+  82 0034 0022     		movs	r2, #0
+  83 0036 1A80     		strh	r2, [r3]	@ movhi
+  73:main.c        ****         LEDs_Write(LEDs_Read() | 0x01);
+  84              		.loc 1 73 0
+  85 0038 FFF7FEFF 		bl	LEDs_Read
+  86 003c 0346     		mov	r3, r0
+  87 003e 43F00103 		orr	r3, r3, #1
+  88 0042 DBB2     		uxtb	r3, r3
+  89 0044 1846     		mov	r0, r3
+  90 0046 FFF7FEFF 		bl	LEDs_Write
+  91 004a 0FE0     		b	.L5
+  92              	.L4:
+  74:main.c        ****     }
+  75:main.c        ****     else {
+  76:main.c        ****         sampleUit[LINKS] = Filter_Read16(Filter_CHANNEL_A);
+  93              		.loc 1 76 0
+  94 004c 0020     		movs	r0, #0
+  95 004e FFF7FEFF 		bl	Filter_Read16
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 4
+
+
+  96 0052 0346     		mov	r3, r0
+  97 0054 1AB2     		sxth	r2, r3
+  98 0056 3E4B     		ldr	r3, .L12+8
+  99 0058 1A80     		strh	r2, [r3]	@ movhi
+  77:main.c        ****         LEDs_Write(LEDs_Read() & 0xE);
+ 100              		.loc 1 77 0
+ 101 005a FFF7FEFF 		bl	LEDs_Read
+ 102 005e 0346     		mov	r3, r0
+ 103 0060 03F00E03 		and	r3, r3, #14
+ 104 0064 DBB2     		uxtb	r3, r3
+ 105 0066 1846     		mov	r0, r3
+ 106 0068 FFF7FEFF 		bl	LEDs_Write
+ 107              	.L5:
+  78:main.c        ****     }
+  79:main.c        ****     Filter_Write16(Filter_CHANNEL_A, sampleIn[LINKS]);
+ 108              		.loc 1 79 0
+ 109 006c 374B     		ldr	r3, .L12+4
+ 110 006e B3F90030 		ldrsh	r3, [r3]
+ 111 0072 9BB2     		uxth	r3, r3
+ 112 0074 1946     		mov	r1, r3
+ 113 0076 0020     		movs	r0, #0
+ 114 0078 FFF7FEFF 		bl	Filter_Write16
+ 115              	.L3:
+  80:main.c        ****     }
+  81:main.c        **** #else
+  82:main.c        ****     sampleUit[LINKS] = sampleIn[LINKS];
+  83:main.c        **** #endif
+  84:main.c        **** #if USE_FILTER_RECHTS == 1
+  85:main.c        ****     if (S1 == 0)
+ 116              		.loc 1 85 0
+ 117 007c 324B     		ldr	r3, .L12
+ 118 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 119 0080 002B     		cmp	r3, #0
+ 120 0082 05D1     		bne	.L6
+  86:main.c        ****     {
+  87:main.c        ****          sampleUit[RECHTS] = sampleIn[RECHTS];
+ 121              		.loc 1 87 0
+ 122 0084 314B     		ldr	r3, .L12+4
+ 123 0086 B3F90220 		ldrsh	r2, [r3, #2]
+ 124 008a 314B     		ldr	r3, .L12+8
+ 125 008c 5A80     		strh	r2, [r3, #2]	@ movhi
+ 126 008e 2BE0     		b	.L7
+ 127              	.L6:
+  88:main.c        ****     } else {
+  89:main.c        ****     if (Filter_IsInterruptChannelB() == 0) {
+ 128              		.loc 1 89 0
+ 129 0090 304B     		ldr	r3, .L12+12
+ 130 0092 1B78     		ldrb	r3, [r3]
+ 131 0094 DBB2     		uxtb	r3, r3
+ 132 0096 03F01003 		and	r3, r3, #16
+ 133 009a 002B     		cmp	r3, #0
+ 134 009c 0CD1     		bne	.L8
+  90:main.c        ****         sampleUit[RECHTS] = 0;
+ 135              		.loc 1 90 0
+ 136 009e 2C4B     		ldr	r3, .L12+8
+ 137 00a0 0022     		movs	r2, #0
+ 138 00a2 5A80     		strh	r2, [r3, #2]	@ movhi
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 5
+
+
+  91:main.c        ****         LEDs_Write(LEDs_Read() | 0x02);
+ 139              		.loc 1 91 0
+ 140 00a4 FFF7FEFF 		bl	LEDs_Read
+ 141 00a8 0346     		mov	r3, r0
+ 142 00aa 43F00203 		orr	r3, r3, #2
+ 143 00ae DBB2     		uxtb	r3, r3
+ 144 00b0 1846     		mov	r0, r3
+ 145 00b2 FFF7FEFF 		bl	LEDs_Write
+ 146 00b6 0FE0     		b	.L9
+ 147              	.L8:
+  92:main.c        ****     }
+  93:main.c        ****     else {
+  94:main.c        ****         sampleUit[RECHTS] = Filter_Read16(Filter_CHANNEL_B);
+ 148              		.loc 1 94 0
+ 149 00b8 0120     		movs	r0, #1
+ 150 00ba FFF7FEFF 		bl	Filter_Read16
+ 151 00be 0346     		mov	r3, r0
+ 152 00c0 1AB2     		sxth	r2, r3
+ 153 00c2 234B     		ldr	r3, .L12+8
+ 154 00c4 5A80     		strh	r2, [r3, #2]	@ movhi
+  95:main.c        ****         LEDs_Write(LEDs_Read() & 0xD);
+ 155              		.loc 1 95 0
+ 156 00c6 FFF7FEFF 		bl	LEDs_Read
+ 157 00ca 0346     		mov	r3, r0
+ 158 00cc 03F00D03 		and	r3, r3, #13
+ 159 00d0 DBB2     		uxtb	r3, r3
+ 160 00d2 1846     		mov	r0, r3
+ 161 00d4 FFF7FEFF 		bl	LEDs_Write
+ 162              	.L9:
+  96:main.c        ****     }
+  97:main.c        ****     Filter_Write16(Filter_CHANNEL_B, sampleIn[RECHTS]);
+ 163              		.loc 1 97 0
+ 164 00d8 1C4B     		ldr	r3, .L12+4
+ 165 00da B3F90230 		ldrsh	r3, [r3, #2]
+ 166 00de 9BB2     		uxth	r3, r3
+ 167 00e0 1946     		mov	r1, r3
+ 168 00e2 0120     		movs	r0, #1
+ 169 00e4 FFF7FEFF 		bl	Filter_Write16
+ 170              	.L7:
+  98:main.c        ****     }
+  99:main.c        **** #else
+ 100:main.c        ****     sampleUit[RECHTS] = sampleIn[RECHTS];
+ 101:main.c        **** #endif
+ 102:main.c        ****     
+ 103:main.c        ****     // Dit is niet strikt nodig, maar dient om het maximum signaalniveau op het LCD te tonen
+ 104:main.c        ****     // Deze berekening kost 1,5 us
+ 105:main.c        ****     maxL = MAX(ABS(sampleUit[LINKS]) , maxL);
+ 171              		.loc 1 105 0
+ 172 00e8 194B     		ldr	r3, .L12+8
+ 173 00ea B3F90030 		ldrsh	r3, [r3]
+ 174 00ee 83EAE372 		eor	r2, r3, r3, asr #31
+ 175 00f2 A2EBE372 		sub	r2, r2, r3, asr #31
+ 176 00f6 184B     		ldr	r3, .L12+16
+ 177 00f8 1B68     		ldr	r3, [r3]
+ 178 00fa 9342     		cmp	r3, r2
+ 179 00fc B8BF     		it	lt
+ 180 00fe 1346     		movlt	r3, r2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 6
+
+
+ 181 0100 154A     		ldr	r2, .L12+16
+ 182 0102 1360     		str	r3, [r2]
+ 106:main.c        ****     maxR = MAX(ABS(sampleUit[RECHTS]), maxR);
+ 183              		.loc 1 106 0
+ 184 0104 124B     		ldr	r3, .L12+8
+ 185 0106 B3F90230 		ldrsh	r3, [r3, #2]
+ 186 010a 83EAE372 		eor	r2, r3, r3, asr #31
+ 187 010e A2EBE372 		sub	r2, r2, r3, asr #31
+ 188 0112 124B     		ldr	r3, .L12+20
+ 189 0114 1B68     		ldr	r3, [r3]
+ 190 0116 9342     		cmp	r3, r2
+ 191 0118 B8BF     		it	lt
+ 192 011a 1346     		movlt	r3, r2
+ 193 011c 0F4A     		ldr	r2, .L12+20
+ 194 011e 1360     		str	r3, [r2]
+ 107:main.c        ****     if (maxL > 2000 && maxR > 2000) {
+ 195              		.loc 1 107 0
+ 196 0120 0D4B     		ldr	r3, .L12+16
+ 197 0122 1B68     		ldr	r3, [r3]
+ 198 0124 B3F5FA6F 		cmp	r3, #2000
+ 199 0128 08DD     		ble	.L10
+ 200              		.loc 1 107 0 is_stmt 0 discriminator 1
+ 201 012a 0C4B     		ldr	r3, .L12+20
+ 202 012c 1B68     		ldr	r3, [r3]
+ 203 012e B3F5FA6F 		cmp	r3, #2000
+ 204 0132 03DD     		ble	.L10
+ 108:main.c        ****         LEDs_Write(1);
+ 205              		.loc 1 108 0 is_stmt 1
+ 206 0134 0120     		movs	r0, #1
+ 207 0136 FFF7FEFF 		bl	LEDs_Write
+ 208 013a 02E0     		b	.L11
+ 209              	.L10:
+ 109:main.c        ****     } else {
+ 110:main.c        ****         LEDs_Write(0);
+ 210              		.loc 1 110 0
+ 211 013c 0020     		movs	r0, #0
+ 212 013e FFF7FEFF 		bl	LEDs_Write
+ 213              	.L11:
+ 111:main.c        ****     }
+ 112:main.c        **** }
+ 214              		.loc 1 112 0
+ 215 0142 00BF     		nop
+ 216 0144 80BD     		pop	{r7, pc}
+ 217              	.L13:
+ 218 0146 00BF     		.align	2
+ 219              	.L12:
+ 220 0148 00000000 		.word	S1
+ 221 014c 00000000 		.word	sampleIn
+ 222 0150 00000000 		.word	sampleUit
+ 223 0154 84C70040 		.word	1073792900
+ 224 0158 00000000 		.word	maxL
+ 225 015c 00000000 		.word	maxR
+ 226              		.cfi_endproc
+ 227              	.LFE63:
+ 228              		.size	berekenMetSamples, .-berekenMetSamples
+ 229              		.section	.rodata
+ 230              		.align	2
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 7
+
+
+ 231              	.LC0:
+ 232 0000 62616E64 		.ascii	"bandsperfilter \000"
+ 232      73706572 
+ 232      66696C74 
+ 232      65722000 
+ 233              		.align	2
+ 234              	.LC1:
+ 235 0010 3265206F 		.ascii	"2e orde 100Hz & 300Hz\000"
+ 235      72646520 
+ 235      31303048 
+ 235      7A202620 
+ 235      33303048 
+ 236 0026 0000     		.align	2
+ 237              	.LC2:
+ 238 0028 50313A20 		.ascii	"P1: Vol uitgang\000"
+ 238      566F6C20 
+ 238      75697467 
+ 238      616E6700 
+ 239              		.align	2
+ 240              	.LC3:
+ 241 0038 50323A20 		.ascii	"P2: Level ingang\000"
+ 241      4C657665 
+ 241      6C20696E 
+ 241      67616E67 
+ 241      00
+ 242 0049 000000   		.align	2
+ 243              	.LC4:
+ 244 004c 4C65763A 		.ascii	"Lev:   HP:  \000"
+ 244      20202048 
+ 244      503A2020 
+ 244      00
+ 245 0059 000000   		.align	2
+ 246              	.LC5:
+ 247 005c 4C696E65 		.ascii	"Line:\000"
+ 247      3A00
+ 248              		.section	.text.main,"ax",%progbits
+ 249              		.align	2
+ 250              		.global	main
+ 251              		.thumb
+ 252              		.thumb_func
+ 253              		.type	main, %function
+ 254              	main:
+ 255              	.LFB64:
+ 113:main.c        **** 
+ 114:main.c        **** int main()
+ 115:main.c        **** {   
+ 256              		.loc 1 115 0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 1, uses_anonymous_args = 0
+ 260 0000 80B5     		push	{r7, lr}
+ 261              		.cfi_def_cfa_offset 8
+ 262              		.cfi_offset 7, -8
+ 263              		.cfi_offset 14, -4
+ 264 0002 00AF     		add	r7, sp, #0
+ 265              		.cfi_def_cfa_register 7
+ 116:main.c        ****     // Setup-gedeelte van het hoofdprogramma
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 8
+
+
+ 117:main.c        ****     LEDs_Write(LEDs_Read() | 0x03);
+ 266              		.loc 1 117 0
+ 267 0004 FFF7FEFF 		bl	LEDs_Read
+ 268 0008 0346     		mov	r3, r0
+ 269 000a 43F00303 		orr	r3, r3, #3
+ 270 000e DBB2     		uxtb	r3, r3
+ 271 0010 1846     		mov	r0, r3
+ 272 0012 FFF7FEFF 		bl	LEDs_Write
+ 118:main.c        ****     CyGlobalIntEnable;              // Enable global interrupts
+ 273              		.loc 1 118 0
+ 274              		.syntax unified
+ 275              	@ 118 "main.c" 1
+ 276 0016 62B6     		CPSIE   i
+ 277              	@ 0 "" 2
+ 119:main.c        ****     I2C_Codec_control_Start();      // I2C start
+ 278              		.loc 1 119 0
+ 279              		.thumb
+ 280              		.syntax unified
+ 281 0018 FFF7FEFF 		bl	I2C_Codec_control_Start
+ 120:main.c        ****     LCD_Start();
+ 282              		.loc 1 120 0
+ 283 001c FFF7FEFF 		bl	LCD_Start
+ 121:main.c        ****     LCD_WriteControl(LCD_CLEAR_DISPLAY);
+ 284              		.loc 1 121 0
+ 285 0020 0120     		movs	r0, #1
+ 286 0022 FFF7FEFF 		bl	LCD_WriteControl
+ 122:main.c        ****     LCD_Position(0u, 0u);
+ 287              		.loc 1 122 0
+ 288 0026 0021     		movs	r1, #0
+ 289 0028 0020     		movs	r0, #0
+ 290 002a FFF7FEFF 		bl	LCD_Position
+ 123:main.c        ****     LCD_PrintString(TITEL1);
+ 291              		.loc 1 123 0
+ 292 002e 9F48     		ldr	r0, .L28
+ 293 0030 FFF7FEFF 		bl	LCD_PrintString
+ 124:main.c        ****     LCD_Position(1u, 0u);
+ 294              		.loc 1 124 0
+ 295 0034 0021     		movs	r1, #0
+ 296 0036 0120     		movs	r0, #1
+ 297 0038 FFF7FEFF 		bl	LCD_Position
+ 125:main.c        ****     LCD_PrintString(TITEL2);
+ 298              		.loc 1 125 0
+ 299 003c 9C48     		ldr	r0, .L28+4
+ 300 003e FFF7FEFF 		bl	LCD_PrintString
+ 126:main.c        ****     CyDelay(1000);
+ 301              		.loc 1 126 0
+ 302 0042 4FF47A70 		mov	r0, #1000
+ 303 0046 FFF7FEFF 		bl	CyDelay
+ 127:main.c        ****     LCD_WriteControl(LCD_CLEAR_DISPLAY);
+ 304              		.loc 1 127 0
+ 305 004a 0120     		movs	r0, #1
+ 306 004c FFF7FEFF 		bl	LCD_WriteControl
+ 128:main.c        ****     LCD_Position(0u, 0u);
+ 307              		.loc 1 128 0
+ 308 0050 0021     		movs	r1, #0
+ 309 0052 0020     		movs	r0, #0
+ 310 0054 FFF7FEFF 		bl	LCD_Position
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 9
+
+
+ 129:main.c        ****     LCD_PrintString("P1: Vol uitgang");
+ 311              		.loc 1 129 0
+ 312 0058 9648     		ldr	r0, .L28+8
+ 313 005a FFF7FEFF 		bl	LCD_PrintString
+ 130:main.c        ****     LCD_Position(1u, 0u);
+ 314              		.loc 1 130 0
+ 315 005e 0021     		movs	r1, #0
+ 316 0060 0120     		movs	r0, #1
+ 317 0062 FFF7FEFF 		bl	LCD_Position
+ 131:main.c        ****     LCD_PrintString("P2: Level ingang");
+ 318              		.loc 1 131 0
+ 319 0066 9448     		ldr	r0, .L28+12
+ 320 0068 FFF7FEFF 		bl	LCD_PrintString
+ 132:main.c        ****     CyDelay(500);
+ 321              		.loc 1 132 0
+ 322 006c 4FF4FA70 		mov	r0, #500
+ 323 0070 FFF7FEFF 		bl	CyDelay
+ 133:main.c        ****     LCD_WriteControl(LCD_CLEAR_DISPLAY);
+ 324              		.loc 1 133 0
+ 325 0074 0120     		movs	r0, #1
+ 326 0076 FFF7FEFF 		bl	LCD_WriteControl
+ 134:main.c        ****     LCD_Position(0u, 0u);
+ 327              		.loc 1 134 0
+ 328 007a 0021     		movs	r1, #0
+ 329 007c 0020     		movs	r0, #0
+ 330 007e FFF7FEFF 		bl	LCD_Position
+ 135:main.c        ****     LCD_PrintString("Lev:   HP:  ");
+ 331              		.loc 1 135 0
+ 332 0082 8E48     		ldr	r0, .L28+16
+ 333 0084 FFF7FEFF 		bl	LCD_PrintString
+ 136:main.c        ****     LCD_Position(1u, 0u);
+ 334              		.loc 1 136 0
+ 335 0088 0021     		movs	r1, #0
+ 336 008a 0120     		movs	r0, #1
+ 337 008c FFF7FEFF 		bl	LCD_Position
+ 137:main.c        ****     LCD_PrintString("Line:");
+ 338              		.loc 1 137 0
+ 339 0090 8B48     		ldr	r0, .L28+20
+ 340 0092 FFF7FEFF 		bl	LCD_PrintString
+ 138:main.c        ****     sampleUit[LINKS] = 0;
+ 341              		.loc 1 138 0
+ 342 0096 8B4B     		ldr	r3, .L28+24
+ 343 0098 0022     		movs	r2, #0
+ 344 009a 1A80     		strh	r2, [r3]	@ movhi
+ 139:main.c        ****     sampleUit[RECHTS]  = 0;
+ 345              		.loc 1 139 0
+ 346 009c 894B     		ldr	r3, .L28+24
+ 347 009e 0022     		movs	r2, #0
+ 348 00a0 5A80     		strh	r2, [r3, #2]	@ movhi
+ 140:main.c        ****     initCodec();                    // initialiseer codec
+ 349              		.loc 1 140 0
+ 350 00a2 FFF7FEFF 		bl	initCodec
+ 141:main.c        ****     VOL_Start();                    // start ADC in continious mode
+ 351              		.loc 1 141 0
+ 352 00a6 FFF7FEFF 		bl	VOL_Start
+ 142:main.c        ****     VOL_StartConvert();
+ 353              		.loc 1 142 0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 10
+
+
+ 354 00aa FFF7FEFF 		bl	VOL_StartConvert
+ 143:main.c        ****     LINE_Start();                   // start ADC in continious mode
+ 355              		.loc 1 143 0
+ 356 00ae FFF7FEFF 		bl	LINE_Start
+ 144:main.c        ****     LINE_StartConvert();
+ 357              		.loc 1 144 0
+ 358 00b2 FFF7FEFF 		bl	LINE_StartConvert
+ 145:main.c        **** 
+ 146:main.c        ****     LEDs_Write(1);
+ 359              		.loc 1 146 0
+ 360 00b6 0120     		movs	r0, #1
+ 361 00b8 FFF7FEFF 		bl	LEDs_Write
+ 147:main.c        ****     AnalogeIngang_L_Start();        // opamps starten
+ 362              		.loc 1 147 0
+ 363 00bc FFF7FEFF 		bl	AnalogeIngang_L_Start
+ 148:main.c        ****     AnalogeIngang_R_Start();
+ 364              		.loc 1 148 0
+ 365 00c0 FFF7FEFF 		bl	AnalogeIngang_R_Start
+ 149:main.c        **** 	// Filterblok starten, interrupt register bits aanzetten voor polling
+ 150:main.c        ****     Filter_Start(); 
+ 366              		.loc 1 150 0
+ 367 00c4 FFF7FEFF 		bl	Filter_Start
+ 151:main.c        ****     LCD_Position(0u, 15u);
+ 368              		.loc 1 151 0
+ 369 00c8 0F21     		movs	r1, #15
+ 370 00ca 0020     		movs	r0, #0
+ 371 00cc FFF7FEFF 		bl	LCD_Position
+ 152:main.c        **** #if USE_FILTER_LINKS == 1
+ 153:main.c        ****     Filter_INT_CTRL_REG |= (1 << Filter_CHANNEL_A);
+ 372              		.loc 1 153 0
+ 373 00d0 7D4A     		ldr	r2, .L28+28
+ 374 00d2 7D4B     		ldr	r3, .L28+28
+ 375 00d4 1B78     		ldrb	r3, [r3]
+ 376 00d6 DBB2     		uxtb	r3, r3
+ 377 00d8 43F00103 		orr	r3, r3, #1
+ 378 00dc DBB2     		uxtb	r3, r3
+ 379 00de 1370     		strb	r3, [r2]
+ 154:main.c        ****     LCD_PutChar('L');
+ 380              		.loc 1 154 0
+ 381 00e0 4C20     		movs	r0, #76
+ 382 00e2 FFF7FEFF 		bl	LCD_PutChar
+ 155:main.c        ****     LCD_Position(0u, 14u);
+ 383              		.loc 1 155 0
+ 384 00e6 0E21     		movs	r1, #14
+ 385 00e8 0020     		movs	r0, #0
+ 386 00ea FFF7FEFF 		bl	LCD_Position
+ 156:main.c        **** #endif
+ 157:main.c        **** #if USE_FILTER_RECHTS == 1
+ 158:main.c        ****     Filter_INT_CTRL_REG |= (1 << Filter_CHANNEL_B);
+ 387              		.loc 1 158 0
+ 388 00ee 764A     		ldr	r2, .L28+28
+ 389 00f0 754B     		ldr	r3, .L28+28
+ 390 00f2 1B78     		ldrb	r3, [r3]
+ 391 00f4 DBB2     		uxtb	r3, r3
+ 392 00f6 43F00203 		orr	r3, r3, #2
+ 393 00fa DBB2     		uxtb	r3, r3
+ 394 00fc 1370     		strb	r3, [r2]
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 11
+
+
+ 159:main.c        ****     LCD_PutChar('R');
+ 395              		.loc 1 159 0
+ 396 00fe 5220     		movs	r0, #82
+ 397 0100 FFF7FEFF 		bl	LCD_PutChar
+ 160:main.c        **** #endif
+ 161:main.c        ****     
+ 162:main.c        ****     I2S_EN_Write(1);                // zet de codec-klok voor I2S interface aan
+ 398              		.loc 1 162 0
+ 399 0104 0120     		movs	r0, #1
+ 400 0106 FFF7FEFF 		bl	I2S_EN_Write
+ 163:main.c        ****     
+ 164:main.c        ****     // Configureer DMAs voor zenden en ontvangen via I2S
+ 165:main.c        ****     DmaRxConfiguration();
+ 401              		.loc 1 165 0
+ 402 010a FFF7FEFF 		bl	DmaRxConfiguration
+ 166:main.c        ****     DmaTxConfiguration();
+ 403              		.loc 1 166 0
+ 404 010e FFF7FEFF 		bl	DmaTxConfiguration
+ 167:main.c        ****     
+ 168:main.c        ****     // Declareer interrupt-routines voor zenden en ontvangen via I2S
+ 169:main.c        ****     SampleVraag_StartEx(sampleIntTx_ISR);
+ 405              		.loc 1 169 0
+ 406 0112 6E48     		ldr	r0, .L28+32
+ 407 0114 FFF7FEFF 		bl	SampleVraag_StartEx
+ 170:main.c        ****     SampleKlaar_StartEx(sampleIntRx_ISR);
+ 408              		.loc 1 170 0
+ 409 0118 6D48     		ldr	r0, .L28+36
+ 410 011a FFF7FEFF 		bl	SampleKlaar_StartEx
+ 171:main.c        **** 
+ 172:main.c        ****     I2S_Codec_audio_Start();        // Start I2S-interface
+ 411              		.loc 1 172 0
+ 412 011e FFF7FEFF 		bl	I2S_Codec_audio_Start
+ 173:main.c        ****     I2S_Codec_audio_EnableRx();     // Enable Rx direction 
+ 413              		.loc 1 173 0
+ 414 0122 FFF7FEFF 		bl	I2S_Codec_audio_EnableRx
+ 174:main.c        ****     I2S_Codec_audio_EnableTx();     // Enable Tx direction 
+ 415              		.loc 1 174 0
+ 416 0126 FFF7FEFF 		bl	I2S_Codec_audio_EnableTx
+ 175:main.c        ****     LEDs_Write(LEDs_Read() & 0x0C);
+ 417              		.loc 1 175 0
+ 418 012a FFF7FEFF 		bl	LEDs_Read
+ 419 012e 0346     		mov	r3, r0
+ 420 0130 03F00C03 		and	r3, r3, #12
+ 421 0134 DBB2     		uxtb	r3, r3
+ 422 0136 1846     		mov	r0, r3
+ 423 0138 FFF7FEFF 		bl	LEDs_Write
+ 176:main.c        ****     
+ 177:main.c        ****     cyclusTel = 0;
+ 424              		.loc 1 177 0
+ 425 013c 654B     		ldr	r3, .L28+40
+ 426 013e 0022     		movs	r2, #0
+ 427 0140 1A60     		str	r2, [r3]
+ 428              	.L27:
+ 178:main.c        ****     for(;;) {
+ 179:main.c        ****         // Loop-gedeelte van het hoofdprogramma
+ 180:main.c        **** 
+ 181:main.c        ****         // Line gevoeligheid-instelling op het display
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 12
+
+
+ 182:main.c        ****         LineVolume = StelLineVolumeIn(LINE_GetResult8());
+ 429              		.loc 1 182 0
+ 430 0142 FFF7FEFF 		bl	LINE_GetResult8
+ 431 0146 0346     		mov	r3, r0
+ 432 0148 DBB2     		uxtb	r3, r3
+ 433 014a 1846     		mov	r0, r3
+ 434 014c FFF7FEFF 		bl	StelLineVolumeIn
+ 435 0150 0346     		mov	r3, r0
+ 436 0152 1A46     		mov	r2, r3
+ 437 0154 604B     		ldr	r3, .L28+44
+ 438 0156 1A70     		strb	r2, [r3]
+ 183:main.c        ****         LCD_Position(0u,4u);
+ 439              		.loc 1 183 0
+ 440 0158 0421     		movs	r1, #4
+ 441 015a 0020     		movs	r0, #0
+ 442 015c FFF7FEFF 		bl	LCD_Position
+ 184:main.c        ****         if (LineVolume < 10) LCD_PutChar(' ');
+ 443              		.loc 1 184 0
+ 444 0160 5D4B     		ldr	r3, .L28+44
+ 445 0162 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 446 0164 092B     		cmp	r3, #9
+ 447 0166 02D8     		bhi	.L15
+ 448              		.loc 1 184 0 is_stmt 0 discriminator 1
+ 449 0168 2020     		movs	r0, #32
+ 450 016a FFF7FEFF 		bl	LCD_PutChar
+ 451              	.L15:
+ 185:main.c        ****         LCD_PrintNumber(LineVolume);
+ 452              		.loc 1 185 0 is_stmt 1
+ 453 016e 5A4B     		ldr	r3, .L28+44
+ 454 0170 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 455 0172 1846     		mov	r0, r3
+ 456 0174 FFF7FEFF 		bl	LCD_PrintU32Number
+ 186:main.c        **** 
+ 187:main.c        ****         // Als niveau te hoog, dan meld dat op LCD
+ 188:main.c        ****         if(CLIP_Read()) ClipIndicator = '!';
+ 457              		.loc 1 188 0
+ 458 0178 FFF7FEFF 		bl	CLIP_Read
+ 459 017c 0346     		mov	r3, r0
+ 460 017e 002B     		cmp	r3, #0
+ 461 0180 02D0     		beq	.L16
+ 462              		.loc 1 188 0 is_stmt 0 discriminator 1
+ 463 0182 564B     		ldr	r3, .L28+48
+ 464 0184 2122     		movs	r2, #33
+ 465 0186 1A70     		strb	r2, [r3]
+ 466              	.L16:
+ 189:main.c        ****         
+ 190:main.c        ****         // HP volume-instelling op het display
+ 191:main.c        ****         HPvolume = StelHPvolumeIn(VOL_GetResult8());
+ 467              		.loc 1 191 0 is_stmt 1
+ 468 0188 FFF7FEFF 		bl	VOL_GetResult8
+ 469 018c 0346     		mov	r3, r0
+ 470 018e DBB2     		uxtb	r3, r3
+ 471 0190 1846     		mov	r0, r3
+ 472 0192 FFF7FEFF 		bl	StelHPvolumeIn
+ 473 0196 0346     		mov	r3, r0
+ 474 0198 1A46     		mov	r2, r3
+ 475 019a 514B     		ldr	r3, .L28+52
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 13
+
+
+ 476 019c 1A70     		strb	r2, [r3]
+ 192:main.c        ****         LCD_Position(0u,10u);
+ 477              		.loc 1 192 0
+ 478 019e 0A21     		movs	r1, #10
+ 479 01a0 0020     		movs	r0, #0
+ 480 01a2 FFF7FEFF 		bl	LCD_Position
+ 193:main.c        ****         displayVolume = HPvolume-48;
+ 481              		.loc 1 193 0
+ 482 01a6 4E4B     		ldr	r3, .L28+52
+ 483 01a8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 484 01aa 303B     		subs	r3, r3, #48
+ 485 01ac DAB2     		uxtb	r2, r3
+ 486 01ae 4D4B     		ldr	r3, .L28+56
+ 487 01b0 1A70     		strb	r2, [r3]
+ 194:main.c        ****         if (displayVolume < 10) LCD_PutChar(' ');
+ 488              		.loc 1 194 0
+ 489 01b2 4C4B     		ldr	r3, .L28+56
+ 490 01b4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 491 01b6 092B     		cmp	r3, #9
+ 492 01b8 02D8     		bhi	.L17
+ 493              		.loc 1 194 0 is_stmt 0 discriminator 1
+ 494 01ba 2020     		movs	r0, #32
+ 495 01bc FFF7FEFF 		bl	LCD_PutChar
+ 496              	.L17:
+ 195:main.c        ****         LCD_PrintNumber(displayVolume);
+ 497              		.loc 1 195 0 is_stmt 1
+ 498 01c0 484B     		ldr	r3, .L28+56
+ 499 01c2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 500 01c4 1846     		mov	r0, r3
+ 501 01c6 FFF7FEFF 		bl	LCD_PrintU32Number
+ 196:main.c        ****         
+ 197:main.c        ****         // zet elke seconde maximum inputwaarde op het LCD
+ 198:main.c        ****         if (cyclusTel >= 100) {
+ 502              		.loc 1 198 0
+ 503 01ca 424B     		ldr	r3, .L28+40
+ 504 01cc 1B68     		ldr	r3, [r3]
+ 505 01ce 632B     		cmp	r3, #99
+ 506 01d0 65D9     		bls	.L18
+ 199:main.c        ****             cyclusTel = 0;
+ 507              		.loc 1 199 0
+ 508 01d2 404B     		ldr	r3, .L28+40
+ 509 01d4 0022     		movs	r2, #0
+ 510 01d6 1A60     		str	r2, [r3]
+ 200:main.c        ****             LCD_Position(0u, 6);
+ 511              		.loc 1 200 0
+ 512 01d8 0621     		movs	r1, #6
+ 513 01da 0020     		movs	r0, #0
+ 514 01dc FFF7FEFF 		bl	LCD_Position
+ 201:main.c        ****             LCD_PutChar(ClipIndicator); 
+ 515              		.loc 1 201 0
+ 516 01e0 3E4B     		ldr	r3, .L28+48
+ 517 01e2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 518 01e4 1846     		mov	r0, r3
+ 519 01e6 FFF7FEFF 		bl	LCD_PutChar
+ 202:main.c        ****             ClipIndicator = ' ';
+ 520              		.loc 1 202 0
+ 521 01ea 3C4B     		ldr	r3, .L28+48
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 14
+
+
+ 522 01ec 2022     		movs	r2, #32
+ 523 01ee 1A70     		strb	r2, [r3]
+ 203:main.c        ****             LCD_Position(1u, 5);
+ 524              		.loc 1 203 0
+ 525 01f0 0521     		movs	r1, #5
+ 526 01f2 0120     		movs	r0, #1
+ 527 01f4 FFF7FEFF 		bl	LCD_Position
+ 204:main.c        ****             if (maxL < 10000) LCD_PutChar(' ');
+ 528              		.loc 1 204 0
+ 529 01f8 3B4B     		ldr	r3, .L28+60
+ 530 01fa 1B68     		ldr	r3, [r3]
+ 531 01fc 42F20F72 		movw	r2, #9999
+ 532 0200 9342     		cmp	r3, r2
+ 533 0202 02DC     		bgt	.L19
+ 534              		.loc 1 204 0 is_stmt 0 discriminator 1
+ 535 0204 2020     		movs	r0, #32
+ 536 0206 FFF7FEFF 		bl	LCD_PutChar
+ 537              	.L19:
+ 205:main.c        ****             if (maxL < 1000)  LCD_PutChar(' ');
+ 538              		.loc 1 205 0 is_stmt 1
+ 539 020a 374B     		ldr	r3, .L28+60
+ 540 020c 1B68     		ldr	r3, [r3]
+ 541 020e B3F57A7F 		cmp	r3, #1000
+ 542 0212 02DA     		bge	.L20
+ 543              		.loc 1 205 0 is_stmt 0 discriminator 1
+ 544 0214 2020     		movs	r0, #32
+ 545 0216 FFF7FEFF 		bl	LCD_PutChar
+ 546              	.L20:
+ 206:main.c        ****             if (maxL < 100)   LCD_PutChar(' ');
+ 547              		.loc 1 206 0 is_stmt 1
+ 548 021a 334B     		ldr	r3, .L28+60
+ 549 021c 1B68     		ldr	r3, [r3]
+ 550 021e 632B     		cmp	r3, #99
+ 551 0220 02DC     		bgt	.L21
+ 552              		.loc 1 206 0 is_stmt 0 discriminator 1
+ 553 0222 2020     		movs	r0, #32
+ 554 0224 FFF7FEFF 		bl	LCD_PutChar
+ 555              	.L21:
+ 207:main.c        ****             if (maxL < 10)    LCD_PutChar(' ');
+ 556              		.loc 1 207 0 is_stmt 1
+ 557 0228 2F4B     		ldr	r3, .L28+60
+ 558 022a 1B68     		ldr	r3, [r3]
+ 559 022c 092B     		cmp	r3, #9
+ 560 022e 02DC     		bgt	.L22
+ 561              		.loc 1 207 0 is_stmt 0 discriminator 1
+ 562 0230 2020     		movs	r0, #32
+ 563 0232 FFF7FEFF 		bl	LCD_PutChar
+ 564              	.L22:
+ 208:main.c        ****             LCD_PrintNumber(maxL);
+ 565              		.loc 1 208 0 is_stmt 1
+ 566 0236 2C4B     		ldr	r3, .L28+60
+ 567 0238 1B68     		ldr	r3, [r3]
+ 568 023a 9BB2     		uxth	r3, r3
+ 569 023c 1846     		mov	r0, r3
+ 570 023e FFF7FEFF 		bl	LCD_PrintU32Number
+ 209:main.c        ****             maxL = 0; 
+ 571              		.loc 1 209 0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 15
+
+
+ 572 0242 294B     		ldr	r3, .L28+60
+ 573 0244 0022     		movs	r2, #0
+ 574 0246 1A60     		str	r2, [r3]
+ 210:main.c        ****             LCD_PutChar(' ');
+ 575              		.loc 1 210 0
+ 576 0248 2020     		movs	r0, #32
+ 577 024a FFF7FEFF 		bl	LCD_PutChar
+ 211:main.c        ****             if (maxR < 10000) LCD_PutChar(' ');
+ 578              		.loc 1 211 0
+ 579 024e 274B     		ldr	r3, .L28+64
+ 580 0250 1B68     		ldr	r3, [r3]
+ 581 0252 42F20F72 		movw	r2, #9999
+ 582 0256 9342     		cmp	r3, r2
+ 583 0258 02DC     		bgt	.L23
+ 584              		.loc 1 211 0 is_stmt 0 discriminator 1
+ 585 025a 2020     		movs	r0, #32
+ 586 025c FFF7FEFF 		bl	LCD_PutChar
+ 587              	.L23:
+ 212:main.c        ****             if (maxR < 1000)  LCD_PutChar(' ');
+ 588              		.loc 1 212 0 is_stmt 1
+ 589 0260 224B     		ldr	r3, .L28+64
+ 590 0262 1B68     		ldr	r3, [r3]
+ 591 0264 B3F57A7F 		cmp	r3, #1000
+ 592 0268 02DA     		bge	.L24
+ 593              		.loc 1 212 0 is_stmt 0 discriminator 1
+ 594 026a 2020     		movs	r0, #32
+ 595 026c FFF7FEFF 		bl	LCD_PutChar
+ 596              	.L24:
+ 213:main.c        ****             if (maxR < 100)   LCD_PutChar(' ');
+ 597              		.loc 1 213 0 is_stmt 1
+ 598 0270 1E4B     		ldr	r3, .L28+64
+ 599 0272 1B68     		ldr	r3, [r3]
+ 600 0274 632B     		cmp	r3, #99
+ 601 0276 02DC     		bgt	.L25
+ 602              		.loc 1 213 0 is_stmt 0 discriminator 1
+ 603 0278 2020     		movs	r0, #32
+ 604 027a FFF7FEFF 		bl	LCD_PutChar
+ 605              	.L25:
+ 214:main.c        ****             if (maxR < 10)    LCD_PutChar(' ');
+ 606              		.loc 1 214 0 is_stmt 1
+ 607 027e 1B4B     		ldr	r3, .L28+64
+ 608 0280 1B68     		ldr	r3, [r3]
+ 609 0282 092B     		cmp	r3, #9
+ 610 0284 02DC     		bgt	.L26
+ 611              		.loc 1 214 0 is_stmt 0 discriminator 1
+ 612 0286 2020     		movs	r0, #32
+ 613 0288 FFF7FEFF 		bl	LCD_PutChar
+ 614              	.L26:
+ 215:main.c        ****             LCD_PrintNumber(maxR);
+ 615              		.loc 1 215 0 is_stmt 1
+ 616 028c 174B     		ldr	r3, .L28+64
+ 617 028e 1B68     		ldr	r3, [r3]
+ 618 0290 9BB2     		uxth	r3, r3
+ 619 0292 1846     		mov	r0, r3
+ 620 0294 FFF7FEFF 		bl	LCD_PrintU32Number
+ 216:main.c        ****             maxR = 0;
+ 621              		.loc 1 216 0
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 16
+
+
+ 622 0298 144B     		ldr	r3, .L28+64
+ 623 029a 0022     		movs	r2, #0
+ 624 029c 1A60     		str	r2, [r3]
+ 625              	.L18:
+ 217:main.c        ****         }
+ 218:main.c        ****         cyclusTel++;
+ 626              		.loc 1 218 0
+ 627 029e 0D4B     		ldr	r3, .L28+40
+ 628 02a0 1B68     		ldr	r3, [r3]
+ 629 02a2 0133     		adds	r3, r3, #1
+ 630 02a4 0B4A     		ldr	r2, .L28+40
+ 631 02a6 1360     		str	r3, [r2]
+ 219:main.c        ****         //CyDelayUs(1000);
+ 220:main.c        ****     }
+ 632              		.loc 1 220 0
+ 633 02a8 4BE7     		b	.L27
+ 634              	.L29:
+ 635 02aa 00BF     		.align	2
+ 636              	.L28:
+ 637 02ac 00000000 		.word	.LC0
+ 638 02b0 10000000 		.word	.LC1
+ 639 02b4 28000000 		.word	.LC2
+ 640 02b8 38000000 		.word	.LC3
+ 641 02bc 4C000000 		.word	.LC4
+ 642 02c0 5C000000 		.word	.LC5
+ 643 02c4 00000000 		.word	sampleUit
+ 644 02c8 98C70040 		.word	1073792920
+ 645 02cc 00000000 		.word	sampleIntTx_ISR
+ 646 02d0 00000000 		.word	sampleIntRx_ISR
+ 647 02d4 00000000 		.word	cyclusTel
+ 648 02d8 00000000 		.word	LineVolume
+ 649 02dc 00000000 		.word	ClipIndicator
+ 650 02e0 00000000 		.word	HPvolume
+ 651 02e4 00000000 		.word	displayVolume
+ 652 02e8 00000000 		.word	maxL
+ 653 02ec 00000000 		.word	maxR
+ 654              		.cfi_endproc
+ 655              	.LFE64:
+ 656              		.size	main, .-main
+ 657              		.text
+ 658              	.Letext0:
+ 659              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 660              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 661              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 662              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 663              		.file 6 "./dma.h"
+ 664              		.section	.debug_info,"",%progbits
+ 665              	.Ldebug_info0:
+ 666 0000 04020000 		.4byte	0x204
+ 667 0004 0400     		.2byte	0x4
+ 668 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 669 000a 04       		.byte	0x4
+ 670 000b 01       		.uleb128 0x1
+ 671 000c 00000000 		.4byte	.LASF35
+ 672 0010 0C       		.byte	0xc
+ 673 0011 FF010000 		.4byte	.LASF36
+ 674 0015 B9000000 		.4byte	.LASF37
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 17
+
+
+ 675 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 676 001d 00000000 		.4byte	0
+ 677 0021 00000000 		.4byte	.Ldebug_line0
+ 678 0025 02       		.uleb128 0x2
+ 679 0026 01       		.byte	0x1
+ 680 0027 06       		.byte	0x6
+ 681 0028 49020000 		.4byte	.LASF0
+ 682 002c 02       		.uleb128 0x2
+ 683 002d 01       		.byte	0x1
+ 684 002e 08       		.byte	0x8
+ 685 002f 3B010000 		.4byte	.LASF1
+ 686 0033 02       		.uleb128 0x2
+ 687 0034 02       		.byte	0x2
+ 688 0035 05       		.byte	0x5
+ 689 0036 16020000 		.4byte	.LASF2
+ 690 003a 02       		.uleb128 0x2
+ 691 003b 02       		.byte	0x2
+ 692 003c 07       		.byte	0x7
+ 693 003d 66010000 		.4byte	.LASF3
+ 694 0041 03       		.uleb128 0x3
+ 695 0042 8E000000 		.4byte	.LASF9
+ 696 0046 02       		.byte	0x2
+ 697 0047 3F       		.byte	0x3f
+ 698 0048 4C000000 		.4byte	0x4c
+ 699 004c 02       		.uleb128 0x2
+ 700 004d 04       		.byte	0x4
+ 701 004e 05       		.byte	0x5
+ 702 004f 34020000 		.4byte	.LASF4
+ 703 0053 02       		.uleb128 0x2
+ 704 0054 04       		.byte	0x4
+ 705 0055 07       		.byte	0x7
+ 706 0056 54010000 		.4byte	.LASF5
+ 707 005a 02       		.uleb128 0x2
+ 708 005b 08       		.byte	0x8
+ 709 005c 05       		.byte	0x5
+ 710 005d F1010000 		.4byte	.LASF6
+ 711 0061 02       		.uleb128 0x2
+ 712 0062 08       		.byte	0x8
+ 713 0063 07       		.byte	0x7
+ 714 0064 C9010000 		.4byte	.LASF7
+ 715 0068 04       		.uleb128 0x4
+ 716 0069 04       		.byte	0x4
+ 717 006a 05       		.byte	0x5
+ 718 006b 696E7400 		.ascii	"int\000"
+ 719 006f 02       		.uleb128 0x2
+ 720 0070 04       		.byte	0x4
+ 721 0071 07       		.byte	0x7
+ 722 0072 BC010000 		.4byte	.LASF8
+ 723 0076 03       		.uleb128 0x3
+ 724 0077 E0010000 		.4byte	.LASF10
+ 725 007b 03       		.byte	0x3
+ 726 007c 2C       		.byte	0x2c
+ 727 007d 41000000 		.4byte	0x41
+ 728 0081 05       		.uleb128 0x5
+ 729 0082 20020000 		.4byte	.LASF11
+ 730 0086 04       		.byte	0x4
+ 731 0087 9201     		.2byte	0x192
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 18
+
+
+ 732 0089 2C000000 		.4byte	0x2c
+ 733 008d 05       		.uleb128 0x5
+ 734 008e A4010000 		.4byte	.LASF12
+ 735 0092 04       		.byte	0x4
+ 736 0093 9301     		.2byte	0x193
+ 737 0095 3A000000 		.4byte	0x3a
+ 738 0099 05       		.uleb128 0x5
+ 739 009a B5010000 		.4byte	.LASF13
+ 740 009e 04       		.byte	0x4
+ 741 009f 9401     		.2byte	0x194
+ 742 00a1 53000000 		.4byte	0x53
+ 743 00a5 05       		.uleb128 0x5
+ 744 00a6 4E010000 		.4byte	.LASF14
+ 745 00aa 04       		.byte	0x4
+ 746 00ab 9601     		.2byte	0x196
+ 747 00ad 33000000 		.4byte	0x33
+ 748 00b1 02       		.uleb128 0x2
+ 749 00b2 04       		.byte	0x4
+ 750 00b3 04       		.byte	0x4
+ 751 00b4 2E010000 		.4byte	.LASF15
+ 752 00b8 02       		.uleb128 0x2
+ 753 00b9 08       		.byte	0x8
+ 754 00ba 04       		.byte	0x4
+ 755 00bb 98010000 		.4byte	.LASF16
+ 756 00bf 02       		.uleb128 0x2
+ 757 00c0 01       		.byte	0x1
+ 758 00c1 08       		.byte	0x8
+ 759 00c2 06020000 		.4byte	.LASF17
+ 760 00c6 05       		.uleb128 0x5
+ 761 00c7 49010000 		.4byte	.LASF18
+ 762 00cb 04       		.byte	0x4
+ 763 00cc 3C02     		.2byte	0x23c
+ 764 00ce D2000000 		.4byte	0xd2
+ 765 00d2 06       		.uleb128 0x6
+ 766 00d3 81000000 		.4byte	0x81
+ 767 00d7 02       		.uleb128 0x2
+ 768 00d8 08       		.byte	0x8
+ 769 00d9 04       		.byte	0x4
+ 770 00da 3D020000 		.4byte	.LASF19
+ 771 00de 02       		.uleb128 0x2
+ 772 00df 04       		.byte	0x4
+ 773 00e0 07       		.byte	0x7
+ 774 00e1 E8010000 		.4byte	.LASF20
+ 775 00e5 07       		.uleb128 0x7
+ 776 00e6 79010000 		.4byte	.LASF21
+ 777 00ea 01       		.byte	0x1
+ 778 00eb 3C       		.byte	0x3c
+ 779 00ec 00000000 		.4byte	.LFB63
+ 780 00f0 60010000 		.4byte	.LFE63-.LFB63
+ 781 00f4 01       		.uleb128 0x1
+ 782 00f5 9C       		.byte	0x9c
+ 783 00f6 08       		.uleb128 0x8
+ 784 00f7 9F010000 		.4byte	.LASF22
+ 785 00fb 01       		.byte	0x1
+ 786 00fc 72       		.byte	0x72
+ 787 00fd 68000000 		.4byte	0x68
+ 788 0101 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 19
+
+
+ 789 0105 F0020000 		.4byte	.LFE64-.LFB64
+ 790 0109 01       		.uleb128 0x1
+ 791 010a 9C       		.byte	0x9c
+ 792 010b 09       		.uleb128 0x9
+ 793 010c 8B010000 		.4byte	.LASF23
+ 794 0110 05       		.byte	0x5
+ 795 0111 1207     		.2byte	0x712
+ 796 0113 17010000 		.4byte	0x117
+ 797 0117 06       		.uleb128 0x6
+ 798 0118 76000000 		.4byte	0x76
+ 799 011c 0A       		.uleb128 0xa
+ 800 011d 81000000 		.4byte	0x81
+ 801 0121 2C010000 		.4byte	0x12c
+ 802 0125 0B       		.uleb128 0xb
+ 803 0126 DE000000 		.4byte	0xde
+ 804 012a 03       		.byte	0x3
+ 805 012b 00       		.byte	0
+ 806 012c 0C       		.uleb128 0xc
+ 807 012d 5F020000 		.4byte	.LASF24
+ 808 0131 06       		.byte	0x6
+ 809 0132 13       		.byte	0x13
+ 810 0133 1C010000 		.4byte	0x11c
+ 811 0137 05       		.uleb128 0x5
+ 812 0138 03       		.byte	0x3
+ 813 0139 00000000 		.4byte	rxBuff
+ 814 013d 0C       		.uleb128 0xc
+ 815 013e 34010000 		.4byte	.LASF25
+ 816 0142 06       		.byte	0x6
+ 817 0143 14       		.byte	0x14
+ 818 0144 1C010000 		.4byte	0x11c
+ 819 0148 05       		.uleb128 0x5
+ 820 0149 03       		.byte	0x3
+ 821 014a 00000000 		.4byte	txBuff
+ 822 014e 0A       		.uleb128 0xa
+ 823 014f A5000000 		.4byte	0xa5
+ 824 0153 5E010000 		.4byte	0x15e
+ 825 0157 0B       		.uleb128 0xb
+ 826 0158 DE000000 		.4byte	0xde
+ 827 015c 01       		.byte	0x1
+ 828 015d 00       		.byte	0
+ 829 015e 0C       		.uleb128 0xc
+ 830 015f 66020000 		.4byte	.LASF26
+ 831 0163 06       		.byte	0x6
+ 832 0164 17       		.byte	0x17
+ 833 0165 4E010000 		.4byte	0x14e
+ 834 0169 05       		.uleb128 0x5
+ 835 016a 03       		.byte	0x3
+ 836 016b 00000000 		.4byte	sampleIn
+ 837 016f 0C       		.uleb128 0xc
+ 838 0170 AB010000 		.4byte	.LASF27
+ 839 0174 06       		.byte	0x6
+ 840 0175 18       		.byte	0x18
+ 841 0176 4E010000 		.4byte	0x14e
+ 842 017a 05       		.uleb128 0x5
+ 843 017b 03       		.byte	0x3
+ 844 017c 00000000 		.4byte	sampleUit
+ 845 0180 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 20
+
+
+ 846 0181 9D000000 		.4byte	.LASF28
+ 847 0185 01       		.byte	0x1
+ 848 0186 37       		.byte	0x37
+ 849 0187 81000000 		.4byte	0x81
+ 850 018b 05       		.uleb128 0x5
+ 851 018c 03       		.byte	0x3
+ 852 018d 00000000 		.4byte	HPvolume
+ 853 0191 0C       		.uleb128 0xc
+ 854 0192 A6000000 		.4byte	.LASF29
+ 855 0196 01       		.byte	0x1
+ 856 0197 37       		.byte	0x37
+ 857 0198 81000000 		.4byte	0x81
+ 858 019c 05       		.uleb128 0x5
+ 859 019d 03       		.byte	0x3
+ 860 019e 00000000 		.4byte	displayVolume
+ 861 01a2 0C       		.uleb128 0xc
+ 862 01a3 0B020000 		.4byte	.LASF30
+ 863 01a7 01       		.byte	0x1
+ 864 01a8 37       		.byte	0x37
+ 865 01a9 81000000 		.4byte	0x81
+ 866 01ad 05       		.uleb128 0x5
+ 867 01ae 03       		.byte	0x3
+ 868 01af 00000000 		.4byte	LineVolume
+ 869 01b3 0C       		.uleb128 0xc
+ 870 01b4 26020000 		.4byte	.LASF31
+ 871 01b8 01       		.byte	0x1
+ 872 01b9 37       		.byte	0x37
+ 873 01ba 81000000 		.4byte	0x81
+ 874 01be 05       		.uleb128 0x5
+ 875 01bf 03       		.byte	0x3
+ 876 01c0 00000000 		.4byte	ClipIndicator
+ 877 01c4 0C       		.uleb128 0xc
+ 878 01c5 98000000 		.4byte	.LASF32
+ 879 01c9 01       		.byte	0x1
+ 880 01ca 38       		.byte	0x38
+ 881 01cb 68000000 		.4byte	0x68
+ 882 01cf 05       		.uleb128 0x5
+ 883 01d0 03       		.byte	0x3
+ 884 01d1 00000000 		.4byte	maxL
+ 885 01d5 0C       		.uleb128 0xc
+ 886 01d6 B4000000 		.4byte	.LASF33
+ 887 01da 01       		.byte	0x1
+ 888 01db 38       		.byte	0x38
+ 889 01dc 68000000 		.4byte	0x68
+ 890 01e0 05       		.uleb128 0x5
+ 891 01e1 03       		.byte	0x3
+ 892 01e2 00000000 		.4byte	maxR
+ 893 01e6 0C       		.uleb128 0xc
+ 894 01e7 55020000 		.4byte	.LASF34
+ 895 01eb 01       		.byte	0x1
+ 896 01ec 39       		.byte	0x39
+ 897 01ed 99000000 		.4byte	0x99
+ 898 01f1 05       		.uleb128 0x5
+ 899 01f2 03       		.byte	0x3
+ 900 01f3 00000000 		.4byte	cyclusTel
+ 901 01f7 0D       		.uleb128 0xd
+ 902 01f8 533100   		.ascii	"S1\000"
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 21
+
+
+ 903 01fb 01       		.byte	0x1
+ 904 01fc 3A       		.byte	0x3a
+ 905 01fd 81000000 		.4byte	0x81
+ 906 0201 05       		.uleb128 0x5
+ 907 0202 03       		.byte	0x3
+ 908 0203 00000000 		.4byte	S1
+ 909 0207 00       		.byte	0
+ 910              		.section	.debug_abbrev,"",%progbits
+ 911              	.Ldebug_abbrev0:
+ 912 0000 01       		.uleb128 0x1
+ 913 0001 11       		.uleb128 0x11
+ 914 0002 01       		.byte	0x1
+ 915 0003 25       		.uleb128 0x25
+ 916 0004 0E       		.uleb128 0xe
+ 917 0005 13       		.uleb128 0x13
+ 918 0006 0B       		.uleb128 0xb
+ 919 0007 03       		.uleb128 0x3
+ 920 0008 0E       		.uleb128 0xe
+ 921 0009 1B       		.uleb128 0x1b
+ 922 000a 0E       		.uleb128 0xe
+ 923 000b 55       		.uleb128 0x55
+ 924 000c 17       		.uleb128 0x17
+ 925 000d 11       		.uleb128 0x11
+ 926 000e 01       		.uleb128 0x1
+ 927 000f 10       		.uleb128 0x10
+ 928 0010 17       		.uleb128 0x17
+ 929 0011 00       		.byte	0
+ 930 0012 00       		.byte	0
+ 931 0013 02       		.uleb128 0x2
+ 932 0014 24       		.uleb128 0x24
+ 933 0015 00       		.byte	0
+ 934 0016 0B       		.uleb128 0xb
+ 935 0017 0B       		.uleb128 0xb
+ 936 0018 3E       		.uleb128 0x3e
+ 937 0019 0B       		.uleb128 0xb
+ 938 001a 03       		.uleb128 0x3
+ 939 001b 0E       		.uleb128 0xe
+ 940 001c 00       		.byte	0
+ 941 001d 00       		.byte	0
+ 942 001e 03       		.uleb128 0x3
+ 943 001f 16       		.uleb128 0x16
+ 944 0020 00       		.byte	0
+ 945 0021 03       		.uleb128 0x3
+ 946 0022 0E       		.uleb128 0xe
+ 947 0023 3A       		.uleb128 0x3a
+ 948 0024 0B       		.uleb128 0xb
+ 949 0025 3B       		.uleb128 0x3b
+ 950 0026 0B       		.uleb128 0xb
+ 951 0027 49       		.uleb128 0x49
+ 952 0028 13       		.uleb128 0x13
+ 953 0029 00       		.byte	0
+ 954 002a 00       		.byte	0
+ 955 002b 04       		.uleb128 0x4
+ 956 002c 24       		.uleb128 0x24
+ 957 002d 00       		.byte	0
+ 958 002e 0B       		.uleb128 0xb
+ 959 002f 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 22
+
+
+ 960 0030 3E       		.uleb128 0x3e
+ 961 0031 0B       		.uleb128 0xb
+ 962 0032 03       		.uleb128 0x3
+ 963 0033 08       		.uleb128 0x8
+ 964 0034 00       		.byte	0
+ 965 0035 00       		.byte	0
+ 966 0036 05       		.uleb128 0x5
+ 967 0037 16       		.uleb128 0x16
+ 968 0038 00       		.byte	0
+ 969 0039 03       		.uleb128 0x3
+ 970 003a 0E       		.uleb128 0xe
+ 971 003b 3A       		.uleb128 0x3a
+ 972 003c 0B       		.uleb128 0xb
+ 973 003d 3B       		.uleb128 0x3b
+ 974 003e 05       		.uleb128 0x5
+ 975 003f 49       		.uleb128 0x49
+ 976 0040 13       		.uleb128 0x13
+ 977 0041 00       		.byte	0
+ 978 0042 00       		.byte	0
+ 979 0043 06       		.uleb128 0x6
+ 980 0044 35       		.uleb128 0x35
+ 981 0045 00       		.byte	0
+ 982 0046 49       		.uleb128 0x49
+ 983 0047 13       		.uleb128 0x13
+ 984 0048 00       		.byte	0
+ 985 0049 00       		.byte	0
+ 986 004a 07       		.uleb128 0x7
+ 987 004b 2E       		.uleb128 0x2e
+ 988 004c 00       		.byte	0
+ 989 004d 3F       		.uleb128 0x3f
+ 990 004e 19       		.uleb128 0x19
+ 991 004f 03       		.uleb128 0x3
+ 992 0050 0E       		.uleb128 0xe
+ 993 0051 3A       		.uleb128 0x3a
+ 994 0052 0B       		.uleb128 0xb
+ 995 0053 3B       		.uleb128 0x3b
+ 996 0054 0B       		.uleb128 0xb
+ 997 0055 27       		.uleb128 0x27
+ 998 0056 19       		.uleb128 0x19
+ 999 0057 11       		.uleb128 0x11
+ 1000 0058 01       		.uleb128 0x1
+ 1001 0059 12       		.uleb128 0x12
+ 1002 005a 06       		.uleb128 0x6
+ 1003 005b 40       		.uleb128 0x40
+ 1004 005c 18       		.uleb128 0x18
+ 1005 005d 9642     		.uleb128 0x2116
+ 1006 005f 19       		.uleb128 0x19
+ 1007 0060 00       		.byte	0
+ 1008 0061 00       		.byte	0
+ 1009 0062 08       		.uleb128 0x8
+ 1010 0063 2E       		.uleb128 0x2e
+ 1011 0064 00       		.byte	0
+ 1012 0065 3F       		.uleb128 0x3f
+ 1013 0066 19       		.uleb128 0x19
+ 1014 0067 03       		.uleb128 0x3
+ 1015 0068 0E       		.uleb128 0xe
+ 1016 0069 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 23
+
+
+ 1017 006a 0B       		.uleb128 0xb
+ 1018 006b 3B       		.uleb128 0x3b
+ 1019 006c 0B       		.uleb128 0xb
+ 1020 006d 49       		.uleb128 0x49
+ 1021 006e 13       		.uleb128 0x13
+ 1022 006f 11       		.uleb128 0x11
+ 1023 0070 01       		.uleb128 0x1
+ 1024 0071 12       		.uleb128 0x12
+ 1025 0072 06       		.uleb128 0x6
+ 1026 0073 40       		.uleb128 0x40
+ 1027 0074 18       		.uleb128 0x18
+ 1028 0075 9642     		.uleb128 0x2116
+ 1029 0077 19       		.uleb128 0x19
+ 1030 0078 00       		.byte	0
+ 1031 0079 00       		.byte	0
+ 1032 007a 09       		.uleb128 0x9
+ 1033 007b 34       		.uleb128 0x34
+ 1034 007c 00       		.byte	0
+ 1035 007d 03       		.uleb128 0x3
+ 1036 007e 0E       		.uleb128 0xe
+ 1037 007f 3A       		.uleb128 0x3a
+ 1038 0080 0B       		.uleb128 0xb
+ 1039 0081 3B       		.uleb128 0x3b
+ 1040 0082 05       		.uleb128 0x5
+ 1041 0083 49       		.uleb128 0x49
+ 1042 0084 13       		.uleb128 0x13
+ 1043 0085 3F       		.uleb128 0x3f
+ 1044 0086 19       		.uleb128 0x19
+ 1045 0087 3C       		.uleb128 0x3c
+ 1046 0088 19       		.uleb128 0x19
+ 1047 0089 00       		.byte	0
+ 1048 008a 00       		.byte	0
+ 1049 008b 0A       		.uleb128 0xa
+ 1050 008c 01       		.uleb128 0x1
+ 1051 008d 01       		.byte	0x1
+ 1052 008e 49       		.uleb128 0x49
+ 1053 008f 13       		.uleb128 0x13
+ 1054 0090 01       		.uleb128 0x1
+ 1055 0091 13       		.uleb128 0x13
+ 1056 0092 00       		.byte	0
+ 1057 0093 00       		.byte	0
+ 1058 0094 0B       		.uleb128 0xb
+ 1059 0095 21       		.uleb128 0x21
+ 1060 0096 00       		.byte	0
+ 1061 0097 49       		.uleb128 0x49
+ 1062 0098 13       		.uleb128 0x13
+ 1063 0099 2F       		.uleb128 0x2f
+ 1064 009a 0B       		.uleb128 0xb
+ 1065 009b 00       		.byte	0
+ 1066 009c 00       		.byte	0
+ 1067 009d 0C       		.uleb128 0xc
+ 1068 009e 34       		.uleb128 0x34
+ 1069 009f 00       		.byte	0
+ 1070 00a0 03       		.uleb128 0x3
+ 1071 00a1 0E       		.uleb128 0xe
+ 1072 00a2 3A       		.uleb128 0x3a
+ 1073 00a3 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 24
+
+
+ 1074 00a4 3B       		.uleb128 0x3b
+ 1075 00a5 0B       		.uleb128 0xb
+ 1076 00a6 49       		.uleb128 0x49
+ 1077 00a7 13       		.uleb128 0x13
+ 1078 00a8 3F       		.uleb128 0x3f
+ 1079 00a9 19       		.uleb128 0x19
+ 1080 00aa 02       		.uleb128 0x2
+ 1081 00ab 18       		.uleb128 0x18
+ 1082 00ac 00       		.byte	0
+ 1083 00ad 00       		.byte	0
+ 1084 00ae 0D       		.uleb128 0xd
+ 1085 00af 34       		.uleb128 0x34
+ 1086 00b0 00       		.byte	0
+ 1087 00b1 03       		.uleb128 0x3
+ 1088 00b2 08       		.uleb128 0x8
+ 1089 00b3 3A       		.uleb128 0x3a
+ 1090 00b4 0B       		.uleb128 0xb
+ 1091 00b5 3B       		.uleb128 0x3b
+ 1092 00b6 0B       		.uleb128 0xb
+ 1093 00b7 49       		.uleb128 0x49
+ 1094 00b8 13       		.uleb128 0x13
+ 1095 00b9 3F       		.uleb128 0x3f
+ 1096 00ba 19       		.uleb128 0x19
+ 1097 00bb 02       		.uleb128 0x2
+ 1098 00bc 18       		.uleb128 0x18
+ 1099 00bd 00       		.byte	0
+ 1100 00be 00       		.byte	0
+ 1101 00bf 00       		.byte	0
+ 1102              		.section	.debug_aranges,"",%progbits
+ 1103 0000 24000000 		.4byte	0x24
+ 1104 0004 0200     		.2byte	0x2
+ 1105 0006 00000000 		.4byte	.Ldebug_info0
+ 1106 000a 04       		.byte	0x4
+ 1107 000b 00       		.byte	0
+ 1108 000c 0000     		.2byte	0
+ 1109 000e 0000     		.2byte	0
+ 1110 0010 00000000 		.4byte	.LFB63
+ 1111 0014 60010000 		.4byte	.LFE63-.LFB63
+ 1112 0018 00000000 		.4byte	.LFB64
+ 1113 001c F0020000 		.4byte	.LFE64-.LFB64
+ 1114 0020 00000000 		.4byte	0
+ 1115 0024 00000000 		.4byte	0
+ 1116              		.section	.debug_ranges,"",%progbits
+ 1117              	.Ldebug_ranges0:
+ 1118 0000 00000000 		.4byte	.LFB63
+ 1119 0004 60010000 		.4byte	.LFE63
+ 1120 0008 00000000 		.4byte	.LFB64
+ 1121 000c F0020000 		.4byte	.LFE64
+ 1122 0010 00000000 		.4byte	0
+ 1123 0014 00000000 		.4byte	0
+ 1124              		.section	.debug_line,"",%progbits
+ 1125              	.Ldebug_line0:
+ 1126 0000 36020000 		.section	.debug_str,"MS",%progbits,1
+ 1126      02005701 
+ 1126      00000201 
+ 1126      FB0E0D00 
+ 1126      01010101 
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 25
+
+
+ 1127              	.LASF35:
+ 1128 0000 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1128      43313120 
+ 1128      352E342E 
+ 1128      31203230 
+ 1128      31363036 
+ 1129 0033 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1129      20726576 
+ 1129      6973696F 
+ 1129      6E203233 
+ 1129      37373135 
+ 1130 0066 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1130      66756E63 
+ 1130      74696F6E 
+ 1130      2D736563 
+ 1130      74696F6E 
+ 1131              	.LASF9:
+ 1132 008e 5F5F696E 		.ascii	"__int32_t\000"
+ 1132      7433325F 
+ 1132      7400
+ 1133              	.LASF32:
+ 1134 0098 6D61784C 		.ascii	"maxL\000"
+ 1134      00
+ 1135              	.LASF28:
+ 1136 009d 4850766F 		.ascii	"HPvolume\000"
+ 1136      6C756D65 
+ 1136      00
+ 1137              	.LASF29:
+ 1138 00a6 64697370 		.ascii	"displayVolume\000"
+ 1138      6C617956 
+ 1138      6F6C756D 
+ 1138      6500
+ 1139              	.LASF33:
+ 1140 00b4 6D617852 		.ascii	"maxR\000"
+ 1140      00
+ 1141              	.LASF37:
+ 1142 00b9 433A5C55 		.ascii	"C:\\Users\\Jona\\Documents\\GitHub\\Signaalverwerki"
+ 1142      73657273 
+ 1142      5C4A6F6E 
+ 1142      615C446F 
+ 1142      63756D65 
+ 1143 00e7 6E675C4C 		.ascii	"ng\\Labo6\\Opgave3DTMF\\IIR_filterProject_DFB\\IIR_"
+ 1143      61626F36 
+ 1143      5C4F7067 
+ 1143      61766533 
+ 1143      44544D46 
+ 1144 0116 66696C74 		.ascii	"filterProject_DFB.cydsn\000"
+ 1144      65725072 
+ 1144      6F6A6563 
+ 1144      745F4446 
+ 1144      422E6379 
+ 1145              	.LASF15:
+ 1146 012e 666C6F61 		.ascii	"float\000"
+ 1146      7400
+ 1147              	.LASF25:
+ 1148 0134 74784275 		.ascii	"txBuff\000"
+ 1148      666600
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 26
+
+
+ 1149              	.LASF1:
+ 1150 013b 756E7369 		.ascii	"unsigned char\000"
+ 1150      676E6564 
+ 1150      20636861 
+ 1150      7200
+ 1151              	.LASF18:
+ 1152 0149 72656738 		.ascii	"reg8\000"
+ 1152      00
+ 1153              	.LASF14:
+ 1154 014e 696E7431 		.ascii	"int16\000"
+ 1154      3600
+ 1155              	.LASF5:
+ 1156 0154 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1156      20756E73 
+ 1156      69676E65 
+ 1156      6420696E 
+ 1156      7400
+ 1157              	.LASF3:
+ 1158 0166 73686F72 		.ascii	"short unsigned int\000"
+ 1158      7420756E 
+ 1158      7369676E 
+ 1158      65642069 
+ 1158      6E7400
+ 1159              	.LASF21:
+ 1160 0179 62657265 		.ascii	"berekenMetSamples\000"
+ 1160      6B656E4D 
+ 1160      65745361 
+ 1160      6D706C65 
+ 1160      7300
+ 1161              	.LASF23:
+ 1162 018b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1162      52784275 
+ 1162      66666572 
+ 1162      00
+ 1163              	.LASF16:
+ 1164 0198 646F7562 		.ascii	"double\000"
+ 1164      6C6500
+ 1165              	.LASF22:
+ 1166 019f 6D61696E 		.ascii	"main\000"
+ 1166      00
+ 1167              	.LASF12:
+ 1168 01a4 75696E74 		.ascii	"uint16\000"
+ 1168      313600
+ 1169              	.LASF27:
+ 1170 01ab 73616D70 		.ascii	"sampleUit\000"
+ 1170      6C655569 
+ 1170      7400
+ 1171              	.LASF13:
+ 1172 01b5 75696E74 		.ascii	"uint32\000"
+ 1172      333200
+ 1173              	.LASF8:
+ 1174 01bc 756E7369 		.ascii	"unsigned int\000"
+ 1174      676E6564 
+ 1174      20696E74 
+ 1174      00
+ 1175              	.LASF7:
+ 1176 01c9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 27
+
+
+ 1176      206C6F6E 
+ 1176      6720756E 
+ 1176      7369676E 
+ 1176      65642069 
+ 1177              	.LASF10:
+ 1178 01e0 696E7433 		.ascii	"int32_t\000"
+ 1178      325F7400 
+ 1179              	.LASF20:
+ 1180 01e8 73697A65 		.ascii	"sizetype\000"
+ 1180      74797065 
+ 1180      00
+ 1181              	.LASF6:
+ 1182 01f1 6C6F6E67 		.ascii	"long long int\000"
+ 1182      206C6F6E 
+ 1182      6720696E 
+ 1182      7400
+ 1183              	.LASF36:
+ 1184 01ff 6D61696E 		.ascii	"main.c\000"
+ 1184      2E6300
+ 1185              	.LASF17:
+ 1186 0206 63686172 		.ascii	"char\000"
+ 1186      00
+ 1187              	.LASF30:
+ 1188 020b 4C696E65 		.ascii	"LineVolume\000"
+ 1188      566F6C75 
+ 1188      6D6500
+ 1189              	.LASF2:
+ 1190 0216 73686F72 		.ascii	"short int\000"
+ 1190      7420696E 
+ 1190      7400
+ 1191              	.LASF11:
+ 1192 0220 75696E74 		.ascii	"uint8\000"
+ 1192      3800
+ 1193              	.LASF31:
+ 1194 0226 436C6970 		.ascii	"ClipIndicator\000"
+ 1194      496E6469 
+ 1194      6361746F 
+ 1194      7200
+ 1195              	.LASF4:
+ 1196 0234 6C6F6E67 		.ascii	"long int\000"
+ 1196      20696E74 
+ 1196      00
+ 1197              	.LASF19:
+ 1198 023d 6C6F6E67 		.ascii	"long double\000"
+ 1198      20646F75 
+ 1198      626C6500 
+ 1199              	.LASF0:
+ 1200 0249 7369676E 		.ascii	"signed char\000"
+ 1200      65642063 
+ 1200      68617200 
+ 1201              	.LASF34:
+ 1202 0255 6379636C 		.ascii	"cyclusTel\000"
+ 1202      75735465 
+ 1202      6C00
+ 1203              	.LASF24:
+ 1204 025f 72784275 		.ascii	"rxBuff\000"
+ 1204      666600
+ARM GAS  C:\Users\Jona\AppData\Local\Temp\cctBxaEs.s 			page 28
+
+
+ 1205              	.LASF26:
+ 1206 0266 73616D70 		.ascii	"sampleIn\000"
+ 1206      6C65496E 
+ 1206      00
+ 1207              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
